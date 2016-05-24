@@ -1,0 +1,43 @@
+﻿ #nav { height: 50px; }
+  
+ .option { width: 5%; text-align: center; }
+        .index { width: 5%; }
+        .idt { width: 5%; }
+        .des { width: auto; }
+        .dg_head { text-align: center; background-color: #990000; color: #ffffcc; font-weight: bold; }
+        .dg_foot { color: #330099; background-color: #ffffcc; text-align: center; }
+        .dg_item { text-align: center; color: #330099; }
+        .dg_item_select { }
+        table, tr, th, td { border: 1px solid #cc9966; }
+        #div_dynamic{  width:100%;  overflow: scroll;}
+        /*tr:hover,td:hover{ background-color:Silver;} 不行*/
+        .txtbox { width: 98%; padding: 0; margin: 0;  }
+        /*BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px"
+         ForeColor="#330099" BackColor="White" HorizontalAlign="Center" */
+        
+        #dgData, #dgHeader {
+}
+        .dg_head { height: 40px; }
+        .dg_item, .dg_foot { height: 30px; }
+        /*tr:hover,td:hover{ background-color:Silver;} 不行*/
+       
+        /*BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px"
+         ForeColor="#330099" BackColor="White" HorizontalAlign="Center" */
+
+        /*    
+        #dgData, #dgHeader{ width: 1820px; }      
+        .dg_head {height: 50px;}
+        .dg_item{ height:40px; } 
+        @media screan and (min-width:1200px)
+        {
+             #dgHeader,#dgData{ width: 1820px; }      
+        .dg_head {height: 50px;}
+        .dg_item{ height:40px; }
+            }
+        @media screan and (max-width:1199px)
+        {
+             #dgData, #dgHeader{ width: 1160px; }      
+        .dg_head {height: 40px;}
+        .dg_item{ height:30px; } 
+            }*/
+        

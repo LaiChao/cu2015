@@ -1,0 +1,50 @@
+﻿        /*去掉*/
+        body, div, ul, li, a, * { margin: 0; padding: 0; border: 0; }
+        /*去掉默认样式*/
+        ul, li { list-style-type: none; }
+        /*去掉超链接的下划线*/
+        a, a:hover ,a:link{ text-decoration: none; cursor: pointer; }
+        
+        
+        body { min-width: 1000px; font-size:14px;height:100%;}
+        /* #divHead {font-size:16px; }*/
+        #divImg {  height:40px; }
+        #divTitle { position: relative; height: 24px; line-height: 24px; padding-left: 50px; }
+        #divDate { position: absolute; float: right; right: 0; top: 0; width: 240px; text-align: center; background-color:white; height: 100%; }
+        #divUserInfo { position: absolute; float: right; right: 847px;  
+width: 240px; text-align: center; background-color:white; height: 100%; }
+        /*导航条*/
+        #daohang{ padding-left:20px;}       
+
+        #divUserInfo a:hover { color: Black; background-color: #7CDADA; }
+        /*导航条的宽度，高度和行高一致用于内容垂直居中，marging用于水平居中*/
+        .menu2 { width: 97%; height: 30px; line-height: 30px; border: 2px ;  border-bottom-color:#ce2c27; border-bottom-style:solid; overflow: hidden; background-color: white; }
+        /*一级菜单 */
+        /*li默认垂直显示，float将菜单横向显示,每个菜单的宽为100px*/
+        .menu2 ul li { float: left; }
+        /*超链接设置为块，背景色为灰色，右边框是为了区别每个菜单，文本居中*/
+        .menu2 ul li a, .menu2 ul li p { display: block; background-color: white; border-right: 0px solid blue; text-align: center; color: #000000; }
+       .menu2 ul li a, .menu2 ul li p {  padding: 0 8px;}/*一级菜单间距的一半*/
+        /*:hover伪类，指鼠标指向时的样式，这里设置为红色*/
+           /*.menu2 ul li a:link, .menu2 ul li p:link {
+        background-color: White;
+        }*/
+      
+        .menu2 ul li a:hover, .menu2 ul li p:hover{ background-color: #d6dff7; color: Black; }
+       
+         .menu2 ul li a:focus, .menu2 ul p:focus {
+         background-color:#d6dff7;
+        }
+          /*.menu2 ul li a:visited, .menu2 ul li p:visited {
+        background-color: #ff0000;
+        }*/
+        /*二级菜单*/
+        /*二级菜单开始不显示，所以display为none,位置为绝对位置，这样就不会把菜单下面的内容挤掉了*/
+        .menu2 ul li ul { display: none; position: absolute; }
+        .menu2 ul li ul,.menu2 ul li ul li a{width: 160px; }/*2级菜单的宽度*/
+        .menu2 ul li:hover ul { display: block; }
+        .menu2 ul li ul li { /* width: 160px;*/ }
+        .menu2 ul li ul li a { background-color: #d6dff7; display: block;  text-align: left; }
+        .menu2 ul li ul li a:hover { background-color: #7CDADA; }
+        /*清除浮动*/
+        .clear { width: 0; height: 0; clear: both; background-color: Yellow; }

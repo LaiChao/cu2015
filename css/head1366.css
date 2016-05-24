@@ -1,0 +1,4 @@
+﻿  body {font-size:16px; min-width: 1320px;}
+   #divImg {  height:100px; }
+  .menu2 ul li a, .menu2 ul li p { padding:0 15px;}/*一级菜单间距的一半*/
+  .menu2 ul li ul,.menu2 ul li ul li a{width: 200px; }/*2级菜单的宽度*/

@@ -1,0 +1,14 @@
+﻿    #nav{ width:1200px; height:60px; line-height:30px;}
+    .body{ width:1200px;}
+    
+    #div_dynamic{  width: 984px;   height: 680px;border: #cc9966 1px solid;   overflow: scroll;}
+    .option,.id,.name,.order,.state,.description,.area{ height:24px; font-size:small; text-align:center; line-height:24px;}
+    .option{ width:50px;}
+    .id{ width:120px;}
+    .name{ width:220px;}
+    .order{ width:60px;}
+    .state{ width:60px;}
+    .description{ width:400px;}
+    .txtbox{ width:100%; padding:0; margin:0;}
+    .area{ width:100px;}
+    

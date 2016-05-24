@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://IEL.ISCAS.AC.CN" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://IEL.ISCAS.AC.CN" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IEL.ISCAS.AC.CN">
+      <s:element name="GetTagValueEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTagValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TagValue" nillable="true" type="tns:TagValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TagValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Operation" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InteMethod" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryStartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryEndTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryStep" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TagState" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TagType" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTagValueExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueExResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueAvg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueAvgResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueAvgResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueMin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueMinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueMinResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueMax">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueMaxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueMaxResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueSum">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueSumResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueSumResult" type="tns:ArrayOfTagValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRTDBbyName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRTDBbyNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRTDBbyNameResult" type="tns:RTDBInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RTDBInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Port" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Desciption" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRTDBbyIndex">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Index" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRTDBbyIndexResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRTDBbyIndexResult" type="tns:RTDBInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRTDBCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRTDBCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRTDBCountResult" type="s:unsignedInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRTDBs">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllRTDBsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllRTDBsResult" type="tns:ArrayOfRTDBInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRTDBInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RTDBInfo" nillable="true" type="tns:RTDBInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDevices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDevicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDevicesResult" type="tns:ArrayOfDeviceInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDeviceInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DeviceInfo" nillable="true" type="tns:DeviceInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DeviceInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTagsByNameMask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameMask" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagsByNameMaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagsByNameMaskResult" type="tns:ArrayOfTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tag" nillable="true" type="tns:Tag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Tag">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTagsByDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagsByDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagsByDeviceResult" type="tns:ArrayOfTag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTagValueExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueEx" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueExResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValue" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueAvgSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueAvg" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueAvgSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueAvgResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueMinSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueMin" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueMinSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueMinResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueMaxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueMax" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueMaxSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueMaxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueSumSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueSum" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueSumSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueSumResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBbyNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRTDBbyName" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBbyNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRTDBbyNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBbyIndexSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRTDBbyIndex" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBbyIndexSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRTDBbyIndexResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRTDBCount" />
+  </wsdl:message>
+  <wsdl:message name="GetRTDBCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRTDBCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRTDBsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRTDBs" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRTDBsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRTDBsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDevicesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDevices" />
+  </wsdl:message>
+  <wsdl:message name="GetDevicesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDevicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsByNameMaskSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagsByNameMask" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsByNameMaskSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagsByNameMaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsByDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagsByDevice" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsByDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagsByDeviceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AccessorSoap">
+    <wsdl:operation name="GetTagValueEx">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值,传入参数是工位点对象数组,每个元素必须指明工位点名称,值类型operation(0=实时值,1=求和,2=最小,4=最大,8=平均,负数-1:求历史值，跟据IneMethod数值的不同使用不同的方法),求实时值得时候只需传入工位号,其他的三种操作必须填入起止时间,返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败,在value域里面填入返回值			</documentation>
+      <wsdl:input message="tns:GetTagValueExSoapIn" />
+      <wsdl:output message="tns:GetTagValueExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValue">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值,传入参数是工位点对象数组,每个元素必须指明工位点名称,返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败			</documentation>
+      <wsdl:input message="tns:GetTagValueSoapIn" />
+      <wsdl:output message="tns:GetTagValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueAvg">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值在一段时间内的平均值,传入参数是工位点对象数组,每个元素必须指明工位点名称,查询起始时间QueryStartTime和截至时间QueryEndTime,查询间隔时间QueryStep(单位:秒),返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败			</documentation>
+      <wsdl:input message="tns:GetTagValueAvgSoapIn" />
+      <wsdl:output message="tns:GetTagValueAvgSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueMin">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值在一段时间内的最小值,传入参数是工位点对象数组,每个元素必须指明工位点名称,查询起始时间QueryStartTime和截至时间QueryEndTime,查询间隔时间QueryStep(单位:秒),返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败			</documentation>
+      <wsdl:input message="tns:GetTagValueMinSoapIn" />
+      <wsdl:output message="tns:GetTagValueMinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueMax">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值在一段时间内的最大值,传入参数是工位点对象数组,每个元素必须指明工位点名称,查询起始时间QueryStartTime和截至时间QueryEndTime,查询间隔时间QueryStep(单位:秒),返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败			</documentation>
+      <wsdl:input message="tns:GetTagValueMaxSoapIn" />
+      <wsdl:output message="tns:GetTagValueMaxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueSum">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">得到工位点的值在一段时间内值的和,传入参数是工位点对象数组,每个元素必须指明工位点名称,查询起始时间QueryStartTime和截至时间QueryEndTime,查询间隔时间QueryStep(单位:秒),返回的数组和传入的数组排序相同,返回Result=0表明成功,=1表明失败			</documentation>
+      <wsdl:input message="tns:GetTagValueSumSoapIn" />
+      <wsdl:output message="tns:GetTagValueSumSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBbyName">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">根据数据库的名称查询数据库的信息</documentation>
+      <wsdl:input message="tns:GetRTDBbyNameSoapIn" />
+      <wsdl:output message="tns:GetRTDBbyNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBbyIndex">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">根据数据库的名称查询数据库的信息</documentation>
+      <wsdl:input message="tns:GetRTDBbyIndexSoapIn" />
+      <wsdl:output message="tns:GetRTDBbyIndexSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBCount">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">查询数据库实例的数量</documentation>
+      <wsdl:input message="tns:GetRTDBCountSoapIn" />
+      <wsdl:output message="tns:GetRTDBCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRTDBs">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">查询所有数据库实例的信息</documentation>
+      <wsdl:input message="tns:GetAllRTDBsSoapIn" />
+      <wsdl:output message="tns:GetAllRTDBsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDevices">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">根据数据库的名称查询数据库设备的信息</documentation>
+      <wsdl:input message="tns:GetDevicesSoapIn" />
+      <wsdl:output message="tns:GetDevicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByNameMask">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">根据工位点名称匹配符查询数据库工位点的信息</documentation>
+      <wsdl:input message="tns:GetTagsByNameMaskSoapIn" />
+      <wsdl:output message="tns:GetTagsByNameMaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByDevice">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">根据设备名称查询数据库工位点的信息</documentation>
+      <wsdl:input message="tns:GetTagsByDeviceSoapIn" />
+      <wsdl:output message="tns:GetTagsByDeviceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccessorSoap" type="tns:AccessorSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetTagValueEx">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValueEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValue">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueAvg">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValueAvg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueMin">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValueMin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueMax">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValueMax" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueSum">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagValueSum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBbyName">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetRTDBbyName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBbyIndex">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetRTDBbyIndex" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRTDBCount">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetRTDBCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRTDBs">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetAllRTDBs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDevices">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetDevices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByNameMask">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagsByNameMask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsByDevice">
+      <soap:operation soapAction="http://IEL.ISCAS.AC.CN/GetTagsByDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Accessor">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Webservice to access Realtime database.</documentation>
+    <wsdl:port name="AccessorSoap" binding="tns:AccessorSoap">
+      <soap:address location="http://10.208.4.25/rtdb/accessor.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

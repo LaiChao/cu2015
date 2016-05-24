@@ -1,0 +1,22 @@
+.MENU_LI{
+width:230px;
+height:37px;
+background-color:#6b6160;
+border-top:1px solid #877f7e;
+cursor:pointer;
+}
+.MENU_LI:hover{background-color:#534b4a;}
+.MENU_LI_selected {background-image:url(../image/menu_select.jpg);}
+.MENU_LI img {
+display:inline-block;height:37px;width:auto;margin-left:20px;margin-right:20px;
+}
+.MENU_LI span {
+display:inline-block;
+font-family:"Î¢ÈíÑÅºÚ";
+color:#ffffff;
+font-size:12px;
+line-height:37px;
+height:37px;
+position:relative;
+top:-13px;
+}

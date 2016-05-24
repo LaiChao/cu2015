@@ -1,0 +1,8 @@
+﻿body{ margin:0; padding:0; border:0;}
+    #divHead{ min-width:1000px;}
+    #divImg{ height:120px;}
+    #divTitle{ position:relative; height:24px; line-height:24px; padding-left:50px;}
+    #divDate{ position:absolute; float:right; right:0; top:0; width:240px; text-align:center; background-color:White; height:100%;}
+    #divUserInfo{ position:absolute; float:right; right:240px; top:0; width:240px; text-align:center; background-color:White;height:100%;}
+    
+    #divTitle a:link{ text-decoration:none;}

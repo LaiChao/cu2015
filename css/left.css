@@ -1,0 +1,19 @@
+﻿BODY { background: #ffffff; margin: 0px; font: 9pt 宋体; height:800px;float :left }
+IMG { border-right: 0px; border-top: 0px; vertical-align: bottom; border-left: 0px; border-bottom: 0px;float :left }
+        
+A { font: 14px 宋体; color: #000000; text-decoration: none; float :left}
+A:hover { color: #428eff; text-decoration: underline; float :left}
+A:Actitve { color: #00ccff; font-size: 9pt; font-style: normal; text-decoration: underline;float:left }
+.sec_menu { border-right: white 1px solid; background: #d6dff7; overflow: hidden; border-left: white 1px solid; border-bottom: white 1px solid;float :left }
+
+/*  */
+.div{border:0; padding:0; margin:0;float :left}
+.divTitleItem{ width:180px; margin:0 auto;}
+/*left-title.jpg*/
+.divTitle{ background-image:url(../CommUI/Images/admin_left_8.gif); height:25px; padding-left:10px; line-height:25px; font-size:14px; color:#215dc6;font-weight: bold;float:left}
+.divTitleHover{ background-image:url(../CommUI/Images/admin_left_8.gif); height:25px; padding-left:10px;line-height:25px; font-size:14px; color:#428eff;font-weight: bold;cursor: pointer;float:left}
+
+.divTitle:hover{ color:#428eff;float :left }
+.divItem{ vertical-align:middle; padding-left:10px; float :left}
+#divTitleItem a{ height:18px; line-height:18px;float :left}
+.divList{height:20px; line-height:20px; font-size:14px; background-color:#d6dff7;float :left}

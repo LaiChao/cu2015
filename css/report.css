@@ -1,0 +1,38 @@
+﻿/*-----第0部分-----*/
+/*整体部分*/
+div { margin: 0 ; padding: 0; border: 0px solid #CC9966; font-size:small; }
+
+/*-----第一部分-----*/
+/*查询、打印、输出部分*/
+
+#divHead{ width:1450px; border:0;}
+/*非用户控件样式*/
+#lblClass, #lblDate, #ddlClass, #ddlYear, #ddlMonth, #cppDate_text { height: 22px; line-height: 22px; font-size:small; }
+#lblClass, #lblDate { width: 60px; }
+#ddlClass { width: 40px; }
+#ddlYear { width: 70px; }
+#ddlMonth { width: 60px; }
+#cppDate { width: 100px; }
+#btnQuery, #btnPrint { width: 80px; }
+#btnOutput { width: 130px; }
+/*用户控件样式*/
+#uc01_lblClass, #uc01_lblDate, #uc01_ddlClass, #uc01_ddlYear, #uc01_ddlMonth, #uc01_cppDate_text { height: 24px; line-height: 24px; font-size:x-small; }
+#uc01_lblClass, #uc01_lblDate { width: 40px; }
+#uc01_ddlClass { width: 40px; }
+#uc01_ddlYear { width: 70px; }
+#uc01_ddlMonth { width: 60px; }
+#uc01_cppDate { width: 100px; }
+        
+/*-----第二部分-----*/
+/*标题部分*/
+ 
+/*#gvData,#divTitle{ width:600px;}标题、内容保持相同的宽度*/   
+#gvData,#divTitle{border-style: solid; border-width: 2px; border-color: #CC9966;}
+/*-----第三部分-----*/
+/*内容部分#FFCC33*/
+
+.data_div { border: #cc9966 0px solid; background-color:White; display: inline; width:100%
+}
+          
+.td_name { width: 120px; }/*名称*/
+.td_value { width: 100px; }/*能耗量*/

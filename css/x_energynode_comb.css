@@ -1,0 +1,51 @@
+﻿
+/*整个页面都在一个table中，除了导航条标签和警告标签*/
+#tb_body{border-collapse: collapse; width:1100px; height:440px; line-height:440px;}
+
+/*左边*/
+.td_left{width: 360px;padding: 0px 10px 0px 0px;font-size:x-small; text-align:right; height:440px;}
+/*左上div:左下div:相同的边框，宽度，字体大小*/
+#div_left_top,#div_left_bottom{border: #cc9966 2px solid;display: inline;width: 100%;margin: 0;font-size:x-small;padding:10px;}
+/*左上div:*/
+#div_left_top{ height: 160px;text-align:center;}
+#tb_left_top{border-collapse: collapse;}
+#tb_left_top td{height:20px; line-height:20px;}
+#txtQueryNode{ width:140px;}
+#listFormula{Width:320px;Height:160px;}
+
+/*左下div:*/
+#div_left_bottom{height: 140px;}
+#div_left_bottom td{ height:20px; line-height:20px;}
+
+#txtMatch{ width:200px;}
+#txtOrder{ width:50px;}
+.small_title{}
+.lbl{ height:20px; line-height:20px;}
+.btn{ width:60px;}        
+
+td{font-size:x-small;}
+        
+/*右边组合列表：*/
+/*右上部：表头*/
+.td_right{height:440px;}
+#tb_head{ font-weight: bold; font-size: 14px; color: #ffffcc;height: 8px; margin:0; padding:0 2px; border: #cc9966 2px solid;border-collapse: collapse; background-color:#990000 ;}
+/*右下部：列表；div是外边框，起到滚动条的作用*/
+#div_dynamic{border: #cc9966 2px solid; display: inline;border-top: #cc9966 0px solid;overflow: scroll;  width: 686px;height: 800px;}
+#dgItem{Font-Size:x-small; background-color:White;border-collapse: collapse;}  
+#tb_tr,#tb_tr{margin:0; padding:2px; border:0;}
+#tb_head td,#dgItem td,#gvData td{padding:4px;text-align:center;border-width:1px;border-color:#cc9966;border-style:solid;height:20px;line-height:20px;}
+
+/*操作 */
+.td_option{ width: 50px;}
+/*能源节点名称 */
+.td_energy_node{width: 200px;}
+/*显示序号 */
+.td_index{width: 40px;}
+/*加减标识*/
+.td_sign_add{width: 80px;} 
+/*加减标识，启用标识 */
+.td_sign_use{width: 40px;}     
+/*备注 */
+.td_beizhu{width: 200px;}      
+
+
