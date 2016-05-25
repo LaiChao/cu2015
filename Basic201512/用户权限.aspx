@@ -56,9 +56,9 @@
 <%--        <asp:GridView ID="GridView1" align="center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnRowDataBound="GridView1_RowDataBound" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">--%> 
         <asp:GridView ID="GridView1" HorizontalAlign="Center" Align="Center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCommand="GridView1_RowCommand" OnRowCreated="GridView1_RowCreated" Width="559px" Height="163px">
             <Columns >
-                <asp:BoundField DataField="user" HeaderText="用户名"  />
+                <asp:BoundField DataField="user" HeaderText="用户名" ReadOnly="true" />
                 <asp:BoundField DataField="userRole" HeaderText="权限"  />
-                <asp:BoundField DataField="benfactorFrom" HeaderText="所属机构" />
+                <asp:BoundField DataField="benfactorFrom" HeaderText="所属机构" ReadOnly="true" />
 <%--                <asp:CommandField HeaderText="选择" ShowSelectButton="True" />--%>
 <%--                <asp:TemplateField HeaderText="所属分会">
                     <ItemTemplate>
