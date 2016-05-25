@@ -9,7 +9,7 @@
         <meta name="Keywords" content=""/>
         <meta name="Description" content=""/>
         <link rel="stylesheet" href="css/main_petrel.css" type="text/css" />
-        <title>慈善信息慈善信息系统</title>
+        <title>朝阳慈善信息管理系统</title>
         
 <%--    <link href="css/default.css" rel="stylesheet" type="text/css" />--%>
         <style type="text/css">     
