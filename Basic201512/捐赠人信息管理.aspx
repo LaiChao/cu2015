@@ -78,23 +78,92 @@
                 </asp:HyperLinkField>
                 <asp:CommandField ShowDeleteButton="True" />
 <%--                <asp:CommandField ShowSelectButton="True" SelectText="查看" Visible="False"/>--%>
-                <asp:BoundField DataField="benfactorID" HeaderText="捐赠人ID" Visible="False" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="benfactorName" HeaderText="名称" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="benfactorFrom" HeaderText="来源" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="donorType" HeaderText="类型" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="TEL" HeaderText="手机号" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="bftRange" HeaderText="使用范围" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="bftRemark" HeaderText="备注"  HeaderStyle-Height="30px" ItemStyle-Height="30px"/>
-                <asp:BoundField DataField="Contacts" HeaderText="联系人" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="email" HeaderText="电子邮箱" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="sex" HeaderText="性别" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="moneyboxNo" HeaderText="募捐箱编号" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="namingAge" HeaderText="冠名年限" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="deadline" HeaderText="冠名到期日期" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="namingSelected" HeaderText="选择的冠名慈善捐助金" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="recipientsType" HeaderText="受助人类型" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="recipientsDescription" HeaderText="受助人描述"  HeaderStyle-Height="30px" ItemStyle-Height="30px"/>
-                <asp:BoundField DataField="remain" HeaderText="余额" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
+                <asp:BoundField DataField="benfactorID" HeaderText="捐赠人ID" Visible="False" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="benfactorName" HeaderText="名称" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="benfactorFrom" HeaderText="来源" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="donorType" HeaderText="类型" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="TEL" HeaderText="手机号" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="bftRange" HeaderText="使用范围" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="bftRemark" HeaderText="备注"  HeaderStyle-Height="30px" ItemStyle-Height="30px">
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="Contacts" HeaderText="联系人" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="email" HeaderText="电子邮箱" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="sex" HeaderText="性别" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="moneyboxNo" HeaderText="募捐箱编号" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="namingAge" HeaderText="冠名年限" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="deadline" HeaderText="冠名到期日期" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="namingSelected" HeaderText="选择的冠名慈善捐助金" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="recipientsType" HeaderText="受助人类型" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="recipientsDescription" HeaderText="受助人描述"  HeaderStyle-Height="30px" ItemStyle-Height="30px">
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="remain" HeaderText="余额" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+<HeaderStyle Height="30px"></HeaderStyle>
+
+<ItemStyle Height="30px"></ItemStyle>
+                </asp:BoundField>
+                <asp:HyperLinkField DataNavigateUrlFields="benfactorID" DataNavigateUrlFormatString="捐赠物品.aspx?ID={0}" HeaderText="捐物" Text="捐赠" />
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" />
