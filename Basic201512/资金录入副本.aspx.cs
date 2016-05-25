@@ -251,8 +251,8 @@ namespace CL.Utility.Web.BasicData
             int result;
             if(roleOfUser>1)//非分会权限
             {
-                string strins = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',1)", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToInt32(txtPLAN.Text) + Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
-                string strupd = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=1 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToInt32(txtPLAN.Text) + Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strins = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',1)", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strupd = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=1 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
 
                 try{
                     result = msq.getmysqlcom(strins);
@@ -274,8 +274,8 @@ namespace CL.Utility.Web.BasicData
             }
             else if(roleOfUser==1)//分会权限
             {
-                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0)", lbcaptID.Text, (string)ViewState["myKey"], txtPLAN.Text, Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
-                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], txtPLAN.Text, Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0)", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
 
                 try
                 {

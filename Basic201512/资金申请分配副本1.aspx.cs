@@ -56,7 +56,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 //  DateTime dt=new DateTime();
                 DateTime dt = DateTime.Now;
                 //string test = ViewState["myKey"].ToString();
-                lbcaptID.Text = mysqlread.GetInt32(2).ToString();
+                lbcaptID.Text = mysqlread.GetInt32(2).ToString("f2");
                 LbproID.Text = mysqlread.GetString(0);
                 lbbenfnadd.Text = mysqlread.GetString(1);
                 //  lbtime.Text = dt.Year.ToString() +'-'+ dt.Month.ToString() + '-'+dt.Day.ToString();
@@ -144,17 +144,20 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         }
         else 
         {
-            int i = int.Parse(lbcaptID.Text);//计划资金
-            int re = int.Parse(((TextBox)e.Item.FindControl("txtemail")).Text);//使用资金
-            int hasM = int.Parse(ViewState["oldMoney"].ToString());//拥有资金
-            if(i<re)//使用资金不大于计划资金
+           // int i = int.Parse(lbcaptID.Text);//计划资金
+            double i1 = double.Parse(lbcaptID.Text);
+           // int re = int.Parse(((TextBox)e.Item.FindControl("txtemail")).Text);//使用资金
+            double re1 = double.Parse(((TextBox)e.Item.FindControl("txtemail")).Text);
+         //   int hasM = int.Parse(ViewState["oldMoney"].ToString());//拥有资金
+            double hasM1 = double.Parse(ViewState["oldMoney"].ToString());
+            if(i1<re1)//使用资金不大于计划资金
             {
                 lberror.Text = "使用资金不能大于计划资金";
                 dgData.EditItemIndex = -1;
                 databind(ViewState["now"].ToString());
                 return;
             }
-            else if(re>hasM)//使用资金不大于拥有资金
+            else if(re1>hasM1)//使用资金不大于拥有资金
             {
                 lberror.Text = "使用资金不能大于拥有资金";
                 dgData.EditItemIndex = -1;
@@ -167,7 +170,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 //if (i > re)
                 //{
                 //资金表扣除使用资金、项目表修改剩余所需资金
-                lbcaptID.Text = (i - re).ToString();//计划资金
+                lbcaptID.Text = (i1 - re1).ToString();//计划资金
                 //((TextBox)e.Item.FindControl("txtemail")).Text = "0";//拥有资金               
                 string strupdata = string.Format("update e_capital set capitalEarn=capitalEarn-{1},capitalIntime='{2}',projectID='{3}',projectName='{4}' where capitalID='{0}'",
                 ((TextBox)e.Item.FindControl("txtteladd")).Text.Trim(),//资金ID
@@ -188,8 +191,8 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                  ((TextBox)e.Item.FindControl("bectID")).Text.Trim(),//捐助人ID
                  ((TextBox)e.Item.FindControl("txtproid")).Text.Trim(),//项目ID
                  ViewState["myKey"].ToString(),//计划资金
-                 re,//使用资金
-                 re,//使用资金
+                 re1,//使用资金
+                 re1,//使用资金
                  ((TextBox)e.Item.FindControl("txtdirtime")).Text.Trim(),//资金录入时间
                  time,
                  ((TextBox)e.Item.FindControl("txtdename")).Text.Trim()//捐助人名称
