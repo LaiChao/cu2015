@@ -54,14 +54,37 @@
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
             <Columns>
                 <asp:BoundField DataField="handlingunitID" HeaderText="经办单位ID" ReadOnly="True" />
-                <asp:BoundField DataField="benfactorFrom" HeaderText="经办单位名称" ReadOnly="true" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="address" HeaderText="经办单位地址" HeaderStyle-Height="30px" ItemStyle-Height="30px"  />
-                <asp:BoundField DataField="contactPerson" HeaderText="联系人" HeaderStyle-Height="30px" ItemStyle-Height="30px"  />
-                <asp:BoundField DataField="TEL" HeaderText="联系方式" HeaderStyle-Height="30px" ItemStyle-Height="30px"  />
-                  
+                <asp:BoundField DataField="benfactorFrom" HeaderText="经办单位名称" ReadOnly="true">
+                <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="address" HeaderText="经办单位地址" HeaderStyle-Height="30px" ItemStyle-Height="30px"  >
+                 <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="contactPerson" HeaderText="联系人" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="TEL" HeaderText="联系方式" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:BoundField>                 
 <%--                <asp:CommandField HeaderText="选择" ShowSelectButton="True" />--%>
-                <asp:CommandField HeaderText="编辑" ShowEditButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:CommandField HeaderText="删除" ShowDeleteButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
+                <asp:CommandField HeaderText="编辑" ShowEditButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px">
+                 <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:CommandField>
+                <asp:CommandField HeaderText="删除" ShowDeleteButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                 <HeaderStyle Height="30px" Width="150px" />
+                <ControlStyle Height="30px" Width="100px" />
+                <ItemStyle Height="30px" />
+                </asp:CommandField>
             </Columns>    
         </asp:GridView>
            </div>   
