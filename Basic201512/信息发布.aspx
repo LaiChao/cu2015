@@ -39,6 +39,11 @@
         }
         .clas2 {
         display:inline;
+       
+        }
+        .clas3 {
+        display:block;
+        
         }
     </style>
 
@@ -84,15 +89,15 @@
                 </div> 
                 <div style="display:inline">
                   
-                 <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="250px" Height="50px"/>                 
-              
+                 <asp:FileUpload ID="FileUpload1" runat="server" class="form-control clas3" Width="170px" Height="50px"/>                 
+                 <asp:Button ID="Button3" runat="server" Text="上传" onclick="Button3_Click" Height="34px"  class="btn btn-danger clas2" Width="80px"/>
               </div>
             </div> 
               
           <br />
             <br />                  
          <div style="text-align:center">
-             <asp:Button ID="Button3" runat="server" Text="上传" onclick="Button3_Click" Height="34px"  class="btn btn-danger clas2" Width="80px"/>
+             
                  
               <asp:Button ID="post" runat="server" OnClick="Button1_Click" Text="发布" class="btn btn-danger" Height="34px" Width="80px" />  
          </div>    
