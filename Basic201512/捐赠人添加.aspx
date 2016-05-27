@@ -176,9 +176,9 @@
                             <asp:CheckBox ID="Chboxmojuan" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxmojuan_CheckedChanged" Text="募捐箱" />
                             <asp:CheckBox ID="Chboxguanming" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxguanming_CheckedChanged" Text="冠名捐助金" />--%>
                             <asp:DropDownList ID="benfactorType" runat="server" OnSelectedIndexChanged="benfactorType_SelectedIndexChanged" AutoPostBack="True" class="btn btn-default dropdown-toggle" Width="170px">                                
+                                <asp:ListItem Value="1">公益组织</asp:ListItem>
                                 <asp:ListItem Value="3">个人</asp:ListItem>
                                  <asp:ListItem Value="2">单位</asp:ListItem>
-                                <asp:ListItem Value="1">公益组织</asp:ListItem>
                                 <asp:ListItem Value="4">募捐箱</asp:ListItem>
                                 <asp:ListItem Value="5">冠名慈善捐助金</asp:ListItem>
                             </asp:DropDownList>
