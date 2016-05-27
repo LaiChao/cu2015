@@ -204,6 +204,11 @@ namespace CL.Utility.Web.BasicData
             DataView dv = new DataView(ds.Tables[0]);
             dgData0.DataSource = ds;
             dgData0.DataBind();
+            string strItem = string.Format("select * from e_item where projectID='{0}'", LbproID.Text);
+            DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strItem);
+            DataView dv1 = new DataView(ds.Tables[0]);
+            dgData1.DataSource = ds1;
+            dgData1.DataBind();
         }
         protected void btchecky1_Click(object sender, EventArgs e)
         {

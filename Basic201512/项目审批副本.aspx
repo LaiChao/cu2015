@@ -369,7 +369,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="捐助人姓名">
+                <asp:TemplateColumn HeaderText="捐助人名称">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
@@ -447,6 +447,109 @@
                            </div>
                     </td>
                 </tr>
+                <tr>
+                    <td class="auto-style12">
+                          <div class="panel panel-danger">
+                          <div class="panel-heading">
+                          <h5 class="panel-title" align="left">所用物品信息</h5>
+                          </div>
+                          <div class="panel-body">
+    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
+            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
+            <EditItemStyle CssClass="dg_item" />
+            <Columns>
+                
+                <asp:TemplateColumn HeaderText="捐助人ID">
+                    <ItemStyle CssClass="id"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:Label ID="labID1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorID") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditID1" runat="server" MaxLength="8" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorID") %>'
+                            >
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="捐助人名称">
+                    <ItemStyle CssClass="id"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:Label ID="labname1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtname1" runat="server" MaxLength="8" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'
+                            >
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+                
+<%--                <asp:TemplateColumn HeaderText="联系方式">
+                    <ItemStyle CssClass="index"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:Label ID="labteladd" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benefactorID") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtteladd" runat="server" MaxLength="6" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benefactorID") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>--%>
+                <%--<asp:TemplateColumn HeaderText="启用">
+                    <ItemStyle CssClass="idt"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="ckState" runat="server" ToolTip="启用标示，点中为启用" CssClass="txtbox"
+                            Checked=''
+                            Enabled="False"></asp:CheckBox>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <font face="宋体">
+                            <asp:CheckBox ID="ckEditState" runat="server" CssClass="txtbox" Checked=''
+                                oolTip="启用标示，点中为启用"></asp:CheckBox></font>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>--%>                         
+                <asp:TemplateColumn HeaderText="已用物品" HeaderStyle-Font-Names="true">
+
+                   <HeaderStyle Font-Names="true"></HeaderStyle>
+
+                    <ItemStyle CssClass="des"></ItemStyle>
+                    
+                    <ItemTemplate>
+                        <asp:Label ID="lblItem" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.item") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="tbItem" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.item") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="使用时间" HeaderStyle-Font-Names="true">
+
+                   <HeaderStyle Font-Names="true"></HeaderStyle>
+
+                    <ItemStyle CssClass="des"></ItemStyle>
+                    
+                    <ItemTemplate>
+                        <asp:Label ID="lblTime" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.timeOut") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="tbTime" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.timeOut") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+               
+            </Columns>
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+        </asp:DataGrid>
+                           </div>
+                           </div>
+                    </td>
+                </tr>
+
             </table>
         
     </div>
