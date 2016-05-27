@@ -238,7 +238,7 @@ namespace CL.Utility.Web.BasicData
         #endregion 
   
         #region "生成项目ID"
-        protected void submit_Click(object sender, EventArgs e)
+        protected void btnGetId_Click(object sender, EventArgs e)
         {
             string sqldata12 = string.Format("select handlingunitID,benfactorFrom from e_handlingunit where benfactorFrom='{0}'", Session["benfactorFrom"].ToString());
             MySqlCommand cmd = new MySqlCommand();
@@ -253,8 +253,8 @@ namespace CL.Utility.Web.BasicData
                 ViewState["BranchName"] = reader.GetString(1);
                 LbproID.Text = reader.GetString(0) + DateTime.Now.ToString("yyyyMMddHHmm");
                 labError.Text = "已生成项目ID";
-                submit1.Visible = true;
-                submit.Visible = false;
+                btntijiao.Visible = true;
+                btnGetId.Visible = false;
             }
             else
             {
@@ -353,7 +353,7 @@ namespace CL.Utility.Web.BasicData
         }
 
         #region "提交项目申请"
-        protected void submit1_Click(object sender, EventArgs e)
+        protected void btntijiao_Click(object sender, EventArgs e)
         {
             if (LbproID.Text.Trim() == "")
             {
@@ -389,7 +389,7 @@ namespace CL.Utility.Web.BasicData
             {
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,shenpi1,shenpi2,projectLei,needMoney) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请','0','0','{9}',{10})", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text);
+                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,shenpi1,shenpi2,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请','0','0','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
@@ -431,5 +431,23 @@ namespace CL.Utility.Web.BasicData
             dgData.CurrentPageIndex = e.NewPageIndex;
             databind(ViewState["now"].ToString());
         }
+        protected void btnBatch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlType.SelectedValue == "物品")
+            {
+                txtPLAN.Text = "0";
+                txtPLAN.Enabled = false;
+            }
+            if(ddlType.SelectedValue=="资金")
+            {
+                txtPLAN.Enabled = true;
+            }
+        }
+
     }
 }

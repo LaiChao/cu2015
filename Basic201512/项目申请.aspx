@@ -20,7 +20,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -48,27 +48,27 @@
         //    document.all.item('div_dynamic').scrollTop = currentScrollTop;
         //    var ctl;
         //}
-        function ck() {
-            var txt = document.getElementById("txtID").value;
-            var txtpwd = document.getElementById("txtPWD");
-            var lblerr = document.getElementById("lblErr");
-           // alert(lblerr.innerText);
-            //alert(isNumberOr_Letter(txt));
+        //function ck() {
+        //    var txt = document.getElementById("txtID").value;
+        //    var txtpwd = document.getElementById("txtPWD");
+        //    var lblerr = document.getElementById("lblErr");
+        //   // alert(lblerr.innerText);
+        //    //alert(isNumberOr_Letter(txt));
 
-            if (isNumberOr_Letter(txt)) {
-                lblerr.innerText = "用户名正常";
-                //txtpwd.value = "用户名正常";
-                document.getElementById("Form1").submit();
-                alert(11);
-            }
-            else {
-                lblerr.innerText = "用户名不正常";
-                //txtpwd.value = "用户名不正常";
-            }
-        }
-        function ck2() {
-            txtpwd.value = "用户名正常";
-         }
+        //    if (isNumberOr_Letter(txt)) {
+        //        lblerr.innerText = "用户名正常";
+        //        //txtpwd.value = "用户名正常";
+        //        document.getElementById("Form1").submit();
+        //        alert(11);
+        //    }
+        //    else {
+        //        lblerr.innerText = "用户名不正常";
+        //        //txtpwd.value = "用户名不正常";
+        //    }
+        //}
+        //function ck2() {
+        //    txtpwd.value = "用户名正常";
+        // }
         function isNumberOr_Letter(s) {//判断是否是数字或字母 
 
             var regu = "^[0-9a-zA-Z\_]{5,15}$";
@@ -80,10 +80,10 @@
             }
             
         }
-        function openform(theURL,winName,features) {
-           // newwin = window.showModalDialog(theURL, winName, features);
-            newwin = window.showModalDialog(theURL,winName,features);
-        }
+        //function openform(theURL,winName,features) {
+        //   // newwin = window.showModalDialog(theURL, winName, features);
+        //    newwin = window.showModalDialog(theURL,winName,features);
+        //}
         function tdisplay()
         {
             document.getElementById("Panel2").style.visibility = true;
@@ -119,17 +119,14 @@
     
 <body id="thebody">
     <center>
-    <form id="Form1" method="post" runat="server" onsubmit="ck2()" class="form-inline">
+    <form id="Form1" method="post" runat="server" class="form-inline">
         <input type="hidden" value="0" name="ScrollPos" />
-    <div class="body">
+    <div class="body" runat="server">
         
-        <div id="div_dynamic" >
+        <div id="div_dynamic" runat="server">
         <style>
         tr{ line-height:30px;height:30px;}
         .td_c1{ width:20px;}
-            .auto-style7 {
-                height: 30px;
-            }
             .auto-style9 {
                 width: 293px;
                 height: 30px;
@@ -158,7 +155,7 @@
                   <strong>项目申请</strong>  
                 </h2>
             </div>
-            <table style="width: 800px" class="table">
+            <table style="width: 800px" class="table" runat="server">
                 <thead>
                     <tr>
 
@@ -176,7 +173,7 @@
 
                             <asp:Label ID="LbproID" runat="server" Text=""></asp:Label>
 
-                            <asp:Button runat="server" ID="submit" Text="获取项目ID" OnClick="submit_Click"  CssClass=" btn btn-danger" Width="100px" Height="34px" />
+                            <asp:Button runat="server" ID="btnGetId" Text="获取项目ID" OnClick="btnGetId_Click"  CssClass=" btn btn-danger" Width="100px" Height="34px" />
 
                         </td>
                         
@@ -184,7 +181,17 @@
                 </thead>
                 <tr>
                     <td class="auto-style14">
-                        项目类别：</td>
+                        项目类型：</td>
+                    <td class="auto-style9">           
+                        <asp:DropDownList ID="ddlType" runat="server" class="btn btn-default dropdown-toggle" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" >
+                                <asp:ListItem>资金</asp:ListItem>
+                                <asp:ListItem>物品</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style14">
+                        受助人类别：</td>
                     <td class="auto-style9">           
                         <asp:DropDownList ID="recipientsType" runat="server" class="btn btn-default dropdown-toggle" Width="150px">
                                 <asp:ListItem>请选择</asp:ListItem>
@@ -198,11 +205,11 @@
                         </asp:DropDownList>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server">
 
                     <td class="auto-style14">
                         项目名称：</td>
-                    <td class="auto-style9">
+                    <td class="auto-style9" runat="server">
                         <asp:TextBox runat="server" MaxLength="8" ID="projectID"  Width="250px" style="text-align: left" CssClass="form-control"></asp:TextBox>
                     </td>
                     
@@ -267,7 +274,7 @@
                        <td class="auto-style13"> 
                         </td>
                         <td class="auto-style9">
-                            <asp:Button ID="submit1" runat="server" OnClick="submit1_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+                            <asp:Button ID="btntijiao" runat="server" OnClick="btntijiao_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>
                         </td>                                         
                     </tr>                   
                                       
@@ -287,7 +294,8 @@
                                 <asp:Label ID="Label1" runat="server" Text="身份证号:"></asp:Label>
                                 <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Btselect0" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Height="34px" Width="85px" />
-                          </div>
+                                &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量导入受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" />  
+                        </div>
                     </td>                   
                 </tr>
                 <tr>
