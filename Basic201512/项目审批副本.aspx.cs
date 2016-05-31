@@ -194,7 +194,7 @@ namespace CL.Utility.Web.BasicData
         }
         private void BindData()
         {
-            string proid = string.Format("select * from e_recipients where projectID='{0}'",LbproID.Text);
+            string proid = string.Format("select * from e_recipients where recipientsID in (select recipientID from e_pr where projectID='{0}')", LbproID.Text);
             DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), proid);
             DataView ddv = new DataView(dds.Tables[0]);
             dgData.DataSource = dds;

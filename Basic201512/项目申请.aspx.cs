@@ -198,7 +198,8 @@ namespace CL.Utility.Web.BasicData
 
         private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
         {
-            string strupdata = string.Format("insert into e_recipients_project (branchID,branchName,projectID,recipientID,recipientName) values ({0},'{1}','{2}',{3},'{4}')", ViewState["BranchID"].ToString(), ViewState["BranchName"], Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), ((Label)e.Item.FindControl("labID")).Text.Trim());            
+            //string strupdata = string.Format("insert into e_recipients_project (branchID,branchName,projectID,recipientID,recipientName) values ({0},'{1}','{2}',{3},'{4}')", ViewState["BranchID"].ToString(), ViewState["BranchName"], Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), ((Label)e.Item.FindControl("labID")).Text.Trim());            
+            string strupdata = string.Format("insert into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
             msq.getmysqlcom(strupdata);
 
             dgData.EditItemIndex = -1;
@@ -254,6 +255,7 @@ namespace CL.Utility.Web.BasicData
                 LbproID.Text = reader.GetString(0) + DateTime.Now.ToString("yyyyMMddHHmm");
                 labError.Text = "已生成项目ID";
                 btntijiao.Visible = true;
+                btnBatch.Visible = true;
                 btnGetId.Visible = false;
             }
             else
@@ -433,7 +435,7 @@ namespace CL.Utility.Web.BasicData
         }
         protected void btnBatch_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
         }
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)

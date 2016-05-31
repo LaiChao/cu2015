@@ -294,7 +294,7 @@
                                 <asp:Label ID="Label1" runat="server" Text="身份证号:"></asp:Label>
                                 <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Btselect0" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Height="34px" Width="85px" />
-                                &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量导入受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" />  
+                                &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
                         </div>
                     </td>                   
                 </tr>
