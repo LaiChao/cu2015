@@ -58,12 +58,14 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
             //myCommand.Fill(ds, "[" + tableName + "$]");
             myCommand.Fill(ds, tableName);
             return ds;
-            ExcelConn.Close();//?
         }
         catch
         {
-            ExcelConn.Close();
             return null;
+        }
+        finally
+        {
+            ExcelConn.Close();
         }
     }
     #endregion
@@ -100,8 +102,8 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
         }
         else
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
             List<string> SQLStringList = new List<string>();
             for (int i = 0; i < dr.Length; i++)
             {
@@ -173,26 +175,17 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
                 string isyong = dr[i]["是否双拥"].ToString();
                 string isdst = dr[i]["是否重特大灾害"].ToString();
 
-                //string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile) VALUES ('{0}','{1}','{2}','{3}')", title, content, DateTime.Now.ToString(), "");
-                string str113 = string.Format("insert into e_recipients (benfactorFrom,recipientsADD,recipientsName,sex,recipientsPIdcard,recipientsADDnow,incomlowID,telphoneADD,workplace,famName1,famRelation1,famWorkplace1,famTel1,famWork1,famIncome1,famName2,famRelation2,famWorkplace2,famTel2,famWork2,famIncome2,famName3,famRelation3,famWorkplace3,famTel3,famWork3,famIncome3,famName4,famRelation4,famWorkplace4,famTel4,famWork4,famIncome4,arrIncome,marryNow,canjijibie,canjileibie,shuoming3,illness,illtime,illpay,shuoming1,timeDis,shiDu,sonName,deathReason,shuoming5,shiNeng,shuoming4,studySchool,studyGrade,guardianName,guardianGuanxi,guardianTelADD,shuoming2,reason,iscan,isdoc,iskun,isold,isstu,isyong,army,title,isdst,disaster) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}','{54}','{55}','{56}','{57}','{58}','{59}','{60}','{61}','{62}','{63}','{64}','{65}')", benfactorFrom, recipientsADD, recipientsName, sex, recipientsPIdcard, recipientsADDnow, incomlowID, telphoneADD, workplace, famName1, famRelation1, famWorkplace1, famTel1, famWork1, famIncome1, famName2, famRelation2, famWorkplace2, famTel2, famWork2, famIncome2, famName3, famRelation3, famWorkplace3, famTel3, famWork3, famIncome3, famName4, famRelation4, famWorkplace4, famTel4, famWork4, famIncome4, arrIncome, marryNow, canjijibie, canjileibie, shuoming3, illness, illtime, illpay, shuoming1, timeDis, shiDu, sonName, deathReason, shuoming5, shiNeng, shuoming4, studySchool, studyGrade, guardianName, guardianGuanxi, guardianTelADD, shuoming2, reason, iscan, isdoc, iskun, isold, isstu, isyong, army, title, isdst, disaster);
+                string str113 = string.Format("insert ignore into e_recipients (benfactorFrom,recipientsADD,recipientsName,sex,recipientsPIdcard,recipientsADDnow,incomlowID,telphoneADD,workplace,famName1,famRelation1,famWorkplace1,famTel1,famWork1,famIncome1,famName2,famRelation2,famWorkplace2,famTel2,famWork2,famIncome2,famName3,famRelation3,famWorkplace3,famTel3,famWork3,famIncome3,famName4,famRelation4,famWorkplace4,famTel4,famWork4,famIncome4,arrIncome,marryNow,canjijibie,canjileibie,shuoming3,illness,illtime,illpay,shuoming1,timeDis,shiDu,sonName,deathReason,shuoming5,shiNeng,shuoming4,studySchool,studyGrade,guardianName,guardianGuanxi,guardianTelADD,shuoming2,reason,iscan,isdoc,iskun,isold,isstu,isyong,army,title,isdst,disaster) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}','{54}','{55}','{56}','{57}','{58}','{59}','{60}','{61}','{62}','{63}','{64}','{65}')", benfactorFrom, recipientsADD, recipientsName, sex, recipientsPIdcard, recipientsADDnow, incomlowID, telphoneADD, workplace, famName1, famRelation1, famWorkplace1, famTel1, famWork1, famIncome1, famName2, famRelation2, famWorkplace2, famTel2, famWork2, famIncome2, famName3, famRelation3, famWorkplace3, famTel3, famWork3, famIncome3, famName4, famRelation4, famWorkplace4, famTel4, famWork4, famIncome4, arrIncome, marryNow, canjijibie, canjileibie, shuoming3, illness, illtime, illpay, shuoming1, timeDis, shiDu, sonName, deathReason, shuoming5, shiNeng, shuoming4, studySchool, studyGrade, guardianName, guardianGuanxi, guardianTelADD, shuoming2, reason, iscan, isdoc, iskun, isold, isstu, isyong, army, title, isdst, disaster);
                 SQLStringList.Add(str113);
 
             }
             ExecuteSqlTran(SQLStringList);    
-            //try
-                //{
-                //    ////msq.getmysqlcom(str113);
-                //}
-                //catch (MySqlException ex)
-                //{
-                //    HttpContext.Current.Response.Write("<script>alert('身份证号重复了');</script>");
-                //}
-            sw.Stop();
+            //sw.Stop();
             NLogTest nlog = new NLogTest();
             string sss = "批量添加了受助人：" + filename;
             nlog.WriteLog(Session["UserName"].ToString(),sss);
             Response.Write("<script>alert('Excle表导入成功!');</script>");
-            TimeSpan timeSpan = sw.Elapsed;
+            //TimeSpan timeSpan = sw.Elapsed;
         }
     }
 
@@ -216,13 +209,17 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
                         cmd.ExecuteNonQuery();
                     }
                 }
-                tx.Commit();//原来一次性提交
+                tx.Commit();//一次性提交
             }
-            catch (System.Data.SqlClient.SqlException E)
+            //catch (System.Data.SqlClient.SqlException E)
+            //{//身份证号重复将直接忽略，捕获不到异常
+            //    tx.Rollback();
+            //    HttpContext.Current.Response.Write("<script>alert('身份证号重复了');</script>");
+            //    //throw new Exception(E.Message);
+            //}
+            finally
             {
-                tx.Rollback();
-                HttpContext.Current.Response.Write("<script>alert('身份证号重复了');</script>");
-                //throw new Exception(E.Message);
+                conn.Close();
             }
         }
     }
