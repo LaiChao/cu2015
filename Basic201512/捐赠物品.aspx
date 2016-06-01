@@ -22,7 +22,7 @@
         <asp:TextBox ID="tbItem" runat="server"></asp:TextBox>
     </div>
     <div>
-        <asp:Label ID="Label2" runat="server" Text="公允值："></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="公允值（元）："></asp:Label>
         <asp:TextBox ID="tbValue" runat="server"></asp:TextBox>
     </div>
     <div>

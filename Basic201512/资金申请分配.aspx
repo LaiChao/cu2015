@@ -55,7 +55,7 @@
         <div id="div_dynamic" >
     <div>   
          <h2>
-            <strong>申请项目物资分配</strong> 
+            <strong>善款分配申请</strong> 
          </h2>   
     </div>
         <div>               

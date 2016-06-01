@@ -60,7 +60,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 dgData.Visible = true;
                 dgData1.Visible = false;
                 string strplancap = lbcaptID.Text;
-                ViewState["strproID"] = string.Format("SELECT * FROM  e_capital order by abs(capitalEarn - '{0}') asc LIMIT 3", strplancap);
+                ViewState["strproID"] = string.Format("SELECT * FROM  e_capital where handlingunitID={1} order by abs(capitalEarn - '{0}') asc LIMIT 3", strplancap, nameNow.Substring(0,3).ToString());
                 ViewState["now"] = ViewState["strproID"].ToString();
                 databind(ViewState["now"].ToString());
             }
