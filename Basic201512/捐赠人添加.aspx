@@ -147,11 +147,6 @@
                 margin-left: 40px;
                 vertical-align:middle;
             }
-            .auto-style10 {
-                width: 150px;
-                height: 50px;
-                text-align: right;
-            }
             </style>
                                                         
              <div class="form-group">
@@ -301,6 +296,20 @@
                         <asp:TextBox ID="txtRemark" runat="server"  Width="170px" CssClass="form-control" ></asp:TextBox>
                             </td>    
                     <td ></td>
+                </tr>
+                <tr id="trRemind" runat="server">
+                    <td class="auto-style8">
+                        <asp:Label ID="Label3" runat="server" Text="提醒周期："></asp:Label>
+                        &nbsp;&nbsp;
+                    </td>
+                    <td class="auto-style9">
+                        <asp:DropDownList ID="ddlCycle" runat="server" class="btn btn-default dropdown-toggle">
+                            <asp:ListItem Value="0">不提醒</asp:ListItem>
+                            <asp:ListItem Value="12">一年</asp:ListItem>
+                        </asp:DropDownList>
+                        <%--<br />--%>
+                        </td>
+                    <td></td>
                 </tr> 
             
             </table>
@@ -380,9 +389,7 @@
                         </td>
                     <td></td>
                 </tr>
-
-                
-
+            
             </table>
             <table  style="width: 556px" runat="server">
                     <tr>

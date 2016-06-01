@@ -54,6 +54,14 @@
                 <asp:Label ID="Label5" runat="server" ForeColor="Red" Text="（0）"></asp:Label>
                 </p></td>
             </tr>
+            <tr id="tr6">
+                <td>
+                    <p>
+                        <a href="冠名分期.aspx" target="main">冠名慈善捐助金分期提醒</a>
+                        <asp:Label ID="Label6" runat="server" ForeColor="Red" Text="（0）"></asp:Label>
+                    </p>
+                </td>
+            </tr>
         </table>
     </div>
     </form>

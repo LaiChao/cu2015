@@ -71,6 +71,11 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
             MySqlDataReader mysqlread4 = msq.getmysqlread("select count(*) from e_benfactor where deadline<now()");
             while (mysqlread4.Read())
                 Label5.Text = "（" + mysqlread4.GetString(0) + "）";
+
+            //冠名捐助金分期提醒//select e_remind.benfactorID,cycle,flag,benfactorName,handlingunitID,benfactorFrom,deadline from e_remind,e_benfactor where e_remind.flag>0 and e_remind.benfactorID=e_benfactor.benfactorID and now()>date_sub(deadline,interval cycle*flag month)
+            MySqlDataReader mysqlread5 = msq.getmysqlread("select count(*) from e_remind,e_benfactor where e_remind.flag>0 and e_remind.benfactorID=e_benfactor.benfactorID and now()>date_sub(deadline,interval cycle*flag month)");
+            while(mysqlread5.Read())
+                Label6.Text = "（" + mysqlread5.GetString(0) + "）";
         }
     }
 }

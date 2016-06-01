@@ -92,6 +92,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             trFundName.Visible = false;
             rdbNaming.Checked = rdbUnNaming.Checked = false;
 
+            //冠名分期周期提醒
+            trRemind.Visible = false;
 
         }
 
@@ -173,6 +175,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
+                //冠名分期周期提醒
+                trRemind.Visible = false;
                 return;
             }
             if(benfactorType.SelectedValue=="2")
@@ -194,6 +198,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
+                //冠名分期周期提醒
+                trRemind.Visible = false;
                 return;
             }
             if(benfactorType.SelectedValue=="3")
@@ -215,6 +221,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
+                //冠名分期周期提醒
+                trRemind.Visible = false;
                 return;
             }
             if(benfactorType.SelectedValue=="4")
@@ -236,6 +244,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
+                //冠名分期周期提醒
+                trRemind.Visible = false;
                 return;
             }
             if(benfactorType.SelectedValue=="5")
@@ -250,6 +260,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 trRemark.Visible = true;
                 tbDirect.Visible = false;
                 tbNaming.Visible = false;
+                //冠名分期周期提醒
+                trRemind.Visible = true;
                 return;
             }
         }
@@ -352,6 +364,11 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 {
                     string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,namingAge,deadline,bftRange,bftRemark,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}','{11}',{12})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), ddlAge.Text.ToString(), DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)), txtRange.Text.ToString(), txtRemark.Text.ToString(), "0");
                     msq.getmysqlcom(strgongyi);
+                    if (ddlCycle.SelectedValue!="0")
+                    {
+                        string strRemind = string.Format("insert into e_remind (benfactorID,cycle,flag) values ('{0}',{1},{2})", strBenfactorID, ddlCycle.SelectedValue.ToString(), ddlAge.SelectedValue.ToString());
+                        msq.getmysqlcom(strRemind);
+                    }
                     tbReset();
                     labError.Text = "添加成功";
                 }
