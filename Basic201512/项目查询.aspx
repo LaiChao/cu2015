@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -63,11 +63,19 @@
                     <asp:TextBox ID="illtimeend" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>
                                 <asp:Button ID="Btselectout" runat="server"  Text="搜索" OnClick="Btselectout_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />
 
-                                <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" Width="80px" Height="34px" />
                     </div>
-       
+       <div>
+           请选择需要导出的列：<asp:CheckBox ID="CheckBox0" runat="server" AutoPostBack="True" OnCheckedChanged="CheckBox0_CheckedChanged" Text="项目ID" />
+&nbsp; <asp:CheckBox ID="CheckBox1" runat="server" Text="项目名称" AutoPostBack="True" OnCheckedChanged="CheckBox1_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox2" runat="server" Text="执行单位" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="执行状态" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" Text="联系人" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox5" runat="server" Text="联系电话" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" OnCheckedChanged="CheckBox6_CheckedChanged" Text="项目描述" />
+&nbsp;<asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+       </div>
                     <div id="divPrint" runat="server">        
-            <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="950px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+            <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="950px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -157,7 +165,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn Visible="False" HeaderText="联系电话">
+                <asp:TemplateColumn Visible="true" HeaderText="联系电话">
                     <ItemTemplate>
                         <asp:Label ID="labteladd" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneADD") %>'>
                         </asp:Label>
