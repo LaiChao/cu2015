@@ -38,10 +38,8 @@
         </h2>
         </div>
         <form id="form1" runat="server" class="form-inline">
-            <div style="height: 80px" class="form-group">
-    
-        
-    
+            <div class="form-group">
+                <p>
         <asp:Label ID="Label3" runat="server" Text="来源:"></asp:Label>
         <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" >
             <asp:ListItem>所有机构</asp:ListItem>
@@ -76,13 +74,22 @@
             <asp:ListItem>重特大灾害</asp:ListItem>
           </asp:DropDownList>
            <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click"  class="btn btn-danger"/>
-        <div>     
-        <asp:Button ID="btnExp" runat="server" Text="导出" CssClass="btn btn-danger" OnClick="btnExp_Click"/>          
-        </div>
-    </div>
+                </p>
+            </div>
+            <div>
+                请选择需要导出的列：<asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" Checked="True" Text="来源" OnCheckedChanged="CheckBox1_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="True" Checked="True" Text="性别" OnCheckedChanged="CheckBox3_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" AutoPostBack="True" Checked="True" Text="年龄" OnCheckedChanged="CheckBox4_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox5" runat="server" AutoPostBack="True" Checked="True" Text="致困原因" OnCheckedChanged="CheckBox5_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Checked="True" Text="受助类别" OnCheckedChanged="CheckBox6_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Checked="True" Text="联系电话" OnCheckedChanged="CheckBox7_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox8" runat="server" AutoPostBack="True" Checked="True" Text="身份证号" OnCheckedChanged="CheckBox8_CheckedChanged" />
+&nbsp;<asp:CheckBox ID="CheckBox9" runat="server" AutoPostBack="True" Checked="True" Text="低保低收入号" OnCheckedChanged="CheckBox9_CheckedChanged" />
+&nbsp;<asp:Button ID="btnExp" runat="server" Text="导出" CssClass="btn btn-danger" OnClick="btnExp_Click"/>
+            </div>
             <div id="divPrint" runat="server">
             <div class="form-group">
-                    <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server" AutoGenerateColumns="false" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowSorting="True" OnRowDataBound="GridView1_RowDataBound" Width="850px" AllowPaging="True"  OnRowDeleting="GridView1_RowDeleting" OnRowCreated="GridView1_RowCreated" HorizontalAlign="Center" >                     
+                    <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowSorting="True" OnRowDataBound="GridView1_RowDataBound" Width="850px" AllowPaging="True"  OnRowDeleting="GridView1_RowDeleting" OnRowCreated="GridView1_RowCreated" HorizontalAlign="Center" >                     
                           <Columns>                            
                             <asp:BoundField DataField="benfactorFrom" HeaderText="受助人来源" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
 <HeaderStyle Height="30px"></HeaderStyle>
@@ -130,13 +137,13 @@
 
 <ItemStyle Height="30px"></ItemStyle>
                               </asp:BoundField>
-                            <asp:HyperLinkField HeaderText="编辑" Text="编辑" HeaderStyle-Height="30px" ItemStyle-Height="30px" DataNavigateUrlFormatString="修改受助人信息.aspx?ID={0}" DataNavigateUrlFields="recipientsID">
+                            <asp:HyperLinkField Text="编辑" HeaderStyle-Height="30px" ItemStyle-Height="30px" DataNavigateUrlFormatString="修改受助人信息.aspx?ID={0}" DataNavigateUrlFields="recipientsID">
                             <ControlStyle Font-Underline="True" />
 <HeaderStyle Height="30px"></HeaderStyle>
 
 <ItemStyle Height="30px"></ItemStyle>
                             </asp:HyperLinkField>
-                            <asp:CommandField HeaderText="删除" ShowDeleteButton="True"  HeaderStyle-Height="30px" ItemStyle-Height="30px">
+                            <asp:CommandField ShowDeleteButton="True"  HeaderStyle-Height="30px" ItemStyle-Height="30px">
 <HeaderStyle Height="30px"></HeaderStyle>
 
 <ItemStyle Height="30px"></ItemStyle>
@@ -156,9 +163,9 @@
                     </asp:GridView>
             </div>
                 </div>
-            <div>
-                    <%--<asp:Button ID="btnReload" runat="server" OnClick="btnReload_Click" Text="刷新" CssClass="btn btn-danger" Width="80px" Height="34px" />--%>
-     </div>
+<%--            <div>
+                    <asp:Button ID="btnReload" runat="server" OnClick="btnReload_Click" Text="刷新" CssClass="btn btn-danger" Width="80px" Height="34px" />
+     </div>--%>
     </form>
    </center>
 </body>

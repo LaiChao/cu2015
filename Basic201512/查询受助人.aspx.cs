@@ -210,36 +210,36 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     }
     protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
     {
-        switch (e.Row.RowType)
-        {
-            case DataControlRowType.Header:
-                //第一行表头
-                TableCellCollection tcHeader = e.Row.Cells;
-                tcHeader.Clear();
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[0].Text = "受助人来源";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[1].Text = "姓名";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[2].Text = "性别";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[3].Text = "年龄";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[4].Text = "致困原因";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[5].Text = "受助类别";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[6].Text = "联系电话";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[7].Text = "身份证号";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[8].Text = "低保低收入号";
-                tcHeader.Add(new TableHeaderCell());
-                tcHeader[9].Attributes.Add("colspan", "2");
-                tcHeader[9].Text = "操作";
+        //switch (e.Row.RowType)
+        //{
+        //    case DataControlRowType.Header:
+        //        //第一行表头
+        //        TableCellCollection tcHeader = e.Row.Cells;
+        //        tcHeader.Clear();
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[0].Text = "受助人来源";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[1].Text = "姓名";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[2].Text = "性别";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[3].Text = "年龄";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[4].Text = "致困原因";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[5].Text = "受助类别";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[6].Text = "联系电话";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[7].Text = "身份证号";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[8].Text = "低保低收入号";
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[9].Attributes.Add("colspan", "2");
+        //        tcHeader[9].Text = "操作";
 
-                break;
-        }
+        //        break;
+        //}
     }
 
     protected void btnExp_Click(object sender, EventArgs e)
@@ -252,5 +252,62 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         GridView1.BottomPagerRow.Visible = false;
         tableTitle = "受助人信息" + DateTime.Now.ToShortDateString().ToString();
         lyf_OutputToExcel.expExcle(this, divPrint, tableTitle);
+    }
+    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox1.Checked)
+            GridView1.Columns[0].Visible = true;
+        else
+            GridView1.Columns[0].Visible = false;
+    }
+    protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox3.Checked)
+            GridView1.Columns[2].Visible = true;
+        else
+            GridView1.Columns[2].Visible = false;
+    }
+
+    protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox4.Checked)
+            GridView1.Columns[3].Visible = true;
+        else
+            GridView1.Columns[3].Visible = false;
+    }
+    protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox5.Checked)
+            GridView1.Columns[4].Visible = true;
+        else
+            GridView1.Columns[4].Visible = false;
+    }
+    protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox6.Checked)
+            GridView1.Columns[5].Visible = true;
+        else
+            GridView1.Columns[5].Visible = false;
+    }
+    protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox7.Checked)
+            GridView1.Columns[6].Visible = true;
+        else
+            GridView1.Columns[6].Visible = false;
+    }
+    protected void CheckBox8_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox8.Checked)
+            GridView1.Columns[7].Visible = true;
+        else
+            GridView1.Columns[7].Visible = false;
+    }
+    protected void CheckBox9_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox9.Checked)
+            GridView1.Columns[8].Visible = true;
+        else
+            GridView1.Columns[8].Visible = false;
     }
 }
