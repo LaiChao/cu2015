@@ -98,6 +98,17 @@ namespace CL.Utility.Web.BasicData
                 }
                 BindDataSet();
                 BindData();
+                btchecky1.Visible = false;
+                btchecky2.Visible = false;
+                if(Session["userRole"].ToString()=="2")//协会
+                {
+                    btchecky2.Visible = true;
+                }
+                if(Session["userRole"].ToString()=="3")//会长
+                {
+                    btchecky1.Visible = true;
+                }
+                
             }
 
         }
@@ -218,13 +229,16 @@ namespace CL.Utility.Web.BasicData
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {
-               labError.Text= "会长审批通过";       
+                labError.Text= "会长审批通过";
+                NLogTest nlog = new NLogTest();
+                string sss = "会长审批项目：" + Lbproname.Text;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+                string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), Lbbenfrom.Text.Trim(), "未读");
+                msq.getmysqlcom(str11);
+                string str12 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), "朝阳区慈善协会", "未读");
+                msq.getmysqlcom(str12);
+
             }
-
-            NLogTest nlog = new NLogTest();
-            string sss = "会长审批项目：" + Lbproname.Text;
-            nlog.WriteLog(Session["UserName"].ToString(), sss);
-
         }
         protected void btchecky2_Click(object sender, EventArgs e)
         {
@@ -234,12 +248,13 @@ namespace CL.Utility.Web.BasicData
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {                
-                 labError.Text= "科室审批通过";
+                labError.Text= "科室审批通过";
+                NLogTest nlog = new NLogTest();
+                string sss = "科室审批项目：" + Lbproname.Text;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+                string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "科室审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), Lbbenfrom.Text.Trim(), "未读");
+                msq.getmysqlcom(str11);
             }
-
-            NLogTest nlog = new NLogTest();
-            string sss = "科室审批项目：" + Lbproname.Text;
-            nlog.WriteLog(Session["UserName"].ToString(), sss);
 
         }
         protected void btcheckn_Click(object sender, EventArgs e)
