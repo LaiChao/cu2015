@@ -29,9 +29,9 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
 {
 
     #region "自定义属性"
-    internal static Manager manager = Managers.Members["NewUtilityOra"] as Manager;
-    internal static ISingleTable entityUsers = manager.Entities["USERS"] as ISingleTable;
-    private DataTable dtUsers;
+    //internal static Manager manager = Managers.Members["NewUtilityOra"] as Manager;
+    //internal static ISingleTable entityUsers = manager.Entities["USERS"] as ISingleTable;
+    //private DataTable dtUsers;
 
     private string bindPCKey = "USER_ID";//绑定 能源节点数据的主键
 
