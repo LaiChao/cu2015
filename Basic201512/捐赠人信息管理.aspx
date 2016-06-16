@@ -67,6 +67,22 @@
     <div>
 
         <%--<asp:Button ID="btnReload" runat="server" OnClick="btnReload_Click" Text="刷新" CssClass="btn btn-danger" Width="80px" Height="34px" />--%>
+        请选择需要导出的列：<asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox1_CheckedChanged" Text="名称" />
+&nbsp;<asp:CheckBox ID="CheckBox2" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox2_CheckedChanged" Text="来源" />
+&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox3_CheckedChanged" Text="类型" />
+&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox4_CheckedChanged" Text="手机号" />
+&nbsp;<asp:CheckBox ID="CheckBox5" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox5_CheckedChanged" Text="使用范围" />
+&nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox6_CheckedChanged" Text="备注" />
+&nbsp;<asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox7_CheckedChanged" Text="联系人" />
+&nbsp;<asp:CheckBox ID="CheckBox8" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox8_CheckedChanged" Text="电子邮箱" />
+&nbsp;<asp:CheckBox ID="CheckBox9" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox9_CheckedChanged" Text="性别" />
+&nbsp;<asp:CheckBox ID="CheckBox10" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox10_CheckedChanged" Text="募捐箱编号" />
+&nbsp;<asp:CheckBox ID="CheckBox11" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox11_CheckedChanged" Text="冠名年限" />
+&nbsp;<asp:CheckBox ID="CheckBox12" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox12_CheckedChanged" Text="冠名到期日期" />
+&nbsp;<asp:CheckBox ID="CheckBox13" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox13_CheckedChanged" Text="选择的冠名捐助金" />
+&nbsp;<asp:CheckBox ID="CheckBox14" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox14_CheckedChanged" Text="受助人类型" />
+&nbsp;<asp:CheckBox ID="CheckBox15" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox15_CheckedChanged" Text="受助人描述" />
+&nbsp;<asp:CheckBox ID="CheckBox16" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="CheckBox16_CheckedChanged" Text="余额" />
 &nbsp;<asp:Button ID="btnExp" runat="server" OnClick="btnExp_Click" Text="导出" CssClass="btn btn-danger" Width="80px" Height="34px" />
 
     </div>

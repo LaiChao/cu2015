@@ -255,6 +255,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     {
         GridView1.Columns[0].Visible = false;
         GridView1.Columns[1].Visible = false;
+        GridView1.Columns[19].Visible = false;
         GridView1.HeaderStyle.BackColor = Color.White;
         GridView1.HeaderStyle.ForeColor = Color.Blue;
         GridView1.HeaderRow.Cells[0].Visible = false;
@@ -266,5 +267,119 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     public override void VerifyRenderingInServerForm(Control control)
     {
 
-    } 
+    }
+    #region 选择列导出
+    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox1.Checked)
+            GridView1.Columns[3].Visible = true;
+        else
+            GridView1.Columns[3].Visible = false;
+    }
+    protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox2.Checked)
+            GridView1.Columns[4].Visible = true;
+        else
+            GridView1.Columns[4].Visible = false;
+    }
+    protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox3.Checked)
+            GridView1.Columns[5].Visible = true;
+        else
+            GridView1.Columns[5].Visible = false;
+    }
+    protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox4.Checked)
+            GridView1.Columns[6].Visible = true;
+        else
+            GridView1.Columns[6].Visible = false;
+    }
+    protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox5.Checked)
+            GridView1.Columns[7].Visible = true;
+        else
+            GridView1.Columns[7].Visible = false;
+    }
+    protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox6.Checked)
+            GridView1.Columns[8].Visible = true;
+        else
+            GridView1.Columns[8].Visible = false;
+    }
+    protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox7.Checked)
+            GridView1.Columns[9].Visible = true;
+        else
+            GridView1.Columns[9].Visible = false;
+    }
+    protected void CheckBox8_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox8.Checked)
+            GridView1.Columns[10].Visible = true;
+        else
+            GridView1.Columns[10].Visible = false;
+    }
+    protected void CheckBox9_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox9.Checked)
+            GridView1.Columns[11].Visible = true;
+        else
+            GridView1.Columns[11].Visible = false;
+    }
+    protected void CheckBox10_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox10.Checked)
+            GridView1.Columns[12].Visible = true;
+        else
+            GridView1.Columns[12].Visible = false;
+    }
+    protected void CheckBox11_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox11.Checked)
+            GridView1.Columns[13].Visible = true;
+        else
+            GridView1.Columns[13].Visible = false;
+    }
+    protected void CheckBox12_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox12.Checked)
+            GridView1.Columns[14].Visible = true;
+        else
+            GridView1.Columns[14].Visible = false;
+    }
+    protected void CheckBox13_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox13.Checked)
+            GridView1.Columns[15].Visible = true;
+        else
+            GridView1.Columns[15].Visible = false;
+    }
+    protected void CheckBox14_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox14.Checked)
+            GridView1.Columns[16].Visible = true;
+        else
+            GridView1.Columns[16].Visible = false;
+    }
+    protected void CheckBox15_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox15.Checked)
+            GridView1.Columns[17].Visible = true;
+        else
+            GridView1.Columns[17].Visible = false;
+    }
+    protected void CheckBox16_CheckedChanged(object sender, EventArgs e)
+    {
+        if (CheckBox16.Checked)
+            GridView1.Columns[18].Visible = true;
+        else
+            GridView1.Columns[18].Visible = false;
+    }
+    #endregion
 }

@@ -50,7 +50,8 @@
               <strong>项目信息管理</strong>  
             </h2>
         </div>
-                                <div class="form-group">
+        <div class="form-group">
+            <p>
                                 <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
                                 
                                 <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
@@ -62,8 +63,8 @@
                                 <asp:Label ID="Label4" runat="server" Text="止"></asp:Label>
                     <asp:TextBox ID="illtimeend" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>
                                 <asp:Button ID="Btselectout" runat="server"  Text="搜索" OnClick="Btselectout_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-
-                    </div>
+            </p>
+       </div>
        <div>
            请选择需要导出的列：<asp:CheckBox ID="CheckBox0" runat="server" AutoPostBack="True" OnCheckedChanged="CheckBox0_CheckedChanged" Text="项目ID" />
 &nbsp; <asp:CheckBox ID="CheckBox1" runat="server" Text="项目名称" AutoPostBack="True" OnCheckedChanged="CheckBox1_CheckedChanged" />
