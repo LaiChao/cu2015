@@ -57,6 +57,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         canjijibie.Enabled = false;
         canjileibie.Enabled = false;
         shuoming3.Enabled = false;
+        canjiID.Enabled = false;
         //助老
         shiNeng.Enabled = false;
         shuoming4.Enabled = false;
@@ -66,8 +67,11 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         sonName.Enabled = false;
         deathReason.Enabled = false;
         shuoming5.Enabled = false;
+
         army.Enabled = false;
         title.Enabled = false;
+        tbOfficerID.Enabled = false;
+
         disaster.Enabled = false;
     }
     //public void databind()
@@ -155,15 +159,18 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             canjijibie.Enabled = true;
             canjileibie.Enabled = true;
             shuoming3.Enabled = true;
+            canjiID.Enabled = true;
         }
         if(!CheckBox3.Checked)
         {
             canjijibie.Text = "";
             canjileibie.Text = "";
             shuoming3.Text = "";
+            canjiID.Text = "";
             canjijibie.Enabled = false;
             canjileibie.Enabled = false;
             shuoming3.Enabled = false;
+            canjiID.Enabled = false;
         }
     }
     protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
@@ -196,13 +203,16 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         {
             army.Enabled = true;
             title.Enabled = true;
+            tbOfficerID.Enabled = true;
         }
         if(!CheckBox6.Checked)
         {
             army.Text = "";
             title.Text = "";
+            tbOfficerID.Text = "";
             army.Enabled = false;
             title.Enabled = false;
+            tbOfficerID.Enabled = false;
         }
     }
     protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
@@ -449,7 +459,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         //{ 
         #region
         //数据入库
-        string str113 = string.Format("insert into e_recipients (benfactorFrom,recipientsADD,recipientsName,sex,recipientsPIdcard,recipientsADDnow,incomlowID,telphoneADD,workplace,famName1,famRelation1,famWorkplace1,famTel1,famWork1,famIncome1,famName2,famRelation2,famWorkplace2,famTel2,famWork2,famIncome2,famName3,famRelation3,famWorkplace3,famTel3,famWork3,famIncome3,famName4,famRelation4,famWorkplace4,famTel4,famWork4,famIncome4,arrIncome,marryNow,canjijibie,canjileibie,shuoming3,illness,illtime,illpay,shuoming1,timeDis,shiDu,sonName,deathReason,shuoming5,shiNeng,shuoming4,studySchool,studyGrade,guardianName,guardianGuanxi,guardianTelADD,shuoming2,reason,army,title,disaster) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}','{54}','{55}','{56}','{57}','{58}')", benfactorFrom.Text, recipientsADD.Text, recipientsName.Text, sex.Text, recipientsPIdcard.Text, recipientsADDnow.Text, incomlowID.Text, telphoneADD.Text, workplace.Text, famName1.Text, famRelation1.Text, famWorkplace1.Text, famTel1.Text, famWork1.Text, famIncome1.Text, famName2.Text, famRelation2.Text, famWorkplace2.Text, famTel2.Text, famWork2.Text, famIncome2.Text, famName3.Text, famRelation3.Text, famWorkplace3.Text, famTel3.Text, famWork3.Text, famIncome3.Text, famName4.Text, famRelation4.Text, famWorkplace4.Text, famTel4.Text, famWork4.Text, famIncome4.Text, arrIncome.Text, marryNow.Text, canjijibie.Text, canjileibie.Text, shuoming3.Text, illness.Text, illtime.Text, illpay.Text, shuoming1.Text, timeDis.Text, shiDu.Text, sonName.Text, deathReason.Text, shuoming5.Text, shiNeng.Text, shuoming4.Text, studySchool.Text, studyGrade.Text, guardianName.Text, guardianGuanxi.Text, guardianTelADD.Text, shuoming2.Text, reason.Text, army.Text, title.Text, disaster.Text);
+        string str113 = string.Format("insert into e_recipients (benfactorFrom,recipientsADD,recipientsName,sex,recipientsPIdcard,recipientsADDnow,incomlowID,telphoneADD,workplace,famName1,famRelation1,famWorkplace1,famTel1,famWork1,famIncome1,famName2,famRelation2,famWorkplace2,famTel2,famWork2,famIncome2,famName3,famRelation3,famWorkplace3,famTel3,famWork3,famIncome3,famName4,famRelation4,famWorkplace4,famTel4,famWork4,famIncome4,arrIncome,marryNow,canjijibie,canjileibie,shuoming3,illness,illtime,illpay,shuoming1,timeDis,shiDu,sonName,deathReason,shuoming5,shiNeng,shuoming4,studySchool,studyGrade,guardianName,guardianGuanxi,guardianTelADD,shuoming2,reason,army,title,disaster,canID,officerID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}','{54}','{55}','{56}','{57}','{58}','{59}','{60}')", benfactorFrom.Text, recipientsADD.Text, recipientsName.Text, sex.Text, recipientsPIdcard.Text, recipientsADDnow.Text, incomlowID.Text, telphoneADD.Text, workplace.Text, famName1.Text, famRelation1.Text, famWorkplace1.Text, famTel1.Text, famWork1.Text, famIncome1.Text, famName2.Text, famRelation2.Text, famWorkplace2.Text, famTel2.Text, famWork2.Text, famIncome2.Text, famName3.Text, famRelation3.Text, famWorkplace3.Text, famTel3.Text, famWork3.Text, famIncome3.Text, famName4.Text, famRelation4.Text, famWorkplace4.Text, famTel4.Text, famWork4.Text, famIncome4.Text, arrIncome.Text, marryNow.Text, canjijibie.Text, canjileibie.Text, shuoming3.Text, illness.Text, illtime.Text, illpay.Text, shuoming1.Text, timeDis.Text, shiDu.Text, sonName.Text, deathReason.Text, shuoming5.Text, shiNeng.Text, shuoming4.Text, studySchool.Text, studyGrade.Text, guardianName.Text, guardianGuanxi.Text, guardianTelADD.Text, shuoming2.Text, reason.Text, army.Text, title.Text, disaster.Text, canjiID.Text,tbOfficerID.Text);
         int res = -1;
         try
         {

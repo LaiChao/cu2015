@@ -466,6 +466,13 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
+                    助残人证号：</td>
+                <td>
+                    <asp:TextBox ID="canjiID" runat="server" class="form-control"></asp:TextBox>
+                </td>
+
+                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style2">
                     助残说明：</td>
                 <td>
                     <asp:TextBox ID="shuoming3" runat="server" class="form-control"></asp:TextBox>
@@ -548,6 +555,16 @@
                 <td>
                     
                     <asp:TextBox ID="title" runat="server" class="form-control"></asp:TextBox>
+                    
+                </td>
+            </tr>
+                        <tr>
+                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style2">
+                    军官证号：</td>
+                <td>
+                    
+                    <asp:TextBox ID="tbOfficerID" runat="server" class="form-control"></asp:TextBox>
                     
                 </td>
             </tr>

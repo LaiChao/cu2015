@@ -117,6 +117,8 @@ public partial class Basic201512_查看受助人信息 : System.Web.UI.Page
             title.Text = mysqlread.GetString(64);
             CheckBox7.Checked = mysqlread.GetBoolean(65);
             disaster.Text = mysqlread.GetString(66);
+            canjiID.Text = mysqlread.GetString("canID");
+            tbOfficerID.Text = mysqlread.GetString("officerID");
         }
     }
     protected void IterateThroughChildren(Control parent)

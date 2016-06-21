@@ -71,6 +71,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
                 canjijibie.Enabled = true;
                 canjileibie.Enabled = true;
                 shuoming3.Enabled = true;
+                canjiID.Enabled = true;
             }
             if(CheckBox4.Checked)
             {
@@ -90,6 +91,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             {
                 army.Enabled = true;
                 title.Enabled = true;
+                tbOfficerID.Enabled = true;
             }
             if (CheckBox7.Checked)
                 disaster.Enabled = true;
@@ -142,6 +144,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             canjijibie.Text = mysqlread.GetString(38);
             canjileibie.Text = mysqlread.GetString(39);
             shuoming3.Text = mysqlread.GetString(40);
+            canjiID.Text = mysqlread.GetString("canID");
             //isdoc.Text = mysqlread.GetString(41);
             CheckBox2.Checked = mysqlread.GetBoolean(41);
             illness.Text = mysqlread.GetString(42);
@@ -170,6 +173,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             CheckBox6.Checked = mysqlread.GetBoolean(62);
             army.Text = mysqlread.GetString(63);
             title.Text = mysqlread.GetString(64);
+            tbOfficerID.Text = mysqlread.GetString("officerID");
             CheckBox7.Checked = mysqlread.GetBoolean(65);
             disaster.Text = mysqlread.GetString(66);
         }
@@ -250,15 +254,18 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             canjijibie.Enabled = true;
             canjileibie.Enabled = true;
             shuoming3.Enabled = true;
+            canjiID.Enabled = true;
         }
         if (!CheckBox3.Checked)
         {
             canjijibie.Text = "";
             canjileibie.Text = "";
             shuoming3.Text = "";
+            canjiID.Text = "";
             canjijibie.Enabled = false;
             canjileibie.Enabled = false;
             shuoming3.Enabled = false;
+            canjiID.Enabled = false;
         }
     }
     protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
@@ -291,13 +298,16 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         {
             army.Enabled = true;
             title.Enabled = true;
+            tbOfficerID.Enabled = true;
         }
         if (!CheckBox6.Checked)
         {
             army.Text = "";
             title.Text = "";
+            tbOfficerID.Text = "";
             army.Enabled = false;
             title.Enabled = false;
+            tbOfficerID.Enabled = false;
         }
     }
     protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
@@ -345,6 +355,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         canjijibie.Enabled = false;
         canjileibie.Enabled = false;
         shuoming3.Enabled = false;
+        canjiID.Enabled = false;
         //助老
         shiNeng.Enabled = false;
         shuoming4.Enabled = false;
@@ -357,6 +368,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
 
         army.Enabled = false;
         title.Enabled = false;
+        tbOfficerID.Enabled = false;
 
         disaster.Enabled = false;
     }
@@ -577,7 +589,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         //{ 
         #region
         //数据入库
-        string str113 = string.Format("update e_recipients set benfactorFrom='{0}',recipientsADD='{1}',recipientsName='{2}',sex='{3}',recipientsPIdcard='{4}',recipientsADDnow='{5}',incomlowID='{6}',telphoneADD='{7}',workplace='{8}',famName1='{9}',famRelation1='{10}',famWorkplace1='{11}',famTel1='{12}',famWork1='{13}',famIncome1='{14}',famName2='{15}',famRelation2='{16}',famWorkplace2='{17}',famTel2='{18}',famWork2='{19}',famIncome2='{20}',famName3='{21}',famRelation3='{22}',famWorkplace3='{23}',famTel3='{24}',famWork3='{25}',famIncome3='{26}',famName4='{27}',famRelation4='{28}',famWorkplace4='{29}',famTel4='{30}',famWork4='{31}',famIncome4='{32}',arrIncome='{33}',marryNow='{34}',canjijibie='{35}',canjileibie='{36}',shuoming3='{37}',illness='{38}',illtime='{39}',illpay='{40}',shuoming1='{41}',timeDis='{42}',shiDu='{43}',sonName='{44}',deathReason='{45}',shuoming5='{46}',shiNeng='{47}',shuoming4='{48}',studySchool='{49}',studyGrade='{50}',guardianName='{51}',guardianGuanxi='{52}',guardianTelADD='{53}',shuoming2='{54}',reason='{55}' where recipientsID='{56}'", benfactorFrom.SelectedValue.Trim(), recipientsADD.Text, recipientsName.Text, sex.Text, recipientsPIdcard.Text, recipientsADDnow.Text, incomlowID.Text, telphoneADD.Text, workplace.Text, famName1.Text, famRelation1.Text, famWorkplace1.Text, famTel1.Text, famWork1.Text, famIncome1.Text, famName2.Text, famRelation2.Text, famWorkplace2.Text, famTel2.Text, famWork2.Text, famIncome2.Text, famName3.Text, famRelation3.Text, famWorkplace3.Text, famTel3.Text, famWork3.Text, famIncome3.Text, famName4.Text, famRelation4.Text, famWorkplace4.Text, famTel4.Text, famWork4.Text, famIncome4.Text, arrIncome.Text, marryNow.Text, canjijibie.Text, canjileibie.Text, shuoming3.Text, illness.Text, illtime.Text, illpay.Text, shuoming1.Text, timeDis.Text, shiDu.Text, sonName.Text, deathReason.Text, shuoming5.Text, shiNeng.Text, shuoming4.Text, studySchool.Text, studyGrade.Text, guardianName.Text, guardianGuanxi.Text, guardianTelADD.Text, shuoming2.Text, reason.Text, ViewState["IDNow"].ToString());
+        string str113 = string.Format("update e_recipients set benfactorFrom='{0}',recipientsADD='{1}',recipientsName='{2}',sex='{3}',recipientsPIdcard='{4}',recipientsADDnow='{5}',incomlowID='{6}',telphoneADD='{7}',workplace='{8}',famName1='{9}',famRelation1='{10}',famWorkplace1='{11}',famTel1='{12}',famWork1='{13}',famIncome1='{14}',famName2='{15}',famRelation2='{16}',famWorkplace2='{17}',famTel2='{18}',famWork2='{19}',famIncome2='{20}',famName3='{21}',famRelation3='{22}',famWorkplace3='{23}',famTel3='{24}',famWork3='{25}',famIncome3='{26}',famName4='{27}',famRelation4='{28}',famWorkplace4='{29}',famTel4='{30}',famWork4='{31}',famIncome4='{32}',arrIncome='{33}',marryNow='{34}',canjijibie='{35}',canjileibie='{36}',shuoming3='{37}',illness='{38}',illtime='{39}',illpay='{40}',shuoming1='{41}',timeDis='{42}',shiDu='{43}',sonName='{44}',deathReason='{45}',shuoming5='{46}',shiNeng='{47}',shuoming4='{48}',studySchool='{49}',studyGrade='{50}',guardianName='{51}',guardianGuanxi='{52}',guardianTelADD='{53}',shuoming2='{54}',reason='{55}',canID='{57}',officerID='{58}' where recipientsID='{56}'", benfactorFrom.SelectedValue.Trim(), recipientsADD.Text, recipientsName.Text, sex.Text, recipientsPIdcard.Text, recipientsADDnow.Text, incomlowID.Text, telphoneADD.Text, workplace.Text, famName1.Text, famRelation1.Text, famWorkplace1.Text, famTel1.Text, famWork1.Text, famIncome1.Text, famName2.Text, famRelation2.Text, famWorkplace2.Text, famTel2.Text, famWork2.Text, famIncome2.Text, famName3.Text, famRelation3.Text, famWorkplace3.Text, famTel3.Text, famWork3.Text, famIncome3.Text, famName4.Text, famRelation4.Text, famWorkplace4.Text, famTel4.Text, famWork4.Text, famIncome4.Text, arrIncome.Text, marryNow.Text, canjijibie.Text, canjileibie.Text, shuoming3.Text, illness.Text, illtime.Text, illpay.Text, shuoming1.Text, timeDis.Text, shiDu.Text, sonName.Text, deathReason.Text, shuoming5.Text, shiNeng.Text, shuoming4.Text, studySchool.Text, studyGrade.Text, guardianName.Text, guardianGuanxi.Text, guardianTelADD.Text, shuoming2.Text, reason.Text, ViewState["IDNow"].ToString(), canjiID.Text, tbOfficerID.Text);
         int res = msq.getmysqlcom(str113);
         if (CheckBox1.Checked)
         {

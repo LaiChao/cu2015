@@ -83,7 +83,7 @@
 
         </h2>
         </div>
-    <div style="height: 47px">
+
     <div class="form-group">
         <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
     
@@ -96,7 +96,7 @@
         <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox" />
         <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox"/>
     </div>
-    </div>
+
     <div style="height: 1312px; width: 806px;">
         <div class="panel panel-danger">
             <div class="panel-heading">
@@ -500,7 +500,7 @@
                     <asp:TextBox ID="shuoming1" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -532,11 +532,32 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
+                    残疾人证号：</td>
+                <td>
+                    <asp:TextBox ID="canjiID" runat="server" class="form-control"></asp:TextBox>
+                </td>
+
+                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style2">
                     助残说明：</td>
                 <td>
                     <asp:TextBox ID="shuoming3" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style2">
+                    </td>
+                <td>
+                </td>
+
+                <td class="auto-style1">&nbsp;</td>
+                <td class="auto-style2">
+                    </td>
+                <td>
+                </td>
+            </tr>
+
             <tr>
                                                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
@@ -631,8 +652,9 @@
                         <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    </td>
+                    军官证号：</td>
                 <td>
+                    <asp:TextBox ID="tbOfficerID" runat="server" class="form-control"></asp:TextBox>
                 </td>
 
                 <td class="auto-style1">&nbsp;</td>
