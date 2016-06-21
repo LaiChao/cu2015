@@ -180,6 +180,13 @@
                 </thead>
                 <tr>
                     <td class="auto-style6">
+                        项 目 类 别： </td>
+                    <td class="auto-style9">
+                        <asp:Label ID="lblLeibie" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style6">
                         项 目 名 称： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbproname" runat="server"></asp:Label>
