@@ -244,10 +244,16 @@
                        <td class="auto-style8"> 
                         </td>
                         <td class="auto-style9">
-                    <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
-                    <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
-                    <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
-                    <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" />
+                            <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
+                            <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
+                            <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
+                            选择模板：
+                            <asp:DropDownList ID="DropDownList1" runat="server">
+                                <asp:ListItem>附1北京市朝阳区慈善协会救助项目申请表</asp:ListItem>
+                                <asp:ListItem>附2冠名慈善捐助金使用项目书</asp:ListItem>
+                                <asp:ListItem>附3北京市朝阳区慈善协会救助项目书</asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" />
                         </td>                                         
                     </tr>
                 </tfoot>

@@ -26,6 +26,7 @@ using luyunfei;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace CL.Utility.Web.BasicData
 {
@@ -283,16 +284,56 @@ namespace CL.Utility.Web.BasicData
         }
         protected void btout_Click(object sender, EventArgs e)
         {
+            ViewState["model"] = DropDownList1.SelectedValue.ToString();//选择的模板
             //遍历dgData
             if (Lbproname.Text.Trim() != "")
             {
-                for (int i = 0; i < dgData.Items.Count;i++ )
+                if(ViewState["model"].ToString()=="附1北京市朝阳区慈善协会救助项目申请表")
                 {
-                    Toprint("附1北京市朝阳区慈善协会救助项目申请表", dgData.DataKeys[i].ToString());
+                    MemoryStream ms = new MemoryStream();
+                    byte[] buffer = null;
+                    using (ZipFile file = ZipFile.Create(ms))
+                    {
+                        file.BeginUpdate();
+                        file.NameTransform = new MyNameTransfom();//通过这个名称格式化器，可以将里面的文件名进行一些处理。默认情况下，会自动根据文件的路径在zip中创建有关的文件夹。
+                        for (int i = 0; i < dgData.Items.Count;i++ )
+                        {
+                            Toprint(ViewState["model"].ToString(), dgData.DataKeys[i].ToString(),i);
+                            file.Add(Server.MapPath("template\\" + ViewState["model"].ToString() + i.ToString() + ".pdf"));
+                        }                    
+                        file.CommitUpdate();
+                        buffer = new byte[ms.Length];
+                        ms.Position = 0;
+                        ms.Read(buffer, 0, buffer.Length);
+                    }
+                    Response.AddHeader("content-disposition", "attachment;filename=Test.zip");
+                    Response.BinaryWrite(buffer);
+                    Response.Flush();
+                    Response.End();
                 }
+                else
+                {
+                    Toprint(ViewState["model"].ToString(), "", -1);
+                }
+
+
             }
         }
-        public void Toprint(string strFileName,string pid)
+        public class MyNameTransfom : ICSharpCode.SharpZipLib.Core.INameTransform
+        {
+
+            #region INameTransform 成员
+            public string TransformDirectory(string name)
+            {
+                return null;
+            }
+            public string TransformFile(string name)
+            {
+                return Path.GetFileName(name);
+            }
+            #endregion
+        }
+        public void Toprint(string strFileName,string pid,int index)
         {
             WriteIntoWord wiw = new WriteIntoWord();
             string FilePath = Server.MapPath("template\\" + strFileName + ".dot");//模板路径
@@ -314,6 +355,11 @@ namespace CL.Utility.Web.BasicData
             string FillArrIncome = "";
             string FillCanjiID = "";
             string FillOfficerID = "";
+            string FillRequest = "";
+            string FillComefrom = "";
+            string FillPersons = "";
+            string FillGuanming = "";
+
             #region "家庭成员"
             string FillFamName1 = "";
             string FillFamRelation1 = "";
@@ -339,130 +385,194 @@ namespace CL.Utility.Web.BasicData
             string FillFamWork4 = "";
             string FillFamIncome4 = "";
             #endregion
-            string strselect = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where recipientsPIdcard='{0}'", pid);
-            MySqlDataReader mysqlreader = msq.getmysqlread(strselect);
-            while (mysqlreader.Read())
-            {
-                FillName = mysqlreader.GetString("recipientsName");
-                FillSex = mysqlreader.GetString("sex");
-                FillAge = mysqlreader.GetString("newAge");
-                FillRecipientsADD = mysqlreader.GetString("recipientsADD");
-                FillWorkplace = mysqlreader.GetString("workplace");
-                FillIncomlowID = mysqlreader.GetString("incomlowID");
-                FillRecipientsADDnow = mysqlreader.GetString("recipientsADDnow");
-                FillTelphoneADD = mysqlreader.GetString("telphoneADD");
-                FillArrIncome = mysqlreader.GetString("arrIncome");
-                FillCanjiID = mysqlreader.GetString("canID");
-                FillOfficerID = mysqlreader.GetString("officerID");
-                #region "家庭成员"
-                FillFamName1 = mysqlreader.GetString("famName1");
-                FillFamRelation1 = mysqlreader.GetString("famRelation1");
-                FillFamWorkplace1 = mysqlreader.GetString("famWorkplace1");
-                FillFamWork1 = mysqlreader.GetString("famWork1");
-                FillFamIncome1 = mysqlreader.GetString("famIncome1");
 
-                FillFamName2 = mysqlreader.GetString("famName2");
-                FillFamRelation2 = mysqlreader.GetString("famRelation2");
-                FillFamWorkplace2 = mysqlreader.GetString("famWorkplace2");
-                FillFamWork2 = mysqlreader.GetString("famWork2");
-                FillFamIncome2 = mysqlreader.GetString("famIncome2");
-
-                FillFamName3 = mysqlreader.GetString("famName3");
-                FillFamRelation3 = mysqlreader.GetString("famRelation3");
-                FillFamWorkplace3 = mysqlreader.GetString("famWorkplace3");
-                FillFamWork3 = mysqlreader.GetString("famWork3");
-                FillFamIncome3 = mysqlreader.GetString("famIncome3");
-
-                FillFamName4 = mysqlreader.GetString("famName4");
-                FillFamRelation4 = mysqlreader.GetString("famRelation4");
-                FillFamWorkplace4 = mysqlreader.GetString("famWorkplace4");
-                FillFamWork4 = mysqlreader.GetString("famWork4");
-                FillFamIncome4 = mysqlreader.GetString("famIncome4");
-                #endregion
-            }
             double sumIncome = 0;
             double incomePerPerson = 0;
-            int numPerson = 1;
-            if((FillArrIncome!="")&&(FillArrIncome!="0"))
-            {
-                sumIncome += Convert.ToDouble(FillArrIncome);
-            }
-            if(FillFamIncome1!="")
-            {
-                numPerson++;
-                if(FillFamIncome1!="0")
-                    sumIncome += Convert.ToDouble(FillFamIncome1);
-            }
-            if (FillFamIncome2 != "")
-            {
-                numPerson++;
-                if (FillFamIncome2 != "0")
-                    sumIncome += Convert.ToDouble(FillFamIncome2);
-            }
-            if (FillFamIncome3 != "")
-            {
-                numPerson++;
-                if (FillFamIncome3 != "0")
-                    sumIncome += Convert.ToDouble(FillFamIncome3);
-            }
-            if (FillFamIncome4 != "")
-            {
-                numPerson++;
-                if (FillFamIncome4 != "0")
-                    sumIncome += Convert.ToDouble(FillFamIncome4);
-            }
-            incomePerPerson = Math.Round((sumIncome / numPerson), 2);
 
-            string SaveDocPath = Server.MapPath("template\\" + strFileName + ".doc");
-            string SavePdfPath = Server.MapPath("template\\" + strFileName + ".pdf");
+            string SaveDocPath = "";
+            string SavePdfPath = "";
+
+            if(pid!="")
+            {
+                string strselect = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where recipientsPIdcard='{0}'", pid);
+                MySqlDataReader mysqlreader = msq.getmysqlread(strselect);
+                while (mysqlreader.Read())
+                {
+                    FillName = mysqlreader.GetString("recipientsName");
+                    FillSex = mysqlreader.GetString("sex");
+                    FillAge = mysqlreader.GetString("newAge");
+                    FillRecipientsADD = mysqlreader.GetString("recipientsADD");
+                    FillWorkplace = mysqlreader.GetString("workplace");
+                    FillIncomlowID = mysqlreader.GetString("incomlowID");
+                    FillRecipientsADDnow = mysqlreader.GetString("recipientsADDnow");
+                    FillTelphoneADD = mysqlreader.GetString("telphoneADD");
+                    FillArrIncome = mysqlreader.GetString("arrIncome");
+                    FillCanjiID = mysqlreader.GetString("canID");
+                    FillOfficerID = mysqlreader.GetString("officerID");
+                    #region "家庭成员"
+                    FillFamName1 = mysqlreader.GetString("famName1");
+                    FillFamRelation1 = mysqlreader.GetString("famRelation1");
+                    FillFamWorkplace1 = mysqlreader.GetString("famWorkplace1");
+                    FillFamWork1 = mysqlreader.GetString("famWork1");
+                    FillFamIncome1 = mysqlreader.GetString("famIncome1");
+
+                    FillFamName2 = mysqlreader.GetString("famName2");
+                    FillFamRelation2 = mysqlreader.GetString("famRelation2");
+                    FillFamWorkplace2 = mysqlreader.GetString("famWorkplace2");
+                    FillFamWork2 = mysqlreader.GetString("famWork2");
+                    FillFamIncome2 = mysqlreader.GetString("famIncome2");
+
+                    FillFamName3 = mysqlreader.GetString("famName3");
+                    FillFamRelation3 = mysqlreader.GetString("famRelation3");
+                    FillFamWorkplace3 = mysqlreader.GetString("famWorkplace3");
+                    FillFamWork3 = mysqlreader.GetString("famWork3");
+                    FillFamIncome3 = mysqlreader.GetString("famIncome3");
+
+                    FillFamName4 = mysqlreader.GetString("famName4");
+                    FillFamRelation4 = mysqlreader.GetString("famRelation4");
+                    FillFamWorkplace4 = mysqlreader.GetString("famWorkplace4");
+                    FillFamWork4 = mysqlreader.GetString("famWork4");
+                    FillFamIncome4 = mysqlreader.GetString("famIncome4");
+                    #endregion
+                }
+                string selectRequest = string.Format("select request from e_pr where recipientID=(select recipientsID from e_recipients where recipientsPIdcard='{0}')",pid);
+                mysqlreader = msq.getmysqlread(selectRequest);
+                while (mysqlreader.Read())
+                    FillRequest = mysqlreader.GetString("request");
+
+
+                int numPerson = 1;
+                if ((FillArrIncome != "") && (FillArrIncome != "0"))
+                {
+                    sumIncome += Convert.ToDouble(FillArrIncome);
+                }
+                if (FillFamIncome1 != "")
+                {
+                    numPerson++;
+                    if (FillFamIncome1 != "0")
+                        sumIncome += Convert.ToDouble(FillFamIncome1);
+                }
+                if (FillFamIncome2 != "")
+                {
+                    numPerson++;
+                    if (FillFamIncome2 != "0")
+                        sumIncome += Convert.ToDouble(FillFamIncome2);
+                }
+                if (FillFamIncome3 != "")
+                {
+                    numPerson++;
+                    if (FillFamIncome3 != "0")
+                        sumIncome += Convert.ToDouble(FillFamIncome3);
+                }
+                if (FillFamIncome4 != "")
+                {
+                    numPerson++;
+                    if (FillFamIncome4 != "0")
+                        sumIncome += Convert.ToDouble(FillFamIncome4);
+                }
+                incomePerPerson = Math.Round((sumIncome / numPerson), 2);
+                SaveDocPath = Server.MapPath("template\\" + strFileName + index.ToString() + ".doc");
+                SavePdfPath = Server.MapPath("template\\" + strFileName + index.ToString() + ".pdf");
+
+            }
+            else
+            {
+                SaveDocPath = Server.MapPath("template\\" + strFileName + ".doc");
+                SavePdfPath = Server.MapPath("template\\" + strFileName + ".pdf");
+
+            }
+
+
+
+
             wiw.OpenDocument(FilePath);
-            wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());
-            wiw.WriteIntoDocument("projectNameMark", FillProjectName);
-            wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
-            wiw.WriteIntoDocument("pidMark", pid);
-            wiw.WriteIntoDocument("nameMark", FillName);
-            wiw.WriteIntoDocument("sexMark", FillSex);
-            wiw.WriteIntoDocument("ageMark", FillAge);
-            wiw.WriteIntoDocument("recipientsADDMark", FillRecipientsADD);
-            wiw.WriteIntoDocument("workplaceMark", FillWorkplace);
-            wiw.WriteIntoDocument("incomlowIDMark", FillIncomlowID);
-            wiw.WriteIntoDocument("recipientsADDnowMark", FillRecipientsADDnow);
-            wiw.WriteIntoDocument("telphoneADDMark", FillTelphoneADD);
-            wiw.WriteIntoDocument("arrIncomeMark", FillArrIncome);
-            wiw.WriteIntoDocument("RMBMark", FillRMB);
-            wiw.WriteIntoDocument("generalIncomeMark", sumIncome.ToString());
-            wiw.WriteIntoDocument("incomePerPersonMark", incomePerPerson.ToString());
-            wiw.WriteIntoDocument("canjiIDMark", FillCanjiID);
-            wiw.WriteIntoDocument("officerIDMark", FillOfficerID);
+            if(strFileName=="附1北京市朝阳区慈善协会救助项目申请表")
+            {
+                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
+                wiw.WriteIntoDocument("pidMark", pid);
+                wiw.WriteIntoDocument("nameMark", FillName);
+                wiw.WriteIntoDocument("sexMark", FillSex);
+                wiw.WriteIntoDocument("ageMark", FillAge);
+                wiw.WriteIntoDocument("recipientsADDMark", FillRecipientsADD);
+                wiw.WriteIntoDocument("workplaceMark", FillWorkplace);
+                wiw.WriteIntoDocument("incomlowIDMark", FillIncomlowID);
+                wiw.WriteIntoDocument("recipientsADDnowMark", FillRecipientsADDnow);
+                wiw.WriteIntoDocument("telphoneADDMark", FillTelphoneADD);
+                wiw.WriteIntoDocument("arrIncomeMark", FillArrIncome);
+                wiw.WriteIntoDocument("RMBMark", FillRMB);
+                wiw.WriteIntoDocument("generalIncomeMark", sumIncome.ToString());
+                wiw.WriteIntoDocument("incomePerPersonMark", incomePerPerson.ToString());
+                wiw.WriteIntoDocument("canjiIDMark", FillCanjiID);
+                wiw.WriteIntoDocument("officerIDMark", FillOfficerID);
+                wiw.WriteIntoDocument("requestMark", FillRequest);
 
-            #region "家庭成员"
-            wiw.WriteIntoDocument("famName1Mark", FillFamName1);
-            wiw.WriteIntoDocument("famRelation1Mark", FillFamRelation1);
-            wiw.WriteIntoDocument("famWorkplace1Mark", FillFamWorkplace1);
-            wiw.WriteIntoDocument("famWork1Mark", FillFamWork1);
-            wiw.WriteIntoDocument("famIncome1Mark", FillFamIncome1);
+                #region "家庭成员"
+                wiw.WriteIntoDocument("famName1Mark", FillFamName1);
+                wiw.WriteIntoDocument("famRelation1Mark", FillFamRelation1);
+                wiw.WriteIntoDocument("famWorkplace1Mark", FillFamWorkplace1);
+                wiw.WriteIntoDocument("famWork1Mark", FillFamWork1);
+                wiw.WriteIntoDocument("famIncome1Mark", FillFamIncome1);
 
-            wiw.WriteIntoDocument("famName2Mark", FillFamName2);
-            wiw.WriteIntoDocument("famRelation2Mark", FillFamRelation2);
-            wiw.WriteIntoDocument("famWorkplace2Mark", FillFamWorkplace2);
-            wiw.WriteIntoDocument("famWork2Mark", FillFamWork2);
-            wiw.WriteIntoDocument("famIncome2Mark", FillFamIncome2);
+                wiw.WriteIntoDocument("famName2Mark", FillFamName2);
+                wiw.WriteIntoDocument("famRelation2Mark", FillFamRelation2);
+                wiw.WriteIntoDocument("famWorkplace2Mark", FillFamWorkplace2);
+                wiw.WriteIntoDocument("famWork2Mark", FillFamWork2);
+                wiw.WriteIntoDocument("famIncome2Mark", FillFamIncome2);
 
-            wiw.WriteIntoDocument("famName3Mark", FillFamName3);
-            wiw.WriteIntoDocument("famRelation3Mark", FillFamRelation3);
-            wiw.WriteIntoDocument("famWorkplace3Mark", FillFamWorkplace3);
-            wiw.WriteIntoDocument("famWork3Mark", FillFamWork3);
-            wiw.WriteIntoDocument("famIncome3Mark", FillFamIncome3);
+                wiw.WriteIntoDocument("famName3Mark", FillFamName3);
+                wiw.WriteIntoDocument("famRelation3Mark", FillFamRelation3);
+                wiw.WriteIntoDocument("famWorkplace3Mark", FillFamWorkplace3);
+                wiw.WriteIntoDocument("famWork3Mark", FillFamWork3);
+                wiw.WriteIntoDocument("famIncome3Mark", FillFamIncome3);
 
-            wiw.WriteIntoDocument("famName4Mark", FillFamName4);
-            wiw.WriteIntoDocument("famRelation4Mark", FillFamRelation4);
-            wiw.WriteIntoDocument("famWorkplace4Mark", FillFamWorkplace4);
-            wiw.WriteIntoDocument("famWork4Mark", FillFamWork4);
-            wiw.WriteIntoDocument("famIncome4Mark", FillFamIncome4);
-            #endregion
+                wiw.WriteIntoDocument("famName4Mark", FillFamName4);
+                wiw.WriteIntoDocument("famRelation4Mark", FillFamRelation4);
+                wiw.WriteIntoDocument("famWorkplace4Mark", FillFamWorkplace4);
+                wiw.WriteIntoDocument("famWork4Mark", FillFamWork4);
+                wiw.WriteIntoDocument("famIncome4Mark", FillFamIncome4);
+                #endregion
+            }
+            if (strFileName == "附2冠名慈善捐助金使用项目书")
+            {
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
+                wiw.WriteIntoDocument("RMBMark", FillRMB);
+                wiw.WriteIntoDocument("conditionMark", Lbrestnow.Text.ToString());
+                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());
+                for (int i = 0; i < dgData.Items.Count;i++ )
+                {
+                    FillPersons = FillPersons + ((Label)(dgData.Items[i].FindControl("labID"))).Text.ToString() + "；";
+                }
+                wiw.WriteIntoDocument("personsMark", FillPersons);
+                wiw.WriteIntoDocument("numMark", dgData.Items.Count.ToString());
+                for (int i = 0; i < dgData0.Items.Count; i++)
+                {
+                    FillGuanming = FillGuanming + ((Label)(dgData0.Items[i].FindControl("labname"))).Text.ToString() + "；";
+                }
+                wiw.WriteIntoDocument("guanmingMark", FillGuanming);
+
+            }
+            if (strFileName == "附3北京市朝阳区慈善协会救助项目书")
+            {
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
+                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
+                wiw.WriteIntoDocument("RMBMark", FillRMB);
+                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());
+                for (int i = 0; i < dgData0.Items.Count; i++)
+                {
+                    FillComefrom = FillComefrom + (i + 1).ToString() + "、" + ((Label)(dgData0.Items[i].FindControl("labname"))).Text.ToString() + "：￥" + ((Label)(dgData0.Items[i].FindControl("labguanming"))).Text.ToString() + "；";
+                }
+
+                wiw.WriteIntoDocument("comefromMark", FillComefrom);
+            }
+
             wiw.Save_CloseDocument(SaveDocPath);
             WordToPdf(SaveDocPath, SavePdfPath);
-            DownLoadFile("template\\" + strFileName + ".pdf");
+            if(pid=="")
+                DownLoadFile("template\\" + strFileName + ".pdf");
         }
         public class WriteIntoWord
         {
@@ -541,7 +651,6 @@ namespace CL.Utility.Web.BasicData
         /// <param name="targetPath">转换完成后的文件的路径和文件名名称</param>
 
         /// <returns>成功返回true,失败返回false</returns>
-
         public static bool WordToPdf(string sourcePath, string targetPath)
         {
             bool result = false;
