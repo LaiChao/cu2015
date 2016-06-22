@@ -123,14 +123,14 @@ public partial class Basic201512_批量选择受助人 : System.Web.UI.Page
             {
                 //前面除了你需要在建立一个“selectRecipients”的文件夹外，其他的都不用管了，你只需要通过下面的方式获取Excel的值，然后再将这些值用你的方式去插入到数据库里面
                 string strIdCard = dr[i]["身份证号"].ToString();
-                string strReadId = strSelectID + strIdCard;
+                string strReadId = strSelectID + "'" + strIdCard + "'";
                 mysqlread = msq.getmysqlread(strReadId);
                 string strRcptId="";
                 while(mysqlread.Read())
                 {
                     strRcptId = mysqlread.GetString(0);
                 }
-                string str113 = string.Format("insert into e_pr (projectID,recipientID) values ({0},{1})", lblID.Text.Trim(), strRcptId);
+                string str113 = string.Format("insert into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", lblID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
                 SQLStringList.Add(str113);
             }
             ExecuteSqlTran(SQLStringList);
