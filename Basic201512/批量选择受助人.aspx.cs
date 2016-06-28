@@ -82,6 +82,24 @@ public partial class Basic201512_批量选择受助人 : System.Web.UI.Page
 
     protected void btnImport_Click(object sender, EventArgs e)
     {
+        lblError.Text = "";
+        if(lblID.Text.Trim()=="")
+        {
+            lblError.Text = "请输入项目ID";
+            return;
+        }
+        int idNum = 0;
+        string selectIdString = "select count(*) as countNum from e_project where projectID='" + lblID.Text.Trim() + "'";
+        MySqlDataReader mysqlreadID = msq.getmysqlread(selectIdString);
+        while(mysqlreadID.Read())
+        {
+            idNum = mysqlreadID.GetInt32("countNum");
+        }
+        if(idNum==0)
+        {
+            lblError.Text = "请输入正确的项目ID";
+            return;
+        }
         if (FileUpload1.HasFile == false)//HasFile用来检查FileUpload是否有指定文件
         {
             Response.Write("<script>alert('请选择Excel文件')</script> ");

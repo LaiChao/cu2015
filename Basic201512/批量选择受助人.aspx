@@ -38,7 +38,9 @@
     <div>
 
         <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
-        <asp:Label ID="lblID" runat="server"></asp:Label>
+        <asp:TextBox ID="lblID" runat="server" Width="148px"></asp:TextBox>
+
+        <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
 
     </div>
     <div>
@@ -48,7 +50,6 @@
         <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" />
     
     </div>
-    <div></div>
     </form>
     </center>
 </body>
