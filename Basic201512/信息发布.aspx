@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="信息发布.aspx.cs" Inherits="Basic201512_信息发布" %>
+<%@ Register Assembly="DevControl" Namespace="DevControl" TagPrefix="Dev" %>
 
 <!DOCTYPE html>
 
@@ -26,6 +27,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
 
     <style type="text/css">
         #form1 {
@@ -60,10 +62,14 @@
         <div id="divfrom" style="text-align:left">
         <div class="form-group">
             <asp:Label ID="Label3" runat="server" Text="收件人：" CssClass="clas1"></asp:Label>           
-            <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle">
+            <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                 <asp:ListItem>所有机构</asp:ListItem>
+                <asp:ListItem>选择机构</asp:ListItem>
             </asp:DropDownList>      
-            <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+            &nbsp;
+            <Dev:DropDownCheckBoxList ID="DropDownCheckBoxList1" runat="server" ShowSelectAllOption="true" DisplayMode="Value" Width="120px">
+            </Dev:DropDownCheckBoxList>
+            &nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
         </div>  
             <br />
             <br />

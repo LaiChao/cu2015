@@ -69,15 +69,25 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             MySqlConnection mysqlcon = msq.getmysqlcon();
             DataSet ds = MySqlHelper.ExecuteDataset(mysqlcon, str111);
             DataView dv = new DataView(ds.Tables[0]);
-            DropDownList1.AppendDataBoundItems = true;
-            DropDownList1.DataSource = dv;
-            DropDownList1.DataTextField = "benfactorFrom";
-            DropDownList1.DataBind();
+            //DropDownList1.AppendDataBoundItems = true;
+            //DropDownList1.DataSource = dv;
+            //DropDownList1.DataTextField = "benfactorFrom";
+            //DropDownList1.DataBind();
+            DropDownCheckBoxList1.DataSource = dv;
+            DropDownCheckBoxList1.DataTextField = "benfactorFrom";
+            DropDownCheckBoxList1.DataBind();
+            DropDownCheckBoxList1.Visible = false;
             if(Request.QueryString.Count>0)//如果是从审批未通过跳转过来的
             {
                 infoTitle.Text = "项目：" + Request["title"].Trim() + " 审批未通过";
-                DropDownList1.SelectedValue = Request["branchName"].Trim();
+                //DropDownList1.SelectedValue = Request["branchName"].Trim();
+                DropDownList1.SelectedValue = "选择机构";
+                DropDownCheckBoxList1.Visible = true;
+                //DropDownCheckBoxList1.SelectedValue = Request["branchName"].Trim();
+                DropDownCheckBoxList1.SelectedText = Request["branchName"].Trim();
             }
+
+
         }
 
     }
@@ -129,25 +139,77 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         //if(infoTitle.Text.Length>0 && infoContent.Text.Length>0)
         {
             string zerostr = "未读";
-            string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), DropDownList1.Text.Trim(), zerostr);
-            int res = msq.getmysqlcom(str11);
-            //写入数据库
-            if (res > 0)
+            if(DropDownList1.SelectedValue=="所有机构")
             {
-                NLogTest nlog = new NLogTest();
-                string s = "发布了信息：" + infoTitle.Text.ToString();
-                nlog.WriteLog(Session["UserName"].ToString(),s);
-                //HttpContext.Current.Response.Write("<script>alert('信息发布成功');</script>");
-                lblError.Text = "信息发布成功";
-                //重置
-                infoTitle.Text = infoContent.Text = "";
-                ViewState["myFilename"] = "";
-                pageload();
+                string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), DropDownList1.Text.Trim(), zerostr);
+                int res = msq.getmysqlcom(str11);
+                //写入数据库
+                if (res > 0)
+                {
+                    NLogTest nlog = new NLogTest();
+                    string s = "发布了信息：" + infoTitle.Text.ToString();
+                    nlog.WriteLog(Session["UserName"].ToString(),s);
+                    //HttpContext.Current.Response.Write("<script>alert('信息发布成功');</script>");
+                    lblError.Text = "信息发布成功";
+                    //重置
+                    infoTitle.Text = infoContent.Text = "";
+                    ViewState["myFilename"] = "";
+                    pageload();
+                }
+                else
+                {
+                    //HttpContext.Current.Response.Write("<script>alert('信息发布失败');</script>");
+                    lblError.Text = "信息发布失败";
+                }
             }
-            else
+            else//多收件人n>0
+            {//事务
+                List<string> SQLStringList = new List<string>();
+                string insertString = "";
+                string[] recs = DropDownCheckBoxList1.SelectedValue.ToString().Split(',');
+                foreach(string s in recs)
+                {
+                    insertString = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), s, zerostr);
+                    SQLStringList.Add(insertString);
+                }
+                ExecuteSqlTran(SQLStringList);
+                lblError.Text = "信息发布成功";
+            }
+        }
+    }
+
+    public static void ExecuteSqlTran(List<string> SQLStringList)
+    {
+        using (MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;password=123456;database=mscsdb;charset=gbk;"))
+        {
+            //MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;password=123456;database=mscsdb;charset=gbk;");
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            MySqlTransaction tx = conn.BeginTransaction();
+            cmd.Transaction = tx;
+            try
             {
-                //HttpContext.Current.Response.Write("<script>alert('信息发布失败');</script>");
-                lblError.Text = "信息发布失败";
+                for (int n = 0; n < SQLStringList.Count; n++)
+                {
+                    string strsql = SQLStringList[n].ToString();
+                    if (strsql.Trim().Length > 1)
+                    {
+                        cmd.CommandText = strsql;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                tx.Commit();//一次性提交
+            }
+            //catch (System.Data.SqlClient.SqlException E)
+            //{//身份证号重复将直接忽略，捕获不到异常
+            //    tx.Rollback();
+            //    HttpContext.Current.Response.Write("<script>alert('身份证号重复了');</script>");
+            //    //throw new Exception(E.Message);
+            //}
+            finally
+            {
+                conn.Close();
             }
         }
     }
@@ -203,4 +265,11 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         pageload();
     }
 
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (DropDownList1.SelectedValue == "所有机构")
+            DropDownCheckBoxList1.Visible = false;
+        else
+            DropDownCheckBoxList1.Visible = true;
+    }
 }
