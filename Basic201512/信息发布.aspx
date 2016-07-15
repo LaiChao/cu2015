@@ -33,6 +33,12 @@
         #form1 {
             width: 800px;
         }
+        div#row1{
+            float:left;
+        }
+        div#row2{
+            float:left;
+        }
         .divtitle {
         text-align:left;
         }
@@ -60,17 +66,21 @@
         </h2>
     </div>  
         <div id="divfrom" style="text-align:left">
-        <div class="form-group">
+        <div id="row1" class="form-group">
             <asp:Label ID="Label3" runat="server" Text="收件人：" CssClass="clas1"></asp:Label>           
             <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                 <asp:ListItem>所有机构</asp:ListItem>
                 <asp:ListItem>选择机构</asp:ListItem>
             </asp:DropDownList>      
             &nbsp;
-            <Dev:DropDownCheckBoxList ID="DropDownCheckBoxList1" runat="server" ShowSelectAllOption="true" DisplayMode="Value" Width="120px">
+        </div>
+        <div id="row2">
+            <Dev:DropDownCheckBoxList ID="DropDownCheckBoxList1" runat="server" ShowSelectAllOption="true" DisplayMode="Value" Width="120px" Height="30px">
             </Dev:DropDownCheckBoxList>
+        </div>
+        <div>
             &nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-        </div>  
+        </div> 
             <br />
             <br />
             <%--<asp:Label ID="Label1" runat="server" Text="标题"></asp:Label>--%>
