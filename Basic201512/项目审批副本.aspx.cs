@@ -73,15 +73,16 @@ namespace CL.Utility.Web.BasicData
         {
             string urlNow = Request.Url.ToString();
             string[] temp = urlNow.Split('=');
-            // string Files="";
-            //string[] arrFiles;
             foreach (string s in temp)
             {
                 nameNow = s;
             }
             if (!Page.IsPostBack)
             {
-                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei from e_project where projectID='{0}'", nameNow);
+                BindData();
+                int shenpi2flag = -1;
+                string strState = "";
+                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei,proschedule from e_project where projectID='{0}'", nameNow);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
                 while (mysqlreader.Read())
                 {
@@ -94,30 +95,29 @@ namespace CL.Utility.Web.BasicData
                     Lbtelname.Text = mysqlreader.GetString(6);
                     Lbtelladd.Text = mysqlreader.GetString(7);
                     lblLeibie.Text = mysqlreader.GetString(10);
-                    //if (mysqlreader.GetString(9) == "1")
-                    //{
-                    //    btchecky2.Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    btchecky2.Visible = true;
-                    //}
+                    shenpi2flag = mysqlreader.GetInt16("shenpi2");
+                    strState = mysqlreader.GetString("proschedule");
                 }
-                BindDataSet();
-                BindData();
+
+                //默认隐藏全部按钮
                 btchecky1.Visible = false;
                 btchecky2.Visible = false;
+                btcheckn.Visible = false;
                 if(Session["userRole"].ToString()=="2")//协会
                 {
-                    btchecky2.Visible = true;
+                    if(shenpi2flag==0)//初始状态
+                        btchecky2.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
                 if(Session["userRole"].ToString()=="3")//会长
                 {
-                    btchecky1.Visible = true;
+                    if ((shenpi2flag == 1) && (strState == "申请"))
+                        btchecky1.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
-                
+                if(strState!="申请")
+                {//达到最终状态，隐藏全部按钮
+                    btchecky1.Visible = btchecky2.Visible = btcheckn.Visible = false;
+                }
             }
-
         }
 
         #region Web 窗体设计器生成的代码
@@ -206,10 +206,6 @@ namespace CL.Utility.Web.BasicData
         }
         #endregion
 
-        private void BindDataSet()
-        {
-            
-        }
         private void BindData()
         {
             string proid = string.Format("select * from e_recipients where recipientsID in (select recipientID from e_pr where projectID='{0}')", LbproID.Text);
@@ -233,7 +229,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi1='1',proschedule='执行',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
+            string strinsert = string.Format("update e_project set shenpi1='1',proschedule='执行',prodatatimeshen1='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {
@@ -252,7 +248,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi2='1',proschedule='1',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);        
+            string strinsert = string.Format("update e_project set shenpi2='1',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);        
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {                
@@ -269,7 +265,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi2='1',proschedule='未通过',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text, prodatatimeshen);
+            string strinsert = string.Format("update e_project set shenpi2='-1',shenpi1='-1',proschedule='未通过',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text, prodatatimeshen);
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {

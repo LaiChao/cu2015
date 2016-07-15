@@ -28,6 +28,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected const string bandtime = "prodatatime";
     protected const string bandtimeshen = "prodatatimeshen";
+    protected const string bandtimeshen1 = "prodatatimeshen1";
     protected const string bandtimefinsh = "prodatatimefinsh";
     public static string tableTitle = "";
 

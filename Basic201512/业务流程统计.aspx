@@ -69,7 +69,7 @@
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-                <asp:TemplateColumn HeaderText="操作">
+<%--                <asp:TemplateColumn HeaderText="操作">
                     <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
@@ -83,7 +83,7 @@
                             <asp:ImageButton ID="btnCancel" runat="server" ToolTip="放弃修改" CommandName="Cancel"
                                 ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
                     </EditItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
                 <asp:TemplateColumn HeaderText="项目ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
@@ -91,7 +91,7 @@
                         </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtEditID" runat="server" MaxLength="8" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'
+                        <asp:TextBox ID="txtEditID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'
                             >
                         </asp:TextBox>
                     </EditItemTemplate>
@@ -179,7 +179,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="项目审批时间" HeaderStyle-Font-Names="true">
+                <asp:TemplateColumn HeaderText="科室审批时间" HeaderStyle-Font-Names="true">
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
@@ -191,6 +191,21 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txttimeshen" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval(bandtimeshen,"{0:yyyy-MM-dd}") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="会长审批时间" HeaderStyle-Font-Names="true">
+
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+
+                    <ItemStyle CssClass="des"></ItemStyle>
+                    
+                    <ItemTemplate>
+                        <asp:Label ID="labtimeshen1" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimeshen1,"{0:yyyy-MM-dd}") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txttimeshen1" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval(bandtimeshen1,"{0:yyyy-MM-dd}") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
