@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS -->
      <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
      <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -39,6 +39,13 @@
         </div>
         <form id="form1" runat="server" class="form-inline">
             <div class="form-group">
+                <p>
+                    <asp:Label ID="Label7" runat="server" Text="项目ID:"></asp:Label>
+                    <asp:TextBox ID="txtID" runat="server" CssClass="form-control" ></asp:TextBox>
+&nbsp;<asp:Label ID="Label8" runat="server" Text="项目名称:"></asp:Label>
+                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" ></asp:TextBox>
+&nbsp;<asp:Button ID="btnQuery2" runat="server" Text="查询" OnClick="btnQuery2_Click"  class="btn btn-danger"/>
+                </p>
                 <p>
         <asp:Label ID="Label3" runat="server" Text="来源:"></asp:Label>
         <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" >
@@ -73,7 +80,7 @@
             <asp:ListItem>双拥</asp:ListItem>
             <asp:ListItem>重特大灾害</asp:ListItem>
           </asp:DropDownList>
-           <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click"  class="btn btn-danger"/>
+           &nbsp;<asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click"  class="btn btn-danger"/>
                 </p>
             </div>
             <div>
@@ -163,7 +170,7 @@
                     </asp:GridView>
             </div>
                 </div>
-<%--            <div>
+            <%--            <div>
                     <asp:Button ID="btnReload" runat="server" OnClick="btnReload_Click" Text="刷新" CssClass="btn btn-danger" Width="80px" Height="34px" />
      </div>--%>
     </form>

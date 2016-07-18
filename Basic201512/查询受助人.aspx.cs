@@ -60,63 +60,48 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         GridView1.DataKeyNames = new string[] { "recipientsID" };//主键
         GridView1.DataBind();
     }
+    protected void btnQuery2_Click(object sender, EventArgs e)
+    {
+        int flag2 = -1;
+        StringBuilder queryString2 = new StringBuilder();
+        queryString2.Append("select newtable.* from (select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients) newtable where 1=1 ");
+        if(txtID.Text.Trim()!="")
+        {
+            flag2 = 1;
+            queryString2.Append("and recipientsID in (select distinct recipientID from e_pr where projectID='" + txtID.Text.Trim() + "') ");
+        }
+        if(flag2==1)
+        {
+            if(txtName.Text.Trim()!="")
+            {
+                queryString2.Append("or ");
+            }
+        }
+        else
+        {
+            if (txtName.Text.Trim() != "")
+            {
+                queryString2.Append("and ");
+            }
+        }
+        if(txtName.Text.Trim() != "")
+        {//recipientsID in (select distinct recipientID from e_pr where projectID in (select projectID from e_project where projectName='导出测试'))
+            queryString2.Append("recipientsID in (select distinct recipientID from e_pr where projectID in (select projectID from e_project where projectName='" + txtName.Text.Trim() + "')) ");
+        }
+        //queryString2.Append("order by recipientsID DESC");
+        ViewState["Query"] = queryString2.ToString();
+        ViewState["now"] = ViewState["Query"];
+        databind(ViewState["Query"].ToString());
+
+    }
     protected void btnQuery_Click(object sender, EventArgs e)
     {
-        //string temp = " ";
-        //string temp2 = "";
-        //if(DropDownList1.Text=="未指定")
-        //{
 
-        //}
-        //else if(DropDownList1.Text=="助学")
-        //{
-        //    temp += "where isstu=1 ";
-        //}
-        //else if(DropDownList1.Text=="助医")
-        //{
-        //    temp += "where isdoc=1 ";
-        //}
-        //else if (DropDownList1.Text == "助老")
-        //{
-        //    temp += "where isold=1 ";
-        //}
-        //else if (DropDownList1.Text == "助残")
-        //{
-        //    temp += "where iscan=1 ";
-        //}
-        //else if (DropDownList1.Text == "助困")
-        //{
-        //    temp += "where iskun=1 ";
-        //}
-        //else if (DropDownList1.Text == "双拥")
-        //{
-        //    temp += "where isyong=1 ";
-        //}
-        //else if (DropDownList1.Text == "重特大灾害")
-        //{
-        //    temp += "where isdst=1 ";
-        //}
-        //if(TextBoxName.Text!="")
-        //{ 
-        //if(temp!=" ")
-        //{//已指定受助类型
-        //    temp2 = "and recipientsName='" + TextBoxName.Text + "' ";
-        //}
-        //else
-        //    {//未指定
-        //        temp2 = "where recipientsName='" + TextBoxName.Text + "' ";
-        //    }
-        //}
 
         StringBuilder queryString = new StringBuilder();
         //        queryString.Append("select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients where 1=1 ");
         queryString.Append("select newtable.* from (select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients) newtable where 1=1 ");
-        //if (ProntoName.Text != "")
-        //    sb.Append(" and ProntoName like '%" + ProntoName.Text.ToString() + "%' ");
-        //if (DropDownList9.SelectedItem.Value != "")
-        //    sb.Append(" and Status " + DropDownList9.SelectedValue.ToString());
-        //if (DropDownList2.SelectedItem.Value != "")
-        //    sb.Append(" and ModuleName " + DropDownList2.SelectedValue.ToString());
+
         if (benfactorFrom.Text != "所有机构")
             queryString.Append("and benfactorFrom='" + benfactorFrom.Text.ToString() + "' ");
         if (TextBoxName.Text != "")
