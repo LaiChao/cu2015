@@ -24,7 +24,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_project ");
+    string str111 = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimeguid,prodatatimeshen1) zhixingspend,datediff(prodatatimefinsh,prodatatimeguid) jiexiangspend from e_project ");
 
     protected const string bandtime = "prodatatime";
     protected const string bandtimeshen = "prodatatimeshen";
@@ -61,10 +61,11 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         //   string proID = Session["proID"].ToString();
         // string strplancap = LbproID.Text;
         // Lbearn.Text=strplancap;
-        string strproID = string.Format("SELECT * FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
+        string strproID = string.Format("SELECT *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimeguid,prodatatimeshen1) zhixingspend,datediff(prodatatimefinsh,prodatatimeguid) jiexiangspend FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID);
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
+        //dgData.DataKeyField = "projectID";
         dgData.DataBind();
     }
 	 public override void VerifyRenderingInServerForm(Control control)

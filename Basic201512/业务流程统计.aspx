@@ -224,6 +224,38 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="科室审批用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.keshispend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="会长审批用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.huizhangspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="项目执行用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.zhixingspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="项目结项用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.jiexiangspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

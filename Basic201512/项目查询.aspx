@@ -76,16 +76,16 @@
 &nbsp;<asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" Width="80px" Height="34px" />
        </div>
                     <div id="divPrint" runat="server">        
-            <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="950px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1">
+            <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="950px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-                <asp:TemplateColumn HeaderText="操作">
+                <asp:TemplateColumn HeaderText="归档">
                     <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="归档" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
                         </asp:ImageButton>
                         <asp:ImageButton ID="btnDelete" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
                             CommandName="Delete"></asp:ImageButton>
@@ -191,6 +191,21 @@
                         <asp:TextBox ID="txtdes" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="结项">
+                    <ItemStyle CssClass="option"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:ImageButton ID="btnEdit1" runat="server" ToolTip="结项" CommandName="Edit1" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        </asp:ImageButton>
+<%--                        <asp:ImageButton ID="btnDelete1" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete1"></asp:ImageButton>--%>
+                    </ItemTemplate>
+<%--                    <EditItemTemplate>                        
+                            <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
+                                ImageUrl="../CommUI/Images/icon-floppy.gif"></asp:ImageButton>
+                            <asp:ImageButton ID="btnCancel" runat="server" ToolTip="放弃修改" CommandName="Cancel"
+                                ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
+                    </EditItemTemplate>--%>
                 </asp:TemplateColumn>
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />

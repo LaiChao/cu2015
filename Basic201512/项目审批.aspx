@@ -87,6 +87,17 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="状态">
+                    <ItemStyle CssClass="name"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:Label ID="labState" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.proschedule") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditState" runat="server" MaxLength="10" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.proschedule") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="执行单位">
                     <ItemStyle CssClass="index"></ItemStyle>
                     <ItemTemplate>

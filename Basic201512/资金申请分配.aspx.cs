@@ -24,7 +24,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_project ");
+    string str111 = string.Format("select * from e_project where proschedule='执行' and (needMoney>0 or projectType='物品')");
     string str112 = string.Format("select * from e_handlingunit");
     protected void Page_Load(object sender, EventArgs e)
     {

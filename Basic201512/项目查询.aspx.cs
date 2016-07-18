@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 //使用数据访问层添加的必备引用
 using DataEntity.EntityManager;
@@ -53,8 +54,14 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         //   string proID = Session["proID"].ToString();
         // string strplancap = LbproID.Text;
         // Lbearn.Text=strplancap;
-        string strproID = string.Format("SELECT * FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID);
+        StringBuilder strproID = new StringBuilder();
+        strproID.Append("SELECT * FROM  e_project where 1=1 ");
+        if (TbselectID.Text.Trim() != "")
+            strproID.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
+        if (TbselectName.Text.Trim() != "")
+            strproID.Append("or projectName='" + TbselectName.Text.Trim());
+        //string strproID = string.Format("SELECT * FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID.ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
        // dgData.DataKeys = "projectID";
@@ -107,20 +114,41 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
     {
-         databind();
+         //databind();
          DateTime dt = DateTime.Now;
          string prodatatimefinsh = dt.ToShortDateString().ToString();
          string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
-         string str = string.Format("update e_project set proschedule='结项',prodatatimefinsh='{0}' where projectID='" + tempID + "'", prodatatimefinsh);
+         string str = string.Format("update e_project set proschedule='归档',prodatatimefinsh='{0}' where projectID='" + tempID + "'", prodatatimefinsh);
          msq.getmysqlcom(str);
          databind();
 
 
          NLogTest nlog = new NLogTest();
-         string sss = "结项：" + tempID;
+         string sss = "归档：" + tempID;
          nlog.WriteLog(Session["UserName"].ToString(), sss);
         //dgData.EditItemIndex = e.Item.ItemIndex;
         //databind();
+    }
+
+    protected void dgData_ItemCommand(object source, DataGridCommandEventArgs e)
+    {
+        if(e.CommandName=="Edit1")
+        {
+            //databind();
+            DateTime dt = DateTime.Now;
+            string prodatatimefinsh = dt.ToShortDateString().ToString();
+            string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
+            string str = string.Format("update e_project set proschedule='结项',prodatatimeguid='{0}' where projectID='" + tempID + "'", prodatatimefinsh);
+            msq.getmysqlcom(str);
+            databind();
+
+
+            NLogTest nlog = new NLogTest();
+            string sss = "结项：" + tempID;
+            nlog.WriteLog(Session["UserName"].ToString(), sss);
+            //dgData.EditItemIndex = e.Item.ItemIndex;
+            //databind();
+        }
     }
 
     private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
@@ -263,4 +291,5 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
     }
+
 }
