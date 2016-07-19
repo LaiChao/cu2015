@@ -209,7 +209,23 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                  <asp:TemplateColumn HeaderText="项目结项时间" HeaderStyle-Font-Names="true">
+                <asp:TemplateColumn HeaderText="归档时间" HeaderStyle-Font-Names="true">
+
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+
+                    <ItemStyle CssClass="des"></ItemStyle>
+                    
+                    <ItemTemplate>
+                        <asp:Label ID="labtimeguid" runat="server" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txttimeguid" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+
+                <asp:TemplateColumn HeaderText="项目结项时间" HeaderStyle-Font-Names="true">
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
