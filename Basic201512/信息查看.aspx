@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
      <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -42,7 +42,13 @@
         <h2>
            <strong>信息查看</strong> 
         </h2>
-    </div>         
+    </div>   
+        <div id="publicProject" runat="server">
+
+            <asp:Label ID="Label4" runat="server" Text="项目ID："></asp:Label>
+            <asp:TextBox ID="tbID" runat="server"></asp:TextBox>
+
+        </div>      
             <asp:Label ID="Label3" runat="server" Text="标记为"></asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" class="btn btn-default dropdown-toggle">
                 <asp:ListItem>未读</asp:ListItem>
@@ -50,6 +56,7 @@
             </asp:DropDownList>
             
         &nbsp;<asp:Button ID="btnReceipt" runat="server" OnClick="btnReceipt_Click" Text="发送回执" CssClass="btn btn-danger" />
+        &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px"/> 
             <asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
             
         </p>
@@ -76,7 +83,7 @@
           </div>
            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="返回" Height="40px" Width="109px" class="btn btn-danger" />
     </form>
-        </center>
+    </center>
 </body>
 </html>
 

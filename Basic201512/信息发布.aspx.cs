@@ -65,6 +65,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         if (!IsPostBack)  // 页面首次加载
         {
             //初始化
+            publicProject.Visible = false;
             ViewState["myFilename"] = "";
             MySqlConnection mysqlcon = msq.getmysqlcon();
             DataSet ds = MySqlHelper.ExecuteDataset(mysqlcon, str111);
@@ -141,7 +142,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             string zerostr = "未读";
             if(DropDownList1.SelectedValue=="所有机构")
             {
-                string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), DropDownList1.Text.Trim(), zerostr);
+                string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead,projectID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), DropDownList1.Text.Trim(), zerostr,tbID.Text.Trim());
                 int res = msq.getmysqlcom(str11);
                 //写入数据库
                 if (res > 0)
@@ -169,7 +170,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 string[] recs = DropDownCheckBoxList1.SelectedValue.ToString().Split(',');
                 foreach(string s in recs)
                 {
-                    insertString = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), s, zerostr);
+                    insertString = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead,projectID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["UserName"].ToString(), s, zerostr,tbID.Text.Trim());
                     SQLStringList.Add(insertString);
                 }
                 ExecuteSqlTran(SQLStringList);
@@ -271,5 +272,18 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             DropDownCheckBoxList1.Visible = false;
         else
             DropDownCheckBoxList1.Visible = true;
+    }
+    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if(CheckBox1.Checked)
+        {
+            publicProject.Visible = true;
+        }
+        else
+        {
+            tbID.Text = "";
+            publicProject.Visible = false;
+
+        }
     }
 }

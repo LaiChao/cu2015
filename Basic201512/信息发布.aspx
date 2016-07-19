@@ -66,6 +66,15 @@
         </h2>
     </div>  
         <div id="divfrom" style="text-align:left">
+            <div>
+                <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" Text="公共项目" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox>
+            </div>
+            <div id="publicProject" runat="server">
+                <p>
+                    <asp:Label ID="Label5" runat="server" Text="项目ID："  CssClass="clas1"></asp:Label>
+                    <asp:TextBox ID="tbID" runat="server" class="form-control"></asp:TextBox>
+                </p>
+            </div>
         <div id="row1" class="form-group">
             <asp:Label ID="Label3" runat="server" Text="收件人：" CssClass="clas1"></asp:Label>           
             <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">

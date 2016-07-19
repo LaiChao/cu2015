@@ -75,8 +75,9 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
         }
         if (!Page.IsPostBack)//页面首次加载
         {
-
-            string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
+            publicProject.Visible = false;
+            btnBatch.Visible = false;
+            string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom,projectID from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
             MySqlDataReader mysqlread = msq11.getmysqlread(iniSql);
             while (mysqlread.Read())
             {
@@ -84,6 +85,7 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
                 infoContent.Text = mysqlread.GetString(1);
                 Files = mysqlread.GetString(2);
                 receive = mysqlread.GetString(3);
+                tbID.Text = mysqlread.GetString("projectID");
                 ViewState["sender"] = mysqlread.GetString(4);//发件人
             }
             arrFiles = Files.Split('|');
@@ -97,6 +99,11 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             {
                 Label3.Visible = false;
                 DropDownList1.Visible = false;
+            }
+            if(tbID.Text.Trim()!="")
+            {
+                publicProject.Visible = true;
+                btnBatch.Visible = true;
             }
         }
     }
@@ -194,5 +201,9 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
         {
             lblErr.Text = "发送失败";
         }
+    }
+    protected void btnBatch_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("批量选择受助人.aspx?id=" + tbID.Text.Trim());
     }
 }
