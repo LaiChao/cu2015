@@ -290,6 +290,8 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
         {
             e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
+            ((ImageButton)e.Item.Cells[0].FindControl("btnEdit")).Attributes.Add("onclick", "return confirm('确认归档吗?');");
+            ((ImageButton)e.Item.Cells[8].FindControl("btnEdit1")).Attributes.Add("onclick", "return confirm('确认结项吗?');");
         }
     }
     protected void btputout_Click(object sender, EventArgs e)
