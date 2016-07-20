@@ -42,6 +42,7 @@
          #form1 {
              width: 850px;             
           }
+        
         </style>
      <script language="javascript" type="text/javascript">
          
@@ -49,18 +50,14 @@
 </head>
 <body>
     <center>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="form-inline">
         <div>
             <h2>
                <strong>资金申请分配</strong> 
 
             </h2>
         </div> 
-        <div class="panel panel-danger">
-            <div class="panel-heading" align="left">
-              <h3 class="panel-title">项目信息及匹配资金</h3>
-            </div>
-            <div class="panel-body">
+        
                 <h4>
                 <asp:Label ID="Label5" runat="server" Text="项目ID:"></asp:Label>
                 <asp:Label ID="LbproID" runat="server" Text="" class="label label-default"></asp:Label>
@@ -71,20 +68,19 @@
                 &nbsp;<asp:Label ID="lberror" runat="server" BorderColor="#FF6699"></asp:Label>
                 <asp:Label ID="Label4" runat="server" Text="计划资金:"></asp:Label>
                 <asp:Label ID="lbcaptID" runat="server" class="label label-default"></asp:Label>                               
-<%--                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="匹配资金" CssClass="btn-danger" Height="30px" />--%>
-                 </h4>
-                <h4>
-                    捐助人名称:<asp:TextBox ID="tbName" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="搜索" />
-                 </h4>
-             </div>
-              <div class="alert alert-danger" role="alert" align="left">
-                <h3 class="panel-title">筛选资金结果显示</h3>
-              </div>     
+                <%--<asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="匹配资金" CssClass=" btn btn-danger" Height="34px" Width="80px" />--%>
+                 </h4>               
+                    <div class="form-group">
+                    捐助人名称:<asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-danger" Text="搜索" Height="34px" Width="80px" />
+
+                    </div>          
+                       
        <%--<asp:Label ID="lberror" runat="server" BorderColor="#FF6699" ForeColor="Red"></asp:Label>--%>
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="800px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+    <%--    <asp:Label ID="lberror" runat="server" BorderColor="#FF6699" ForeColor="Red"></asp:Label>--%>
+                &nbsp;<asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="800px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
@@ -94,8 +90,8 @@
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
                         </asp:ImageButton>
-                        <asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
-                            CommandName="Delete"></asp:ImageButton>
+                        <%--<asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete"></asp:ImageButton>--%>
                     </ItemTemplate>
                     <EditItemTemplate>                           
                             <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
@@ -113,9 +109,9 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="txtteladd" runat="server"  CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.capitalID") %>' Enabled="false">
                         </asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>  
-                <asp:TemplateColumn HeaderText="捐助人名称">
+                    </EditItemTemplate>                
+					</asp:TemplateColumn>  
+					<asp:TemplateColumn HeaderText="捐助人名称">
                     <ItemStyle CssClass="index"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labdename" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
@@ -191,7 +187,7 @@
         <br />
     <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="800px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
@@ -201,8 +197,8 @@
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
                         </asp:ImageButton>
-                        <asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
-                            CommandName="Delete"></asp:ImageButton>
+                        <%--<asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete"></asp:ImageButton>--%>
                     </ItemTemplate>
                     <EditItemTemplate>                           
                             <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
@@ -327,8 +323,7 @@
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
-
-     
+        <br />       
         </div>   
     </form>
     </center>

@@ -450,6 +450,5 @@ namespace CL.Utility.Web.BasicData
                 txtPLAN.Enabled = true;
             }
         }
-
     }
 }

@@ -30,7 +30,9 @@
     <style type="text/css">
      #div_dynamic { height: 450px; border:#e8a1eb 0px solid; text-align:center;  }
         #divTitle, #div_dynamic { width: 650px; margin:0 auto;text-align:center; }
-
+        #GridView1 th {
+        text-align:center;
+        }
     </style>
 </head>
 <body>
@@ -52,13 +54,25 @@
 &nbsp;<asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
     
     </div><asp:Label ID="Lbtitle" runat="server" Text="1：分会，2：科室，3：会长，4：管理员" ></asp:Label>
-    <div id="div_dynamic">    
+      
 <%--        <asp:GridView ID="GridView1" align="center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnRowDataBound="GridView1_RowDataBound" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">--%> 
-        <asp:GridView ID="GridView1" HorizontalAlign="Center" Align="Center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCommand="GridView1_RowCommand" OnRowCreated="GridView1_RowCreated" Width="559px" Height="163px">
+        <asp:GridView ID="GridView1" HorizontalAlign="Center" Align="Center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCommand="GridView1_RowCommand" OnRowCreated="GridView1_RowCreated" Width="900px" >
             <Columns >
-                <asp:BoundField DataField="user" HeaderText="用户名" ReadOnly="true" />
-                <asp:BoundField DataField="userRole" HeaderText="权限"  />
-                <asp:BoundField DataField="benfactorFrom" HeaderText="所属机构" ReadOnly="true" />
+                <asp:BoundField DataField="user" HeaderText="用户名" ReadOnly="true"  >
+                <HeaderStyle Height="30px" HorizontalAlign="Center"/>
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />  
+                </asp:BoundField>
+                <asp:BoundField DataField="userRole" HeaderText="权限">
+                <HeaderStyle Height="30px"  />
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />  
+                </asp:BoundField>
+                <asp:BoundField DataField="benfactorFrom" HeaderText="所属机构" ReadOnly="true" >
+                <HeaderStyle Height="30px"  />
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />
+                </asp:BoundField>
 <%--                <asp:CommandField HeaderText="选择" ShowSelectButton="True" />--%>
 <%--                <asp:TemplateField HeaderText="所属分会">
                     <ItemTemplate>
@@ -67,30 +81,35 @@
                             </asp:DropDownList>
                     </ItemTemplate>
                 </asp:TemplateField>--%>
-                <asp:CommandField HeaderText="编辑" ShowEditButton="True"  />
-                <asp:CommandField HeaderText="删除" ShowDeleteButton="True"  />
-                <asp:ButtonField CommandName="resetPWD" HeaderText="重置密码" Text="重置密码"  />
+                <asp:CommandField HeaderText="编辑" ShowEditButton="True"  >
+                 <HeaderStyle Height="30px"  />
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />
+                </asp:CommandField >
+                <asp:CommandField HeaderText="删除" ShowDeleteButton="True">
+                    <HeaderStyle Height="30px" />
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />
+                </asp:CommandField >
+                <asp:ButtonField CommandName="resetPWD" HeaderText="重置密码" Text="重置密码" >
+                 <HeaderStyle Height="30px" />
+                <ControlStyle Height="30px"  />
+                <ItemStyle Height="30px" />
+                </asp:ButtonField>
+
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px"/>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-            <RowStyle BackColor="White" ForeColor="#330099" />
+            <RowStyle BackColor="White" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
             <SortedAscendingCellStyle BackColor="#FEFCEB" />
             <SortedAscendingHeaderStyle BackColor="#AF0101" />
             <SortedDescendingCellStyle BackColor="#F6F0C0" />
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
-        </div>
-        <table align="center" style="width:100%; height: 156px;">
-            <tr>
-                <td>
-        <%--                <td class="auto-style1">--%>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
+   
+      
     </form>
     </center>
 </body>

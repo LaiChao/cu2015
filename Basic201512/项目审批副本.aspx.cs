@@ -73,6 +73,8 @@ namespace CL.Utility.Web.BasicData
         {
             string urlNow = Request.Url.ToString();
             string[] temp = urlNow.Split('=');
+            // string Files="";
+            //string[] arrFiles;
             foreach (string s in temp)
             {
                 nameNow = s;
@@ -206,6 +208,10 @@ namespace CL.Utility.Web.BasicData
         }
         #endregion
 
+        private void BindDataSet()
+        {
+            
+        }
         private void BindData()
         {
             string proid = string.Format("select * from e_recipients where recipientsID in (select recipientID from e_pr where projectID='{0}')", LbproID.Text);
@@ -275,8 +281,6 @@ namespace CL.Utility.Web.BasicData
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
                 Response.Redirect("信息发布.aspx?title=" + Server.UrlEncode(Lbproname.Text.Trim()) + "&branchName=" + Server.UrlEncode(Lbbenfrom.Text.Trim()));
             }
-
-
         }
         protected void btout_Click(object sender, EventArgs e)
         {

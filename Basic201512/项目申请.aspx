@@ -20,7 +20,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -127,6 +127,9 @@
         <style>
         tr{ line-height:30px;height:30px;}
         .td_c1{ width:20px;}
+            .auto-style7 {
+                height: 30px;
+            }
             .auto-style9 {
                 width: 293px;
                 height: 30px;
@@ -305,7 +308,7 @@
 
     <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="644px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>

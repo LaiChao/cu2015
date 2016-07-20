@@ -58,7 +58,7 @@
                 <td>           
     <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="756px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
@@ -68,8 +68,8 @@
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
                         </asp:ImageButton>
-                        <asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
-                            CommandName="Delete"></asp:ImageButton>
+                       <%-- <asp:ImageButton ID="btnDelete" Visible="true" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete"></asp:ImageButton>--%>
                     </ItemTemplate>
                     <EditItemTemplate>                           
                             <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"

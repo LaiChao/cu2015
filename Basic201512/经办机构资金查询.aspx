@@ -117,6 +117,9 @@
         .description { width: 200px; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .area { width: 100px; }
+        #GridView1 th {
+        text-align:center;
+        }
     </style>
 </head>
     

@@ -83,7 +83,7 @@
 
         </h2>
         </div>
-
+    <div style="height: 47px">
     <div class="form-group">
         <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
     
@@ -96,7 +96,7 @@
         <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox" />
         <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox"/>
     </div>
-
+    </div>
     <div style="height: 1312px; width: 806px;">
         <div class="panel panel-danger">
             <div class="panel-heading">
@@ -500,7 +500,7 @@
                     <asp:TextBox ID="shuoming1" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+                        <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -557,7 +557,6 @@
                 <td>
                 </td>
             </tr>
-
             <tr>
                                                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
@@ -702,7 +701,10 @@
                 </td>
                 <td>                
                     <%--<input id="Button2" type="button" value="前往" onclick="openwin('批量添加受助人.aspx', '批量添加受助人', 400, 200);" />--%>
-                    <input id="Button2" class="btn btn-danger" type="button" value="前往" onclick="openform('批量添加受助人.aspx', '批量添加受助人', 'toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=300,height=300');" />
+                    
+                    <asp:Button ID="Button2" runat="server" Text="前往" CssClass="btn btn-danger" OnClick="Button2_Click1" />
+                    <asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px"/>
+                    
                 </td>
             </tr>
         </table>

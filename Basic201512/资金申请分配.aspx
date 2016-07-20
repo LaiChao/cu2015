@@ -74,15 +74,15 @@
             <div>
                    <asp:Label ID="lbpoint" runat="server" Text="操作说明：按项目信息详细搜索项目，显示结果并点击捐赠物资跳转申请物资页面"></asp:Label>
             </div>
-                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="829px" BackColor="White" BorderColor="#CE2C27" BorderStyle="None" BorderWidth="1px">
+                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="829px" BackColor="White" BorderColor="#ce2c27" BorderStyle="None" BorderWidth="1px">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
                         <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
                         <EditItemStyle CssClass="dg_item" />
                         <Columns>
-                            <asp:TemplateColumn HeaderText="捐赠物资">
+                            <asp:TemplateColumn HeaderText="捐赠物资或资金">
                                 <ItemTemplate>
-                                    <asp:HyperLink Text="捐赠" NavigateUrl='<%#"资金申请分配副本1.aspx?type="+DataBinder.Eval(Container.DataItem,"projectType")+"&benfactorName="+DataBinder.Eval(Container.DataItem,"projectID") %>' runat="server">
+                                    <asp:HyperLink Text="进行匹配" NavigateUrl='<%#"资金申请分配副本1.aspx?type="+DataBinder.Eval(Container.DataItem,"projectType")+"&benfactorName="+DataBinder.Eval(Container.DataItem,"projectID") %>' runat="server">
 
                                     </asp:HyperLink>
                                 </ItemTemplate>
@@ -111,8 +111,6 @@
                         </asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateColumn>
-
-
                             <asp:TemplateColumn HeaderText="执行单位">
                                 <ItemStyle CssClass="index"></ItemStyle>
                                 <ItemTemplate>
@@ -171,9 +169,9 @@
                         </asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateColumn>
-                        <asp:TemplateColumn HeaderText="项目描述" HeaderStyle-Font-Names="true">
-                            <HeaderStyle Font-Names="true"></HeaderStyle>
-                            <ItemStyle CssClass="des"></ItemStyle>
+                            <asp:TemplateColumn HeaderText="项目描述" HeaderStyle-Font-Names="true">
+                                <HeaderStyle Font-Names="true"></HeaderStyle>
+                                <ItemStyle CssClass="des"></ItemStyle>
                                 <ItemTemplate>
                                     <asp:Label ID="labwuzhu" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'></asp:Label>
                                 </ItemTemplate>
@@ -190,7 +188,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtEditxmlx" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectType") %>'></asp:TextBox>
                                 </EditItemTemplate>
-                        </asp:TemplateColumn>    
+                            </asp:TemplateColumn>
                         </Columns>
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

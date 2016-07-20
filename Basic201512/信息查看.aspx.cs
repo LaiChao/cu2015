@@ -206,4 +206,8 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
     {
         Response.Redirect("批量选择受助人.aspx?id=" + tbID.Text.Trim());
     }
+    protected void btnchoic_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("查询受助人.aspx?id=" + tbID.Text.Trim());
+    }
 }

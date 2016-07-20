@@ -65,7 +65,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID);
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
-        //dgData.DataKeyField = "projectID";
         dgData.DataBind();
     }
 	 public override void VerifyRenderingInServerForm(Control control)
@@ -190,7 +189,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void btoutexl_Click(object sender, EventArgs e)
     {
-        dgData.Columns[0].Visible = false;
+        //dgData.Columns[0].Visible = false;
         dgData.HeaderStyle.BackColor = Color.White;
         dgData.HeaderStyle.ForeColor = Color.Blue;
         tableTitle = "业务流程统计";

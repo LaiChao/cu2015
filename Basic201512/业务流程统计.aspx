@@ -31,13 +31,22 @@
 
         tr{ line-height:30px;height:30px;}
         tr { padding: 0; margin: 0; border: 0; }
-        .option { width: 50px; }
+        .option { width: 100px; }
         .option { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         td { text-align: center; }
         .id { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
+        .des {
+        width:40px;
+        }
+        .des1 {
+        width:100px;
+        }
+        .index {
+        width:90px;
+        }
         </style>
 </head>
 <body>
@@ -63,13 +72,13 @@
                                      </div>
 
           <div id="divPrint" runat="server">                
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1100px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1">
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-<%--                <asp:TemplateColumn HeaderText="操作">
+            <%--    <asp:TemplateColumn HeaderText="操作">
                     <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
@@ -108,7 +117,7 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="执行单位">
-                    <ItemStyle CssClass="index"></ItemStyle>
+                    <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
                         </asp:Label>
@@ -142,7 +151,8 @@
                                 oolTip="启用标示，点中为启用"></asp:CheckBox></font>
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>
-                <asp:TemplateColumn Visible="true" HeaderText="联系人">
+                <asp:TemplateColumn Visible="false" HeaderText="联系人">
+                    <ItemStyle CssClass="index"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labteladdname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneName") %>'>
                         </asp:Label>
@@ -164,11 +174,11 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>                
-                 <asp:TemplateColumn HeaderText="项目申请时间" HeaderStyle-Font-Names="true">
+                 <asp:TemplateColumn HeaderText="申请时间" HeaderStyle-Font-Names="true">
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labtime" runat="server" CssClass="txtbox" Text='<%#Eval(bandtime,"{0:yyyy-MM-dd}") %>'>
@@ -183,7 +193,7 @@
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labtimeshen" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimeshen,"{0:yyyy-MM-dd}") %>'>
@@ -194,11 +204,19 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="审批用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.keshispend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="会长审批时间" HeaderStyle-Font-Names="true">
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labtimeshen1" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimeshen1,"{0:yyyy-MM-dd}") %>'>
@@ -209,11 +227,27 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="归档时间" HeaderStyle-Font-Names="true">
+                  <asp:TemplateColumn HeaderText="审批用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.huizhangspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="执行用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.zhixingspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                   <asp:TemplateColumn HeaderText="归档时间" HeaderStyle-Font-Names="true">
 
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labtimeguid" runat="server" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
@@ -224,12 +258,19 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-
-                <asp:TemplateColumn HeaderText="项目结项时间" HeaderStyle-Font-Names="true">
-
+                <asp:TemplateColumn HeaderText="归档用时（天）" HeaderStyle-Font-Names="true">
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemTemplate>
+                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.jiexiangspend") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                  <asp:TemplateColumn HeaderText="结项时间" HeaderStyle-Font-Names="true">
+                    <ItemStyle CssClass="des1"></ItemStyle>               
                      <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle CssClass="des1"></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labtimefinsh" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
@@ -240,38 +281,10 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="科室审批用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des"></ItemStyle>               
-                    <ItemTemplate>
-                        <asp:Label ID="labtimespend" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.keshispend") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="会长审批用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des"></ItemStyle>               
-                    <ItemTemplate>
-                        <asp:Label ID="labtimespend1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.huizhangspend") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="项目执行用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des"></ItemStyle>               
-                    <ItemTemplate>
-                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.zhixingspend") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="项目结项用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des"></ItemStyle>               
-                    <ItemTemplate>
-                        <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.jiexiangspend") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
+                   
+              
+            
+             
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

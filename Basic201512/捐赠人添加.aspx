@@ -142,10 +142,15 @@
                 text-align: right;
             }
             .auto-style9 {
-                width: 137px;
+                width: 250px;
                 height: 50px;
                 margin-left: 40px;
                 vertical-align:middle;
+            }
+            .auto-style10 {
+                width: 150px;
+                height: 50px;
+                text-align: right;
             }
             </style>
                                                         
@@ -154,7 +159,7 @@
                 <tr>                  
                         <td class="auto-style8">经办单位：&nbsp;&nbsp;&nbsp; </td>
                         <td class="auto-style9">
-                            <asp:DropDownList ID="ddlBranch" runat="server" Width="170px" class="btn btn-default dropdown-toggle">
+                            <asp:DropDownList ID="ddlBranch" runat="server" Width="230px" class="btn btn-default dropdown-toggle">
                             </asp:DropDownList>
                         </td>   
                     <td></td>                     
@@ -170,7 +175,7 @@
                             <asp:CheckBox ID="Chboxziran" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxziran_CheckedChanged" Text="自然人" />
                             <asp:CheckBox ID="Chboxmojuan" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxmojuan_CheckedChanged" Text="募捐箱" />
                             <asp:CheckBox ID="Chboxguanming" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxguanming_CheckedChanged" Text="冠名捐助金" />--%>
-                            <asp:DropDownList ID="benfactorType" runat="server" OnSelectedIndexChanged="benfactorType_SelectedIndexChanged" AutoPostBack="True" class="btn btn-default dropdown-toggle" Width="170px">                                
+                            <asp:DropDownList ID="benfactorType" runat="server" OnSelectedIndexChanged="benfactorType_SelectedIndexChanged" AutoPostBack="True" class="btn btn-default dropdown-toggle" Width="230px">                                
                                 <asp:ListItem Value="1">公益组织</asp:ListItem>
                                 <asp:ListItem Value="3">个人</asp:ListItem>
                                  <asp:ListItem Value="2">单位</asp:ListItem>
@@ -186,7 +191,7 @@
                         &nbsp;&nbsp;
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox runat="server" ID="benfactorName" CssClass="form-control" Width="170px"></asp:TextBox>                       
+                        <asp:TextBox runat="server" ID="benfactorName" CssClass="form-control" Width="230px"></asp:TextBox>                       
                     </td>
                     <td></td>
                 </tr>
@@ -210,7 +215,7 @@
                         &nbsp;&nbsp;
                         </td>
                         <td class="auto-style9">                            
-                            <asp:TextBox ID="moneyboxNo" runat="server" Width="170px" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="moneyboxNo" runat="server" Width="230px" CssClass="form-control"></asp:TextBox>
                         </td>
                     <td></td>
                 </tr>
@@ -251,7 +256,7 @@
                         &nbsp;&nbsp;
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox ID="Contacts" runat="server" Width="170px" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="Contacts" runat="server" Width="230px" CssClass="form-control"></asp:TextBox>
                     </td>
                     <td></td>
                 </tr>
@@ -262,7 +267,7 @@
                             &nbsp;&nbsp; </td>
                         <td class="auto-style9">
                             
-                            <asp:TextBox ID="TEL" runat="server" Width="170px" MaxLength="11" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="TEL" runat="server" Width="230px" MaxLength="11" CssClass="form-control"></asp:TextBox>
                             
                         </td>    
                     <td></td>                    
@@ -274,7 +279,7 @@
                         ：&nbsp;&nbsp;&nbsp;
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox MaxLength="20" runat="server" ID="email"   Width="170px" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox MaxLength="20" runat="server" ID="email"   Width="230px" CssClass="form-control"></asp:TextBox>
                     </td>
                     <td></td>
                 </tr>
@@ -283,7 +288,7 @@
                         <asp:Label runat="server" Text="使用范围："></asp:Label>
                             &nbsp;&nbsp; </td>
                         <td class="auto-style9">
-                        <asp:TextBox ID="txtRange" runat="server" Width="170px" TextMode="MultiLine" Height="78px" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtRange" runat="server" Width="230px" TextMode="MultiLine" Height="78px" CssClass="form-control"></asp:TextBox>
                             </td>    
                     <td></td>
                 </tr> 
@@ -293,10 +298,10 @@
                         <asp:Label runat="server" Text="备注："></asp:Label>
                             &nbsp;&nbsp; </td>
                         <td class="auto-style9">
-                        <asp:TextBox ID="txtRemark" runat="server"  Width="170px" CssClass="form-control" ></asp:TextBox>
+                        <asp:TextBox ID="txtRemark" runat="server"  Width="230px" CssClass="form-control" ></asp:TextBox>
                             </td>    
                     <td ></td>
-                </tr>
+                </tr> 
                 <tr id="trRemind" runat="server">
                     <td class="auto-style8">
                         <asp:Label ID="Label3" runat="server" Text="提醒周期："></asp:Label>
@@ -354,7 +359,7 @@
                         ：&nbsp;&nbsp;&nbsp;
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox runat="server" ID="description" Width="170px" Height="78px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="description" Width="230px" Height="50px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                     </td>
                     <td></td>
                 </tr>
@@ -389,7 +394,9 @@
                         </td>
                     <td></td>
                 </tr>
-            
+
+                
+
             </table>
             <table  style="width: 556px" runat="server">
                     <tr>

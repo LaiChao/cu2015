@@ -38,14 +38,7 @@
         </h2>
         </div>
         <form id="form1" runat="server" class="form-inline">
-            <div class="form-group">
-                <p>
-                    <asp:Label ID="Label7" runat="server" Text="项目ID:"></asp:Label>
-                    <asp:TextBox ID="txtID" runat="server" CssClass="form-control" ></asp:TextBox>
-&nbsp;<asp:Label ID="Label8" runat="server" Text="项目名称:"></asp:Label>
-                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" ></asp:TextBox>
-&nbsp;<asp:Button ID="btnQuery2" runat="server" Text="查询" OnClick="btnQuery2_Click"  class="btn btn-danger"/>
-                </p>
+            <div class="form-group">              
                 <p>
         <asp:Label ID="Label3" runat="server" Text="来源:"></asp:Label>
         <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" >
@@ -81,6 +74,15 @@
             <asp:ListItem>重特大灾害</asp:ListItem>
           </asp:DropDownList>
            &nbsp;<asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click"  class="btn btn-danger"/>
+                </p>
+                 <p>
+                    <asp:Label ID="Label7" runat="server" Text="项目ID:"></asp:Label>
+                    <asp:TextBox ID="txtID" runat="server" CssClass="form-control" ></asp:TextBox>
+&nbsp;<asp:Label ID="Label8" runat="server" Text="项目名称:"></asp:Label>
+                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" ></asp:TextBox>
+&nbsp;<asp:Button ID="btnQuery2" runat="server" Text="查询" OnClick="btnQuery2_Click"  class="btn btn-danger"/>
+      <asp:Button ID="btnBatch" runat="server"  Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" OnClick="btnBatch_Click"/> 
+            
                 </p>
             </div>
             <div>

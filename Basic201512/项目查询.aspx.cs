@@ -36,6 +36,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
       //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
+           putout.Visible = false;
            DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
            DataView ddv = new DataView(dds.Tables[0]);
            dgData.DataSource = dds;
@@ -291,5 +292,8 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
     }
-
+    protected void btputout_Click(object sender, EventArgs e)
+    {
+        putout.Visible = true;
+    }
 }

@@ -558,7 +558,7 @@
                     
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     军官证号：</td>

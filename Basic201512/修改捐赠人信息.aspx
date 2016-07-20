@@ -106,10 +106,10 @@
         .xishu { width: 60px; }
         .upper_limit { width: 80px; }
         
-        #divTitle { height: 60px; line-height: 60px; font-size: 26px; border: #cc9966 1px solid; text-align: center; font-weight: bold; }
+        #divTitle { height: 60px; line-height: 60px; font-size: 26px; border: #cc9966 0px solid; text-align: center; font-weight: bold; }
         #div_dynamic {  border: #cc9966 1px solid;  }
         #divTitle, #div_dynamic { width: 800px; margin:0 auto; }
-        .option, .id, .name, .order, .state, .description, .area { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
+        .option, .id, .name, .order, .state, .description, .area { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 0px solid; }
         .option { width: 50px; }
         .data_Id { width: 130px; }
         .name { width: 170px; }
@@ -137,7 +137,7 @@
     </div>
     <div class="body">
         
-        <div id="div_dynamic" >
+      
         <style>
         tr{ line-height:30px;height:30px;}
         .td_c1{ width:20px;}
@@ -367,18 +367,19 @@
             <table  style="width: 556px" runat="server">
                     <tr>
                        <td class="auto-style8"> 
-                            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" Text="返回" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                            <asp:Button ID="Btinput" runat="server" OnClick="Btinput_Click" Text="提交修改" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+                              <asp:Label ID="labError" runat="server" ForeColor="Red" Text=""></asp:Label>
                         </td>
-                        <td class="auto-style9">
-                       <asp:Label ID="labError" runat="server" ForeColor="Red" Text=""></asp:Label>
+                        <td class="auto-style9">                                              
+                            <asp:Button ID="Btinput" runat="server" OnClick="Btinput_Click" Text="提交修改" CssClass=" btn btn-danger" Width="80px" Height="34px" />
                         </td>          
-                        <td></td>                               
+                        <td>
+                            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" Text="返回" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+                        </td>                               
                     </tr>
 
             </table>
       </div>  
-    </div>
+  
     </form>
     </center>
 </body>

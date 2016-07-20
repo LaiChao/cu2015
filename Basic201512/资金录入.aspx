@@ -36,10 +36,7 @@
         .auto-style1 {
             height: 30px;
         }
-        #form1 {
-        width:800px;
-        }
-
+    
         </style>
      <script language="javascript" type="text/javascript">
          function click()
@@ -52,7 +49,7 @@
   <center>
     <form id="form1" runat="server" class="form-inline">
       
-    <div>
+    
         <div>
             <h2>
                <strong>资金录入</strong> 
@@ -79,11 +76,8 @@
                                     <br />
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="显示全部待确认金额" CssClass=" btn btn-danger" />
                        </div>        
-                       
-         
-                   
-                   
-                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="756px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+                                         
+                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
                         <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -160,7 +154,7 @@
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
                     </asp:DataGrid>
-                    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="756px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData1_ItemCommand">
+                    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData1_ItemCommand">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
                         <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -209,7 +203,7 @@
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
                     </asp:DataGrid>
                     
-    </div>
+    
        
     </form>
     </center>

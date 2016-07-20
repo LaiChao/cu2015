@@ -29,7 +29,7 @@
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
     <style type="text/css">
         #form1 {
-            width: 800px;
+            width: 1200px;
             height: 740px;
         }
     </style>
@@ -39,45 +39,31 @@
     <form id="form1" runat="server" class="form-inline" role="form">
     <div>
         <h2>
+            
            <strong>信息修改</strong> 
        </h2>
-    </div>            
-     <div class="panel panel-danger">
-       <div class="panel-heading" align="left">
-              <h3 class="panel-title">标题</h3>
-        </div>
-        <div class="panel-body">            
-            <asp:TextBox ID="infoTitle" runat="server" Width="600px" class="form-control" ></asp:TextBox>
-            </div>
-          <div class="alert alert-danger" role="alert" align="left">
-                <h3 class="panel-title">内容</h3>
-               </div>
-         <asp:TextBox ID="infoContent" runat="server" Height="150px" TextMode="MultiLine"  Width="600px" class="form-control"></asp:TextBox>
-         <br />      
-         <br />  
-     </div>
-    <div class="panel panel-danger">
-             <div class="panel-heading" align="left">
-              <h3 class="panel-title">上传文件</h3>
-            </div>
-         <div class="panel-body">
-             <div class="form-group" >    
-                  <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="200px" Height="50px" />
-                 
+    </div>      
+        <p>     
+             <asp:Label ID="Label1" runat="server" Text="标题："></asp:Label>
+            <asp:TextBox ID="infoTitle" runat="server" Width="1000px" class="form-control" ></asp:TextBox>
+        </p>
+        <p> 
+         <asp:Label ID="Label2" runat="server" Text="内容："></asp:Label>
+         <asp:TextBox ID="infoContent" runat="server" Height="250px" TextMode="MultiLine"  Width="1000px" class="form-control"></asp:TextBox>
+        </p>
+         <div>
+         文件列表
+         </div>
+        <div>
+             <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="200px" Height="50px" />                
              <asp:ListBox ID="ListBox1" runat="server" Width="350px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" class="form-control">
               <asp:ListItem Text="文件列表"></asp:ListItem>
              </asp:ListBox>
-
-            </div>
-             <br />
-             <br />
-             <div class="form-group">
+          </div>
         <asp:Button ID="Button3" runat="server" Text="上传文件并提交" onclick="Button3_Click" Height="40px"  class="btn btn-danger" Width="120px" /> &nbsp;      
         <asp:Button ID="Button4" runat="server" Text="下载文件" onclick="Button4_Click"  Height="40px"  class="btn btn-danger" Width="120px"/>&nbsp;
         <asp:Button ID="Button5" runat="server" Text="删除文件并提交"  onclick="Button5_Click" Height="40px"  class="btn btn-danger" Width="120px"/> 
-        </div>
-                  </div>
-        </div>
+   
         
         <p>
             <asp:Button ID="post" runat="server" OnClick="Button1_Click" Text="提交" Height="40px" class="btn btn-danger" Width="106px"/>

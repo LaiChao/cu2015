@@ -29,7 +29,11 @@
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
-
+    <style>
+        #GridView1 th {
+        text-align:center;
+        }
+    </style>
 </head>
 <body>
     <center>
@@ -53,7 +57,7 @@
         <br />
     <div>
     
-        <asp:GridView ID="GridView1" align="center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" Width="500px">
+        <asp:GridView ID="GridView1" align="center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" Width="900px">
             <Columns>
                 <asp:BoundField DataField="CreateDate" HeaderText="时间" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
                 <asp:BoundField DataField="user" HeaderText="用户" HeaderStyle-Height="30px" ItemStyle-Height="30px" />

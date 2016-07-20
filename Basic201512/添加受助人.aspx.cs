@@ -67,7 +67,6 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         sonName.Enabled = false;
         deathReason.Enabled = false;
         shuoming5.Enabled = false;
-
         army.Enabled = false;
         title.Enabled = false;
         tbOfficerID.Enabled = false;
@@ -561,5 +560,14 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             this.tablefamily.Visible = true;
             return;
         }
+    }
+
+    protected void Button2_Click1(object sender, EventArgs e)
+    {
+        Response.Write("<script>window.location='批量添加受助人.aspx'</script>");
+    }
+    protected void btnBatch_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("批量选择受助人.aspx?id=请填写项目ID");
     }
 }

@@ -31,7 +31,7 @@
 
     <style type="text/css">
         #form1 {
-            width: 800px;
+            width: 1000px;
         }
         div#row1{
             float:left;
@@ -65,43 +65,39 @@
            <strong>重要信息发布</strong> 
         </h2>
     </div>  
-        <div id="divfrom" style="text-align:left">
-            <div>
-                <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" Text="公共项目" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox>
-            </div>
-            <div id="publicProject" runat="server">
-                <p>
-                    <asp:Label ID="Label5" runat="server" Text="项目ID："  CssClass="clas1"></asp:Label>
-                    <asp:TextBox ID="tbID" runat="server" class="form-control"></asp:TextBox>
-                </p>
-            </div>
+        <div id="divfrom" style="text-align:left">         
         <div id="row1" class="form-group">
             <asp:Label ID="Label3" runat="server" Text="收件人：" CssClass="clas1"></asp:Label>           
             <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                 <asp:ListItem>所有机构</asp:ListItem>
                 <asp:ListItem>选择机构</asp:ListItem>
             </asp:DropDownList>      
-            &nbsp;
         </div>
         <div id="row2">
             <Dev:DropDownCheckBoxList ID="DropDownCheckBoxList1" runat="server" ShowSelectAllOption="true" DisplayMode="Value" Width="120px" Height="30px">
             </Dev:DropDownCheckBoxList>
+            <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkbox" AutoPostBack="True" Text="公共项目" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox>
+
         </div>
         <div>
             &nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
         </div> 
             <br />
+               <div id="publicProject" runat="server" class="form-group">      
+                    <asp:Label ID="Label5" runat="server" Text="项目ID："  CssClass="clas1"></asp:Label>
+                    <asp:TextBox ID="tbID" runat="server" class="form-control"></asp:TextBox>                                
+            </div>
             <br />
             <%--<asp:Label ID="Label1" runat="server" Text="标题"></asp:Label>--%>
             <div class="form-group">
              <asp:Label ID="Lbtitle" runat="server" Text=" 标  题：" CssClass="clas1"></asp:Label>
-             <asp:TextBox ID="infoTitle" runat="server" Width="600px" class="form-control"></asp:TextBox>                 
+             <asp:TextBox ID="infoTitle" runat="server" Width="900px" class="form-control"></asp:TextBox>                 
             </div>
             <br />
             <br />
             <div class="form-group">  
             <asp:Label ID="Label2" runat="server" Text=" 内  容：" CssClass="clas1"></asp:Label> 
-            <asp:TextBox ID="infoContent" runat="server" Height="250px" TextMode="MultiLine" Width="600px" class="form-control"></asp:TextBox> 
+            <asp:TextBox ID="infoContent" runat="server" Height="250px" TextMode="MultiLine" Width="900px" class="form-control"></asp:TextBox> 
            </div> 
             <br />
             <br />
@@ -118,12 +114,8 @@
                  <asp:Button ID="Button3" runat="server" Text="上传" onclick="Button3_Click" Height="34px"  class="btn btn-danger clas2" Width="80px"/>
               </div>
             </div> 
-              
-          <br />
             <br />                  
-         <div style="text-align:center">
-             
-                 
+         <div style="text-align:center">   
               <asp:Button ID="post" runat="server" OnClick="Button1_Click" Text="发布" class="btn btn-danger" Height="34px" Width="80px" />  
          </div>    
             </div>     

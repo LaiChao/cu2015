@@ -33,6 +33,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
+            putout.Visible = false;
             //DropDownList绑定数据
             DataSet ds2 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), "select benfactorFrom from e_handlingunit order by handlingunitID");
             DataView dv2 = new DataView(ds2.Tables[0]);
@@ -56,7 +57,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         //不显示全部扩展信息
         foreach (DataControlField dcf in GridView1.Columns)
         {
-            if ((dcf.HeaderText == "使用范围") || (dcf.HeaderText == "备注") || (dcf.HeaderText == "联系人") || (dcf.HeaderText == "性别") || (dcf.HeaderText == "募捐箱编号") || (dcf.HeaderText == "冠名年限") || (dcf.HeaderText == "冠名到期日期") || (dcf.HeaderText == "选择的冠名慈善捐助金") || (dcf.HeaderText == "受助人类型") || (dcf.HeaderText == "受助人描述"))//前提条件是列名要与对应列的HeadText一致
+            if ((dcf.HeaderText == "使用范围") || (dcf.HeaderText == "备注") || (dcf.HeaderText == "联系人") || (dcf.HeaderText == "性别") || (dcf.HeaderText == "募捐箱编号") || (dcf.HeaderText == "冠名年限") || (dcf.HeaderText == "冠名到期日期") || (dcf.HeaderText == "冠名慈善捐助金") || (dcf.HeaderText == "受助人类型") || (dcf.HeaderText == "受助人描述"))//前提条件是列名要与对应列的HeadText一致
             {
                 dcf.Visible = false;
             }
@@ -267,7 +268,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     public override void VerifyRenderingInServerForm(Control control)
     {
 
-    }
+    } 
     #region 选择列导出
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
     {
@@ -382,4 +383,8 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             GridView1.Columns[18].Visible = false;
     }
     #endregion
+    protected void btputout_Click(object sender, EventArgs e)
+    {
+        putout.Visible = true;
+    }
 }

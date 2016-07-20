@@ -65,6 +65,11 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         if (!IsPostBack)  // 页面首次加载
         {
             //初始化
+            int intRole = Convert.ToInt32(Session["userRole"].ToString());
+            if(intRole==1)
+            {
+                CheckBox1.Visible = false;
+            }
             publicProject.Visible = false;
             ViewState["myFilename"] = "";
             MySqlConnection mysqlcon = msq.getmysqlcon();

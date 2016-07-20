@@ -25,6 +25,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
     string str111 = string.Format("select * from e_moneytrack ");
+   
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +36,21 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
       //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
-            databind();
+            if (Request.QueryString.Count > 0)
+            {
+                TbselectName.Text = Request["id"].Trim();
+                string str1111 = string.Format("select * from e_moneytrack where benefactorID={0}", TbselectName.Text);
+                DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str1111);
+                DataView dv = new DataView(ds.Tables[0]);
+                dgData.DataSource = dv;
+                dgData.DataBind();
+            }
+            else
+            {
+                 databind();
+            }
+            
+
         }
        
 
@@ -155,7 +170,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void Btselect_Click(object sender, EventArgs e)
     {
-        string str = string.Format("select *  from e_moneytrack where benefactorID='{1}'or projectID='{0}'", TbselectID.Text, TbselectName.Text);
+        string str = string.Format("select *  from e_moneytrack where benefactorID='{1}'or projectID='{0}' or benfactorName='{2}' or projectName='{3}' ", TbselectID.Text, TbselectName.Text, txtselectName.Text,txtselectproname.Text);
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str);
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
