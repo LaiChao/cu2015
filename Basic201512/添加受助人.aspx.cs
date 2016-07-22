@@ -566,8 +566,4 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
     {
         Response.Write("<script>window.location='批量添加受助人.aspx'</script>");
     }
-    protected void btnBatch_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("批量选择受助人.aspx?id=请填写项目ID");
-    }
 }

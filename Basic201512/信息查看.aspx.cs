@@ -77,6 +77,9 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
         {
             publicProject.Visible = false;
             btnBatch.Visible = false;
+            btnBatchAdd.Visible = false;
+            btnchoic.Visible = false;
+
             string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom,projectID from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
             MySqlDataReader mysqlread = msq11.getmysqlread(iniSql);
             while (mysqlread.Read())
@@ -104,6 +107,8 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             {
                 publicProject.Visible = true;
                 btnBatch.Visible = true;
+                btnBatchAdd.Visible = true;
+                btnchoic.Visible = true;
             }
         }
     }
@@ -209,5 +214,9 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
     protected void btnchoic_Click(object sender, EventArgs e)
     {
         Response.Redirect("查询受助人.aspx?id=" + tbID.Text.Trim());
+    }
+    protected void btnBatchAdd_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("批量添加受助人.aspx?id=" + tbID.Text.Trim());
     }
 }

@@ -45,10 +45,6 @@
             width: 13px;
             height: 48px;
         }
-        .auto-style4 {
-            width: 168px;
-            height: 48px;
-        }
         .auto-style5 {
             height: 48px;
         }
@@ -703,7 +699,6 @@
                     <%--<input id="Button2" type="button" value="前往" onclick="openwin('批量添加受助人.aspx', '批量添加受助人', 400, 200);" />--%>
                     
                     <asp:Button ID="Button2" runat="server" Text="前往" CssClass="btn btn-danger" OnClick="Button2_Click1" />
-                    <asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px"/>
                     
                 </td>
             </tr>

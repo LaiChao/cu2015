@@ -56,7 +56,8 @@
             
         &nbsp;<asp:Button ID="btnReceipt" runat="server" OnClick="btnReceipt_Click" Text="发送回执" CssClass="btn btn-danger" />
         &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px"/> 
-               <asp:Button ID="btnchoic" runat="server"  Text="受助人预选" CssClass=" btn btn-danger" Height="34px" Width="128px" OnClick="btnchoic_Click"/>           
+               &nbsp;<asp:Button ID="btnBatchAdd" runat="server" OnClick="btnBatchAdd_Click" Text="批量添加受助人" CssClass=" btn btn-danger" Height="34px" Width="128px"/>  
+               &nbsp;<asp:Button ID="btnchoic" runat="server"  Text="受助人预选" CssClass=" btn btn-danger" Height="34px" Width="128px" OnClick="btnchoic_Click"/>           
                  <asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
             </div>           
         <br />

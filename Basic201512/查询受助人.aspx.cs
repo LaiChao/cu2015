@@ -295,8 +295,4 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         else
             GridView1.Columns[8].Visible = false;
     }
-    protected void btnBatch_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("批量选择受助人.aspx?id=请填写项目ID");
-    }
 }

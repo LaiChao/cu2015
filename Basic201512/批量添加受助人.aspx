@@ -35,6 +35,9 @@
     <div>
         <h2><strong>批量添加受助人</strong></h2>
         </div>
+    <div id="divid" runat="server">
+        项目ID：<asp:TextBox ID="tbID" runat="server"></asp:TextBox>
+    </div>
     <div>
     
         请选择excel文件：<asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="300px" Height="45px" />

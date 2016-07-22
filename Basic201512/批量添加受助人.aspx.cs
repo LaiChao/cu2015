@@ -32,7 +32,19 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!Page.IsPostBack)
+        {
+            tbID.Enabled = false;
+            if (Request.QueryString.Count > 0)
+            {
+                tbID.Text = Request["id"].Trim();
+                divid.Visible = true;
+            }
+            else
+            {
+                divid.Visible = false;
+            }
+        }
     }
 
     #region 连接Excel  读取Excel数据   并返回DataSet数据集合
@@ -105,6 +117,10 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
             //Stopwatch sw = new Stopwatch();
             //sw.Start();
             List<string> SQLStringList = new List<string>();
+            List<string> SQLStringList1 = new List<string>();
+            string strSelectID = "select recipientsID from e_recipients where recipientsPIdcard=";
+            MySqlDataReader mysqlread;
+
             for (int i = 0; i < dr.Length; i++)
             {
                 //前面除了你需要在建立一个“upfiles”的文件夹外，其他的都不用管了，你只需要通过下面的方式获取Excel的值，然后再将这些值用你的方式去插入到数据库里面
@@ -178,8 +194,31 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
                 string str113 = string.Format("insert ignore into e_recipients (benfactorFrom,recipientsADD,recipientsName,sex,recipientsPIdcard,recipientsADDnow,incomlowID,telphoneADD,workplace,famName1,famRelation1,famWorkplace1,famTel1,famWork1,famIncome1,famName2,famRelation2,famWorkplace2,famTel2,famWork2,famIncome2,famName3,famRelation3,famWorkplace3,famTel3,famWork3,famIncome3,famName4,famRelation4,famWorkplace4,famTel4,famWork4,famIncome4,arrIncome,marryNow,canjijibie,canjileibie,shuoming3,illness,illtime,illpay,shuoming1,timeDis,shiDu,sonName,deathReason,shuoming5,shiNeng,shuoming4,studySchool,studyGrade,guardianName,guardianGuanxi,guardianTelADD,shuoming2,reason,iscan,isdoc,iskun,isold,isstu,isyong,army,title,isdst,disaster) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}','{30}','{31}','{32}','{33}','{34}','{35}','{36}','{37}','{38}','{39}','{40}','{41}','{42}','{43}','{44}','{45}','{46}','{47}','{48}','{49}','{50}','{51}','{52}','{53}','{54}','{55}','{56}','{57}','{58}','{59}','{60}','{61}','{62}','{63}','{64}','{65}')", benfactorFrom, recipientsADD, recipientsName, sex, recipientsPIdcard, recipientsADDnow, incomlowID, telphoneADD, workplace, famName1, famRelation1, famWorkplace1, famTel1, famWork1, famIncome1, famName2, famRelation2, famWorkplace2, famTel2, famWork2, famIncome2, famName3, famRelation3, famWorkplace3, famTel3, famWork3, famIncome3, famName4, famRelation4, famWorkplace4, famTel4, famWork4, famIncome4, arrIncome, marryNow, canjijibie, canjileibie, shuoming3, illness, illtime, illpay, shuoming1, timeDis, shiDu, sonName, deathReason, shuoming5, shiNeng, shuoming4, studySchool, studyGrade, guardianName, guardianGuanxi, guardianTelADD, shuoming2, reason, iscan, isdoc, iskun, isold, isstu, isyong, army, title, isdst, disaster);
                 SQLStringList.Add(str113);
 
+
             }
-            ExecuteSqlTran(SQLStringList);    
+            ExecuteSqlTran(SQLStringList);
+
+            if(Request.QueryString.Count > 0)
+            {
+                for (int i = 0; i < dr.Length; i++)
+                {
+                    string recipientsPIdcard = dr[i]["身份证号"].ToString();
+
+                    string strReadId = strSelectID + "'" + recipientsPIdcard + "'";
+                    mysqlread = msq.getmysqlread(strReadId);
+                    string strRcptId = "";
+                    while (mysqlread.Read())
+                    {
+                        strRcptId = mysqlread.GetString(0);
+                    }
+
+                    string str114 = string.Format("insert into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", tbID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
+                    SQLStringList1.Add(str114);
+
+                }
+                ExecuteSqlTran(SQLStringList1);
+            }
+
             //sw.Stop();
             NLogTest nlog = new NLogTest();
             string sss = "批量添加了受助人：" + filename;

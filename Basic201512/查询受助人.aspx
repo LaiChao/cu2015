@@ -81,7 +81,6 @@
 &nbsp;<asp:Label ID="Label8" runat="server" Text="项目名称:"></asp:Label>
                     <asp:TextBox ID="txtName" runat="server" CssClass="form-control" ></asp:TextBox>
 &nbsp;<asp:Button ID="btnQuery2" runat="server" Text="查询" OnClick="btnQuery2_Click"  class="btn btn-danger"/>
-      <asp:Button ID="btnBatch" runat="server"  Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" OnClick="btnBatch_Click"/> 
             
                 </p>
             </div>
