@@ -32,12 +32,15 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
             MySqlDataReader mysqlread = msq.getmysqlread(infoQuery.ToString());
             while (mysqlread.Read())
                 Label1.Text = "（" + mysqlread.GetString(0) + "）";
-
+            mysqlread.Close();
+            mysqlread.Dispose();
             if(intRole==4)
             {//分配权限
                 MySqlDataReader mysqlread1 = msq.getmysqlread("select count(*) from e_user where userRole is null");
                 while (mysqlread1.Read())
                     Label2.Text = "（" + mysqlread1.GetString(0) + "）";
+                mysqlread1.Close();
+                mysqlread1.Dispose();
             }
             else
             {
@@ -53,6 +56,8 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
                 MySqlDataReader mysqlread2 = msq.getmysqlread("select count(*) from e_project where proschedule='申请'");
                 while (mysqlread2.Read())
                     Label3.Text = "（" + mysqlread2.GetString(0) + "）";
+                mysqlread2.Close();
+                mysqlread2.Dispose();
             }
 
             if (intRole == 1)
@@ -65,17 +70,23 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
                 MySqlDataReader mysqlread3 = msq.getmysqlread("select count(*) from e_capital where state=0");
                 while (mysqlread3.Read())
                     Label4.Text = "（" + mysqlread3.GetString(0) + "）";
+                mysqlread3.Close();
+                mysqlread3.Dispose();
             }
 
             //冠名捐助金到期日期
             MySqlDataReader mysqlread4 = msq.getmysqlread("select count(*) from e_benfactor where deadline<now()");
             while (mysqlread4.Read())
                 Label5.Text = "（" + mysqlread4.GetString(0) + "）";
-
-            //冠名捐助金分期提醒//select e_remind.benfactorID,cycle,flag,benfactorName,handlingunitID,benfactorFrom,deadline from e_remind,e_benfactor where e_remind.flag>0 and e_remind.benfactorID=e_benfactor.benfactorID and now()>date_sub(deadline,interval cycle*flag month)
+            mysqlread4.Close();
+            mysqlread4.Dispose();
+			
+			//冠名捐助金分期提醒
             MySqlDataReader mysqlread5 = msq.getmysqlread("select count(*) from e_remind,e_benfactor where e_remind.flag>0 and e_remind.benfactorID=e_benfactor.benfactorID and now()>date_sub(deadline,interval cycle*flag month)");
             while(mysqlread5.Read())
                 Label6.Text = "（" + mysqlread5.GetString(0) + "）";
+            mysqlread5.Close();
+            mysqlread5.Dispose();
         }
     }
 }
