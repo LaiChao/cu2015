@@ -81,10 +81,10 @@ namespace CL.Utility.Web.BasicData
             }
             if (!Page.IsPostBack)
             {
-                BindData();
                 int shenpi2flag = -1;
                 string strState = "";
-                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei,proschedule from e_project where projectID='{0}'", nameNow);
+                string strType = "";
+                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei,proschedule,projectType from e_project where projectID='{0}'", nameNow);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
                 while (mysqlreader.Read())
                 {
@@ -99,8 +99,9 @@ namespace CL.Utility.Web.BasicData
                     lblLeibie.Text = mysqlreader.GetString(10);
                     shenpi2flag = mysqlreader.GetInt16("shenpi2");
                     strState = mysqlreader.GetString("proschedule");
+                    strType = mysqlreader.GetString("projectType");
                 }
-
+                BindData();
                 //默认隐藏全部按钮
                 btchecky1.Visible = false;
                 btchecky2.Visible = false;
@@ -119,6 +120,10 @@ namespace CL.Utility.Web.BasicData
                 {//达到最终状态，隐藏全部按钮
                     btchecky1.Visible = btchecky2.Visible = btcheckn.Visible = false;
                 }
+                if (strType == "资金")
+                    dgData1.Visible = false;
+                else if (strType == "物品")
+                    dgData0.Visible = false;
             }
         }
 

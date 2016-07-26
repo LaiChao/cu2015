@@ -68,7 +68,7 @@
                                  <asp:Label ID="Label2" runat="server" Text="项目ID："></asp:Label>
                                 
                                 <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control"></asp:TextBox>
-                               <asp:Label ID="Label4" runat="server" Text="项目姓名："></asp:Label>
+                               <asp:Label ID="Label4" runat="server" Text="项目名称："></asp:Label>
                                 
                                 <asp:TextBox ID="txtselectproname" runat="server" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索"  CssClass="btn btn-danger" Height="35px" Width="70px"/>

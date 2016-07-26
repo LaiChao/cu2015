@@ -81,7 +81,8 @@ namespace CL.Utility.Web.BasicData
             }
             if (!Page.IsPostBack)
             {
-                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei from e_project where projectID='{0}'", nameNow);
+                string strType = "";
+                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei,projectType from e_project where projectID='{0}'", nameNow);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
                 while (mysqlreader.Read())
                 {
@@ -94,6 +95,7 @@ namespace CL.Utility.Web.BasicData
                     Lbtelname.Text = mysqlreader.GetString(6);
                     Lbtelladd.Text = mysqlreader.GetString(7);
                     lblLeibie.Text = mysqlreader.GetString(10);
+                    strType = mysqlreader.GetString("projectType");
                     //if (mysqlreader.GetString(9) == "1")
                     //{
                     //    btchecky2.Visible = false;
@@ -105,8 +107,11 @@ namespace CL.Utility.Web.BasicData
                 }
                 BindDataSet();
                 BindData();
-             
-           
+
+                if (strType == "资金")
+                    dgData1.Visible = false;
+                else if (strType == "物品")
+                    dgData0.Visible = false;
             }
 
         }
