@@ -223,7 +223,7 @@ namespace CL.Utility.Web.BasicData
             DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), proid);
             DataView ddv = new DataView(dds.Tables[0]);
             dgData.DataSource = dds;
-            dgData.DataKeyField = "recipientsPIdcard";
+            //dgData.DataKeyField = "recipientsID";
             dgData.DataBind();
             string capid = string.Format("select * from e_moneytrack where projectID='{0}'",LbproID.Text);
             DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), capid);
@@ -235,6 +235,21 @@ namespace CL.Utility.Web.BasicData
             DataView dv1 = new DataView(ds.Tables[0]);
             dgData1.DataSource = ds1;
             dgData1.DataBind();
+        }
+        protected void dgData_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            if(e.CommandName=="Delete1")
+            {
+                string rcpidStr = (dgData.DataKeys[e.Item.ItemIndex]).ToString();
+                string deleteStr = string.Format("delete from e_pr where projectID='{0}' and recipientID={1}",LbproID.Text.Trim(),rcpidStr);
+                msq.getmysqlcom(deleteStr);
+                BindData();
+
+                NLogTest nlog = new NLogTest();
+                string sss = "删除了项目：" + LbproID.Text.Trim() + "中的受助人" + rcpidStr;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+            }
+
         }
         protected void btchecky1_Click(object sender, EventArgs e)
         {
@@ -730,7 +745,15 @@ namespace CL.Utility.Web.BasicData
             return result;
         }
 
-    }
+        protected void dgData_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+            {
+                ((ImageButton)e.Item.Cells[0].FindControl("btnDelete1")).Attributes.Add("onclick", "return confirm('确定要删除这个受助人吗?');");
+            }
+
+        }
+}
     /// <summary>
     /// 人民币大小写金额转换
     /// </summary>

@@ -357,13 +357,23 @@
                 </tr>
             <tr>
                     <td class="auto-style12">               
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="677px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="677px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" DataKeyField="recipientsID" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
-            <Columns>              
-                <asp:TemplateColumn HeaderText="姓名">
+            <Columns>
+                <asp:TemplateColumn HeaderText="删除">
+                    <ItemStyle CssClass="option"></ItemStyle>
+                    <ItemTemplate>
+<%--                        <asp:ImageButton ID="btnEdit1" runat="server" ToolTip="结项" CommandName="Edit1" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        </asp:ImageButton>--%>
+                        <asp:ImageButton ID="btnDelete1" runat="server" ToolTip="删除受助人" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete1"></asp:ImageButton>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+            
+                <asp:TemplateColumn HeaderText="受助人姓名">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'>
