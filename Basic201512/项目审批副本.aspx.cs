@@ -113,10 +113,10 @@ namespace CL.Utility.Web.BasicData
                 }
                 if(Session["userRole"].ToString()=="3")//会长
                 {
-                    if ((shenpi2flag == 1) && (strState == "申请"))
+                    if ((shenpi2flag == 1) && (strState == "申请中"))
                         btchecky1.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
-                if(strState!="申请")
+                if(strState!="申请中")
                 {//达到最终状态，隐藏全部按钮
                     btchecky1.Visible = btchecky2.Visible = btcheckn.Visible = false;
                 }
