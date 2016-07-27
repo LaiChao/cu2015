@@ -50,7 +50,7 @@
         <br />
 
         <div id="divPrint" runat="server">
-        <asp:GridView ID="GridView1"  runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnRowDataBound="GridView1_RowDataBound" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" Width="900px" OnRowCreated="GridView1_RowCreated" >           
+        <asp:GridView ID="GridView1"  runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="GridView1_RowDataBound" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" Width="900px" OnRowCreated="GridView1_RowCreated" >           
             <Columns>
                 <asp:BoundField DataField="handlingunitID" HeaderText="经办单位ID" ReadOnly="True">
                 <HeaderStyle Height="40px"   CssClass="mycenter"/>
