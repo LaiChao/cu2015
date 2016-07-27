@@ -31,7 +31,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
         if (Request.QueryString.Count > 0)
         {
-            nameNow = Request["benfactorName"].Trim();//项目ID
+            ViewState["nameNow"] = nameNow = Request["benfactorName"].Trim();//项目ID
             lblType.Text = Request["type"].Trim();//项目类型
         }
 
@@ -200,7 +200,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 //资金追踪表
                  DateTime dt = DateTime.Now;
                  string time = dt.Year.ToString() +'-'+ dt.Month.ToString() + '-'+dt.Day.ToString();
-                 string strinsert = string.Format("insert into e_moneytrack(benefactorID,projectID,palnMoney,useMoney,prousein,prouseinTime,prouseoutTime,benfactorName,projectName) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')",
+                 string strinsert = string.Format("insert into e_moneytrack(benefactorID,projectID,palnMoney,useMoney,prousein,prouseinTime,prouseoutTime,benfactorName,projectName,benfactorFrom,handlingunitID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10})",
                  ((TextBox)e.Item.FindControl("bectID")).Text.Trim(),//捐助人ID
                  ((TextBox)e.Item.FindControl("txtproid")).Text.Trim(),//项目ID
                  ViewState["myKey"].ToString(),//计划资金
@@ -209,7 +209,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                  ((TextBox)e.Item.FindControl("txtdirtime")).Text.Trim(),//资金录入时间
                  time,
                  ((TextBox)e.Item.FindControl("txtdename")).Text.Trim(),//捐助人名称
-                 lbbenfnadd.Text//项目名称
+                 lbbenfnadd.Text,//项目名称
+                 Session["benfactorFrom"].ToString(),//经办单位名称
+                 ViewState["nameNow"].ToString().Substring(0, 3).ToString()//经办单位ID
                  );
                  msq.getmysqlcom(strinsert);               
                  dgData.EditItemIndex = -1;
