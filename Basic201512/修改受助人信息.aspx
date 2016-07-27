@@ -191,7 +191,7 @@
              </div>
         <div class="panel panel-danger">
             <div class="panel-heading" align="left">
-              <h3 class="panel-title">基本信息</h3>
+              <h3 class="panel-title">其他信息</h3>
             </div>
             <div class="panel-body">
         <table style="width: 81%; height: 155px; margin-right: 116px;" id="tablefamily" runat="server">
