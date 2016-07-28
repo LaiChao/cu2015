@@ -57,6 +57,11 @@ namespace CL.Utility.Web.BasicData
             if (!Page.IsPostBack)//页面首次加载
             {
                 databind();
+                if(Session["userRole"].ToString()=="1")
+                {//分会用户只能注册该分会的用户
+                    benfactorFrom.SelectedValue = Session["benfactorFrom"].ToString();
+                    benfactorFrom.Enabled = false;
+                }
             }
         }
 
