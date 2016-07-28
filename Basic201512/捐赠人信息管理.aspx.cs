@@ -44,6 +44,10 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
 
             //GridView与DetailsView绑定数据
             ViewState["init"] = "select e_benfactor.benfactorID,e_benfactor.benfactorName,e_benfactor.benfactorFrom,benfactorType,case when benfactorType=1 then '公益组织' when benfactorType=2 then '单位' when benfactorType=3 then '个人' when benfactorType=4 then '募捐箱' when benfactorType=5 then '冠名慈善捐助金' end as donorType,TEL,bftRange,bftRemark,Contacts,email,sex,moneyboxNo,namingAge,deadline,namingSelected,recipientsType,recipientsDescription,ifnull(capitalEarn,0) as remain from e_benfactor left join e_capital on e_benfactor.benfactorID=e_capital.capitalID where 1=1 ";
+            if (Session["userRole"].ToString()=="1")
+            {//分会只能查看该分会的捐赠人
+                ViewState["init"] = ViewState["init"].ToString() + "and e_benfactor.benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
+            }
             ViewState["now"] = ViewState["init"];
             databind(ViewState["now"].ToString());
 
