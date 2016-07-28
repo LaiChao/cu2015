@@ -26,13 +26,19 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
 {
     mysqlconn msq = new mysqlconn();
-    string str111= "select * from e_handlingunit";
+    //string str111= "select * from e_handlingunit where 1=1 ";
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)//页面首次加载
         {
-            databind();
+            ViewState["queryString"] = "select * from e_handlingunit where 1=1 ";
+            //判断是否分会权限
+            if (Session["userRole"].ToString()=="1")
+            {
+                ViewState["queryString"] = ViewState["queryString"].ToString() + "and benfactorFrom='" + Session["benfactorFrom"].ToString() + "'";
+            }
+            databind(ViewState["queryString"].ToString());
         }
        
     }
@@ -40,10 +46,10 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
     {
         //base.VerifyRenderingInServerForm(control);
     }
-    public void databind()
+    public void databind(string s)
     {
         MySqlConnection mysqlcon = msq.getmysqlcon();
-        DataSet ds = MySqlHelper.ExecuteDataset(mysqlcon, str111);
+        DataSet ds = MySqlHelper.ExecuteDataset(mysqlcon, s);
         DataView dv = new DataView(ds.Tables[0]);
         GridView1.DataSource = dv;
         GridView1.DataKeyNames = new string[] { "handlingunitID" };//主键
@@ -61,6 +67,11 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
                 ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('你确认要删除：\"" + e.Row.Cells[0].Text + "\"吗?')");
+                if (Session["userRole"].ToString()=="1")
+                {//分会用户无权删除分会信息
+                    ((LinkButton)e.Row.Cells[6].Controls[0]).Enabled = false;
+                    ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('分会用户无权删除')");
+                }
             }
         }
         if(e.Row.RowType==DataControlRowType.Header)
@@ -72,7 +83,7 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView1.EditIndex = e.NewEditIndex;
-        databind();
+        databind(ViewState["queryString"].ToString());
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
@@ -81,7 +92,7 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
         nlog.WriteLog(Session["UserName"].ToString(),s);
         string str112 = "delete from e_handlingunit where handlingunitID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
         msq.getmysqlcom(str112);
-        databind();
+        databind(ViewState["queryString"].ToString());
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -97,12 +108,12 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
             + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
         msq.getmysqlcom(str113);
         GridView1.EditIndex = -1;
-        databind();
+        databind(ViewState["queryString"].ToString());
     }
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         GridView1.EditIndex = -1;
-        databind();
+        databind(ViewState["queryString"].ToString());
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -143,6 +154,6 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         GridView1.PageIndex = e.NewPageIndex;
-        databind();
+        databind(ViewState["queryString"].ToString());
     }
 }
