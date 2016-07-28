@@ -29,14 +29,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            //判断权限
-            //string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
-            //MySqlDataReader mysqlread32 = msq.getmysqlread(queryRole);
-            //int roleOfUser = 0;
-            //while (mysqlread32.Read())
-            //{
-            //    roleOfUser = mysqlread32.GetInt32(0);
-            //}
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select * from e_benfactor where 1=1 ");
             if (Session["userRole"].ToString() == "1")//分会权限
