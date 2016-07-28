@@ -25,48 +25,33 @@ using System.Text;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    //string str111 = string.Format("select * from e_recipientsdoc ");
     protected void Page_Load(object sender, EventArgs e)
     {
-        //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-        //DataView dv1 = new DataView(ds1.Tables[0]);
-        //dgHeader.DataSource = dv1;
-        //dgHeader.DataBind();
-      //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
-            Button1.Visible = false;
             //判断权限
-            string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
-            MySqlDataReader mysqlread32 = msq.getmysqlread(queryRole);
-            int roleOfUser = 0;
-            while (mysqlread32.Read())
-            {
-                roleOfUser = mysqlread32.GetInt32(0);
-            }
-            int result;
-            if (roleOfUser > 1)//非分会权限
-                Button1.Visible = true;
-            //绑定数据
+            //string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
+            //MySqlDataReader mysqlread32 = msq.getmysqlread(queryRole);
+            //int roleOfUser = 0;
+            //while (mysqlread32.Read())
+            //{
+            //    roleOfUser = mysqlread32.GetInt32(0);
+            //}
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select * from e_benfactor where 1=1 ");
+            if (Session["userRole"].ToString() == "1")//分会权限
+            {
+                Button1.Visible = false;//待确认金额按钮不显示
+                queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+            }
+            //绑定数据
             DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), queryString.ToString());
             DataView dv = new DataView(ds.Tables[0]);
             dgData.DataSource = dv;
             dgData.DataBind();
         }
-       
-
     }
 
-    //public void databind()
-    //{
-    //    DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
-    //    DataView dv = new DataView(ds.Tables[0]);
-    //    dgData.DataSource = dv;
-    //    dgData.DataBind();
- 
-    //}
     #region Web 窗体设计器生成的代码
     override protected void OnInit(EventArgs e)
     {
@@ -83,66 +68,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     /// </summary>
     private void InitializeComponent()
     {
-
         this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
-        //this.dgData.EditCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_EditCommand);
-        //this.dgData.UpdateCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_UpdateCommand);
-        //this.dgData.CancelCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_CancelCommand);
-        //this.dgData.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_DeleteCommand);
-        //this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
-        //this.dgHeader.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgHeader_ItemCommand);
-
     }
-    #endregion
-    #region "页面操作"
-
-    #region "注释代码"
-    //private void dgData_CancelCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-    //    dgData.EditItemIndex = -1;
-    //    databind();
-    //}
-
-    //private void dgData_DeleteCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-
-
-    //}
-
-    //private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-
-    //    dgData.EditItemIndex = e.Item.ItemIndex;
-    //    databind();
-    //}
-
-    //private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-    //    //DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
-    //    //DataView ddv = new DataView(dds.Tables[0]);
-    //    //dgData.DataSource = dds;
-    //    //   dgData.DataBind();
-    //    databind();
-    //    string strupdata = string.Format("update {0} set benfactorID='{1}'and benfactorName='{2}'and telphoneADD='{3}' and e_mail='{4}' and directionlBef='{5}' and guanming='{6}' and wuzhu='{7}'", dpdbenfactor.SelectedValue,
-    //        ((TextBox)e.Item.FindControl("txtEditID")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtEditName")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtADD")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtemail")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtdir")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtguanming")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtwuzhu")).Text.Trim());
-    //    msq.getmysqlcom(strupdata);
-    //    dgData.EditItemIndex = -1;
-    //    databind();
-    //}
     #endregion
 
     private void dgData_ItemDataBound(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
     {
-        Session["tablename"] = benfactorType.SelectedValue;
-       
-        //Label lbl = e.Item.FindControl("labID") as Label;
-        //lbl.Text = dgData.DataMember[0].ToString();
+        Session["tablename"] = benfactorType.SelectedValue;       
         switch (e.Item.ItemType)
         {
             case ListItemType.AlternatingItem:
@@ -154,25 +86,17 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");
-
-                    // ImageButton btn = (ImageButton)e.Item.FindControl("btnDelete");
-                    // btn.Attributes.Add("onclick", "return confirm('删除数据可能导致严重的后果，你是否确定删除?');");
                     break;
                 }
-
-
             case ListItemType.EditItem:
                 {
                     break;
                 }
         }
-
-
     }
-    #endregion 
 
     protected void Btselect_Click(object sender, EventArgs e)
-    {
+    {//搜索按钮
         dgData1.Visible = false;
         dgData.Visible = true;
 
@@ -204,9 +128,12 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (TbselectName.Text.Trim() != "")
             queryString.Append("and benfactorName='" + TbselectName.Text.ToString() + "' ");
         if (TbselectID.Text.Trim() != "")
-            queryString.Append("and TEL='" + TbselectID.Text.ToString() + "'");
+            queryString.Append("and TEL='" + TbselectID.Text.ToString() + "' ");
         //string str = string.Format("select * from {0} where benfactorName='{2}'or telphoneADD='{1}'", benfactorType.SelectedValue, TbselectID.Text, TbselectName.Text);
-
+        if (Session["userRole"].ToString() == "1")//分会权限
+        {
+            queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+        }
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), queryString.ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
