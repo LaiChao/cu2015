@@ -265,9 +265,11 @@ namespace CL.Utility.Web.BasicData
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
                 string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), Lbbenfrom.Text.Trim(), "未读");
                 msq.getmysqlcom(str11);
-                string str12 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), "朝阳区慈善协会", "未读");
-                msq.getmysqlcom(str12);
-
+                if(Lbbenfrom.Text.Trim()!="朝阳区慈善协会")
+                {
+                    string str12 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), "朝阳区慈善协会", "未读");
+                    msq.getmysqlcom(str12);
+                }
             }
         }
         protected void btchecky2_Click(object sender, EventArgs e)
