@@ -79,10 +79,11 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
                 //((HyperLink)GridView1.Rows[i].Cells[0].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('信息查看.aspx?ID=" + ID + "','信息查看','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300')");
                 if (Session["UserName"].ToString() != GridView1.Rows[i].Cells[2].Text.ToString())
                 {
-                    //HttpContext.Current.Response.Write("<script>alert('只有寄件人可以编辑信息');</script>");
+                    //HttpContext.Current.Response.Write("<script>alert('只有发件人可以编辑信息');</script>");
+                    ((HyperLink)GridView1.Rows[i].Cells[5].Controls[0]).Enabled = false;
                     continue;
                 }
-                ((HyperLink)GridView1.Rows[i].Cells[5].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('信息修改.aspx?ID=" + ID + "','信息修改','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=300')");
+                //((HyperLink)GridView1.Rows[i].Cells[5].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('信息修改.aspx?ID=" + ID + "','信息修改','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=300')");
         }
     }
     //protected void Button1_Click(object sender, EventArgs e)
@@ -99,8 +100,8 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         if (Session["UserName"].ToString() != GridView1.Rows[e.RowIndex].Cells[2].Text.ToString() && Session["UserName"].ToString()!="admin")
-        {
-            HttpContext.Current.Response.Write("<script>alert('只有寄件人和管理员可以删除信息');</script>");
+        {//当前用户既不是发件人也不是管理员
+            HttpContext.Current.Response.Write("<script>alert('只有发件人和管理员可以删除信息');</script>");
             return;
         }
         NLogTest nlog = new NLogTest();

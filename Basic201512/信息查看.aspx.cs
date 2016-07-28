@@ -98,11 +98,6 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             }
             infoTitle.Enabled = false;
             infoContent.Enabled = false;
-            if(receive=="所有机构")
-            {
-                Label3.Visible = false;
-                DropDownList1.Visible = false;
-            }
             if(tbID.Text.Trim()!="")
             {
                 publicProject.Visible = true;
@@ -110,6 +105,17 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
                 btnBatchAdd.Visible = true;
                 btnchoic.Visible = true;
             }
+            if(receive=="所有机构")
+            {//群发信息不显示未读/已读标记
+                Label3.Visible = false;
+                DropDownList1.Visible = false;
+                if(Session["Session"].ToString()==ViewState["sender"].ToString())//除非是发件人才显示
+                {
+                    Label3.Visible = true;
+                    DropDownList1.Visible = true;
+                }
+            }
+            
         }
     }
 
