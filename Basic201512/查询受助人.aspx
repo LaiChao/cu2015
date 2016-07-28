@@ -97,7 +97,7 @@
             </div>
             <div id="divPrint" runat="server">
             <div class="form-group">
-                    <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowSorting="True" OnRowDataBound="GridView1_RowDataBound" Width="850px" AllowPaging="True"  OnRowDeleting="GridView1_RowDeleting" OnRowCreated="GridView1_RowCreated" HorizontalAlign="Center" >                     
+                    <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowSorting="True" OnRowDataBound="GridView1_RowDataBound" Width="850px" AllowPaging="True"  OnRowDeleting="GridView1_RowDeleting" OnRowCreated="GridView1_RowCreated" HorizontalAlign="Center" OnPageIndexChanging="GridView1_PageIndexChanging" >                     
                           <Columns>                            
                             <asp:BoundField DataField="benfactorFrom" HeaderText="受助人来源" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
 <HeaderStyle Height="30px"></HeaderStyle>

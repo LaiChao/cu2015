@@ -35,10 +35,18 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     {
         if (!Page.IsPostBack)//页面首次加载
         {
-            ViewState["init"] = "select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients order by recipientsID DESC";
+            ViewState["init"] = "select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients ";
             //ViewState["Query"] = str111;
+            if (Session["userRole"].ToString() == "1")//分会权限
+            {
+                Label3.Visible = false;
+                benfactorFrom.Visible = false;
+                ViewState["init"] = ViewState["init"].ToString() + "where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
+            }
+            ViewState["init"] = ViewState["init"].ToString() + "order by recipientsID DESC ";
             ViewState["now"] = ViewState["init"];
             databind(ViewState["init"].ToString());
+            
         }
     }
     public override void VerifyRenderingInServerForm(Control control)
@@ -65,7 +73,11 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         int flag2 = -1;
         StringBuilder queryString2 = new StringBuilder();
         queryString2.Append("select newtable.* from (select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients) newtable where 1=1 ");
-        if(txtID.Text.Trim()!="")
+        if (Session["userRole"].ToString() == "1")//分会权限
+        {
+            queryString2.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+        }
+        if (txtID.Text.Trim() != "")
         {
             flag2 = 1;
             queryString2.Append("and recipientsID in (select distinct recipientID from e_pr where projectID='" + txtID.Text.Trim() + "') ");
@@ -96,11 +108,13 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     }
     protected void btnQuery_Click(object sender, EventArgs e)
     {
-
-
         StringBuilder queryString = new StringBuilder();
         //        queryString.Append("select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients where 1=1 ");
         queryString.Append("select newtable.* from (select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients) newtable where 1=1 ");
+        if (Session["userRole"].ToString() == "1")//分会权限
+        {
+            queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+        }
 
         if (benfactorFrom.Text != "所有机构")
             queryString.Append("and benfactorFrom='" + benfactorFrom.Text.ToString() + "' ");
@@ -150,10 +164,6 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         ViewState["now"] = ViewState["Query"];
         databind(ViewState["Query"].ToString());
     }
-    //protected void btnReload_Click(object sender, EventArgs e)
-    //{
-    //    databind(ViewState["now"].ToString());
-    //}
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         int count = GridView1.Rows.Count;
@@ -226,7 +236,6 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         //        break;
         //}
     }
-
     protected void btnExp_Click(object sender, EventArgs e)
     {
         GridView1.Columns[9].Visible = false;
@@ -252,7 +261,6 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         else
             GridView1.Columns[2].Visible = false;
     }
-
     protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox4.Checked)
