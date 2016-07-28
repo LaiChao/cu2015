@@ -53,7 +53,7 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
             }
             else
             { //申请的项目
-                MySqlDataReader mysqlread2 = msq.getmysqlread("select count(*) from e_project where proschedule='申请'");
+                MySqlDataReader mysqlread2 = msq.getmysqlread("select count(*) from e_project where proschedule='申请中'");
                 while (mysqlread2.Read())
                     Label3.Text = "（" + mysqlread2.GetString(0) + "）";
                 mysqlread2.Close();

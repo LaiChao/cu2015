@@ -24,7 +24,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_project where proschedule='申请' or proschedule='执行' order by proschedule desc");//shenpi2<>'1' or shenpi2 is null and shenpi1<>'1' or shenpi1 is null
+    string str111 = string.Format("select * from e_project where proschedule='申请中' or proschedule='执行' order by proschedule desc");//shenpi2<>'1' or shenpi2 is null and shenpi1<>'1' or shenpi1 is null
     protected void Page_Load(object sender, EventArgs e)
     {
         //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
