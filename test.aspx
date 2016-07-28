@@ -51,17 +51,16 @@
                     <td id="frmTitle"  valign="top" nowrap="nowrap" class="auto-style1" >                   
                         
                         <img alt="标题" src="image/lefttop (1).jpg"/> 
-                        <div id="divUserInfo" class="divImag ">
+                        <div id="divUserInfo" class="divImag " runat="server">
                 你好！<%=inputName %>  | 
-                <%=signoutURL%></div>                     
-                         <a href="Default_new.aspx?id=1" target="carnoc" id="href1"> <li style="list-style-type:none;" class="MENU_LI" id='1'><img src="image/tool.png" width="37" height="37" border="0" alt="" /><span class="">基本工具</span></li></a>
-                         <a href="Default_new.aspx?id=2" target="carnoc" id="href2"> <li style="list-style-type:none;" class="MENU_LI" id="2"><img src="image/site.png" width="37" height="37" border="0" alt=""><span class="">用户与机构管理</span></li></a>
-                         <a href="Default_new.aspx?id=3" target="carnoc" id="href3"> <li style="list-style-type:none;" class="MENU_LI" id="3"><img src="image/manage.png" width="37" height="37" border="0" alt=""><span class="">项目管理</span></li></a>
-                         <a href="Default_new.aspx?id=4" target="carnoc" id="href4"> <li style="list-style-type:none;" class="MENU_LI" id="4"><img src="image/heart.png" width="37" height="37" border="0" alt=""><span class="">捐赠人管理</span></li></a>
-                         <a href="Default_new.aspx?id=5" target="carnoc" id="href5"> <li style="list-style-type:none;" class="MENU_LI" id="5"><img src="image/heart.png" width="37" height="37" border="0" alt=""><span class="">受助人管理</span></li></a>
-                         <a href="Default_new.aspx?id=6" target="carnoc" id="href6"><li style="list-style-type:none;" class="MENU_LI" id="7"><img src="image/setting.png" width="37" height="37" border="0" alt=""><span class="">日志管理</span></li></a>
-                         <a href="Default_new.aspx?id=7" target="carnoc" id="href7"> <li style="list-style-type:none;" class="MENU_LI" id="6"><img src="image/log.png" width="37" height="37" border="0" alt=""><span class="">统计查询</span></li></a>
-                        
+                <%=signoutURL%></div>                         
+                         <a href="Default_new.aspx?id=1" target="carnoc" id="href1" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id='1'><img src="image/tool.png" width="37" height="37" border="0" alt="" /><span class="">基本工具</span></li></a>                                       
+                         <a href="Default_new.aspx?id=2" target="carnoc" id="href2" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="2"><img src="image/site.png" width="37" height="37" border="0" alt=""><span class="">用户与机构管理</span></li></a>                    
+                         <a href="Default_new.aspx?id=3" target="carnoc" id="href3" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="3"><img src="image/manage.png" width="37" height="37" border="0" alt=""><span class="">项目管理</span></li></a>                     
+                         <a href="Default_new.aspx?id=4" target="carnoc" id="href4" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="4"><img src="image/heart.png" width="37" height="37" border="0" alt=""><span class="">捐赠人管理</span></li></a>                     
+                         <a href="Default_new.aspx?id=5" target="carnoc" id="href5" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="5"><img src="image/heart.png" width="37" height="37" border="0" alt=""><span class="">受助人管理</span></li></a>                
+                         <a href="Default_new.aspx?id=6" target="carnoc" id="href6" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="7"><img src="image/setting.png" width="37" height="37" border="0" alt=""><span class="">日志管理</span></li></a>                    
+                         <a href="Default_new.aspx?id=7" target="carnoc" id="href7" runat="server"> <li style="list-style-type:none;" class="MENU_LI" id="6"><img src="image/log.png" width="37" height="37" border="0" alt=""><span class="">统计查询</span></li></a>                           
                       <%--<iframe align="top" width=100% height="100%" src="menu.html"></iframe>--%>                      
                     </td>
                     <td width="30px" >

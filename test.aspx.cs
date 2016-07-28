@@ -51,6 +51,13 @@ public partial class test : System.Web.UI.Page
                 ViewState["strid"] = "1";
                 string str = ViewState["strid"].ToString();
             }
+            if (Session["userRole"].ToString() == "1")
+            {
+
+                //href2.Visible = false;
+                href6.Visible = false;
+                //href7.Visible = false;
+            }
             load();
         }
 
