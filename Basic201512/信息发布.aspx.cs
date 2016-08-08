@@ -65,11 +65,6 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         if (!IsPostBack)  // 页面首次加载
         {
             //初始化
-            int intRole = Convert.ToInt32(Session["userRole"].ToString());
-            if(intRole==1)
-            {
-                CheckBox1.Visible = false;
-            }
             publicProject.Visible = false;
             ViewState["myFilename"] = "";
             MySqlConnection mysqlcon = msq.getmysqlcon();
@@ -83,6 +78,14 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             DropDownCheckBoxList1.DataTextField = "benfactorFrom";
             DropDownCheckBoxList1.DataBind();
             DropDownCheckBoxList1.Visible = false;
+
+            if (Session["userRole"].ToString()== "1")
+            {//分会权限
+                CheckBox1.Visible = false;
+                DropDownList1.SelectedValue = "选择机构";
+                DropDownList1.Enabled = false;
+                DropDownCheckBoxList1.Visible = true;
+            }
             if(Request.QueryString.Count>0)//如果是从审批未通过跳转过来的
             {
                 infoTitle.Text = "项目：" + Request["title"].Trim() + " 审批未通过";
@@ -92,8 +95,6 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 //DropDownCheckBoxList1.SelectedValue = Request["branchName"].Trim();
                 DropDownCheckBoxList1.SelectedText = Request["branchName"].Trim();
             }
-
-
         }
 
     }
@@ -135,7 +136,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             return;
         }
         else
-            if (infoContent.Text.Length <= 0)
+        if (infoContent.Text.Length <= 0)
         {
           //  HttpContext.Current.Response.Write("<script>alert('信息内容不能为空');</script>");
             lblError.Text = "信息内容不能为空";
