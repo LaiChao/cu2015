@@ -138,7 +138,7 @@ public partial class test3 : System.Web.UI.Page
         else
         {
 
-         //   lblMsg.Text = "用户名或者密码不存在";
+           lblMsg.Text = "用户名或者密码错误";
             //   WriteLog("用户登录", inputID, System.Diagnostics.EventLogEntryType.FailureAudit);
             return;
         }
