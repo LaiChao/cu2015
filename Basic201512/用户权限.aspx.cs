@@ -135,9 +135,9 @@ public partial class Permission_用户权限 : System.Web.UI.Page
         if (e.CommandName == "resetPWD")
         {
             int index = int.Parse(e.CommandArgument.ToString());
-            string str115 = "update e_user set password='12345' where user='" + GridView1.DataKeys[index].Value.ToString() + "'";
+            string str115 = "update e_user set password='cs12345' where user='" + GridView1.DataKeys[index].Value.ToString() + "'";
             msq.getmysqlcom(str115);
-            HttpContext.Current.Response.Write("<script>alert('密码已重置为12345');</script>");
+            HttpContext.Current.Response.Write("<script>alert('密码已重置为cs12345');</script>");
             NLogTest nlog = new NLogTest();
             string s = "重置了用户：" + GridView1.DataKeys[index].Value.ToString() + "的密码";
             nlog.WriteLog(Session["UserName"].ToString(), s);
