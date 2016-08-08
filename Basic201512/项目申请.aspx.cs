@@ -199,6 +199,11 @@ namespace CL.Utility.Web.BasicData
         private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
         {
             //string strupdata = string.Format("insert into e_recipients_project (branchID,branchName,projectID,recipientID,recipientName) values ({0},'{1}','{2}',{3},'{4}')", ViewState["BranchID"].ToString(), ViewState["BranchName"], Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), ((Label)e.Item.FindControl("labID")).Text.Trim());            
+            if(Session["ProjectID"]==null)
+            {
+                labError.Text = "请先获取项目ID";
+                return;
+            }
             string strupdata = string.Format("insert into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
             msq.getmysqlcom(strupdata);
 
