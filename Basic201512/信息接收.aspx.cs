@@ -39,7 +39,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
             }
             else
             {//只显示 接收到的信息、群发信息 和 当前用户已发送信息
-                queryString.Append("and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='" + Session["UserName"].ToString() + "' or infoTo='所有机构' or infoFrom='" + Session["UserName"].ToString() + "') ");
+                queryString.Append("and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='" + Session["UserName"].ToString() + "' or infoTo='所有机构' or infoFrom='" + Session["benfactorFrom"].ToString() + "') ");
                 //"select * from e_info where infoTo='" + Session["UserName"].ToString() + "' or infoTo='所有机构' or infoFrom='" + Session["UserName"].ToString() + "' order by infoDATE DESC";
             }
             ViewState["init"] = queryString.ToString();
@@ -77,7 +77,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
                 ID = GridView1.DataKeys[i].Value.ToString();
                 //GridView1.Rows[i].Attributes.Add("onclick", "window.open('信息修改.aspx?ID=" + ID + "','信息修改','')");
                 //((HyperLink)GridView1.Rows[i].Cells[0].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('信息查看.aspx?ID=" + ID + "','信息查看','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300')");
-                if (Session["UserName"].ToString() != GridView1.Rows[i].Cells[2].Text.ToString())
+                if (Session["benfactorFrom"].ToString() != GridView1.Rows[i].Cells[2].Text.ToString())
                 {
                     //HttpContext.Current.Response.Write("<script>alert('只有发件人可以编辑信息');</script>");
                     ((HyperLink)GridView1.Rows[i].Cells[5].Controls[0]).Enabled = false;
@@ -99,7 +99,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
     //删除信息
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        if (Session["UserName"].ToString() != GridView1.Rows[e.RowIndex].Cells[2].Text.ToString() && Session["UserName"].ToString()!="admin")
+        if (Session["benfactorFrom"].ToString() != GridView1.Rows[e.RowIndex].Cells[2].Text.ToString() && Session["UserName"].ToString() != "admin")
         {//当前用户既不是发件人也不是管理员
             HttpContext.Current.Response.Write("<script>alert('只有发件人和管理员可以删除信息');</script>");
             return;
@@ -209,7 +209,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         }
         if(ddlType.SelectedValue=="发件箱")
         {
-            string strmailSent = ViewState["now"].ToString() + "and infoFrom='" + Session["UserName"].ToString() + "' ";
+            string strmailSent = ViewState["now"].ToString() + "and infoFrom='" + Session["benfactorFrom"].ToString() + "' ";
             databind(strmailSent);
         }
         if(ddlType.SelectedValue=="群发信息")
