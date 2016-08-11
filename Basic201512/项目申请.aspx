@@ -213,7 +213,7 @@
                     <td class="auto-style14">
                         ÏîÄ¿Ãû³Æ£º</td>
                     <td class="auto-style9" runat="server">
-                        <asp:TextBox runat="server" MaxLength="8" ID="projectID"  Width="250px" style="text-align: left" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="projectID"  Width="250px" style="text-align: left" CssClass="form-control"></asp:TextBox>
                     </td>
                     
                 </tr>
