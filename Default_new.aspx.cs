@@ -1175,7 +1175,7 @@ public partial class Default_new : System.Web.UI.Page
        }
        if (ViewState["strid"].ToString()== "7")
        {
-           Lbtitle.Text = "统计查询统计查询";
+           Lbtitle.Text = "统计查询";
            if (Session["userRole"].ToString() == "1")
            {
                string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod7' and USE_IDT='1' order by DISPLAY_ORDER");
