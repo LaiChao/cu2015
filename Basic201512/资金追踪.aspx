@@ -38,9 +38,6 @@
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-        .auto-style1 {
-            height: 30px;
-        }
         </style>
      <script language="javascript" type="text/javascript">
          function click()
@@ -55,7 +52,7 @@
     <div>
         <div>
             <h2>
-               <strong>资金追踪</strong> 
+                <strong>善款追踪</strong> 
             </h2>
         </div>
                            <div class="form-group">  

@@ -104,7 +104,7 @@
                 <asp:HyperLinkField DataNavigateUrlFormatString="修改捐赠人信息.aspx?ID={0}" DataNavigateUrlFields="benfactorID"  Text="编辑" >
                     <%--<ControlStyle Font-Underline="True" />--%>
                 </asp:HyperLinkField>
-                <asp:CommandField ShowDeleteButton="True" />
+                <asp:CommandField ShowDeleteButton="True" DeleteText="删除" />
 <%--                <asp:CommandField ShowSelectButton="True" SelectText="查看" Visible="False"/>--%>
                 <asp:BoundField DataField="benfactorID" HeaderText="捐赠人ID" Visible="False" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
 <HeaderStyle Height="30px" CssClass="mycenter"></HeaderStyle>

@@ -151,7 +151,7 @@
 
 <ItemStyle Height="30px"></ItemStyle>
                             </asp:HyperLinkField>
-                            <asp:CommandField ShowDeleteButton="True"  HeaderStyle-Height="30px" ItemStyle-Height="30px">
+                            <asp:CommandField ShowDeleteButton="True" DeleteText="删除" HeaderStyle-Height="30px" ItemStyle-Height="30px">
 <HeaderStyle Height="30px"></HeaderStyle>
 
 <ItemStyle Height="30px"></ItemStyle>

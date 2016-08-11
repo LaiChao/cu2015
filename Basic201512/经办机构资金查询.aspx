@@ -128,8 +128,7 @@
     <center>
         <div>
             <h2>
-              <strong>经办机构资金查询</strong>  
-            </h2>
+              <strong>经办机构财政状况</strong></h2>
         </div>
     <div>
         <asp:GridView ID="GridView1" runat="server" align="center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="600px" AllowPaging="true" >

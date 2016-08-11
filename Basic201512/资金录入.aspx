@@ -52,7 +52,7 @@
     
         <div>
             <h2>
-               <strong>资金录入</strong> 
+               <strong>捐赠金额录入与确认</strong> 
             </h2>
         </div>
                  
