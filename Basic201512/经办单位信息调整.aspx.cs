@@ -121,7 +121,7 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
         GridView1.Columns[5].Visible = false;
         GridView1.Columns[6].Visible = false;
         GridView1.HeaderRow.Cells[5].Visible = false;
-        GridView1.BottomPagerRow.Visible = false;
+        //GridView1.BottomPagerRow.Visible = false;
         tableTitle ="经办单位信息";
         lyf_OutputToExcel.expExcle(this, divPrint, tableTitle);
     }
