@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../../favicon.ico"/>
 
     <title>经办单位信息调整</title>
 
@@ -22,7 +22,7 @@
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="theme.css" rel="stylesheet">
+    <link href="theme.css" rel="stylesheet"/>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -78,12 +78,12 @@
                 <ItemStyle Height="30px" CssClass="mycenter" />
                 </asp:BoundField>                 
 <%--                <asp:CommandField HeaderText="选择" ShowSelectButton="True" />--%>
-                <asp:CommandField HeaderText="编辑" ShowEditButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px">
+                <asp:CommandField HeaderText="编辑" EditText="编辑" UpdateText="更新" CancelText="取消" ShowEditButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px">
                  <HeaderStyle Height="40px"  CssClass="mycenter" />
                 <ControlStyle Height="30px" Width="100px" />
                 <ItemStyle Height="30px" CssClass="mycenter" />
                 </asp:CommandField>
-                <asp:CommandField HeaderText="删除" ShowDeleteButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                <asp:CommandField HeaderText="删除" DeleteText="删除" ShowDeleteButton="True" runat="server" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
                  <HeaderStyle Height="40px"  CssClass="mycenter" />
                 <ControlStyle Height="30px" Width="100px" />
                 <ItemStyle Height="30px" CssClass="mycenter" />

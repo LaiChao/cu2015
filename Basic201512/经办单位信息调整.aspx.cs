@@ -66,11 +66,23 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
-                ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('你确认要删除：\"" + e.Row.Cells[0].Text + "\"吗?')");
-                if (Session["userRole"].ToString()=="1")
-                {//分会用户无权删除分会信息
+                ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('你确认要删除：\"" + e.Row.Cells[1].Text + "\"吗?')");
+                //分会、科室可以修改自己机构的信息
+                //科室、会长不能修改其他机构的信息
+                //管理员可以修改所有机构的信息
+                if (Session["userRole"].ToString()=="2" || Session["userRole"].ToString()=="3")
+                {//不能修改其他机构的信息
+                    if (e.Row.Cells[1].Text.Trim() != Session["benfactorFrom"].ToString())
+                    {
+                        ((LinkButton)e.Row.Cells[5].Controls[0]).Enabled = false;
+                        ((LinkButton)e.Row.Cells[5].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('不能修改其他机构的信息')");
+                    }
+                        
+                }
+                if (Session["userRole"].ToString()!="4")
+                {//只有管理员可以删除分会
                     ((LinkButton)e.Row.Cells[6].Controls[0]).Enabled = false;
-                    ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('分会用户无权删除')");
+                    ((LinkButton)e.Row.Cells[6].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('只有管理员可以删除分会')");
                 }
             }
         }
