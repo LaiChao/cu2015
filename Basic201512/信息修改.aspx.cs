@@ -207,7 +207,7 @@ public partial class Basic201512_信息修改 : System.Web.UI.Page
                 // 检查文件是否存在
                 if (File.Exists(FullPath))
                 {
-                    HttpContext.Current.Response.Write("<script>alert('文件已存在，请重新上传。');</script>");
+                    HttpContext.Current.Response.Write("<script>alert('重名文件已存在，请重新命名后再上传。');</script>");
                     return false;
                 }
                 else
@@ -250,26 +250,26 @@ public partial class Basic201512_信息修改 : System.Web.UI.Page
     //    //Response.Redirect(Request.Url.PathAndQuery.ToString());
     //    pageload();
     //}
-    // 删除文件类
-    public bool DeleteFile(string FullFileName)
-    {
-        // 保存文件的虚拟路径
-        string Url = "File\\" + FullFileName;
-        // 保存文件的物理路径
-        string FullPath = HttpContext.Current.Server.MapPath(Url);
-        // 去除文件的只读属性
-        File.SetAttributes(FullPath, FileAttributes.Normal);
-        // 初始化FileInfo类的实例，作为文件路径的包装
-        FileInfo FI = new FileInfo(FullPath);
-        // 判断文件是否存在
-        if (FI.Exists)
-        {
-            FI.Delete();
-            return true;
-        }
-        else
-            return false;
-    }
+    //// 删除文件类
+    //public bool DeleteFile(string FullFileName)
+    //{
+    //    // 保存文件的虚拟路径
+    //    string Url = "File\\" + FullFileName;
+    //    // 保存文件的物理路径
+    //    string FullPath = HttpContext.Current.Server.MapPath(Url);
+    //    // 去除文件的只读属性
+    //    File.SetAttributes(FullPath, FileAttributes.Normal);
+    //    // 初始化FileInfo类的实例，作为文件路径的包装
+    //    FileInfo FI = new FileInfo(FullPath);
+    //    // 判断文件是否存在
+    //    if (FI.Exists)
+    //    {
+    //        FI.Delete();
+    //        return true;
+    //    }
+    //    else
+    //        return false;
+    //}
 
     // “删除文件”按钮事件
     protected void Button5_Click(object sender, EventArgs e)
@@ -280,8 +280,8 @@ public partial class Basic201512_信息修改 : System.Web.UI.Page
             if (Session["SelectedFile"] != "")
             {
                 string FullFileName = Session["SelectedFile"].ToString();
-                if(DeleteFile(FullFileName))
-                {   
+                //if(DeleteFile(FullFileName))
+                //{   
                     string[] temps = ViewState["myFilename"].ToString().Split('|');
                     string newFilelist = "";
                     foreach(string s in temps)
@@ -298,7 +298,7 @@ public partial class Basic201512_信息修改 : System.Web.UI.Page
                     submit();
                     //Response.Redirect(Request.Url.PathAndQuery.ToString());
                     pageload();
-                }
+                //}
 
             }
         }

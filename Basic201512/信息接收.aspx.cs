@@ -49,7 +49,6 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
     }
     public void databind(string s)
     {
-
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), s);
         DataView dv = new DataView(ds.Tables [0]);
         GridView1.DataSource = dv;
@@ -107,22 +106,22 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         NLogTest nlog = new NLogTest();
         string sss = "删除了信息：" + ((HyperLink)GridView1.Rows[e.RowIndex].Cells[0].Controls[0]).Text.ToString();
         nlog.WriteLog(Session["UserName"].ToString(),sss);
-        //删除服务器里的附件
-        //读取附件列表并删除附件
-        string str113 = string.Format("select infoFile from e_info where infoID='{0}'", GridView1.DataKeys[e.RowIndex].Value.ToString());
-        mysqlconn msq11 = new mysqlconn();
-        MySqlDataReader mysqlread = msq11.getmysqlread(str113);
-        string Files = "";
-        string[] arrFiles;
-        while (mysqlread.Read())
-        {
-            Files = mysqlread.GetString(0);
-        }
-        arrFiles = Files.Split('|');
-        foreach(string s in arrFiles)
-        {
-            DeleteFile(s);
-        }
+        ////删除服务器里的附件
+        ////读取附件列表并删除附件
+        //string str113 = string.Format("select infoFile from e_info where infoID='{0}'", GridView1.DataKeys[e.RowIndex].Value.ToString());
+        //mysqlconn msq11 = new mysqlconn();
+        //MySqlDataReader mysqlread = msq11.getmysqlread(str113);
+        //string Files = "";
+        //string[] arrFiles;
+        //while (mysqlread.Read())
+        //{
+        //    Files = mysqlread.GetString(0);
+        //}
+        //arrFiles = Files.Split('|');
+        //foreach(string s in arrFiles)
+        //{
+        //    DeleteFile(s);
+        //}
         //删除记录
         string str112 = "delete from e_info where infoID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
         msq.getmysqlcom(str112);
@@ -151,23 +150,23 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         GridView1.PageIndex = e.NewPageIndex;
         databind(ViewState["now"].ToString());
     }
-    // 删除文件类
-    public void DeleteFile(string FullFileName)
-    {
-        // 保存文件的虚拟路径
-        string Url = "File\\" + FullFileName;
-        // 保存文件的物理路径
-        string FullPath = HttpContext.Current.Server.MapPath(Url);
-        // 去除文件的只读属性
-        File.SetAttributes(FullPath, FileAttributes.Normal);
-        // 初始化FileInfo类的实例，作为文件路径的包装
-        FileInfo FI = new FileInfo(FullPath);
-        // 判断文件是否存在
-        if (FI.Exists)
-        {
-            FI.Delete();
-        }
-    }
+    //// 删除文件类
+    //public void DeleteFile(string FullFileName)
+    //{
+    //    // 保存文件的虚拟路径
+    //    string Url = "File\\" + FullFileName;
+    //    // 保存文件的物理路径
+    //    string FullPath = HttpContext.Current.Server.MapPath(Url);
+    //    // 去除文件的只读属性
+    //    File.SetAttributes(FullPath, FileAttributes.Normal);
+    //    // 初始化FileInfo类的实例，作为文件路径的包装
+    //    FileInfo FI = new FileInfo(FullPath);
+    //    // 判断文件是否存在
+    //    if (FI.Exists)
+    //    {
+    //        FI.Delete();
+    //    }
+    //}
     protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
     {
         switch (e.Row.RowType)

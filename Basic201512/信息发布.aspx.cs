@@ -242,7 +242,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 if (File.Exists(FullPath))
                 {
                   //  HttpContext.Current.Response.Write("<script>alert('文件已存在，请重新上传。');</script>");
-                    lblError.Text = "文件已存在，请重新上传。";
+                    lblError.Text = "重名文件已存在，请重新命名后再上传。";
                     return;
                 }
                 else
