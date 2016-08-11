@@ -382,6 +382,9 @@ namespace CL.Utility.Web.BasicData
             string FillPersons = "";
             string FillGuanming = "";
 
+            string FillAddress = "";
+
+
             #region "家庭成员"
             string FillFamName1 = "";
             string FillFamRelation1 = "";
@@ -414,8 +417,15 @@ namespace CL.Utility.Web.BasicData
             string SaveDocPath = "";
             string SavePdfPath = "";
 
-            if(pid!="")
+
+            string strselect2 = string.Format("select address from e_handlingunit where benfactorFrom='{0}'", Lbbenfrom.Text.Trim());
+            MySqlDataReader mysqlreader2 = msq.getmysqlread(strselect2);
+            while(mysqlreader2.Read())
             {
+                FillAddress = mysqlreader2.GetString("address");
+            }
+            if(pid!="")
+            {//生成多个文件并打包
                 string strselect = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where recipientsPIdcard='{0}'", pid);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strselect);
                 while (mysqlreader.Read())
@@ -589,6 +599,11 @@ namespace CL.Utility.Web.BasicData
                 }
 
                 wiw.WriteIntoDocument("comefromMark", FillComefrom);
+
+                wiw.WriteIntoDocument("branchNameMark", Lbbenfrom.Text.Trim());
+                wiw.WriteIntoDocument("addressMark", FillAddress);
+                wiw.WriteIntoDocument("contactMark", Lbtelname.Text.Trim());
+                wiw.WriteIntoDocument("TELMark", Lbtelladd.Text.Trim());
             }
 
             wiw.Save_CloseDocument(SaveDocPath);
