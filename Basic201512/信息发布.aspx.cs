@@ -181,6 +181,10 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 }
                 ExecuteSqlTran(SQLStringList);
                 lblError.Text = "信息发布成功";
+                //重置
+                infoTitle.Text = infoContent.Text = "";
+                ViewState["myFilename"] = "";
+                pageload();
             }
         }
     }
