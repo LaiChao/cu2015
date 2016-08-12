@@ -35,11 +35,22 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select * from e_project where 1=1 ");
             if (Session["userRole"].ToString() == "1")
+            {
                 queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+                Label6.Visible = false;
+                ddlBranch.Visible = false;
+            }
             ViewState["init"] = queryString.ToString();//初始查询语句
             ViewState["now"] = ViewState["init"].ToString();
 
             databind();
+            MySqlConnection mysqlcon = msq.getmysqlcon();
+            DataSet ds = MySqlHelper.ExecuteDataset(mysqlcon, "select benfactorFrom from e_handlingunit");
+            DataView dv = new DataView(ds.Tables[0]);
+            ddlBranch.AppendDataBoundItems = true;
+            ddlBranch.DataSource = dv;
+            ddlBranch.DataTextField = "benfactorFrom";
+            ddlBranch.DataBind();
             CheckBox0.Checked = CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = true;
         }
     }
@@ -208,6 +219,22 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         ViewState["now"] = queryString.ToString();
         databind();
     }
+    protected void Btselect2_Click(object sender, EventArgs e)
+    {//多条件搜索
+        StringBuilder queryString = new StringBuilder();
+        queryString.Append(ViewState["init"].ToString());
+        if (ddlBranch.SelectedValue.ToString() != "全部")//分会不显示
+            queryString.Append("and benfactorFrom='" + ddlBranch.SelectedValue.ToString() + "' ");
+        if (ddlState.SelectedValue.ToString() != "全部")
+            queryString.Append("and proschedule='" + ddlState.SelectedValue.ToString() + "' ");
+        if (ddlType.SelectedValue.ToString() != "全部")
+            queryString.Append("and projectType='" + ddlType.SelectedValue.ToString() + "' ");
+        if (recipientsType.SelectedValue.ToString() != "全部")
+            queryString.Append("and projectLei='" + recipientsType.SelectedValue.ToString() + "'");
+        ViewState["now"] = queryString.ToString();
+        databind();
+
+    }
     protected void CheckBox0_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox0.Checked)
@@ -285,4 +312,5 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
         putout.Visible = true;
     }
+
 }

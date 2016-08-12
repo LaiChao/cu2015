@@ -18,7 +18,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -50,13 +50,47 @@
               <strong>项目信息管理</strong>  
             </h2>
         </div>
-                                <div class="form-group">
+        <div class="form-group">
+            <asp:Label ID="Label6" runat="server" Text="执行单位："></asp:Label>
+            <asp:DropDownList ID="ddlBranch" runat="server">
+                <asp:ListItem>全部</asp:ListItem>
+            </asp:DropDownList>
+            &nbsp;<asp:Label ID="Label5" runat="server" Text="执行状态："></asp:Label>
+            <asp:DropDownList ID="ddlState" runat="server">
+                <asp:ListItem>全部</asp:ListItem>
+                <asp:ListItem>申请中</asp:ListItem>
+                <asp:ListItem>未通过</asp:ListItem>
+                <asp:ListItem>科室审批通过</asp:ListItem>
+                <asp:ListItem>会长审批通过</asp:ListItem>
+                <asp:ListItem>结项</asp:ListItem>
+                <asp:ListItem>归档</asp:ListItem>
+            </asp:DropDownList>
+            &nbsp;<asp:Label ID="Label7" runat="server" Text="项目类型："></asp:Label>
+            <asp:DropDownList ID="ddlType" runat="server" >
+                                <asp:ListItem>全部</asp:ListItem>
+                                <asp:ListItem>资金</asp:ListItem>
+                                <asp:ListItem>物品</asp:ListItem>
+            </asp:DropDownList>
+            &nbsp;<asp:Label ID="Label8" runat="server" Text="受助人类别："></asp:Label>
+            <asp:DropDownList ID="recipientsType" runat="server" >
+                                <asp:ListItem>全部</asp:ListItem>
+                                <asp:ListItem>助学</asp:ListItem>
+                                <asp:ListItem>助医</asp:ListItem>
+                                <asp:ListItem>助残</asp:ListItem>
+                                <asp:ListItem>助老</asp:ListItem>
+                                <asp:ListItem>助困</asp:ListItem>
+                                <asp:ListItem>双拥</asp:ListItem>
+                                <asp:ListItem>重特大灾难</asp:ListItem>
+            </asp:DropDownList>
+        &nbsp;<asp:Button ID="Btselect2" runat="server" OnClick="Btselect2_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+        </div>
+        <div class="form-group">
                                 <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
                                 
                                 <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
                                  <asp:Label ID="Label2" runat="server" Text="项目名称："></asp:Label>
                                 <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="确认" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+                                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
                                 <asp:Label ID="Label3" runat="server" Text="起"></asp:Label>
                     <asp:TextBox ID="illtimebe" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>
                                 <asp:Label ID="Label4" runat="server" Text="止"></asp:Label>
