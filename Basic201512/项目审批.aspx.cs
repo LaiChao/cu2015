@@ -33,7 +33,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         //dgHeader.DataBind();
       //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         StringBuilder queryString = new StringBuilder();
-        queryString.Append("select * from e_project where (proschedule='申请中' or proschedule='执行') ");
+        queryString.Append("select * from e_project where (proschedule='申请中' or proschedule='科室审批通过') ");
         if(Session["userRole"].ToString()=="1")
             queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
         queryString.Append("order by proschedule desc");

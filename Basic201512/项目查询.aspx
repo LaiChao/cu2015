@@ -86,7 +86,9 @@
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-                <asp:TemplateColumn HeaderText="项目ID">
+                <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
+                </asp:HyperLinkColumn>
+<%--                <asp:TemplateColumn HeaderText="项目ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'>
@@ -97,7 +99,7 @@
                             >
                         </asp:TextBox>
                     </EditItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
                 <asp:TemplateColumn HeaderText="项目名称">
                     <ItemStyle CssClass="name"></ItemStyle>
                     <ItemTemplate>

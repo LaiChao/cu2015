@@ -119,7 +119,7 @@
                                 oolTip="启用标示，点中为启用"></asp:CheckBox></font>
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>
-                <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目详细信息.aspx?projectID={0}" ></asp:HyperLinkColumn>       
+                <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" ></asp:HyperLinkColumn>       
                  <asp:TemplateColumn Visible="true" HeaderText="项目名称">
                     <ItemTemplate>
                         <asp:Label ID="labproname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectName") %>'>

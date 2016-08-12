@@ -25,23 +25,22 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_project ");
+    //string str111 = string.Format("select * from e_project ");
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-        //DataView dv1 = new DataView(ds1.Tables[0]);
-        //dgHeader.DataSource = dv1;
-        //dgHeader.DataBind();
-      //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
-           putout.Visible = false;
-           DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-           DataView ddv = new DataView(dds.Tables[0]);
-           dgData.DataSource = dds;
-           dgData.DataBind();
-           CheckBox0.Checked = CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = true;
+            putout.Visible = false;
+            StringBuilder queryString = new StringBuilder();
+            queryString.Append("select * from e_project where 1=1 ");
+            if (Session["userRole"].ToString() == "1")
+                queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+            ViewState["init"] = queryString.ToString();//初始查询语句
+            ViewState["now"] = ViewState["init"].ToString();
+
+            databind();
+            CheckBox0.Checked = CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = true;
         }
     }
     public override void VerifyRenderingInServerForm(Control control)
@@ -50,20 +49,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     }
     public void databind()
     {
-        //   string proID = Session["proID"].ToString();
-        // string strplancap = LbproID.Text;
-        // Lbearn.Text=strplancap;
-        StringBuilder strproID = new StringBuilder();
-        strproID.Append("SELECT * FROM  e_project where 1=1 ");
-        if (TbselectID.Text.Trim() != "")
-            strproID.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
-        if (TbselectName.Text.Trim() != "")
-            strproID.Append("or projectName='" + TbselectName.Text.Trim());
-        //string strproID = string.Format("SELECT * FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID.ToString());
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
-       // dgData.DataKeys = "projectID";
         dgData.DataKeyField =  "projectID" ;
         dgData.DataBind();
     }
@@ -113,7 +101,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
     {
-         //databind();
          DateTime dt = DateTime.Now;
          string prodatatimefinsh = dt.ToShortDateString().ToString();
          string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
@@ -125,15 +112,12 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
          NLogTest nlog = new NLogTest();
          string sss = "归档：" + tempID;
          nlog.WriteLog(Session["UserName"].ToString(), sss);
-        //dgData.EditItemIndex = e.Item.ItemIndex;
-        //databind();
     }
 
     protected void dgData_ItemCommand(object source, DataGridCommandEventArgs e)
     {
         if(e.CommandName=="Edit1")
         {
-            //databind();
             DateTime dt = DateTime.Now;
             string prodatatimefinsh = dt.ToShortDateString().ToString();
             string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
@@ -145,20 +129,11 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             NLogTest nlog = new NLogTest();
             string sss = "结项：" + tempID;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
-            //dgData.EditItemIndex = e.Item.ItemIndex;
-            //databind();
         }
     }
 
     private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
     {
-        //DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
-        //DataView ddv = new DataView(dds.Tables[0]);
-        //dgData.DataSource = dds;
-        //   dgData.DataBind();
-        // databind();
-
-
         string strupdata = string.Format("update e_project set projectID='{0}',projectName='{1}',benfactorFrom='{2}',proschedule='{3}',telphoneName='{4}',projectDir='{5}' where projectID='{0}'",
             ((TextBox)e.Item.FindControl("txtEditID")).Text.Trim(),
             ((TextBox)e.Item.FindControl("txtEditName")).Text.Trim(),
@@ -172,10 +147,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
             NLogTest nlog = new NLogTest();
             string sss = "修改项目信息情况：" + ((TextBox)e.Item.FindControl("txtEditName")).Text.Trim();
-            nlog.WriteLog(Session["UserName"].ToString(), sss);
-
-
-        
+            nlog.WriteLog(Session["UserName"].ToString(), sss);       
     }
 
     private void dgData_ItemDataBound(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
@@ -210,13 +182,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
    
     protected void Btselect_Click(object sender, EventArgs e)
-    {
-        string str = string.Format("select * from e_project where projectID='{0}'or projectName='{1}'",TbselectID.Text,TbselectName.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str);
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
-        
+    {//搜索
+        string str = string.Format("and (projectID='{0}'or projectName='{1}')",TbselectID.Text,TbselectName.Text);       
+        StringBuilder queryString = new StringBuilder();
+        queryString.Append(ViewState["init"].ToString());
+        queryString.Append(str);
+        ViewState["now"] = queryString.ToString();
+        databind();
     }
     protected void btout_Click(object sender, EventArgs e)
     {
@@ -228,12 +200,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         lyf_OutputToExcel.expExcle(this,divPrint,tableTitle);
     }
     protected void Btselectout_Click(object sender, EventArgs e)
-    {
-        string stringpromonth = string.Format("SELECT * FROM e_project WHERE prodatatime between '{0}' and '{1}'", illtimebe.Text, illtimeend.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), stringpromonth);
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
+    {//搜索
+        string stringpromonth = string.Format("and (prodatatime between '{0}' and '{1}')", illtimebe.Text, illtimeend.Text);
+        StringBuilder queryString = new StringBuilder();
+        queryString.Append(ViewState["init"].ToString());
+        queryString.Append(stringpromonth);
+        ViewState["now"] = queryString.ToString();
+        databind();
     }
     protected void CheckBox0_CheckedChanged(object sender, EventArgs e)
     {
@@ -306,8 +279,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                     ((ImageButton)e.Item.Cells[8].FindControl("btnEdit")).Attributes.Add("onclick", "return confirm('确认归档吗?');");
                 }
             }
-            
-
         }
     }
     protected void btputout_Click(object sender, EventArgs e)
