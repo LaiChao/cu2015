@@ -20,7 +20,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -127,9 +127,6 @@
         <style>
         tr{ line-height:30px;height:30px;}
         .td_c1{ width:20px;}
-            .auto-style7 {
-                height: 30px;
-            }
             .auto-style9 {
                 width: 293px;
                 height: 30px;
@@ -298,6 +295,7 @@
                                 <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Btselect0" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Height="34px" Width="85px" />
                                 &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
+                        &nbsp;<asp:Button ID="btnBatchAdd" runat="server" OnClick="btnBatchAdd_Click" Text="批量添加受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
                         </div>
                     </td>                   
                 </tr>

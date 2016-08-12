@@ -261,6 +261,7 @@ namespace CL.Utility.Web.BasicData
                 labError.Text = "已生成项目ID";
                 btntijiao.Visible = true;
                 btnBatch.Visible = true;
+                btnBatchAdd.Visible = true;
                 btnGetId.Visible = false;
             }
             else
@@ -443,6 +444,11 @@ namespace CL.Utility.Web.BasicData
             Response.Redirect("批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
         }
 
+        protected void btnBatchAdd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+        }
+
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlType.SelectedValue == "物品")
@@ -455,5 +461,6 @@ namespace CL.Utility.Web.BasicData
                 txtPLAN.Enabled = true;
             }
         }
-    }
+
+}
 }
