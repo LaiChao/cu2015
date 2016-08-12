@@ -103,23 +103,20 @@ namespace CL.Utility.Web.BasicData
                 }
                 BindData();
                 //默认隐藏全部按钮
-                btchecky1.Visible = false;
-                btchecky2.Visible = false;
-                btcheckn.Visible = false;
-                if(Session["userRole"].ToString()=="2")//协会
+                btchecky1.Visible = false;//会长审批通过
+                btchecky2.Visible = false;//科室审批通过
+                btcheckn.Visible = false;//审批未通过
+                if (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")//捐助科
                 {
-                    if(shenpi2flag==0)//初始状态
+                    if (strState == "申请中")//初始状态——申请中
                         btchecky2.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
                 if(Session["userRole"].ToString()=="3")//会长
                 {
-                    if ((shenpi2flag == 1) && (strState == "申请中"))
+                    if (strState == "科室审批通过")
                         btchecky1.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
-                if(strState!="申请中")
-                {//达到最终状态，隐藏全部按钮
-                    btchecky1.Visible = btchecky2.Visible = btcheckn.Visible = false;
-                }
+
                 if (strType == "资金")
                     dgData1.Visible = false;
                 else if (strType == "物品")
@@ -255,7 +252,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi1='1',proschedule='执行',prodatatimeshen1='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
+            string strinsert = string.Format("update e_project set shenpi1='1',proschedule='会长审批通过',prodatatimeshen1='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {
@@ -276,7 +273,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi2='1',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);        
+            string strinsert = string.Format("update e_project set shenpi2='1',prodatatimeshen='{1}',proschedule='科室审批通过' where projectID='{0}'", LbproID.Text, prodatatimeshen);        
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {                

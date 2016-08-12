@@ -43,8 +43,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
            dgData.DataBind();
            CheckBox0.Checked = CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = true;
         }
-        
-
     }
     public override void VerifyRenderingInServerForm(Control control)
     {
@@ -222,7 +220,8 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     }
     protected void btout_Click(object sender, EventArgs e)
     {
-        dgData.Columns[0].Visible = false;
+        dgData.Columns[7].Visible = false;
+        dgData.Columns[8].Visible = false;
         DateTime dt = DateTime.Now;
         tableTitle =illtimebe.Text + "至"+illtimeend.Text+"项目信息";
         string dttime=dt.ToShortDateString().ToString();        
@@ -239,59 +238,76 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     protected void CheckBox0_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox0.Checked)
-            dgData.Columns[1].Visible = true;
+            dgData.Columns[0].Visible = true;
         else
-            dgData.Columns[1].Visible = false;
+            dgData.Columns[0].Visible = false;
     }
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox1.Checked)
-            dgData.Columns[2].Visible = true;
+            dgData.Columns[1].Visible = true;
         else
-            dgData.Columns[2].Visible = false;
+            dgData.Columns[1].Visible = false;
     }
     protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox2.Checked)
-            dgData.Columns[3].Visible = true;
+            dgData.Columns[2].Visible = true;
         else
-            dgData.Columns[3].Visible = false;
+            dgData.Columns[2].Visible = false;
     }
     protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox3.Checked)
-            dgData.Columns[4].Visible = true;
+            dgData.Columns[3].Visible = true;
         else
-            dgData.Columns[4].Visible = false;
+            dgData.Columns[3].Visible = false;
     }
     protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox4.Checked)
-            dgData.Columns[5].Visible = true;
+            dgData.Columns[4].Visible = true;
         else
-            dgData.Columns[5].Visible = false;
+            dgData.Columns[4].Visible = false;
     }
     protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox5.Checked)
-            dgData.Columns[6].Visible = true;
+            dgData.Columns[5].Visible = true;
         else
-            dgData.Columns[6].Visible = false;
+            dgData.Columns[5].Visible = false;
     }
     protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
     {
         if (CheckBox6.Checked)
-            dgData.Columns[7].Visible = true;
+            dgData.Columns[6].Visible = true;
         else
-            dgData.Columns[7].Visible = false;
+            dgData.Columns[6].Visible = false;
     }
     protected void dgData_ItemDataBound1(object sender, DataGridItemEventArgs e)
     {
         if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
         {
-            e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
-            ((ImageButton)e.Item.Cells[0].FindControl("btnEdit")).Attributes.Add("onclick", "return confirm('确认归档吗?');");
-            ((ImageButton)e.Item.Cells[8].FindControl("btnEdit1")).Attributes.Add("onclick", "return confirm('确认结项吗?');");
+            e.Item.Cells[0].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
+            //初始设置全部项目无法结项、归档
+            ((ImageButton)e.Item.Cells[7].FindControl("btnEdit1")).Enabled = false;//无法结项
+            ((ImageButton)e.Item.Cells[8].FindControl("btnEdit")).Enabled = false;//无法归档
+            if (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")
+            {
+                if (((Label)(e.Item.Cells[3].FindControl("labtimer"))).Text.ToString() == "会长审批通过")
+                {//((Label)(e.Item.Cells[3].Controls[0])).Text.ToString()
+                    
+                    ((ImageButton)e.Item.Cells[7].FindControl("btnEdit1")).Enabled = true;//结项
+                    ((ImageButton)e.Item.Cells[7].FindControl("btnEdit1")).Attributes.Add("onclick", "return confirm('确认结项吗?');");
+                }
+                if (((Label)(e.Item.Cells[3].FindControl("labtimer"))).Text.ToString() == "结项")
+                {
+                    ((ImageButton)e.Item.Cells[8].FindControl("btnEdit")).Enabled = true;//归档
+                    ((ImageButton)e.Item.Cells[8].FindControl("btnEdit")).Attributes.Add("onclick", "return confirm('确认归档吗?');");
+                }
+            }
+            
+
         }
     }
     protected void btputout_Click(object sender, EventArgs e)

@@ -86,21 +86,6 @@
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-                <asp:TemplateColumn HeaderText="归档">
-                    <ItemStyle CssClass="option"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="归档" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
-                        </asp:ImageButton>
-                        <asp:ImageButton ID="btnDelete" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
-                            CommandName="Delete"></asp:ImageButton>
-                    </ItemTemplate>
-                    <EditItemTemplate>                        
-                            <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
-                                ImageUrl="../CommUI/Images/icon-floppy.gif"></asp:ImageButton>
-                            <asp:ImageButton ID="btnCancel" runat="server" ToolTip="放弃修改" CommandName="Cancel"
-                                ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="项目ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
@@ -211,6 +196,22 @@
                                 ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
                     </EditItemTemplate>--%>
                 </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="归档">
+                    <ItemStyle CssClass="option"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="归档" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        </asp:ImageButton>
+                        <asp:ImageButton ID="btnDelete" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
+                            CommandName="Delete"></asp:ImageButton>
+                    </ItemTemplate>
+                    <EditItemTemplate>                        
+                            <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
+                                ImageUrl="../CommUI/Images/icon-floppy.gif"></asp:ImageButton>
+                            <asp:ImageButton ID="btnCancel" runat="server" ToolTip="放弃修改" CommandName="Cancel"
+                                ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
