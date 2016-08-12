@@ -37,7 +37,11 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             if (!Page.IsPostBack)
             {
                 loadPage();
+                //初始化到期日期
+                DateTime dt = DateTime.Now;
+                ViewState["startDate"] = dt.ToString();
                 deadline.Text = DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToLongDateString().ToString();
+                ViewState["deadline"] = DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToString();
                 BindData();
                
             }
@@ -75,6 +79,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
         private void loadPage()
         {
             trSex.Visible = false;
+            trStartDate.Visible = false;
             trAge.Visible = false;
             trContact.Visible = true;
             trMoneyboxNo.Visible = false;
@@ -151,7 +156,24 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
 
         protected void ddlAge_SelectedIndexChanged(object sender, EventArgs e)
         {
-            deadline.Text = DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToLongDateString().ToString();
+            //当开始日期为空时，默认从今天开始
+            if (tbStartDate.Text.Trim() == "")
+            {
+                deadline.Text = DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToLongDateString().ToString();
+                ViewState["deadline"] = DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToString();
+            }
+            else//当填写了开始日期
+            {
+                deadline.Text = (Convert.ToDateTime(ViewState["startDate"].ToString())).AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToLongDateString().ToString();
+                ViewState["deadline"] = (Convert.ToDateTime(ViewState["startDate"].ToString())).AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToString();
+            }
+
+        }
+        protected void tbStartDate_TextChanged(object sender, EventArgs e)
+        {
+            ViewState["startDate"] = tbStartDate.Text.ToString() + " 00:00:00";
+            deadline.Text = (Convert.ToDateTime(ViewState["startDate"].ToString())).AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToLongDateString().ToString();
+            ViewState["deadline"] = (Convert.ToDateTime(ViewState["startDate"].ToString())).AddYears(Convert.ToInt16(ddlAge.SelectedValue)).ToString();
         }
 
         protected void benfactorType_SelectedIndexChanged(object sender, EventArgs e)
@@ -159,111 +181,95 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             if(benfactorType.SelectedValue=="1")
             {
                 Lb11.Text = "公益组织名称：";
-                trSex.Visible = false;
-                trAge.Visible = false;
-                trContact.Visible = true;
-                trMoneyboxNo.Visible = false;
-                trDeadline.Visible = false;
-                trRange.Visible = false;
-                trRemark.Visible = false;
                 //定向
-                tbDirect.Visible = true;
                 trRcpType.Visible = false;
                 trDesc.Visible = false;
                 rdbDirect.Checked = rdbUndirect.Checked = false;
                 //冠名
-                tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
-                //冠名分期周期提醒
-                trRemind.Visible = false;
-                return;
             }
             if(benfactorType.SelectedValue=="2")
             {
                 Lb11.Text = "单位名称：";
-                trSex.Visible = false;
-                trAge.Visible = false;
-                trContact.Visible = true;
-                trMoneyboxNo.Visible = false;
-                trDeadline.Visible = false;
-                trRange.Visible = false;
-                trRemark.Visible = false;
 
-                tbDirect.Visible = true;
                 trRcpType.Visible = false;
                 trDesc.Visible = false;
                 rdbDirect.Checked = rdbUndirect.Checked = false;
 
-                tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
-                //冠名分期周期提醒
-                trRemind.Visible = false;
-                return;
             }
             if(benfactorType.SelectedValue=="3")
             {
                 Lb11.Text = "姓名：";
+                //性别
                 trSex.Visible = true;
-                trAge.Visible = false;
+                //不显示联系人
                 trContact.Visible = false;
-                trMoneyboxNo.Visible = false;
-                trDeadline.Visible = false;
-                trRange.Visible = false;
-                trRemark.Visible = false;
 
-                tbDirect.Visible = true;
                 trRcpType.Visible = false;
                 trDesc.Visible = false;
                 rdbDirect.Checked = rdbUndirect.Checked = false;
 
-                tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
-                //冠名分期周期提醒
-                trRemind.Visible = false;
-                return;
             }
+            else
+            {
+                trSex.Visible = false;
+                trContact.Visible = true;
+            }
+
             if(benfactorType.SelectedValue=="4")
             {
                 Lb11.Text = "募捐箱名称：";
-                trSex.Visible = false;
-                trAge.Visible = false;
-                trContact.Visible = true;
+                //募捐箱编号
                 trMoneyboxNo.Visible = true;
-                trDeadline.Visible = false;
-                trRange.Visible = false;
-                trRemark.Visible = false;
 
-                tbDirect.Visible = true;
                 trRcpType.Visible = false;
                 trDesc.Visible = false;
                 rdbDirect.Checked = rdbUndirect.Checked = false;
 
-                tbNaming.Visible = true;
                 trFundName.Visible = false;
                 rdbNaming.Checked = rdbUnNaming.Checked = false;
-                //冠名分期周期提醒
-                trRemind.Visible = false;
-                return;
             }
+            else
+            {
+                trMoneyboxNo.Visible = false;
+            }
+
             if(benfactorType.SelectedValue=="5")
             {
                 Lb11.Text = "冠名慈善捐助金名称：";
-                trSex.Visible = false;
+                //开始日期
+                trStartDate.Visible = true;
+                //冠名年限
                 trAge.Visible = true;
-                trContact.Visible = true;
-                trMoneyboxNo.Visible = false;
+                //冠名截止日期
                 trDeadline.Visible = true;
+                //使用范围
                 trRange.Visible = true;
+                //冠名提醒
                 trRemark.Visible = true;
+                //冠名捐助金不能再定向或者冠名了
                 tbDirect.Visible = false;
                 tbNaming.Visible = false;
                 //冠名分期周期提醒
                 trRemind.Visible = true;
-                return;
             }
+            else
+            {
+                trStartDate.Visible = false;
+                trAge.Visible = false;
+                trDeadline.Visible = false;
+                trRange.Visible = false;
+                trRemark.Visible = false;
+                tbDirect.Visible = true;
+                tbNaming.Visible = true;
+                trRemind.Visible = false;
+            }
+
         }
 
         protected void Btinput_Click(object sender, EventArgs e)
@@ -362,7 +368,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 }
                 if (benfactorType.SelectedValue == "5")//冠名捐助金
                 {
-                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,namingAge,deadline,bftRange,bftRemark,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}','{11}',{12})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), ddlAge.Text.ToString(), DateTime.Now.AddYears(Convert.ToInt16(ddlAge.SelectedValue)), txtRange.Text.ToString(), txtRemark.Text.ToString(), "0");
+                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,namingAge,deadline,bftRange,bftRemark,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}','{11}',{12})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), ddlAge.Text.ToString(), ViewState["deadline"].ToString(), txtRange.Text.ToString(), txtRemark.Text.ToString(), "0");
                     msq.getmysqlcom(strgongyi);
                     if (ddlCycle.SelectedValue!="0")
                     {
@@ -398,5 +404,6 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             
         }
 
-    }
+
+}
 //}

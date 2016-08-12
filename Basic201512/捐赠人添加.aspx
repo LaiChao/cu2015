@@ -29,6 +29,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
     <style type="text/css">
         tr { padding: 0; margin: 0; border: 0; }
         /*td { text-align: center; }*/
@@ -147,11 +148,6 @@
                 margin-left: 40px;
                 vertical-align:middle;
             }
-            .auto-style10 {
-                width: 150px;
-                height: 50px;
-                text-align: right;
-            }
             </style>
                                                         
              <div class="form-group">
@@ -219,6 +215,16 @@
                         </td>
                     <td></td>
                 </tr>
+                <tr id="trStartDate" runat="server">
+                    <td class="auto-style8">
+                        <asp:Label ID="Label4" runat="server" Text="开始日期："></asp:Label>
+                    &nbsp;&nbsp;
+                    </td>
+                    <td class="auto-style9">
+                        <asp:TextBox ID="tbStartDate" runat="server" onClick="WdatePicker()" CssClass="form-control" AutoPostBack="True" OnTextChanged="tbStartDate_TextChanged"></asp:TextBox>
+                    </td>
+                    <td></td>
+                </tr>
                 <tr id="trAge" runat="server">
                         <td class="auto-style8">
                         <asp:Label ID="lb12" runat="server" Text="年限："></asp:Label>
@@ -232,6 +238,8 @@
                             <asp:ListItem>4</asp:ListItem>
                             <asp:ListItem>5</asp:ListItem>
                         </asp:DropDownList>
+                        
+                            <asp:Label ID="Label5" runat="server" Text="年"></asp:Label>
                         
                         </td>       
                     <td></td>                 
