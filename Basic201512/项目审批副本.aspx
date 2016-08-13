@@ -7,7 +7,7 @@
     <meta content="C#" name="CODE_LANGUAGE">
     <meta content="JavaScript" name="vs_defaultClientScript">
     <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
@@ -20,7 +20,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -243,6 +243,7 @@
                     <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
                     <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
                     <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
+                    <asp:Button ID="btnReapply" runat="server" Text="重新申请" CssClass=" btn btn-danger " OnClick="btnReapply_Click" />
                             <br />
                             选择模板：
                             <asp:DropDownList ID="DropDownList1" runat="server">

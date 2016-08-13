@@ -7,7 +7,7 @@
     <meta content="C#" name="CODE_LANGUAGE">
     <meta content="JavaScript" name="vs_defaultClientScript">
     <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
@@ -275,6 +275,7 @@
                         </td>
                         <td class="auto-style9">
                             <asp:Button ID="btntijiao" runat="server" OnClick="btntijiao_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+                            <asp:Button ID="btnReapply" runat="server" Text="重新提交申请" Visible="False"  CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnReapply_Click"/>
                         </td>                                         
                     </tr>                   
                                       

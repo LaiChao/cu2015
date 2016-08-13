@@ -91,9 +91,14 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 infoTitle.Text = "项目：" + Request["title"].Trim() + " 审批未通过";
                 //DropDownList1.SelectedValue = Request["branchName"].Trim();
                 DropDownList1.SelectedValue = "选择机构";
+                DropDownList1.Enabled = false;
                 DropDownCheckBoxList1.Visible = true;
                 //DropDownCheckBoxList1.SelectedValue = Request["branchName"].Trim();
                 DropDownCheckBoxList1.SelectedText = Request["branchName"].Trim();
+                //DropDownCheckBoxList1.SelectedItem.Value = Request["branchName"].Trim();
+                //DropDownCheckBoxList1.SelectedValueAndText = Request["branchName"].Trim();
+                //DropDownCheckBoxList1.SelectedItem.Text = Request["branchName"].Trim(); 
+                DropDownCheckBoxList1.Enabled = false;
             }
         }
 
@@ -142,6 +147,11 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             lblError.Text = "信息内容不能为空";
             return;
         }
+        if(DropDownCheckBoxList1.SelectedText.ToString().Trim()=="")
+        {
+            lblError.Text = "请选择收件人";
+            return;
+        }
         else
         //if(infoTitle.Text.Length>0 && infoContent.Text.Length>0)
         {
@@ -173,7 +183,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             {//事务
                 List<string> SQLStringList = new List<string>();
                 string insertString = "";
-                string[] recs = DropDownCheckBoxList1.SelectedValue.ToString().Split(',');
+                string[] recs = DropDownCheckBoxList1.SelectedText.ToString().Split(',');
                 foreach(string s in recs)
                 {
                     insertString = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead,projectID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", infoTitle.Text, infoContent.Text, DateTime.Now.ToString(), ViewState["myFilename"].ToString(), Session["benfactorFrom"].ToString(), s, zerostr, tbID.Text.Trim());

@@ -81,23 +81,21 @@ namespace CL.Utility.Web.BasicData
             }
             if (!Page.IsPostBack)
             {
-                int shenpi2flag = -1;
                 string strState = "";
                 string strType = "";
-                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,shenpi1,shenpi2,projectLei,proschedule,projectType from e_project where projectID='{0}'", nameNow);
+                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType from e_project where projectID='{0}'", nameNow);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
                 while (mysqlreader.Read())
                 {
-                    LbproID.Text = mysqlreader.GetString(0);
-                    Lbproname.Text = mysqlreader.GetString(1);
-                    projectDir.Text = mysqlreader.GetString(2);
-                    Lbbenfrom.Text = mysqlreader.GetString(3);
-                    Lbplan.Text = mysqlreader.GetString(4);
-                    Lbrestnow.Text = mysqlreader.GetString(5);
-                    Lbtelname.Text = mysqlreader.GetString(6);
-                    Lbtelladd.Text = mysqlreader.GetString(7);
-                    lblLeibie.Text = mysqlreader.GetString(10);
-                    shenpi2flag = mysqlreader.GetInt16("shenpi2");
+                    LbproID.Text = mysqlreader.GetString("projectID");
+                    Lbproname.Text = mysqlreader.GetString("projectName");
+                    projectDir.Text = mysqlreader.GetString("projectDir");
+                    Lbbenfrom.Text = mysqlreader.GetString("benfactorFrom");
+                    Lbplan.Text = mysqlreader.GetString("palnMoney");
+                    Lbrestnow.Text = mysqlreader.GetString("recipientsNow");
+                    Lbtelname.Text = mysqlreader.GetString("telphoneName");
+                    Lbtelladd.Text = mysqlreader.GetString("telphoneADD");
+                    lblLeibie.Text = mysqlreader.GetString("projectLei");
                     strState = mysqlreader.GetString("proschedule");
                     strType = mysqlreader.GetString("projectType");
                 }
@@ -106,6 +104,7 @@ namespace CL.Utility.Web.BasicData
                 btchecky1.Visible = false;//会长审批通过
                 btchecky2.Visible = false;//科室审批通过
                 btcheckn.Visible = false;//审批未通过
+                btnReapply.Visible = false;//未通过时，显示重新申请按钮
                 if (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")//捐助科
                 {
                     if (strState == "申请中")//初始状态——申请中
@@ -116,7 +115,11 @@ namespace CL.Utility.Web.BasicData
                     if (strState == "科室审批通过")
                         btchecky1.Visible = btcheckn.Visible = true;//显示通过、未通过按钮
                 }
-
+                if (strState=="未通过")
+                {
+                    if (Lbbenfrom.Text.Trim() == Session["benfactorFrom"].ToString())//当前用户为执行单位
+                        btnReapply.Visible = true;
+                }
                 if (strType == "资金")
                     dgData1.Visible = false;
                 else if (strType == "物品")
@@ -252,7 +255,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi1='1',proschedule='会长审批通过',prodatatimeshen1='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
+            string strinsert = string.Format("update e_project set proschedule='会长审批通过',prodatatimeshen1='{1}' where projectID='{0}'", LbproID.Text,prodatatimeshen);         
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {
@@ -273,7 +276,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi2='1',prodatatimeshen='{1}',proschedule='科室审批通过' where projectID='{0}'", LbproID.Text, prodatatimeshen);        
+            string strinsert = string.Format("update e_project set prodatatimeshen='{1}',proschedule='科室审批通过' where projectID='{0}'", LbproID.Text, prodatatimeshen);        
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {                
@@ -290,7 +293,7 @@ namespace CL.Utility.Web.BasicData
         {
             DateTime dt = DateTime.Now;
             string prodatatimeshen = dt.ToShortDateString().ToString();
-            string strinsert = string.Format("update e_project set shenpi2='-1',shenpi1='-1',proschedule='未通过',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text, prodatatimeshen);
+            string strinsert = string.Format("update e_project set proschedule='未通过',prodatatimeshen='{1}' where projectID='{0}'", LbproID.Text, prodatatimeshen);
             int reslut = msq.getmysqlcom(strinsert);
             if (reslut > 0)
             {
@@ -766,6 +769,10 @@ namespace CL.Utility.Web.BasicData
                 ((ImageButton)e.Item.Cells[0].FindControl("btnDelete1")).Attributes.Add("onclick", "return confirm('确定要删除这个受助人吗?');");
             }
 
+        }
+        protected void btnReapply_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("项目申请.aspx?id=" + LbproID.Text.Trim());
         }
 }
     /// <summary>

@@ -70,6 +70,17 @@ namespace CL.Utility.Web.BasicData
                 databind(ViewState["now"].ToString());
 
                 lblBranch.Text = Session["benfactorFrom"].ToString();
+                if(Request.QueryString.Count>0)//如果是从审批未通过、重新申请跳转过来的
+                {
+                    LbproID.Text = Request["id"].Trim(); //项目ID
+                    btnReapply.Visible = true;//重新提交按钮
+                    btnBatch.Visible = true;
+                    btnBatchAdd.Visible = true;
+                    btnGetId.Visible = false;
+                    Session["ProjectID"] = LbproID.Text.ToString();
+
+                    reload();//载入项目信息
+                }
             }          
         }
         private void databind(string s)
@@ -79,6 +90,40 @@ namespace CL.Utility.Web.BasicData
             DataView ddv = new DataView(dds.Tables[0]);
             dgData.DataSource = dds;
             dgData.DataBind();
+        }
+        private void reload()
+        {
+            string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType from e_project where projectID='{0}'", Session["ProjectID"].ToString());
+            MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
+            while (mysqlreader.Read())
+            {
+                //项目类型
+                ddlType.SelectedValue = mysqlreader.GetString("projectType");
+                if (ddlType.SelectedValue == "物品")
+                {
+                    txtPLAN.Text = "0";
+                    txtPLAN.Enabled = false;
+                }
+                if (ddlType.SelectedValue == "资金")
+                {
+                    txtPLAN.Enabled = true;
+                }
+                //受助人类别
+                recipientsType.Text = mysqlreader.GetString("projectLei");
+                //项目名称
+                projectID.Text = mysqlreader.GetString("projectName");
+                //项目描述
+                projectDir.Text = mysqlreader.GetString("projectDir");
+                //计划使用资金
+                txtPLAN.Text = mysqlreader.GetString("palnMoney");
+                //受助人情况
+                txtDIR.Text = mysqlreader.GetString("recipientsNow");
+                //联系人
+                txttel.Text = mysqlreader.GetString("telphoneName");
+                //电话
+                txtteladd.Text = mysqlreader.GetString("telphoneADD");
+            }
+
         }
 
         #region Web 窗体设计器生成的代码
@@ -397,7 +442,7 @@ namespace CL.Utility.Web.BasicData
             {
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,shenpi1,shenpi2,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','0','0','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
+                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','0','0','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
@@ -411,6 +456,58 @@ namespace CL.Utility.Web.BasicData
 
             NLogTest nlog = new NLogTest();
             string sss = "添加项目：" + projectID.Text;
+            nlog.WriteLog(Session["UserName"].ToString(), sss);
+
+
+        }
+        #endregion
+
+        #region "重新提交申请"
+        protected void btnReapply_Click(object sender, EventArgs e)
+        {
+            if (recipientsType.SelectedValue == "请选择")
+            {
+                labError.Text = "请选择项目类别";
+                return;
+            }
+            if (projectID.Text.Trim().Length <= 0)
+            {
+                labError.Text = "项目名称不能为空";
+                return;
+            }
+            if (projectDir.Text.Trim().Length <= 0)
+            {
+                labError.Text = "项目描述不能为空";
+                return;
+            }
+            if (txtPLAN.Text.Trim().Length <= 0)
+            {
+                labError.Text = "项目预算不能为空";
+                return;
+            }
+            if (txtDIR.Text.Trim().Length <= 0)
+            {
+                labError.Text = "受助人描述不能为空";
+                return;
+            }
+            else
+            {
+                DateTime dt = DateTime.Now;
+                string prodatatime = dt.ToShortDateString().ToString();
+                string str11 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',telphoneName='{5}',telphoneADD='{6}',prodatatime='{7}',proschedule='申请中',projectLei='{8}',needMoney={3},projectType='{9}' where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), ddlType.SelectedValue.ToString());
+                int res = msq.getmysqlcom(str11);
+                if (res > 0)
+                {
+                    labError.Text = "重新申请项目成功";
+                }
+                else
+                {
+                    labError.Text = "重新申请项目失败";
+                }
+            }
+
+            NLogTest nlog = new NLogTest();
+            string sss = "重新申请项目：" + projectID.Text;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
 
 
@@ -461,6 +558,7 @@ namespace CL.Utility.Web.BasicData
                 txtPLAN.Enabled = true;
             }
         }
+
 
 }
 }
