@@ -27,7 +27,7 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
             }
             else
             {
-                infoQuery.Append("and infoTo='" + Session["UserName"].ToString() + "' or infoTo='所有机构'");
+                infoQuery.Append("and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='所有机构')");
             }
             MySqlDataReader mysqlread = msq.getmysqlread(infoQuery.ToString());
             while (mysqlread.Read())
