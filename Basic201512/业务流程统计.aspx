@@ -93,6 +93,19 @@
                                 ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>
+                <%--<asp:TemplateColumn HeaderText="启用">
+                    <ItemStyle CssClass="idt"></ItemStyle>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="ckState" runat="server" ToolTip="启用标示，点中为启用" CssClass="txtbox"
+                            Checked=''
+                            Enabled="False"></asp:CheckBox>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <font face="宋体">
+                            <asp:CheckBox ID="ckEditState" runat="server" CssClass="txtbox" Checked=''
+                                oolTip="启用标示，点中为启用"></asp:CheckBox></font>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>--%>
                 <asp:TemplateColumn HeaderText="项目ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
@@ -138,19 +151,6 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <%--<asp:TemplateColumn HeaderText="启用">
-                    <ItemStyle CssClass="idt"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:CheckBox ID="ckState" runat="server" ToolTip="启用标示，点中为启用" CssClass="txtbox"
-                            Checked=''
-                            Enabled="False"></asp:CheckBox>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <font face="宋体">
-                            <asp:CheckBox ID="ckEditState" runat="server" CssClass="txtbox" Checked=''
-                                oolTip="启用标示，点中为启用"></asp:CheckBox></font>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>--%>
                 <asp:TemplateColumn Visible="false" HeaderText="联系人">
                     <ItemStyle CssClass="index"></ItemStyle>
                     <ItemTemplate>
@@ -235,6 +235,25 @@
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
+                  <asp:TemplateColumn HeaderText="结项时间" HeaderStyle-Font-Names="true">
+                    <ItemStyle CssClass="des1"></ItemStyle>               
+                     <HeaderStyle Font-Names="true"></HeaderStyle>
+
+                    <ItemStyle CssClass="des1"></ItemStyle>
+                    
+                    <ItemTemplate>
+                        <asp:Label ID="labtimefinsh" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txttimefinsh" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateColumn>
+                   
+              
+            
+             
                     <asp:TemplateColumn HeaderText="执行用时（天）" HeaderStyle-Font-Names="true">
                      <HeaderStyle Font-Names="true"></HeaderStyle>
                     <ItemStyle CssClass="des1"></ItemStyle>               
@@ -265,21 +284,6 @@
                         <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.jiexiangspend") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                </asp:TemplateColumn>
-                  <asp:TemplateColumn HeaderText="结项时间" HeaderStyle-Font-Names="true">
-                    <ItemStyle CssClass="des1"></ItemStyle>               
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
-                    <ItemTemplate>
-                        <asp:Label ID="labtimefinsh" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txttimefinsh" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateColumn>
                    
               

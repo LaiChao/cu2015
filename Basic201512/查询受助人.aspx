@@ -156,6 +156,7 @@
 
 <ItemStyle Height="30px"></ItemStyle>
                               </asp:CommandField>
+                              <asp:HyperLinkField DataNavigateUrlFields="recipientsID" DataNavigateUrlFormatString="业务流程统计.aspx?ID={0}" DataTextField="recipientsName" HeaderText="查看所在项目" />
                         </Columns>
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"  />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" CssClass="text-center" Height="30px" />

@@ -24,12 +24,12 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimeguid,prodatatimeshen1) zhixingspend,datediff(prodatatimefinsh,prodatatimeguid) jiexiangspend from e_project ");
+    string str111 = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimefinsh,prodatatimeshen1) zhixingspend,datediff(prodatatimeguid,prodatatimefinsh) jiexiangspend from e_project where 1=1 ");
 
-    protected const string bandtime = "prodatatime";
-    protected const string bandtimeshen = "prodatatimeshen";
-    protected const string bandtimeshen1 = "prodatatimeshen1";
-    protected const string bandtimefinsh = "prodatatimefinsh";
+    protected const string bandtime = "prodatatime";//项目申请时间
+    protected const string bandtimeshen = "prodatatimeshen";//科室审批时间
+    protected const string bandtimeshen1 = "prodatatimeshen1";//会长审批时间
+    protected const string bandtimefinsh = "prodatatimefinsh";//结项时间
     public static string tableTitle = "";
 
     protected void Page_Load(object sender, EventArgs e)
@@ -41,6 +41,11 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
       //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
+            //判断是否从受助人信息管理页面跳转过来
+            if(Request.QueryString.Count>0)
+            {//and projectID in (select projectID from e_pr where recipientID=4247);
+                str111 = str111 + "and projectID in (select projectID from e_pr where recipientID="+Request["id"].Trim()+") ";
+            }
            string strhand = string.Format("select benfactorFrom from e_handlingunit");
            DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),strhand);
            DataView dv = new DataView(ds.Tables[0]);
