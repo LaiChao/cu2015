@@ -225,11 +225,13 @@ namespace CL.Utility.Web.BasicData
             dgData.DataSource = dds;
             //dgData.DataKeyField = "recipientsID";
             dgData.DataBind();
+
             string capid = string.Format("select * from e_moneytrack where projectID='{0}'",LbproID.Text);
             DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), capid);
             DataView dv = new DataView(ds.Tables[0]);
             dgData0.DataSource = ds;
             dgData0.DataBind();
+
             string strItem = string.Format("select * from e_item where projectID='{0}'", LbproID.Text);
             DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strItem);
             DataView dv1 = new DataView(ds.Tables[0]);
@@ -308,9 +310,9 @@ namespace CL.Utility.Web.BasicData
         {
             ViewState["model"] = DropDownList1.SelectedValue.ToString();//选择的模板
             //遍历dgData
-            if (Lbproname.Text.Trim() != "")
+            if (Lbproname.Text.Trim() != "")//项目名称非空
             {
-                if(ViewState["model"].ToString()=="附1北京市朝阳区慈善协会救助项目申请表")
+                if(ViewState["model"].ToString()=="附1北京市朝阳区慈善协会救助项目申请表")//多受助人，多文件压缩包
                 {
                     MemoryStream ms = new MemoryStream();
                     byte[] buffer = null;
@@ -328,13 +330,14 @@ namespace CL.Utility.Web.BasicData
                         ms.Position = 0;
                         ms.Read(buffer, 0, buffer.Length);
                     }
+                    //下载
                     Response.AddHeader("content-disposition", "attachment;filename=Test.zip");
                     Response.BinaryWrite(buffer);
                     Response.Flush();
                     Response.End();
                 }
                 else
-                {
+                {//单受助人，单文件
                     Toprint(ViewState["model"].ToString(), "", -1);
                 }
 
@@ -360,11 +363,11 @@ namespace CL.Utility.Web.BasicData
             WriteIntoWord wiw = new WriteIntoWord();
             string FilePath = Server.MapPath("template\\" + strFileName + ".dot");//模板路径
  
-            string FillProjectName = Lbproname.Text.Trim();
-            string FillPlanMoney = Lbplan.Text.Trim();
+            string FillProjectName = Lbproname.Text.Trim();//项目名称
+            string FillPlanMoney = Lbplan.Text.Trim();//计划使用资金
             double RMB = Convert.ToDouble(FillPlanMoney);
             RMBCapitalization numClass = new RMBCapitalization();
-            string FillRMB = numClass.RMBAmount(RMB);
+            string FillRMB = numClass.RMBAmount(RMB);//大写资金
 
             string FillName = "";
             string FillSex = "";
@@ -381,8 +384,9 @@ namespace CL.Utility.Web.BasicData
             string FillComefrom = "";
             string FillPersons = "";
             string FillGuanming = "";
+            string FillPidCard = "";
 
-            string FillAddress = "";
+            string FillAddress = "";//经办单位地址
 
 
             #region "家庭成员"
@@ -414,8 +418,8 @@ namespace CL.Utility.Web.BasicData
             double sumIncome = 0;
             double incomePerPerson = 0;
 
-            string SaveDocPath = "";
-            string SavePdfPath = "";
+            string SaveDocPath = "";//word保存路径
+            string SavePdfPath = "";//pdf保存路径
 
 
             string strselect2 = string.Format("select address from e_handlingunit where benfactorFrom='{0}'", Lbbenfrom.Text.Trim());
@@ -425,22 +429,23 @@ namespace CL.Utility.Web.BasicData
                 FillAddress = mysqlreader2.GetString("address");
             }
             if(pid!="")
-            {//生成多个文件并打包
-                string strselect = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where recipientsPIdcard='{0}'", pid);
+            {//多受助人，生成多个文件并打包
+                string strselect = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where recipientsID={0}", pid);//受助人ID recipientsPIdcard='{0}'
                 MySqlDataReader mysqlreader = msq.getmysqlread(strselect);
                 while (mysqlreader.Read())
                 {
-                    FillName = mysqlreader.GetString("recipientsName");
-                    FillSex = mysqlreader.GetString("sex");
-                    FillAge = mysqlreader.GetString("newAge");
-                    FillRecipientsADD = mysqlreader.GetString("recipientsADD");
-                    FillWorkplace = mysqlreader.GetString("workplace");
-                    FillIncomlowID = mysqlreader.GetString("incomlowID");
-                    FillRecipientsADDnow = mysqlreader.GetString("recipientsADDnow");
-                    FillTelphoneADD = mysqlreader.GetString("telphoneADD");
-                    FillArrIncome = mysqlreader.GetString("arrIncome");
-                    FillCanjiID = mysqlreader.GetString("canID");
-                    FillOfficerID = mysqlreader.GetString("officerID");
+                    FillName = mysqlreader.GetString("recipientsName");//受助人名称
+                    FillSex = mysqlreader.GetString("sex");//性别
+                    FillAge = mysqlreader.GetString("newAge");//年龄
+                    FillRecipientsADD = mysqlreader.GetString("recipientsADD");//籍贯
+                    FillWorkplace = mysqlreader.GetString("workplace");//工作地点
+                    FillIncomlowID = mysqlreader.GetString("incomlowID");//低保低收入号
+                    FillRecipientsADDnow = mysqlreader.GetString("recipientsADDnow");//现居住地
+                    FillTelphoneADD = mysqlreader.GetString("telphoneADD");//手机号
+                    FillArrIncome = mysqlreader.GetString("arrIncome");//平均收入
+                    FillCanjiID = mysqlreader.GetString("canID");//助残ID
+                    FillOfficerID = mysqlreader.GetString("officerID");//军官证号
+                    FillPidCard = mysqlreader.GetString("recipientsPIdcard");//身份证号
                     #region "家庭成员"
                     FillFamName1 = mysqlreader.GetString("famName1");
                     FillFamRelation1 = mysqlreader.GetString("famRelation1");
@@ -467,10 +472,10 @@ namespace CL.Utility.Web.BasicData
                     FillFamIncome4 = mysqlreader.GetString("famIncome4");
                     #endregion
                 }
-                string selectRequest = string.Format("select request from e_pr where recipientID=(select recipientsID from e_recipients where recipientsPIdcard='{0}')",pid);
+                string selectRequest = string.Format("select request from e_pr where recipientID={0}", pid);//受助人ID (select recipientsID from e_recipients where recipientsPIdcard='{0}')
                 mysqlreader = msq.getmysqlread(selectRequest);
                 while (mysqlreader.Read())
-                    FillRequest = mysqlreader.GetString("request");
+                    FillRequest = mysqlreader.GetString("request");//救助申请
 
 
                 int numPerson = 1;
@@ -511,34 +516,33 @@ namespace CL.Utility.Web.BasicData
             {
                 SaveDocPath = Server.MapPath("template\\" + strFileName + ".doc");
                 SavePdfPath = Server.MapPath("template\\" + strFileName + ".pdf");
-
             }
 
 
 
 
-            wiw.OpenDocument(FilePath);
-            if(strFileName=="附1北京市朝阳区慈善协会救助项目申请表")
+            wiw.OpenDocument(FilePath);//打开模板
+            if(strFileName=="附1北京市朝阳区慈善协会救助项目申请表")//多受助人模板
             {
-                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());
-                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
-                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
-                wiw.WriteIntoDocument("pidMark", pid);
-                wiw.WriteIntoDocument("nameMark", FillName);
-                wiw.WriteIntoDocument("sexMark", FillSex);
-                wiw.WriteIntoDocument("ageMark", FillAge);
-                wiw.WriteIntoDocument("recipientsADDMark", FillRecipientsADD);
-                wiw.WriteIntoDocument("workplaceMark", FillWorkplace);
-                wiw.WriteIntoDocument("incomlowIDMark", FillIncomlowID);
-                wiw.WriteIntoDocument("recipientsADDnowMark", FillRecipientsADDnow);
-                wiw.WriteIntoDocument("telphoneADDMark", FillTelphoneADD);
-                wiw.WriteIntoDocument("arrIncomeMark", FillArrIncome);
-                wiw.WriteIntoDocument("RMBMark", FillRMB);
-                wiw.WriteIntoDocument("generalIncomeMark", sumIncome.ToString());
-                wiw.WriteIntoDocument("incomePerPersonMark", incomePerPerson.ToString());
-                wiw.WriteIntoDocument("canjiIDMark", FillCanjiID);
-                wiw.WriteIntoDocument("officerIDMark", FillOfficerID);
-                wiw.WriteIntoDocument("requestMark", FillRequest);
+                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());//项目类别
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);//项目名称
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);//救助金额
+                wiw.WriteIntoDocument("pidMark", FillPidCard);//身份证号
+                wiw.WriteIntoDocument("nameMark", FillName);//姓名
+                wiw.WriteIntoDocument("sexMark", FillSex);//性别
+                wiw.WriteIntoDocument("ageMark", FillAge);//年龄
+                wiw.WriteIntoDocument("recipientsADDMark", FillRecipientsADD);//户籍所在地
+                wiw.WriteIntoDocument("workplaceMark", FillWorkplace);//工作单位
+                wiw.WriteIntoDocument("incomlowIDMark", FillIncomlowID);//低收入/低保号
+                wiw.WriteIntoDocument("recipientsADDnowMark", FillRecipientsADDnow);//现家庭地址
+                wiw.WriteIntoDocument("telphoneADDMark", FillTelphoneADD);//联系电话
+                wiw.WriteIntoDocument("arrIncomeMark", FillArrIncome);//月收入
+                wiw.WriteIntoDocument("RMBMark", FillRMB);//大写金额
+                wiw.WriteIntoDocument("generalIncomeMark", sumIncome.ToString());//家庭月总收入
+                wiw.WriteIntoDocument("incomePerPersonMark", incomePerPerson.ToString());//家庭人均月收入
+                wiw.WriteIntoDocument("canjiIDMark", FillCanjiID);//残疾人证号
+                wiw.WriteIntoDocument("officerIDMark", FillOfficerID);//军官证号
+                wiw.WriteIntoDocument("requestMark", FillRequest);//救助申请
 
                 #region "家庭成员"
                 wiw.WriteIntoDocument("famName1Mark", FillFamName1);
@@ -568,47 +572,47 @@ namespace CL.Utility.Web.BasicData
             }
             if (strFileName == "附2冠名慈善捐助金使用项目书")
             {
-                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
-                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
-                wiw.WriteIntoDocument("RMBMark", FillRMB);
-                wiw.WriteIntoDocument("conditionMark", Lbrestnow.Text.ToString());
-                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);//救助项目
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);//救助金额
+                wiw.WriteIntoDocument("RMBMark", FillRMB);//大写金额
+                wiw.WriteIntoDocument("conditionMark", Lbrestnow.Text.ToString());//受助方情况
+                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());//救助方案
                 for (int i = 0; i < dgData.Items.Count;i++ )
                 {
                     FillPersons = FillPersons + ((Label)(dgData.Items[i].FindControl("labID"))).Text.ToString() + "；";
                 }
-                wiw.WriteIntoDocument("personsMark", FillPersons);
-                wiw.WriteIntoDocument("numMark", dgData.Items.Count.ToString());
+                wiw.WriteIntoDocument("personsMark", FillPersons);//救助对象
+                wiw.WriteIntoDocument("numMark", dgData.Items.Count.ToString());//救助人数
                 for (int i = 0; i < dgData0.Items.Count; i++)
                 {
                     FillGuanming = FillGuanming + ((Label)(dgData0.Items[i].FindControl("labname"))).Text.ToString() + "；";
                 }
-                wiw.WriteIntoDocument("guanmingMark", FillGuanming);
+                wiw.WriteIntoDocument("guanmingMark", FillGuanming);//冠名捐助金名称
 
             }
             if (strFileName == "附3北京市朝阳区慈善协会救助项目书")
             {
-                wiw.WriteIntoDocument("projectNameMark", FillProjectName);
-                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());
-                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);
-                wiw.WriteIntoDocument("RMBMark", FillRMB);
-                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());
+                wiw.WriteIntoDocument("projectNameMark", FillProjectName);//项目名称
+                wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());//项目类别
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);//救助金额
+                wiw.WriteIntoDocument("RMBMark", FillRMB);//大写金额
+                wiw.WriteIntoDocument("descMark", projectDir.Text.ToString());//项目方案
                 for (int i = 0; i < dgData0.Items.Count; i++)
                 {
                     FillComefrom = FillComefrom + (i + 1).ToString() + "、" + ((Label)(dgData0.Items[i].FindControl("labname"))).Text.ToString() + "：￥" + ((Label)(dgData0.Items[i].FindControl("labguanming"))).Text.ToString() + "；";
                 }
 
-                wiw.WriteIntoDocument("comefromMark", FillComefrom);
+                wiw.WriteIntoDocument("comefromMark", FillComefrom);//资金来源
 
-                wiw.WriteIntoDocument("branchNameMark", Lbbenfrom.Text.Trim());
-                wiw.WriteIntoDocument("addressMark", FillAddress);
-                wiw.WriteIntoDocument("contactMark", Lbtelname.Text.Trim());
-                wiw.WriteIntoDocument("TELMark", Lbtelladd.Text.Trim());
+                wiw.WriteIntoDocument("branchNameMark", Lbbenfrom.Text.Trim());//项目实施单位名称
+                wiw.WriteIntoDocument("addressMark", FillAddress);//地址
+                wiw.WriteIntoDocument("contactMark", Lbtelname.Text.Trim());//联系人
+                wiw.WriteIntoDocument("TELMark", Lbtelladd.Text.Trim());//电话
             }
 
             wiw.Save_CloseDocument(SaveDocPath);
             WordToPdf(SaveDocPath, SavePdfPath);
-            if(pid=="")
+            if(pid=="")//单文件直接下载
                 DownLoadFile("template\\" + strFileName + ".pdf");
         }
         public class WriteIntoWord
