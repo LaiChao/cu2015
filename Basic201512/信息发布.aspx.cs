@@ -147,7 +147,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             lblError.Text = "信息内容不能为空";
             return;
         }
-        if(DropDownCheckBoxList1.SelectedText.ToString().Trim()=="")
+        if((DropDownList1.SelectedValue.ToString().Trim()=="选择机构")&&(DropDownCheckBoxList1.SelectedText.ToString().Trim()==""))
         {
             lblError.Text = "请选择收件人";
             return;
