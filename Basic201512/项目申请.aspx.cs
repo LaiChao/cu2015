@@ -249,7 +249,7 @@ namespace CL.Utility.Web.BasicData
                 labError.Text = "请先获取项目ID";
                 return;
             }
-            string strupdata = string.Format("insert into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
+            string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
             msq.getmysqlcom(strupdata);
 
             dgData.EditItemIndex = -1;

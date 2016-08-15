@@ -148,7 +148,7 @@ public partial class Basic201512_批量选择受助人 : System.Web.UI.Page
                 {
                     strRcptId = mysqlread.GetString(0);
                 }
-                string str113 = string.Format("insert into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", lblID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
+                string str113 = string.Format("insert ignore into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", lblID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
                 SQLStringList.Add(str113);
             }
             ExecuteSqlTran(SQLStringList);

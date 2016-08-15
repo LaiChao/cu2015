@@ -214,7 +214,7 @@ public partial class Basic201512_批量添加受助人 : System.Web.UI.Page
                         strRcptId = mysqlread.GetString(0);
                     }
 
-                    string str114 = string.Format("insert into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", tbID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
+                    string str114 = string.Format("insert ignore into e_pr (projectID,recipientID,request) values ({0},{1},'{2}')", tbID.Text.Trim(), strRcptId, dr[i]["救助申请"].ToString());
                     SQLStringList1.Add(str114);
 
                 }
