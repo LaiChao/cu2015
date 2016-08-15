@@ -47,20 +47,19 @@
     </div>
     <div class="form-group">
         <p>
-        <asp:Label ID="Label1" runat="server" Text="来源"></asp:Label>
-        <asp:DropDownList ID="ddlBranchName" runat="server" CssClass="btn btn-default dropdown-toggle">
-            <asp:ListItem>所有机构</asp:ListItem>
-        </asp:DropDownList>
-        <asp:Label ID="Label2" runat="server" Text="类型"></asp:Label>
-        <asp:DropDownList ID="ddlBenfactorType" runat="server" CssClass="btn btn-default dropdown-toggle">
-            <asp:ListItem Value="0">未指定</asp:ListItem>
-            
-            <asp:ListItem Value="3">个人</asp:ListItem>
-            <asp:ListItem Value="2">单位</asp:ListItem>
-            <asp:ListItem Value="1">公益组织</asp:ListItem>
-            <asp:ListItem Value="4">募捐箱</asp:ListItem>
-            <asp:ListItem Value="5">冠名慈善捐助金</asp:ListItem>
-        </asp:DropDownList>
+            <asp:Label ID="Label1" runat="server" Text="来源"></asp:Label>
+            <asp:DropDownList ID="ddlBranchName" runat="server" CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>所有机构</asp:ListItem>
+            </asp:DropDownList>
+            <asp:Label ID="Label2" runat="server" Text="类型"></asp:Label>
+            <asp:DropDownList ID="ddlBenfactorType" runat="server" CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem Value="0">未指定</asp:ListItem>
+                <asp:ListItem Value="3">个人</asp:ListItem>
+                <asp:ListItem Value="2">单位</asp:ListItem>
+                <asp:ListItem Value="1">公益组织</asp:ListItem>
+                <asp:ListItem Value="4">募捐箱</asp:ListItem>
+                <asp:ListItem Value="5">冠名慈善捐助金</asp:ListItem>
+            </asp:DropDownList>
             <asp:Label ID="Label4" runat="server" Text="捐助人ID"></asp:Label>
             <asp:TextBox ID="tbID" runat="server" Width="121px" CssClass="form-control"></asp:TextBox>
             <asp:Label ID="Label3" runat="server" Text="名称"></asp:Label>
@@ -69,10 +68,23 @@
             <asp:TextBox ID="tbTEL" runat="server" Width="118px" CssClass="form-control"></asp:TextBox>
             <asp:Label ID="Label6" runat="server" Text="余额"></asp:Label>
             <asp:TextBox ID="tbRemain" runat="server" Width="39px" CssClass="form-control"></asp:TextBox>
+            <asp:Label ID="Label7" runat="server" Text="是否定向"></asp:Label>
+            <asp:DropDownList ID="ddlDirect" runat="server"  CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>未指定</asp:ListItem>
+                <asp:ListItem>非定向</asp:ListItem>
+                <asp:ListItem>助学</asp:ListItem>
+                <asp:ListItem>助医</asp:ListItem>
+                <asp:ListItem>助残</asp:ListItem>
+                <asp:ListItem>助老</asp:ListItem>
+                <asp:ListItem>助困</asp:ListItem>
+                <asp:ListItem>双拥</asp:ListItem>
+
+                <asp:ListItem>重特大灾难</asp:ListItem>
+
+            </asp:DropDownList>
             <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" CssClass="btn btn-danger" Width="80px" Height="34px" />
             <asp:Button ID="btputout" runat="server" Text="筛选导出"  CssClass="btn btn-danger" Width="80px" Height="34px" OnClick="btputout_Click" />
-        
-             </p>
+        </p>
     </div>
     <div id="putout" runat="server">
 

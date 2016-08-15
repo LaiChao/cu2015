@@ -63,7 +63,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         //不显示全部扩展信息
         foreach (DataControlField dcf in GridView1.Columns)
         {
-            if ((dcf.HeaderText == "使用范围") || (dcf.HeaderText == "备注") || (dcf.HeaderText == "联系人") || (dcf.HeaderText == "性别") || (dcf.HeaderText == "募捐箱编号") || (dcf.HeaderText == "冠名年限") || (dcf.HeaderText == "冠名到期日期") || (dcf.HeaderText == "冠名慈善捐助金") || (dcf.HeaderText == "受助人类型") || (dcf.HeaderText == "受助人描述"))//前提条件是列名要与对应列的HeadText一致
+            if ((dcf.HeaderText == "使用范围") || (dcf.HeaderText == "备注") || (dcf.HeaderText == "联系人") || (dcf.HeaderText == "性别") || (dcf.HeaderText == "募捐箱编号") || (dcf.HeaderText == "冠名年限") || (dcf.HeaderText == "冠名到期日期") || (dcf.HeaderText == "冠名慈善捐助金") || (dcf.HeaderText == "受助人描述"))//前提条件是列名要与对应列的HeadText一致 (dcf.HeaderText == "受助人类型") || 
             {
                 dcf.Visible = false;
             }
@@ -162,6 +162,17 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         if (tbRemain.Text.Trim() != "")
         {
             queryString.Append("and ifnull(capitalEarn,0)>=" + tbRemain.Text.Trim());
+        }
+        if(ddlDirect.SelectedValue.ToString()!="未指定")
+        {
+            if(ddlDirect.SelectedValue.ToString()=="非定向")
+            {
+                queryString.Append("and direction=0");
+            }
+            else
+            {
+                queryString.Append("and recipientsType='" + ddlDirect.SelectedValue.ToString() + "' ");
+            }
         }
         ViewState["now"] = ViewState["query"] = queryString.ToString();
         databind(ViewState["now"].ToString());
