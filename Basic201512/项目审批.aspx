@@ -37,7 +37,17 @@
         .id { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
+        .name2{ width: 200px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
+          .gv_td
+        {
+            width:100px;
+            /*word-break:keep-all;*/
+            overflow: hidden; 
+            /*white-space: nowrap;*/
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
         </style>
      <script language="javascript" type="text/javascript">
          function click()
@@ -67,11 +77,11 @@
                                 </div>
          <br />
             <br />
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="800px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
-            <EditItemStyle CssClass="dg_item" />
+            <ItemStyle CssClass="gv_td" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
+            <EditItemStyle CssClass="gv_td" />
             <Columns>
                                 
                 <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
@@ -145,19 +155,16 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="项目描述" HeaderStyle-Font-Names="true">
-
-<HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des"></ItemStyle>
-                    
-                    <ItemTemplate>
-                        <asp:Label ID="labBtw" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
-                        </asp:Label>
+                    <HeaderStyle Font-Names="true" CssClass="name2"></HeaderStyle>
+                    <ItemStyle CssClass="gv_td"></ItemStyle>  
+                    <ItemTemplate>                  
+                        <asp:Label ID="labBtw" runat="server" CssClass="gv_td"  Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>15?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,15) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'  >
+                        </asp:Label>                        
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtEditBtw" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
+                        <asp:TextBox ID="txtEditBtw" runat="server" MaxLength="40" CssClass="gv_td"   Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>15?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,15) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>' >
                         </asp:TextBox>
-                    </EditItemTemplate>
+                    </EditItemTemplate>                   
                 </asp:TemplateColumn>
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />

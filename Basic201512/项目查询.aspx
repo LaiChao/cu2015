@@ -114,10 +114,10 @@
         <br />
         <br />
            <div id="divPrint" runat="server">
-            <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="950px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand">
+           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
+            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
@@ -209,18 +209,18 @@
                     <ItemStyle CssClass="des"></ItemStyle>
                     
                     <ItemTemplate>
-                        <asp:Label ID="labdes" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
+                        <asp:Label ID="labdes" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'>
                         </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtdes" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
+                        <asp:TextBox ID="txtdes" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="结项">
                     <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnEdit1" runat="server" ToolTip="结项" CommandName="Edit1" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        <asp:ImageButton ID="btnEdit1" runat="server" ToolTip="结项" CommandName="Edit1" ImageUrl="~/image/chaigai.jpg">
                         </asp:ImageButton>
 <%--                        <asp:ImageButton ID="btnDelete1" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
                             CommandName="Delete1"></asp:ImageButton>--%>
@@ -235,7 +235,7 @@
                 <asp:TemplateColumn HeaderText="归档">
                     <ItemStyle CssClass="option"></ItemStyle>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="归档" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
+                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="归档" CommandName="Edit" ImageUrl="~/image/hetong.jpg">
                         </asp:ImageButton>
                         <asp:ImageButton ID="btnDelete" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
                             CommandName="Delete"></asp:ImageButton>

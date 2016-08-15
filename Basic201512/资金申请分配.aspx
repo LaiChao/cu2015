@@ -33,7 +33,7 @@
         tr { padding: 0; margin: 0; border: 0; }
         .option { width: 50px; }
         #div_dynamic {  border: #cc9966 0px solid;  }
-        #divTitle, #div_dynamic { width: 860px; margin:0 auto; }
+        #divTitle, #div_dynamic { width: 1000px; margin:0 auto; }
         .option { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         td { text-align: center; }
         .id { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
@@ -74,10 +74,10 @@
             <div>
                    <asp:Label ID="lbpoint" runat="server" Text="操作说明：按项目信息详细搜索项目，显示结果并点击捐赠物资跳转申请物资页面"></asp:Label>
             </div>
-                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="829px" BackColor="White" BorderColor="#ce2c27" BorderStyle="None" BorderWidth="1px">
+                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#ce2c27" BorderStyle="None" BorderWidth="1px">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-                        <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
+                        <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
                         <EditItemStyle CssClass="dg_item" />
                         <Columns>
                             <asp:TemplateColumn HeaderText="捐赠物资或资金">
@@ -173,10 +173,10 @@
                                 <HeaderStyle Font-Names="true"></HeaderStyle>
                                 <ItemStyle CssClass="des"></ItemStyle>
                                 <ItemTemplate>
-                                    <asp:Label ID="labwuzhu" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'></asp:Label>
+                                    <asp:Label ID="labwuzhu" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'></asp:Label>
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtEditwuzhu" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtEditwuzhu" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'></asp:TextBox>
                                 </EditItemTemplate>
                         </asp:TemplateColumn>
                         <asp:TemplateColumn HeaderText="项目类型" HeaderStyle-Font-Names="true">
