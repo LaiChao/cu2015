@@ -36,7 +36,10 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             databind();
-           
+            if (Session["benfactorFrom"].ToString() != "北京市朝阳区慈善协会捐助科")
+            {
+                dgData.Columns[0].Visible = false;
+            }
         }
     }
 
