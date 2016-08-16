@@ -31,9 +31,12 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         {
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select * from e_benfactor where 1=1 ");
-            if (Session["userRole"].ToString() == "1")//分会权限
+            if (Session["benfactorFrom"].ToString() != "北京市朝阳区慈善协会捐助科")
             {
                 Button1.Visible = false;//待确认金额按钮不显示
+            }
+            if (Session["userRole"].ToString() == "1")//分会权限
+            {
                 queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
             }
             //绑定数据
@@ -166,6 +169,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 HttpContext.Current.Response.Write("<script>alert('金额确认成功');</script>");
                 confirmRoad();
             }
+        }
+    }
+    protected void dgData1_ItemDataBound(object sender, DataGridItemEventArgs e)
+    {
+        if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+        {
+            ((LinkButton)(e.Item.Cells[6].Controls[0])).Attributes.Add("onclick", "return confirm('确认该资金吗?');");
         }
     }
 }

@@ -177,43 +177,43 @@ namespace CL.Utility.Web.BasicData
 
             while (mysqlread.Read())
             {
-                ViewState["myKey"] = mysqlread.GetString(0);
-                ViewState["myID"] = mysqlread.GetString(3);
+                ViewState["myKey"] = mysqlread.GetString(0);//捐赠人ID
+                ViewState["myID"] = mysqlread.GetString(3);//经办单位ID
                 //  DateTime dt=new DateTime();
                 DateTime dt = DateTime.Now;
                 //                lbcaptID.Text = mysqlread.GetString(0) + '0' + mysqlread.GetString(3) + mysqlread.GetString(2);
-                LbproID.Text = mysqlread.GetString(1);
-                lbbenfnadd.Text = mysqlread.GetString(2);
+                LbproID.Text = mysqlread.GetString(1);//捐赠人名称
+                lbbenfnadd.Text = mysqlread.GetString(2);//电话
                 lbtime.Text = dt.Year.ToString() + '-' + dt.Month.ToString() + '-' + dt.Day.ToString();
             }
             string strreadcap = string.Format("select capitalEarn,state,capitalIn from e_capital where capitalID='{0}'", lbcaptID.Text);
             MySqlDataReader mysqlread1 = msql.getmysqlread(strreadcap);
             while (mysqlread1.Read())
             {
-                lbcaptIDown.Text = mysqlread1.GetString(0);
-                tempstate = mysqlread1.GetInt32(1);
-                txtPLAN.Text = mysqlread1.GetInt32(2).ToString();
+                lbcaptIDown.Text = mysqlread1.GetString(0);//已有资金
+                tempstate = mysqlread1.GetInt32(1);//资金状态
+                txtPLAN.Text = mysqlread1.GetInt32(2).ToString();//录入资金
             }
             
             if(tempstate==0)
             {
                 txtPLAN.Enabled = false;
                 btyes.Enabled = false;
-                lblErr.InnerText = "请联系科室确认资金";
+                lblErr.InnerText = "请联系捐助科确认资金";
                 //HttpContext.Current.Response.Write("<script>alert('请联系科室确认资金');</script>");
             }
             if(txtPLAN.Enabled==true)
                 txtPLAN.Text = "";
-            //判断权限
-            string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
-            MySqlDataReader mysqlread32 = msql.getmysqlread(queryRole);
-            int roleOfUser=0;
-            while (mysqlread32.Read())
-            {
-                roleOfUser = mysqlread32.GetInt32(0);
-            }
-            int result;
-            if(roleOfUser>1 && tempstate==0)//非分会权限
+            ////判断权限
+            //string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
+            //MySqlDataReader mysqlread32 = msql.getmysqlread(queryRole);
+            //int roleOfUser=0;
+            //while (mysqlread32.Read())
+            //{
+            //    roleOfUser = mysqlread32.GetInt32(0);
+            //}
+            //int result;
+            if ((tempstate == 0) && (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科"))
                 confirm.Visible = true;
         }
 
@@ -240,16 +240,16 @@ namespace CL.Utility.Web.BasicData
                 return;
             }
 
-            //判断权限
-            string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
-            MySqlDataReader mysqlread32 = msql.getmysqlread(queryRole);
-            int roleOfUser=0;
-            while (mysqlread32.Read())
-            {
-                roleOfUser = mysqlread32.GetInt32(0);
-            }
+            ////判断权限
+            //string queryRole = "select userRole from e_user where user='" + Session["UserName"].ToString() + "'";
+            //MySqlDataReader mysqlread32 = msql.getmysqlread(queryRole);
+            //int roleOfUser=0;
+            //while (mysqlread32.Read())
+            //{
+            //    roleOfUser = mysqlread32.GetInt32(0);
+            //}
             int result;
-            if(roleOfUser>1)//非分会权限
+            if(Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")//捐助科
             {
                 string strins = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',1)", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
                 string strupd = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=1 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
@@ -272,8 +272,8 @@ namespace CL.Utility.Web.BasicData
                 //string sss = "录入资金：" + lbcaptID.Text;
                 //nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
-            else if(roleOfUser==1)//分会权限
-            {
+            else
+            {//非捐助科权限
                 string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0)", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
                 string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
 
@@ -288,7 +288,7 @@ namespace CL.Utility.Web.BasicData
 
                 if (result > 0)
                 {
-                    lblErr.InnerText = "提交成功，请等待科室审批确认";
+                    lblErr.InnerText = "提交成功，请等待捐助科审批确认";
                    // HttpContext.Current.Response.Write("<script>alert('提交成功，请等待科室审批确认');</script>");
                 }
                 reload();//刷新页面
