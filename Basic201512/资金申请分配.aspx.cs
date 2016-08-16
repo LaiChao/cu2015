@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 //使用数据访问层添加的必备引用
 using DataEntity.EntityManager;
@@ -49,6 +50,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
         DataView dv = new DataView(ds.Tables[0]);
         DataView dv1 = new DataView(ds1.Tables[0]);
+        dpdhud.AppendDataBoundItems = true;
         dpdhud.DataSource = ds1;
         dpdhud.DataTextField = "benfactorFrom";
         dpdhud.DataBind();
@@ -161,8 +163,26 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void Btselect_Click(object sender, EventArgs e)
     {
-        string str = string.Format("select * from e_project where projectName='{0}'or benfactorFrom='{1}' or projectID='{2}' or telphoneName='{3}'", TbselectName.Text, dpdhud.DataTextField, txtproid.Text,txttelname.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str);
+        StringBuilder queryString = new StringBuilder();
+        queryString.Append("select * from e_project where proschedule='会长审批通过' and (needMoney>0 or projectType='物品') ");
+        if(txtproid.Text.Trim()!="")
+        {
+            queryString.Append("and projectID='" + txtproid.Text.Trim() + "' ");
+        }
+        if(txttelname.Text.Trim()!="")
+        {
+            queryString.Append("and telphoneName='" + txttelname.Text.Trim() + "' ");
+        }
+        if(TbselectName.Text.Trim()!="")
+        {
+            queryString.Append("and projectName='" + TbselectName.Text.Trim() + "' ");
+        }
+        if(dpdhud.SelectedItem.Text!="全部")
+        {
+            queryString.Append("and benfactorFrom='" + dpdhud.SelectedItem.Text + "' ");
+        }
+        //string str = string.Format("select * from e_project where projectName='{0}'or benfactorFrom='{1}' or projectID='{2}' or telphoneName='{3}'", TbselectName.Text, dpdhud.DataTextField, txtproid.Text,txttelname.Text);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString.ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
         dgData.DataBind();        

@@ -68,6 +68,7 @@
                     <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
                     <asp:Label ID="Label2" runat="server" Text="项目执行单位:"></asp:Label>
                     <asp:DropDownList ID="dpdhud" runat="server" class="btn btn-default dropdown-toggle">
+                        <asp:ListItem>全部</asp:ListItem>
                     </asp:DropDownList>
                     <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px" />
                       </div> 
