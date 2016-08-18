@@ -30,7 +30,7 @@ public partial class Basic201512_实体信息日志 : System.Web.UI.Page
     {
         if (!Page.IsPostBack)//页面首次加载
         {
-            ViewState["init"] = "select * from e_log where Message like'%项目%' or Message like'%资金%' or Message like'%分配%' or Message like'%结项%' or Message like'%归档%' order by ID DESC";
+            ViewState["init"] = "select * from e_log where Message like'%项目%' or Message like'%资金%' or Message like'%物品%' order by ID DESC";
             //ViewState["Query"] = str111;
             ViewState["now"] = ViewState["init"];
             databind(ViewState["init"].ToString());

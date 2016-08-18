@@ -256,7 +256,7 @@ namespace CL.Utility.Web.BasicData
             databind(ViewState["now"].ToString());
    
             NLogTest nlog = new NLogTest();
-            string sss = "分配受助人：" + LbproID.Text;
+            string sss = "分配受助人：" + LbproID.Text + "到项目：" + Session["ProjectID"].ToString();
             nlog.WriteLog(Session["UserName"].ToString(), sss);
         }
 

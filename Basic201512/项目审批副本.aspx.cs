@@ -96,7 +96,7 @@ namespace CL.Utility.Web.BasicData
                     Lbtelname.Text = mysqlreader.GetString("telphoneName");
                     Lbtelladd.Text = mysqlreader.GetString("telphoneADD");
                     lblLeibie.Text = mysqlreader.GetString("projectLei");
-                    strState = mysqlreader.GetString("proschedule");
+                    lblState.Text = strState = mysqlreader.GetString("proschedule");
                     strType = mysqlreader.GetString("projectType");
                 }
                 BindData();
@@ -124,6 +124,15 @@ namespace CL.Utility.Web.BasicData
                     dgData1.Visible = false;
                 else if (strType == "物品")
                     dgData0.Visible = false;
+                dgData.Columns[0].Visible=false;
+                if(strState == "申请中")
+                {
+                    if((Lbbenfrom.Text==Session["benfactorFrom"].ToString())||(Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")||(Session["UserName"].ToString()=="admin"))
+                    {//项目实施单位 或者 捐助科 或者 管理员
+                        dgData.Columns[0].Visible = true;
+                    }
+                }
+
             }
         }
 
@@ -248,7 +257,7 @@ namespace CL.Utility.Web.BasicData
                 BindData();
 
                 NLogTest nlog = new NLogTest();
-                string sss = "删除了项目：" + LbproID.Text.Trim() + "中的受助人" + rcpidStr;
+                string sss = "删除了项目：" + LbproID.Text.Trim() + "中的受助人：" + rcpidStr;
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
 
@@ -263,7 +272,7 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.Text= "会长审批通过";
                 NLogTest nlog = new NLogTest();
-                string sss = "会长审批项目：" + Lbproname.Text;
+                string sss = "会长审批通过项目：" + Lbproname.Text;
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
                 string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "会长审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), Lbbenfrom.Text.Trim(), "未读");
                 msq.getmysqlcom(str11);
@@ -284,7 +293,7 @@ namespace CL.Utility.Web.BasicData
             {                
                 labError.Text= "科室审批通过";
                 NLogTest nlog = new NLogTest();
-                string sss = "科室审批项目：" + Lbproname.Text;
+                string sss = "科室审批通过项目：" + Lbproname.Text;
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
                 string str11 = string.Format("insert into e_info (infoTitle,infoContent,infoDATE,infoFile,infoFrom,infoTo,infoRead) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", "科室审批通过项目：" + Lbproname.Text.Trim(), "", DateTime.Now.ToString(), "", Session["UserName"].ToString(), Lbbenfrom.Text.Trim(), "未读");
                 msq.getmysqlcom(str11);

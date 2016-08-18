@@ -190,6 +190,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style6">
+                        项 目 状 态：
+                    </td>
+                    <td class="auto-style9">
+                        <asp:Label ID="lblState" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style6">
                         项 目 描 述：
                     </td>
                     <td class="auto-style11">

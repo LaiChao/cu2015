@@ -198,6 +198,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 msq.getmysqlcom(strupdata);
                 msq.getmysqlcom(strupdate);
                 //资金追踪表
+                 string strbenfactorName=((TextBox)e.Item.FindControl("txtdename")).Text.Trim();
                  DateTime dt = DateTime.Now;
                  string time = dt.Year.ToString() +'-'+ dt.Month.ToString() + '-'+dt.Day.ToString();
                  string strinsert = string.Format("insert into e_moneytrack(benefactorID,projectID,palnMoney,useMoney,prousein,prouseinTime,prouseoutTime,benfactorName,projectName,benfactorFrom,handlingunitID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10})",
@@ -218,7 +219,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                  databind(ViewState["now"].ToString());
 
                  NLogTest nlog = new NLogTest();
-                 string sss = "分配资金：" + ((TextBox)e.Item.FindControl("txtteladd")).Text.Trim();
+                 string sss = "分配" + strbenfactorName + "的资金：" + re1.ToString() + "元给项目：" + lbbenfnadd.Text;//((TextBox)e.Item.FindControl("txtteladd")).Text.Trim()
                  nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
         }

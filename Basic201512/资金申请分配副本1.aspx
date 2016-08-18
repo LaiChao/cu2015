@@ -53,7 +53,7 @@
     <form id="form1" runat="server" class="form-inline">
         <div>
             <h2>
-               <strong>资金申请分配</strong> 
+               <strong>善款分配申请</strong> 
 
             </h2>
         </div> 
@@ -65,10 +65,10 @@
                 <asp:Label ID="lblType" runat="server" class="label label-default"></asp:Label>
 &nbsp;<asp:Label ID="Label6" runat="server" Text="项目名称:"></asp:Label>
                 <asp:Label ID="lbbenfnadd" runat="server" class="label label-default"></asp:Label>
-                &nbsp;<asp:Label ID="lberror" runat="server" BorderColor="#FF6699"></asp:Label>
-                <asp:Label ID="Label4" runat="server" Text="计划资金:"></asp:Label>
+                &nbsp;<asp:Label ID="Label4" runat="server" Text="计划资金:"></asp:Label>
                 <asp:Label ID="lbcaptID" runat="server" class="label label-default"></asp:Label>                               
                 <%--<asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="匹配资金" CssClass=" btn btn-danger" Height="34px" Width="80px" />--%>
+                    <asp:Label ID="lberror" runat="server" BorderColor="#FF6699" ForeColor="Red"></asp:Label>
                  </h4>               
                     <div class="form-group">
                     捐助人名称:<asp:TextBox ID="tbName" runat="server" CssClass="form-control"></asp:TextBox>

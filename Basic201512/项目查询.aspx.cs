@@ -121,7 +121,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
 
          NLogTest nlog = new NLogTest();
-         string sss = "归档：" + tempID;
+         string sss = "项目归档：" + tempID;
          nlog.WriteLog(Session["UserName"].ToString(), sss);
     }
 
@@ -138,7 +138,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
 
             NLogTest nlog = new NLogTest();
-            string sss = "结项：" + tempID;
+            string sss = "项目结项：" + tempID;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
         }
     }
