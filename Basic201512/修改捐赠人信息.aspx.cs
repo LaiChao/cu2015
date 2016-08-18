@@ -376,21 +376,14 @@ public partial class Basic201512_修改捐赠人信息 : System.Web.UI.Page
                 msq.getmysqlcom(strgongyi);
                 labError.Text = "修改成功";
             }
-
+            NLogTest nlog = new NLogTest();
+            string sss = "修改了捐赠人：" + benfactorName.Text.Trim()+"的信息";
+            nlog.WriteLog(Session["UserName"].ToString(), sss);
         }
         catch
         {
             labError.Text = "添加失败";
         }
-
-
-
-
-
-        //NLogTest nlog = new NLogTest();
-        //string sss = "修改了捐助人信息：" + gongyizuzhi.Text;
-        //nlog.WriteLog(Session["UserName"].ToString(), sss);
-
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)

@@ -50,7 +50,7 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
             {
                 ViewState["branchName"] = mysqlread.GetString("benfactorFrom");
             }
-
+            lblBranch.Text = ViewState["branchName"].ToString();
             string strSelectName = "select benfactorName from e_benfactor where benfactorID=" + ViewState["IDNow"].ToString();
             MySqlDataReader mysqlread2 = msq.getmysqlread(strSelectName);
             while(mysqlread2.Read())
@@ -58,6 +58,7 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
                 ViewState["name"] = mysqlread2.GetString("benfactorName");
             }
             lblName.Text = ViewState["name"].ToString();
+
         }
     }
 
@@ -73,6 +74,9 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
         //{
             msq.getmysqlcom(insertString);
             lblError.Text = "提交成功";
+            NLogTest nlog = new NLogTest();
+            string sss = "为" + lblBranch.Text + "的" + lblName.Text + "录入了物品：" + tbItem.Text + "，公允值：" + tbValue.Text + "元。";
+            nlog.WriteLog(Session["UserName"].ToString(), sss);
         //}
         //catch
         //{

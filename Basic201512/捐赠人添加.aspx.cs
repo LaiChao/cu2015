@@ -378,6 +378,9 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                     tbReset();
                     labError.Text = "添加成功";
                 }
+                    NLogTest nlog = new NLogTest();
+                    string sss = "添加了捐赠人：" + benfactorName.Text.ToString();
+                    nlog.WriteLog(Session["UserName"].ToString(), sss);
                 //loadPage();
                 //foreach (System.Web.UI.Control stl in this.Form.Controls)
                 //{
@@ -391,17 +394,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             catch
             {
                 labError.Text = "添加失败，手机号重复了";
-            }
-
-
-
-
-
-            //NLogTest nlog = new NLogTest();
-            //string sss = "添加捐助人：" + gongyizuzhi.Text;
-            //nlog.WriteLog(Session["UserName"].ToString(), sss);
-
-            
+            }            
         }
 
 

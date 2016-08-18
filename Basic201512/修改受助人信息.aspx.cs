@@ -649,7 +649,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         if (res > 0)
         {
             NLogTest nlog = new NLogTest();
-            string sss = "修改了受助人信息：" + recipientsName.Text.ToString();
+            string sss = "修改了受助人：" + recipientsName.Text.ToString()+"的信息";
             nlog.WriteLog(Session["UserName"].ToString(),sss);
             HttpContext.Current.Response.Write("<script>alert('受助人信息修改成功');</script>");
         }

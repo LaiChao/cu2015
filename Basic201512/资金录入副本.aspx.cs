@@ -170,21 +170,22 @@ namespace CL.Utility.Web.BasicData
 
         private void reload()
         {
-            string strread = string.Format("select benfactorID,benfactorName,TEL,handlingunitID from e_benfactor where benfactorID='{0}'", IDNow);//捐助人姓名？？？？？？？
+            string strread = string.Format("select benfactorID,benfactorName,TEL,handlingunitID,benfactorFrom from e_benfactor where benfactorID='{0}'", IDNow);//捐助人姓名？？？？？？？
             lbcaptID.Text = LbproID.Text = IDNow;
             MySqlDataReader mysqlread = msql.getmysqlread(strread);
             int tempstate=-1;
-
+            lbtime.Text = DateTime.Now.ToString();
             while (mysqlread.Read())
             {
                 ViewState["myKey"] = mysqlread.GetString(0);//捐赠人ID
                 ViewState["myID"] = mysqlread.GetString(3);//经办单位ID
                 //  DateTime dt=new DateTime();
-                DateTime dt = DateTime.Now;
+                //DateTime dt = DateTime.Now;
                 //                lbcaptID.Text = mysqlread.GetString(0) + '0' + mysqlread.GetString(3) + mysqlread.GetString(2);
                 LbproID.Text = mysqlread.GetString(1);//捐赠人名称
                 lbbenfnadd.Text = mysqlread.GetString(2);//电话
-                lbtime.Text = dt.Year.ToString() + '-' + dt.Month.ToString() + '-' + dt.Day.ToString();
+                //lbtime.Text = dt.Year.ToString() + '-' + dt.Month.ToString() + '-' + dt.Day.ToString();
+                lblBranch.Text = mysqlread.GetString("benfactorFrom");//经办单位
             }
             string strreadcap = string.Format("select capitalEarn,state,capitalIn from e_capital where capitalID='{0}'", lbcaptID.Text);
             MySqlDataReader mysqlread1 = msql.getmysqlread(strreadcap);
@@ -192,7 +193,7 @@ namespace CL.Utility.Web.BasicData
             {
                 lbcaptIDown.Text = mysqlread1.GetString(0);//已有资金
                 tempstate = mysqlread1.GetInt32(1);//资金状态
-                txtPLAN.Text = mysqlread1.GetInt32(2).ToString();//录入资金
+                txtPLAN.Text = mysqlread1.GetDouble(2).ToString();//录入资金
             }
             
             if(tempstate==0)
@@ -232,11 +233,17 @@ namespace CL.Utility.Web.BasicData
             //    }
                 
             //}
+
             //判断是否为空
-            if (txtPLAN.Text == "")
+            if ((txtPLAN.Text == "")||(txtPLAN.Text=="0"))
             {
                 lblErr.InnerText = "请输入金额";
                // HttpContext.Current.Response.Write("<script>alert('请输入金额');</script>");
+                return;
+            }
+            else if(Convert.ToDouble(txtPLAN.Text)<=0)
+            {
+                lblErr.InnerText = "请输入正数";
                 return;
             }
 
@@ -251,8 +258,8 @@ namespace CL.Utility.Web.BasicData
             int result;
             if(Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")//捐助科
             {
-                string strins = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',1)", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
-                string strupd = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=1 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strins = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state,benfactorFrom) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',1,'{7}')", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text,lblBranch.Text);
+                string strupd = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=1,benfactorFrom='{7}' where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], 0, Convert.ToDouble(txtPLAN.Text) + Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
 
                 try{
                     result = msq.getmysqlcom(strins);
@@ -264,18 +271,17 @@ namespace CL.Utility.Web.BasicData
                 if (result>0)
                 {
                     lblErr.InnerText = "添加资金成功";
+                    NLogTest nlog = new NLogTest();
+                    string sss = "捐助科为" + lblBranch.Text+"的"+LbproID.Text+ "录入了捐赠金额"+txtPLAN.Text+"元。资金ID：" + lbcaptID.Text;
+                    nlog.WriteLog(Session["UserName"].ToString(), sss);
                    // HttpContext.Current.Response.Write("<script>alert('添加资金成功');</script>");
                 }
                 reload();//刷新页面
-                
-                //NLogTest nlog = new NLogTest();
-                //string sss = "录入资金：" + lbcaptID.Text;
-                //nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
             else
             {//非捐助科权限
-                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0)", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
-                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0 where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToInt32(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text);
+                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state,benfactorFrom) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0,'{7}')", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
+                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0,benfactorFrom='{7}' where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
 
                 try
                 {
@@ -289,24 +295,28 @@ namespace CL.Utility.Web.BasicData
                 if (result > 0)
                 {
                     lblErr.InnerText = "提交成功，请等待捐助科审批确认";
+                    NLogTest nlog = new NLogTest();
+                    string sss = "为"+lblBranch.Text + "的" + LbproID.Text + "录入了捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
+                    nlog.WriteLog(Session["UserName"].ToString(), sss);
+
                    // HttpContext.Current.Response.Write("<script>alert('提交成功，请等待科室审批确认');</script>");
                 }
                 reload();//刷新页面
-                //NLogTest nlog = new NLogTest();
-                //string sss = "录入资金：" + lbcaptID.Text;
-                //nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
 
         }
         protected void confirm_Click(object sender, EventArgs e)//确认添加
         {
             //string updateString = string.Format("update e_capital set capitalEarn={1},capitalIntime='{2}',state=1 where capitalID='{0}'", lbcaptID.Text, Convert.ToInt32(lbcaptIDown.Text) + Convert.ToInt32(txtPLAN.Text), lbtime.Text);
-            string updateString = string.Format("update e_capital set capitalEarn={1},capitalIn=0,state=1 where capitalID='{0}'", lbcaptID.Text, Convert.ToInt32(lbcaptIDown.Text) + Convert.ToInt32(txtPLAN.Text));
+            string updateString = string.Format("update e_capital set capitalEarn={1},capitalIn=0,state=1 where capitalID='{0}'", lbcaptID.Text, Convert.ToDouble(lbcaptIDown.Text) + Convert.ToDouble(txtPLAN.Text));
             int result = msq.getmysqlcom(updateString);
             if(result>0)
             {
                // HttpContext.Current.Response.Write("<script>alert('金额确认成功');</script>");
                 lblErr.InnerText = "金额确认成功";
+                NLogTest nlog = new NLogTest();
+                string sss = "捐助科确认：为" + lblBranch.Text + "的" + LbproID.Text + "录入了捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
                 txtPLAN.Enabled = true;
                 btyes.Enabled = true;
                 confirm.Visible = false;

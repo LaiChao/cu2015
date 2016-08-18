@@ -154,7 +154,7 @@
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
                     </asp:DataGrid>
-                    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData1_ItemCommand" OnItemDataBound="dgData1_ItemDataBound">
+                    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
                         <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -197,7 +197,7 @@
                                     <asp:Label ID="capitalIn" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.capitalIn") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
-                            <asp:ButtonColumn CommandName="confirm" HeaderText="操作" Text="确认"></asp:ButtonColumn>
+<%--                            <asp:ButtonColumn CommandName="confirm" HeaderText="操作" Text="确认"></asp:ButtonColumn>--%>
                         </Columns>
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

@@ -339,7 +339,7 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "资料修改成功! 请牢记！";
                  //   wl.WriteLogData(PAGE_NAME, "修改", strName, System.Diagnostics.EventLogEntryType.Information);
                     NLogTest nlog = new NLogTest();
-                    string sss = "修改了其用户信息" ;
+                    string sss = "修改了用户"+Session["UserName"].ToString()+"的信息" ;
                     nlog.WriteLog(Session["UserName"].ToString(), sss);
                 }
                 else

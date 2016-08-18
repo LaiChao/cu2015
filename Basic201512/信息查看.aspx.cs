@@ -204,7 +204,7 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
         if (res > 0)
         {
             NLogTest nlog = new NLogTest();
-            string s = "发布了信息：" + "回执：" + infoTitle.Text.ToString();
+            string s = "发布了信息：“" + infoTitle.Text.ToString()+"”的回执";
             nlog.WriteLog(Session["UserName"].ToString(), s);
             lblErr.Text = "发送成功";
         }

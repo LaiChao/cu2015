@@ -176,9 +176,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         dgData.DataSource = dv;
         dgData.DataBind();
 
-        NLogTest nlog = new NLogTest();
-        string sss = "查询资金：" + TbselectID.Text;
-        nlog.WriteLog(Session["UserName"].ToString(), sss);
+        //NLogTest nlog = new NLogTest();
+        //string sss = "查询资金：" + TbselectID.Text;
+        //nlog.WriteLog(Session["UserName"].ToString(), sss);
     }
 
     protected void btout_Click(object sender, EventArgs e)

@@ -266,7 +266,7 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "注册成功！";
                   //  wl.WriteLogData(PAGE_NAME, "创建", strName, System.Diagnostics.EventLogEntryType.Information);
                     NLogTest nlog = new NLogTest();
-                    string sss = "注册了新用户：" + strID + "(" + strName + ")";
+                    string sss = "管理员创建了新用户：" + strID + "(" + strName + ")";
                     nlog.WriteLog(Session["UserName"].ToString(), sss);
                 }
                 else

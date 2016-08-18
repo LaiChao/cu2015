@@ -104,7 +104,7 @@ public partial class Basic201512_经办单位增加 : System.Web.UI.Page
             if (res > 0)
             {
                 NLogTest nlog = new NLogTest();
-                string sss = "增加了经办单位：" + benfactorFrom.Text.ToString();
+                string sss = "管理员增加了经办单位：" + benfactorFrom.Text.ToString();
                 nlog.WriteLog(Session["UserName"].ToString(),sss);
                 LabelError.Text = "经办单位增加成功";
                 TEL.Text = contactPerson.Text = address.Text = benfactorFrom.Text = "";

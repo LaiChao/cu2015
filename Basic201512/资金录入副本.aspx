@@ -21,7 +21,7 @@
     <!-- Bootstrap core CSS -->
    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="theme.css" rel="stylesheet">
@@ -181,7 +181,7 @@
                     <tr>
 
                         <td class="auto-style13">
-                            名称：&nbsp;
+                            捐赠人名称：&nbsp;
                         </td>
                         <td class="auto-style14">
 
@@ -190,7 +190,18 @@
                         </td>
                         
                     </tr>
+                <tr>
+                    <td class="auto-style13">
 
+                        所属机构：&nbsp;
+
+                    </td>
+                    <td class="auto-style14">
+
+                        <asp:Label ID="lblBranch" runat="server"></asp:Label>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="auto-style13">
                         联系方式：&nbsp; </td>

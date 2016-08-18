@@ -198,6 +198,9 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         msq.getmysqlcom(str112);
         databind(ViewState["now"].ToString());
         //DetailsView1.Visible = false;
+        NLogTest nlog = new NLogTest();
+        string sss = "删除了捐赠人：" + GridView1.Rows[e.RowIndex].Cells[2].Text.Trim();
+        nlog.WriteLog(Session["UserName"].ToString(), sss);
     }
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {

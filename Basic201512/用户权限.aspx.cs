@@ -97,7 +97,7 @@ public partial class Permission_用户权限 : System.Web.UI.Page
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         NLogTest nlog = new NLogTest();
-        string s = "删除了用户：" + GridView1.Rows[e.RowIndex].Cells[0].Text.ToString();
+        string s = "管理员删除了用户：" + GridView1.Rows[e.RowIndex].Cells[0].Text.ToString();
         nlog.WriteLog(Session["UserName"].ToString(), s);
         string str113 = "delete from e_user where user='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
         msq.getmysqlcom(str113);
@@ -113,7 +113,7 @@ public partial class Permission_用户权限 : System.Web.UI.Page
                 + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
             msq.getmysqlcom(str114);
             NLogTest nlog = new NLogTest();
-            string s = "修改了用户信息：" + GridView1.Rows[e.RowIndex].Cells[0].Text.ToString().Trim();
+            string s = "管理员修改了用户：" + GridView1.Rows[e.RowIndex].Cells[0].Text.ToString().Trim()+"的信息";
             nlog.WriteLog(Session["UserName"].ToString(), s);
             GridView1.EditIndex = -1;
             databind(ViewState["now"].ToString());
@@ -139,7 +139,7 @@ public partial class Permission_用户权限 : System.Web.UI.Page
             msq.getmysqlcom(str115);
             HttpContext.Current.Response.Write("<script>alert('密码已重置为cs12345');</script>");
             NLogTest nlog = new NLogTest();
-            string s = "重置了用户：" + GridView1.DataKeys[index].Value.ToString() + "的密码";
+            string s = "管理员重置了用户：" + GridView1.DataKeys[index].Value.ToString() + "的密码";
             nlog.WriteLog(Session["UserName"].ToString(), s);
         }
     }

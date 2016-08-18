@@ -21,7 +21,7 @@
     <!-- Bootstrap core CSS -->
    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Bootstrap theme -->
-   <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
@@ -55,6 +55,18 @@
                 </td>
                 </tr>
             <tr>
+                <td class="class1">
+
+                    <asp:Label ID="Label4" runat="server" Text="所属机构："></asp:Label>
+
+                </td>
+                <td class="class2">
+
+                    <asp:Label ID="lblBranch" runat="server"></asp:Label>
+
+                </td>
+            </tr>
+            <tr>
                 <td class="class1">   
         <asp:Label ID="Label1" runat="server" Text="物品："></asp:Label>
                     </td>
@@ -64,7 +76,7 @@
                 </tr>
             <tr>
                 <td class="class1">   
-        <asp:Label ID="Label2" runat="server" Text="公允值："></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="公允值（元）："></asp:Label>
                     </td>
                 <td class="class2">
         <asp:TextBox ID="tbValue" runat="server" CssClass="form-control"></asp:TextBox>  

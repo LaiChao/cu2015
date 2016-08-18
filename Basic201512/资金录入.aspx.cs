@@ -156,26 +156,26 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     }
     #endregion
 
-    protected void dgData1_ItemCommand(object source, DataGridCommandEventArgs e)
-    {
-        if(e.CommandName=="confirm")
-        {
-            string capitalID = ((Label)e.Item.FindControl("capitalID")).Text.Trim();
-            int capitalEarn = Convert.ToInt32(((Label)e.Item.FindControl("capitalEarn")).Text.Trim()) + Convert.ToInt32(((Label)e.Item.FindControl("capitalIn")).Text.Trim());
-            string updateString = string.Format("update e_capital set capitalEarn={1},capitalIn=0,state=1 where capitalID='{0}'", capitalID, capitalEarn);
-            int result = msq.getmysqlcom(updateString);
-            if (result > 0)
-            {
-                HttpContext.Current.Response.Write("<script>alert('金额确认成功');</script>");
-                confirmRoad();
-            }
-        }
-    }
-    protected void dgData1_ItemDataBound(object sender, DataGridItemEventArgs e)
-    {
-        if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
-        {
-            ((LinkButton)(e.Item.Cells[6].Controls[0])).Attributes.Add("onclick", "return confirm('确认该资金吗?');");
-        }
-    }
+    //protected void dgData1_ItemCommand(object source, DataGridCommandEventArgs e)
+    //{
+    //    if(e.CommandName=="confirm")
+    //    {
+    //        string capitalID = ((Label)e.Item.FindControl("capitalID")).Text.Trim();
+    //        double capitalEarn = Convert.ToDouble(((Label)e.Item.FindControl("capitalEarn")).Text.Trim()) + Convert.ToDouble(((Label)e.Item.FindControl("capitalIn")).Text.Trim());
+    //        string updateString = string.Format("update e_capital set capitalEarn={1},capitalIn=0,state=1 where capitalID='{0}'", capitalID, capitalEarn);
+    //        int result = msq.getmysqlcom(updateString);
+    //        if (result > 0)
+    //        {
+    //            HttpContext.Current.Response.Write("<script>alert('金额确认成功');</script>");
+    //            confirmRoad();
+    //        }
+    //    }
+    //}
+    //protected void dgData1_ItemDataBound(object sender, DataGridItemEventArgs e)
+    //{
+    //    if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+    //    {
+    //        ((LinkButton)(e.Item.Cells[6].Controls[0])).Attributes.Add("onclick", "return confirm('确认该资金吗?');");
+    //    }
+    //}
 }
