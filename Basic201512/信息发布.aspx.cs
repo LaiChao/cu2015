@@ -190,6 +190,9 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                     SQLStringList.Add(insertString);
                 }
                 ExecuteSqlTran(SQLStringList);
+                NLogTest nlog2 = new NLogTest();
+                string s2 = "发布了信息：" + infoTitle.Text.ToString();
+                nlog2.WriteLog(Session["UserName"].ToString(), s2);
                 lblError.Text = "信息发布成功";
                 //重置
                 infoTitle.Text = infoContent.Text = "";
