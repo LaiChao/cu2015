@@ -46,11 +46,11 @@
     </div>
     <div style="height: 34px" class="form-group">
         <asp:Label ID="Label2" runat="server" Text="起："></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="tbStart" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
         <asp:Label ID="Label3" runat="server" Text="止："></asp:Label>
-        <asp:TextBox ID="TextBox3" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="tbEnd" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
         <asp:Label ID="Label1" runat="server" Text="用户："></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server" Width="103px" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="tbUser" runat="server" Width="103px" CssClass="form-control"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="查询" class="btn btn-danger" Width="80px" Height="34px" />
     </div>
         <br />

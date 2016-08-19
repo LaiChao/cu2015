@@ -442,7 +442,7 @@ namespace CL.Utility.Web.BasicData
             {
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','ÉêÇëÖÐ','0','0','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
+                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','ÉêÇëÖÐ','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
