@@ -193,14 +193,35 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     //    //DetailsView1.Visible = true;
     //}
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        string str112 = "delete from e_benfactor where benfactorID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
-        msq.getmysqlcom(str112);
-        databind(ViewState["now"].ToString());
-        //DetailsView1.Visible = false;
-        NLogTest nlog = new NLogTest();
-        string sss = "删除了捐赠人：" + GridView1.Rows[e.RowIndex].Cells[2].Text.Trim();
-        nlog.WriteLog(Session["UserName"].ToString(), sss);
+    {//判断当前登录用户是否和该捐赠人属于同一机构
+        if(Session["benfactorFrom"].ToString()!=GridView1.Rows[e.RowIndex].Cells[4].Text.Trim())
+        {
+            HttpContext.Current.Response.Write("<script>alert('不能删除其他机构的捐赠人');</script>");
+            return;
+        }
+        //判断捐赠人是否有资金
+        int countNum = 0;
+        MySqlDataReader mysqlread = msq.getmysqlread("select count(*) as num from e_capital where capitalID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'");
+        while (mysqlread.Read())
+        {
+            countNum = mysqlread.GetInt32("num");
+        }
+        if(countNum==0)
+        {//没有资金
+            string str112 = "delete from e_benfactor where benfactorID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
+            NLogTest nlog = new NLogTest();
+            string sss = "删除了捐赠人：" + ((HyperLink)(GridView1.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
+            nlog.WriteLog(Session["UserName"].ToString(), sss);
+            msq.getmysqlcom(str112);
+            databind(ViewState["now"].ToString());
+            //DetailsView1.Visible = false;
+
+        }
+        else
+        {//有资金，不能删除
+            HttpContext.Current.Response.Write("<script>alert('不能删除有资金（申请）的捐赠人');</script>");
+        }
+
     }
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {

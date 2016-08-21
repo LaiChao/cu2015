@@ -122,7 +122,7 @@
 <HeaderStyle Height="30px" CssClass="mycenter"></HeaderStyle>
 <ItemStyle Height="30px"></ItemStyle>
                 </asp:BoundField>
-              <asp:HyperLinkField DataNavigateUrlFormatString="资金追踪.aspx?ID={0}" DataNavigateUrlFields="benfactorID" HeaderText="名称" DataTextField="benfactorName">
+              <asp:HyperLinkField DataNavigateUrlFormatString="资金追踪.aspx?ID={0}" DataNavigateUrlFields="benfactorID" HeaderText="名称" DataTextField="benfactorName" DataTextFormatString="{0}" Text="banfactorName">
                     <%--<ControlStyle Font-Underline="True" />--%>
                 </asp:HyperLinkField>
                 <asp:BoundField DataField="benfactorFrom" HeaderText="来源" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
