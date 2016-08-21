@@ -114,7 +114,7 @@
         <br />
         <br />
            <div id="divPrint" runat="server">
-           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand">
+           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand" OnDeleteCommand="dgData_DeleteCommand">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
@@ -247,6 +247,8 @@
                                 ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
+
+                <asp:ButtonColumn CommandName="Delete" HeaderText="删除项目" Text="删除"></asp:ButtonColumn>
 
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />

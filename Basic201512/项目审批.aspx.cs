@@ -48,7 +48,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
    
     protected void Btselect_Click(object sender, EventArgs e)
     {
-        string str = string.Format("select * from e_project where (projectID='{0}'or projectName='{1}') ",TbselectID.Text,TbselectName.Text);
+        string str = string.Format("select * from e_project where (projectID='{0}'or projectName like '%{1}%') ",TbselectID.Text,TbselectName.Text);
         StringBuilder queryString2 = new StringBuilder();
         queryString2.Append(str);
         if (Session["userRole"].ToString() == "1")

@@ -52,6 +52,10 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             ddlBranch.DataTextField = "benfactorFrom";
             ddlBranch.DataBind();
             CheckBox0.Checked = CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = true;
+
+            dgData.Columns[9].Visible = false;
+            if (Session["userRole"].ToString() == "4")
+                dgData.Columns[9].Visible = true;
         }
     }
     public override void VerifyRenderingInServerForm(Control control)
@@ -114,7 +118,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
          DateTime dt = DateTime.Now;
          string prodatatimefinsh = dt.ToShortDateString().ToString();
-         string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
+         string tempID = ((HyperLink)(e.Item.Cells[0].Controls[0])).Text.Trim();
          string str = string.Format("update e_project set proschedule='归档',prodatatimefinsh='{0}' where projectID='" + tempID + "'", prodatatimefinsh);
          msq.getmysqlcom(str);
          databind();
@@ -131,7 +135,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         {
             DateTime dt = DateTime.Now;
             string prodatatimefinsh = dt.ToShortDateString().ToString();
-            string tempID = ((Label)e.Item.FindControl("labID")).Text.Trim();
+            string tempID = ((HyperLink)(e.Item.Cells[0].Controls[0])).Text.Trim();
             string str = string.Format("update e_project set proschedule='结项',prodatatimeguid='{0}' where projectID='" + tempID + "'", prodatatimefinsh);
             msq.getmysqlcom(str);
             databind();
@@ -194,7 +198,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
    
     protected void Btselect_Click(object sender, EventArgs e)
     {//搜索
-        string str = string.Format("and (projectID='{0}'or projectName='{1}')",TbselectID.Text,TbselectName.Text);       
+        string str = string.Format("and (projectID='{0}'or projectName like '%{1}%')",TbselectID.Text,TbselectName.Text);       
         StringBuilder queryString = new StringBuilder();
         queryString.Append(ViewState["init"].ToString());
         queryString.Append(str);
@@ -306,6 +310,8 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                     ((ImageButton)e.Item.Cells[8].FindControl("btnEdit")).Attributes.Add("onclick", "return confirm('确认归档吗?');");
                 }
             }
+            string strProjectName = ((Label)e.Item.FindControl("labName")).Text.Trim();
+            ((LinkButton)(e.Item.Cells[9].Controls[0])).Attributes.Add("onclick", "return confirm('至管理员：请先移除项目里的受助人和已使用捐赠人的资金之后，再删除项目。是否现在删除项目：" + strProjectName + "？');");
         }
     }
     protected void btputout_Click(object sender, EventArgs e)
@@ -313,4 +319,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         putout.Visible = true;
     }
 
+    protected void dgData_DeleteCommand(object source, DataGridCommandEventArgs e)
+    {
+        NLogTest nlog = new NLogTest();
+        string sss = "删除了项目：" + ((Label)e.Item.FindControl("labName")).Text.Trim();
+        nlog.WriteLog(Session["UserName"].ToString(), sss);
+        string str112 = "delete from e_project where projectID='" + ((HyperLink)(e.Item.Cells[0].Controls[0])).Text.Trim() + "'";
+        msq.getmysqlcom(str112);
+        databind();
+    }
 }
