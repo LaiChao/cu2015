@@ -80,16 +80,17 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             btnBatchAdd.Visible = false;
             btnchoic.Visible = false;
 
-            string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom,projectID from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
+            string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom,projectID,infoRead from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
             MySqlDataReader mysqlread = msq11.getmysqlread(iniSql);
             while (mysqlread.Read())
             {
-                infoTitle.Text = mysqlread.GetString(0);
-                infoContent.Text = mysqlread.GetString(1);
-                Files = mysqlread.GetString(2);
-                receive = mysqlread.GetString(3);
+                infoTitle.Text = mysqlread.GetString("infoTitle");
+                infoContent.Text = mysqlread.GetString("infoContent");
+                Files = mysqlread.GetString("infoFile");
+                receive = mysqlread.GetString("infoTo");
                 tbID.Text = mysqlread.GetString("projectID");
-                ViewState["sender"] = mysqlread.GetString(4);//发件人
+                ViewState["sender"] = mysqlread.GetString("infoFrom");//发件人
+                DropDownList1.SelectedValue = mysqlread.GetString("infoRead");
             }
             arrFiles = Files.Split('|');
             foreach(string s in arrFiles)
