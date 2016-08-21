@@ -312,8 +312,6 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         string strUpdDirect = "update e_benfactor set direction=1,recipientsType='" + recipientsType.SelectedItem.Text.ToString() + "',recipientsDescription='" + description.Text.ToString() + "' where benfactorID='" + strBenfactorID + "'";
                         msq.getmysqlcom(strUpdDirect);
                     }
-                    tbReset();
-                    labError.Text = "添加成功";
                 }
                 if (benfactorType.SelectedValue == "2")//单位
                 {
@@ -329,8 +327,6 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         string strUpdDirect = "update e_benfactor set direction=1,recipientsType='" + recipientsType.SelectedItem.Text.ToString() + "' where benfactorID='" + strBenfactorID + "'";
                         msq.getmysqlcom(strUpdDirect);
                     }
-                    tbReset();
-                    labError.Text = "添加成功";
                 }
                 if (benfactorType.SelectedValue == "3")//自然人
                 {
@@ -346,8 +342,6 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         string strUpdDirect = "update e_benfactor set direction=1,recipientsType='" + recipientsType.SelectedItem.Text.ToString() + "',recipientsDescription='" + description.Text.ToString() + "' where benfactorID='" + strBenfactorID + "'";
                         msq.getmysqlcom(strUpdDirect);
                     }
-                    tbReset();
-                    labError.Text = "添加成功";
                 }
                 if (benfactorType.SelectedValue == "4")//募捐箱
                 {
@@ -363,8 +357,6 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         string strUpdDirect = "update e_benfactor set direction=1,recipientsType='" + recipientsType.SelectedItem.Text.ToString() + "',recipientsDescription='" + description.Text.ToString() + "' where benfactorID='" + strBenfactorID + "'";
                         msq.getmysqlcom(strUpdDirect);
                     }
-                    tbReset();
-                    labError.Text = "添加成功";
                 }
                 if (benfactorType.SelectedValue == "5")//冠名捐助金
                 {
@@ -375,12 +367,12 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         string strRemind = string.Format("insert into e_remind (benfactorID,cycle,flag) values ('{0}',{1},{2})", strBenfactorID, ddlCycle.SelectedValue.ToString(), ddlAge.SelectedValue.ToString());
                         msq.getmysqlcom(strRemind);
                     }
-                    tbReset();
-                    labError.Text = "添加成功";
                 }
                     NLogTest nlog = new NLogTest();
                     string sss = "添加了捐赠人：" + benfactorName.Text.ToString();
                     nlog.WriteLog(Session["UserName"].ToString(), sss);
+                    tbReset();
+                    labError.Text = "添加成功";
                 //loadPage();
                 //foreach (System.Web.UI.Control stl in this.Form.Controls)
                 //{
