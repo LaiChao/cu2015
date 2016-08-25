@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>批量添加受助人</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
@@ -43,9 +43,15 @@
         请选择excel文件：<asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="300px" Height="45px" />
         <br />
         <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" />
-    
+        <br />
     </div>
-    <div></div>
+    <p>
+        注意事项：
+<br />1、批量添加受助人的模板，需要从QQ群文件中下载。
+<br />2、模板中的第一列“受助人来源”，要与系统平台中的“用户与机构管理”模块中的“经办单位”名称一致。
+<br />3、模板中的“身份证号”一列，如果最后一位为X，一定要大写。
+<br />4、在模板中带有“是否...”的一列，“是”要填写“1”，“否”要填写“0”。如果填“1”，则对应一列的后面相关列要填写。
+    </p>
     </form>
     </center>
 </body>

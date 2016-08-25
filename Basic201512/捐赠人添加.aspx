@@ -162,7 +162,7 @@
                 </tr>             
                 <tr>
                         <td class="auto-style8">
-                            捐助人类型：&nbsp;&nbsp;&nbsp;
+                            捐赠人类型：&nbsp;&nbsp;&nbsp;
                         </td>
                         <td class="auto-style9">
 

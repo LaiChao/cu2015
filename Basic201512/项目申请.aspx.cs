@@ -81,6 +81,7 @@ namespace CL.Utility.Web.BasicData
 
                     reload();//载入项目信息
                 }
+                table1.Visible = false;
             }          
         }
         private void databind(string s)
@@ -144,13 +145,13 @@ namespace CL.Utility.Web.BasicData
         {
 
 
-            this.dgData.EditCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_EditCommand);
-            this.dgData.UpdateCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_UpdateCommand);
-            this.dgData.CancelCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_CancelCommand);
-            this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
-            //this.dgData.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_DeleteCommand);
-            //this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
-            //this.dgHeader.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgHeader_ItemCommand);
+        //    this.dgData.EditCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_EditCommand);
+        //    this.dgData.UpdateCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_UpdateCommand);
+        //    this.dgData.CancelCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_CancelCommand);
+        //    this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
+        //    //this.dgData.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_DeleteCommand);
+        //    //this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
+        //    //this.dgHeader.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgHeader_ItemCommand);
 
         }
         #endregion
@@ -222,11 +223,11 @@ namespace CL.Utility.Web.BasicData
         #region "页面操作"
 
 
-        private void dgData_CancelCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-        {
-            dgData.EditItemIndex = -1;
-            databind(ViewState["now"].ToString());
-        }
+        //private void dgData_CancelCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        //{
+        //    dgData.EditItemIndex = -1;
+        //    databind(ViewState["now"].ToString());
+        //}
 
         //private void dgData_DeleteCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
         //{
@@ -234,31 +235,31 @@ namespace CL.Utility.Web.BasicData
 
         //}
 
-        private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-        {
+        //private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        //{
 
-            dgData.EditItemIndex = e.Item.ItemIndex;
-            databind(ViewState["now"].ToString());
-        }
+        //    dgData.EditItemIndex = e.Item.ItemIndex;
+        //    databind(ViewState["now"].ToString());
+        //}
 
-        private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-        {
-            //string strupdata = string.Format("insert into e_recipients_project (branchID,branchName,projectID,recipientID,recipientName) values ({0},'{1}','{2}',{3},'{4}')", ViewState["BranchID"].ToString(), ViewState["BranchName"], Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), ((Label)e.Item.FindControl("labID")).Text.Trim());            
-            if(Session["ProjectID"]==null)
-            {
-                labError.Text = "请先获取项目ID";
-                return;
-            }
-            string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
-            msq.getmysqlcom(strupdata);
+        //private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        //{
+        //    //string strupdata = string.Format("insert into e_recipients_project (branchID,branchName,projectID,recipientID,recipientName) values ({0},'{1}','{2}',{3},'{4}')", ViewState["BranchID"].ToString(), ViewState["BranchName"], Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), ((Label)e.Item.FindControl("labID")).Text.Trim());            
+        //    if(Session["ProjectID"]==null)
+        //    {
+        //        labError.Text = "请先获取项目ID";
+        //        return;
+        //    }
+        //    string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
+        //    msq.getmysqlcom(strupdata);
 
-            dgData.EditItemIndex = -1;
-            databind(ViewState["now"].ToString());
+        //    dgData.EditItemIndex = -1;
+        //    databind(ViewState["now"].ToString());
    
-            NLogTest nlog = new NLogTest();
-            string sss = "分配受助人：" + LbproID.Text + "到项目：" + Session["ProjectID"].ToString();
-            nlog.WriteLog(Session["UserName"].ToString(), sss);
-        }
+        //    NLogTest nlog = new NLogTest();
+        //    string sss = "分配受助人：" + LbproID.Text + "到项目：" + Session["ProjectID"].ToString();
+        //    nlog.WriteLog(Session["UserName"].ToString(), sss);
+        //}
 
         private void dgData_ItemDataBound(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
         {
@@ -446,7 +447,9 @@ namespace CL.Utility.Web.BasicData
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
-                    labError.Text = "添加项目成功";
+                    labError.Text = "添加项目成功，请选择受助人";
+                    btntijiao.Visible = false;
+                    table1.Visible = true;
                 }
                 else
                 {
@@ -538,12 +541,14 @@ namespace CL.Utility.Web.BasicData
         }
         protected void btnBatch_Click(object sender, EventArgs e)
         {
-            Response.Redirect("批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+            //Response.Redirect("批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+            Response.Write("<script>window.open('批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim() + "','_blank')</script>");
         }
 
         protected void btnBatchAdd_Click(object sender, EventArgs e)
         {
-            Response.Redirect("批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+            //Response.Redirect("批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+            Response.Write("<script>window.open('批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim() + "','_blank')</script>");
         }
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
@@ -560,5 +565,30 @@ namespace CL.Utility.Web.BasicData
         }
 
 
+        protected void dgData_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            if(e.CommandName=="SelectR")
+            {
+                if (Session["ProjectID"] == null)
+                {
+                    labError.Text = "请先获取项目ID";
+                    return;
+                }
+                NLogTest nlog = new NLogTest();
+                string sss = "分配受助人：" + ((Label)e.Item.FindControl("lblID")).Text.Trim() + "到项目：" + Session["ProjectID"].ToString();//LbproID.Text
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+                string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
+                msq.getmysqlcom(strupdata);
+                databind(ViewState["now"].ToString());
+            }
+        }
+        protected void dgData_ItemDataBound1(object sender, DataGridItemEventArgs e)
+        {
+            if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+            {
+                ((LinkButton)e.Item.Cells[0].Controls[0]).Attributes.Add("onclick", "return confirm('确定要选择这个受助人吗?');");
+            }
+
+        }
 }
 }

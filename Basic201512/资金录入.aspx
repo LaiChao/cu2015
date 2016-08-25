@@ -33,10 +33,7 @@
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-        .auto-style1 {
-            height: 30px;
-        }
-    
+            
         </style>
      <script language="javascript" type="text/javascript">
          function click()
@@ -72,7 +69,7 @@
                                     <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control"></asp:TextBox>
                                    <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
                                     <br />
-                                    搜索不到捐助人？前往&nbsp; <a href="捐赠人添加.aspx" target="main" >添加捐赠人</a>
+                                    搜索不到捐赠人？前往&nbsp; <a href="捐赠人添加.aspx" target="main" >添加捐赠人</a>
                                     <br />
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="显示全部待确认金额" CssClass=" btn btn-danger" />
                        </div>        

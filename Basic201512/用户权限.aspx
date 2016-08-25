@@ -81,12 +81,12 @@
                             </asp:DropDownList>
                     </ItemTemplate>
                 </asp:TemplateField>--%>
-                <asp:CommandField HeaderText="编辑" ShowEditButton="True"  >
+                <asp:CommandField HeaderText="编辑" ShowEditButton="True" EditText="编辑">
                  <HeaderStyle Height="30px"  />
                 <ControlStyle Height="30px"  />
                 <ItemStyle Height="30px" />
                 </asp:CommandField >
-                <asp:CommandField HeaderText="删除" ShowDeleteButton="True">
+                <asp:CommandField HeaderText="删除" ShowDeleteButton="True" DeleteText="删除">
                     <HeaderStyle Height="30px" />
                 <ControlStyle Height="30px"  />
                 <ItemStyle Height="30px" />

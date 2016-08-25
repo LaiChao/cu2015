@@ -98,7 +98,7 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         }
         if(txtName.Text.Trim() != "")
         {//recipientsID in (select distinct recipientID from e_pr where projectID in (select projectID from e_project where projectName='导出测试'))
-            queryString2.Append("recipientsID in (select distinct recipientID from e_pr where projectID in (select projectID from e_project where projectName='" + txtName.Text.Trim() + "')) ");
+            queryString2.Append("recipientsID in (select distinct recipientID from e_pr where projectID in (select projectID from e_project where projectName like '%" + txtName.Text.Trim() + "%')) ");
         }
         //queryString2.Append("order by recipientsID DESC");
         ViewState["Query"] = queryString2.ToString();

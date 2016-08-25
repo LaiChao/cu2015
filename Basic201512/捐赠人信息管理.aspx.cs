@@ -56,6 +56,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             mask();
 
             //DetailsView1.Visible = false;
+
         }
     }
     protected void mask()
@@ -236,6 +237,11 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
                 ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
+                //会长不能修改捐赠人信息
+                if (Session["userRole"].ToString() == "3")
+                {
+                    ((HyperLink)(e.Row.Cells[0].Controls[0])).Enabled = false;
+                }
             }
         }
         //for (int i = 0; i < count; i++)

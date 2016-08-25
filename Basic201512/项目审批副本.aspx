@@ -440,7 +440,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="备注说明" HeaderStyle-Font-Names="true">
+<%--                <asp:TemplateColumn HeaderText="备注说明" HeaderStyle-Font-Names="true">
 
 <HeaderStyle Font-Names="true"></HeaderStyle>
 
@@ -454,7 +454,7 @@
                         <asp:TextBox ID="txtEditBtw" runat="server" MaxLength="40" CssClass="txtbox" Text=''>
                         </asp:TextBox>
                     </EditItemTemplate>
-                </asp:TemplateColumn>
+                </asp:TemplateColumn>--%>
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

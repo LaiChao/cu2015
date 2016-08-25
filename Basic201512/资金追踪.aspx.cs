@@ -24,7 +24,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_moneytrack ");
+    string str111 = string.Format("select * from e_moneytrack order by prouseoutTime desc");
    
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
@@ -39,7 +39,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             if (Request.QueryString.Count > 0)
             {
                 TbselectName.Text = Request["id"].Trim();
-                string str1111 = string.Format("select * from e_moneytrack where benefactorID={0}", TbselectName.Text);
+                string str1111 = string.Format("select * from e_moneytrack where benefactorID={0} order by prouseoutTime desc", TbselectName.Text);
                 DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str1111);
                 DataView dv = new DataView(ds.Tables[0]);
                 dgData.DataSource = dv;

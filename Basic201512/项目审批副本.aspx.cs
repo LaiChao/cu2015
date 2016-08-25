@@ -252,13 +252,15 @@ namespace CL.Utility.Web.BasicData
             if(e.CommandName=="Delete1")
             {
                 string rcpidStr = (dgData.DataKeys[e.Item.ItemIndex]).ToString();
+                NLogTest nlog = new NLogTest();
+                string sss = "删除了项目：" + LbproID.Text.Trim() + "中的受助人：" + rcpidStr;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+
+                
                 string deleteStr = string.Format("delete from e_pr where projectID='{0}' and recipientID={1}",LbproID.Text.Trim(),rcpidStr);
                 msq.getmysqlcom(deleteStr);
                 BindData();
 
-                NLogTest nlog = new NLogTest();
-                string sss = "删除了项目：" + LbproID.Text.Trim() + "中的受助人：" + rcpidStr;
-                nlog.WriteLog(Session["UserName"].ToString(), sss);
             }
 
         }

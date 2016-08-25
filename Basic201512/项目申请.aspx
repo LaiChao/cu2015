@@ -283,7 +283,7 @@
                 
             </table>
 
-            <table style="width: 800px" id="table1" Visible="False" class="table" >
+            <table style="width: 800px" id="table1" Visible="False" class="table" runat="server">
                 <tr>
                     <td></td>
                     <td>
@@ -295,7 +295,8 @@
                                 <asp:Label ID="Label1" runat="server" Text="身份证号:"></asp:Label>
                                 <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Btselect0" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Height="34px" Width="85px" />
-                                &nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
+                                <br />
+                                搜索不到受助人？前往&nbsp; <a href="添加受助人.aspx" target="_blank" >添加受助人</a>&nbsp;<asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
                         &nbsp;<asp:Button ID="btnBatchAdd" runat="server" OnClick="btnBatchAdd_Click" Text="批量添加受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
                         </div>
                     </td>                   
@@ -305,91 +306,12 @@
                     <td>
                         <br />
 
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="644px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="644px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound1" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
-                <asp:TemplateColumn HeaderText="操作">
-                    <ItemStyle CssClass="option"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:ImageButton ID="btnEdit" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="../CommUI/Images/icon-pencil.gif">
-                        </asp:ImageButton>
-                        <asp:ImageButton ID="btnDelete" Visible="false" runat="server" ImageUrl="../CommUI/Images/icon-delete.gif"
-                            CommandName="Delete"></asp:ImageButton>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <font face="宋体">
-                            <asp:ImageButton ID="btnUpdate" runat="server" ToolTip="保存修改" CommandName="Update"
-                                ImageUrl="../CommUI/Images/icon-floppy.gif"></asp:ImageButton>
-                            <asp:ImageButton ID="btnCancel" runat="server" ToolTip="放弃修改" CommandName="Cancel"
-                                ImageUrl="../CommUI/Images/icon-pencil-x.gif"></asp:ImageButton></font>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="姓名">
-                    <ItemStyle CssClass="id"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-<%--                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEditID" runat="server" MaxLength="8" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'
-                            >
-                        </asp:TextBox>
-                    </EditItemTemplate>--%>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="受助人ID">
-                    <ItemTemplate>
-                        <asp:Label ID="lblID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsID") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="年龄">
-                    <%--<ItemStyle CssClass=""--%>
-                    <ItemTemplate>
-                        <asp:Label ID="labAge" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.newAge") %>'></asp:Label>
-                    </ItemTemplate>
-<%--                    <EditItemTemplate>
-                        <asp:Label ID="txtEditAge" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.newAge") %>'></asp:Label>
-
-                    </EditItemTemplate>--%>
-                </asp:TemplateColumn>
-
-                <asp:TemplateColumn HeaderText="身份证号">
-                    <ItemStyle CssClass="name"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-<%--                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEditName" runat="server" MaxLength="10" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'>
-                        </asp:TextBox>
-                    </EditItemTemplate>--%>
-                </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="来源">
-                    <ItemStyle CssClass="index"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
-                        </asp:Label>
-                    </ItemTemplate>
-<%--                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEditOrder" runat="server" MaxLength="6" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
-                        </asp:TextBox>
-                    </EditItemTemplate>--%>
-                </asp:TemplateColumn>
-                <%--<asp:TemplateColumn HeaderText="启用">
-                    <ItemStyle CssClass="idt"></ItemStyle>
-                    <ItemTemplate>
-                        <asp:CheckBox ID="ckState" runat="server" ToolTip="启用标示，点中为启用" CssClass="txtbox"
-                            Checked=''
-                            Enabled="False"></asp:CheckBox>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <font face="宋体">
-                            <asp:CheckBox ID="ckEditState" runat="server" CssClass="txtbox" Checked=''
-                                oolTip="启用标示，点中为启用"></asp:CheckBox></font>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>--%>
 <%--                <asp:TemplateColumn Visible="true" HeaderText="项目ID">
                     <ItemTemplate>
                         <asp:Label ID="labproid" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'>
@@ -401,32 +323,57 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>
-<%--                <asp:TemplateColumn Visible="False" HeaderText="维护时间">
+                <asp:ButtonColumn CommandName="SelectR" HeaderText="选择受助人" Text="选择"></asp:ButtonColumn>
+                <asp:TemplateColumn HeaderText="姓名">
+<%--                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditID" runat="server" MaxLength="8" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'
+                            >
+                        </asp:TextBox>
+                    </EditItemTemplate>--%>
                     <ItemTemplate>
-                        <asp:Label ID="labMaintainDate" runat="server" CssClass="txtbox" Text=''>
+                        <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEditMaintainDate" runat="server" CssClass="txtbox" Text=''
-                            Enabled="False">
-                        </asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>--%>
-<%--                <asp:TemplateColumn HeaderText="备注说明" HeaderStyle-Font-Names="true">
-
-<HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des"></ItemStyle>
-                    
+                    <ItemStyle CssClass="id"></ItemStyle>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="受助人ID">
                     <ItemTemplate>
-                        <asp:Label ID="labBtw" runat="server" CssClass="txtbox" Text=''>
+                        <asp:Label ID="lblID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsID") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="年龄">
+                    <%--<ItemStyle CssClass=""--%>
+<%--                    <EditItemTemplate>
+                        <asp:Label ID="txtEditAge" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.newAge") %>'></asp:Label>
+
+                    </EditItemTemplate>--%>
+                    <ItemTemplate>
+                        <asp:Label ID="labAge" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.newAge") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+
+                <asp:TemplateColumn HeaderText="身份证号">
+<%--                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditName" runat="server" MaxLength="10" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'>
+                        </asp:TextBox>
+                    </EditItemTemplate>--%>
+                    <ItemTemplate>
+                        <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEditBtw" runat="server" MaxLength="40" CssClass="txtbox" Text=''>
+                    <ItemStyle CssClass="name"></ItemStyle>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="来源">
+<%--                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditOrder" runat="server" MaxLength="6" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
                         </asp:TextBox>
-                    </EditItemTemplate>
-                </asp:TemplateColumn>--%>
+                    </EditItemTemplate>--%>
+                    <ItemTemplate>
+                        <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
+                        </asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle CssClass="index"></ItemStyle>
+                </asp:TemplateColumn>
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
