@@ -240,6 +240,7 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     {
         GridView1.Columns[9].Visible = false;
         GridView1.Columns[10].Visible = false;
+        GridView1.Columns[11].Visible = false;
         GridView1.HeaderStyle.BackColor = Color.White;
         GridView1.HeaderStyle.ForeColor = Color.Blue;
         GridView1.HeaderRow.Cells[9].Visible = false;

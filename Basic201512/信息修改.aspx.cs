@@ -163,8 +163,24 @@ public partial class Basic201512_信息修改 : System.Web.UI.Page
         if (FI.Exists)
         {
             // 将文件保存到本机
+            string outputFilename = null;
             Response.Clear();
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + Server.UrlEncode(FI.Name));
+
+            string browser = HttpContext.Current.Request.UserAgent.ToUpper();
+            if (browser.Contains("MS") == true && browser.Contains("IE") == true)
+            {
+                outputFilename = Server.UrlEncode(FI.Name);
+            }
+            else if (browser.Contains("FIREFOX") == true)
+            {
+                outputFilename = "\"" + FI.Name + "\"";
+            }
+            else
+            {
+                outputFilename = Server.UrlEncode(FI.Name);
+            }
+
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + outputFilename);
             Response.AddHeader("Content-Length", FI.Length.ToString());
             Response.ContentType = "application/octet-stream";
             Response.Filter.Close();

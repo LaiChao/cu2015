@@ -17,11 +17,30 @@ public static class lyf_OutputToExcel
         {
             FileName = "fileName";
         }
-        string s = "inline;filename=" + HttpUtility.UrlEncode(FileName) + ".xls";
+        FileName += ".xls";
+        string outputFilename = null;
+        string s = "inline;filename=" + HttpUtility.UrlEncode(FileName);
         p.Response.Clear();//清除缓冲区流中的所有内容输出
         //name:要添加 value 的 HTTP 头名称。
         //value:要添加到头中的字符串。
-        p.Response.AddHeader("content-disposition", s);
+
+        string browser = HttpContext.Current.Request.UserAgent.ToUpper();
+        if (browser.Contains("MS") == true && browser.Contains("IE") == true)
+        {
+            outputFilename = s;
+        }
+        else if (browser.Contains("FIREFOX") == true)
+        {
+            outputFilename = "inline;filename=\"" + FileName+"\"";
+        }
+        else
+        {
+            outputFilename = s;
+        }
+
+        p.Response.AddHeader("Content-Disposition", outputFilename);
+
+        //p.Response.AddHeader("content-disposition", s);
 
         ////中文正常
         //p.Response.Charset = "utf-8";//获取或设置输出流的 HTTP 字符集
