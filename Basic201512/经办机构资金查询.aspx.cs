@@ -38,11 +38,12 @@ namespace CL.Utility.Web.BasicData
             }
              if (!Page.IsPostBack)
              {
-                 ViewState["queryString"] = string.Format("select * from (select handlingunitID,benfactorFrom,sum(useMoney) as thisMonth from e_moneytrack where DATE_FORMAT(prouseoutTime,'%Y%m')=DATE_FORMAT(CURDATE(),'%Y%m') group by handlingunitID) aaa,(select handlingunitID,sum(capitalEarn) as remain from e_capital group by handlingunitID) bbb where aaa.handlingunitID=bbb.handlingunitID ");
+                 ViewState["queryString"] = string.Format("select handlingunitID,benfactorFrom,sum(capitalEarn) as remain from e_capital where 1=1 ");
                  if (Session["userRole"].ToString()=="1")
                  {//分会用户只能查看自身分会的资金情况
-                     ViewState["queryString"] = ViewState["queryString"].ToString() + "and aaa.benfactorFrom='" + Session["benfactorFrom"].ToString() + "'";
+                     ViewState["queryString"] = ViewState["queryString"].ToString() + "and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                  }
+                 ViewState["queryString"] = ViewState["queryString"].ToString() + "group by handlingunitID ";
                  BindData(ViewState["queryString"].ToString());                
              }        
         }

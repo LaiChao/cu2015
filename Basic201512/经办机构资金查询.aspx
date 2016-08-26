@@ -131,14 +131,14 @@
               <strong>经办机构财政状况</strong></h2>
         </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" align="center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="600px" AllowPaging="true" >
+        <asp:GridView ID="GridView1" runat="server" align="center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="600px" >
             <Columns>
                 <asp:BoundField DataField="benfactorFrom" HeaderText="经办机构名称" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
 <HeaderStyle Height="30px"></HeaderStyle>
 
 <ItemStyle Height="30px"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField DataField="thisMonth" HeaderText="本月使用资金"  HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                <asp:BoundField HeaderText="本月使用资金"  HeaderStyle-Height="30px" ItemStyle-Height="30px" Visible="False" >
 <HeaderStyle Height="30px"></HeaderStyle>
 
 <ItemStyle Height="30px"></ItemStyle>
