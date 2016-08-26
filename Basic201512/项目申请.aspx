@@ -276,6 +276,7 @@
                         <td class="auto-style9">
                             <asp:Button ID="btntijiao" runat="server" OnClick="btntijiao_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>
                             <asp:Button ID="btnReapply" runat="server" Text="重新提交申请" Visible="False"  CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnReapply_Click"/>
+                            <asp:Button ID="btnFinish" runat="server" Text="完成项目申请" Visible="false" CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnFinish_Click" />
                         </td>                                         
                     </tr>                   
                                       

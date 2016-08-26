@@ -454,6 +454,7 @@ namespace CL.Utility.Web.BasicData
                 {
                     labError.Text = "添加项目成功，请选择受助人";
                     btntijiao.Visible = false;
+                    btnFinish.Visible = true;
                     table1.Visible = true;
                 }
                 else
@@ -595,5 +596,9 @@ namespace CL.Utility.Web.BasicData
             }
 
         }
-}
+        protected void btnFinish_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("项目审批副本.aspx?id=" + Session["ProjectID"].ToString().Trim());
+        }
+    }
 }

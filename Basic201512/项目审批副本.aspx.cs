@@ -810,6 +810,10 @@ namespace CL.Utility.Web.BasicData
         {
             Response.Redirect("项目申请.aspx?id=" + LbproID.Text.Trim());
         }
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("项目审批.aspx?id=" + LbproID.Text.Trim());
+        }
 }
     /// <summary>
     /// 人民币大小写金额转换

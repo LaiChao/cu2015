@@ -267,7 +267,7 @@
             </table>
               
             <table style="width: 800px" align="center" class="table">
-            <tr>
+                <tr>
                     <td class="auto-style12">
     <asp:DataGrid ID="dgData0" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
@@ -364,7 +364,7 @@
         </asp:DataGrid>                       
                     </td>
                 </tr>
-            <tr>
+                <tr>
                     <td class="auto-style12">               
     <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="677px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" DataKeyField="recipientsID" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
@@ -557,6 +557,11 @@
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
                           
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style12">
+                        <asp:Button ID="btnReturn" runat="server" Text="返回项目审批页面" CssClass=" btn btn-danger" OnClick="btnReturn_Click" />
                     </td>
                 </tr>
             </table>
