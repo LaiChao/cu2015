@@ -32,6 +32,11 @@ public partial class Basic201512_修改捐赠人信息 : System.Web.UI.Page
     string strTEL;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if(!Page.IsPostBack)
         {
             //初始化

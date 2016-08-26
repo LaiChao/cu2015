@@ -66,7 +66,11 @@ namespace CL.Utility.Web.BasicData
         string IDNow = "";
         protected void Page_Load(object sender, System.EventArgs e)
         {
-
+            if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+            {
+                Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+                return;
+            }
             string urlNow = Request.Url.ToString();
             string[] temp = urlNow.Split('=');
 

@@ -63,6 +63,11 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
     //string IDNow = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         string urlNow = Request.Url.ToString();
         string[] temp = urlNow.Split('=');
         string Files="";

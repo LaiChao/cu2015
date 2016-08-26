@@ -30,6 +30,11 @@ public partial class Basic201512_经办单位信息调整 : System.Web.UI.Page
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)//页面首次加载
         {
             ViewState["queryString"] = "select * from e_handlingunit where 1=1 ";

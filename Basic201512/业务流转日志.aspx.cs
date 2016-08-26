@@ -28,6 +28,11 @@ public partial class Basic201512_实体信息日志 : System.Web.UI.Page
     mysqlconn msq = new mysqlconn();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)//页面首次加载
         {
             ViewState["init"] = "select * from e_log where (Message like'%项目%' or Message like'%资金%' or Message like'%物品%') ";
@@ -74,7 +79,7 @@ public partial class Basic201512_实体信息日志 : System.Web.UI.Page
         }
         if (tbEnd.Text.ToString() != "")
         {
-            queryString.Append("and CreateDate<='" + tbEnd.Text.ToString() + "' ");
+            queryString.Append("and CreateDate<='" + tbEnd.Text.ToString() + " 23:59:59" + "' ");
         }
         queryString.Append("order by ID DESC");
         ViewState["now"] = queryString.ToString();

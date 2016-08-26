@@ -62,6 +62,11 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!IsPostBack)  // 页面首次加载
         {
             //初始化
@@ -137,6 +142,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         if (infoTitle.Text.Length <= 0)
         {
             lblError.Text = "信息标题不能为空";
+			infoTitle.Focus();
             //HttpContext.Current.Response.Write("<script>alert('信息标题不能为空');</script>");
             return;
         }
@@ -145,6 +151,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         {
           //  HttpContext.Current.Response.Write("<script>alert('信息内容不能为空');</script>");
             lblError.Text = "信息内容不能为空";
+			infoContent.Focus();
             return;
         }
         if((DropDownList1.SelectedValue.ToString().Trim()=="选择机构")&&(DropDownCheckBoxList1.SelectedText.ToString().Trim()==""))

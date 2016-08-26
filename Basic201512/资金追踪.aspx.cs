@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 //使用数据访问层添加的必备引用
 using DataEntity.EntityManager;
@@ -29,6 +30,11 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
         //DataView dv1 = new DataView(ds1.Tables[0]);
         //dgHeader.DataSource = dv1;
@@ -37,7 +43,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             if (Request.QueryString.Count > 0)
-            {
+            {//从其他页面跳转过来
                 TbselectName.Text = Request["id"].Trim();
                 string str1111 = string.Format("select * from e_moneytrack where benefactorID={0} order by prouseoutTime desc", TbselectName.Text);
                 DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str1111);
@@ -170,8 +176,20 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void Btselect_Click(object sender, EventArgs e)
     {
-        string str = string.Format("select *  from e_moneytrack where benefactorID='{1}'or projectID='{0}' or benfactorName='{2}' or projectName='{3}' ", TbselectID.Text, TbselectName.Text, txtselectName.Text,txtselectproname.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str);
+        StringBuilder queryString = new StringBuilder();
+        //"select * from e_moneytrack order by prouseoutTime desc"
+        queryString.Append("select * from e_moneytrack where 1=1 ");
+        if (TbselectName.Text.Trim() != "")
+            queryString.Append("and benefactorID='" + TbselectName.Text.Trim() + "' ");
+        if (txtselectName.Text.Trim() != "")
+            queryString.Append("and benfactorName='" + txtselectName.Text.Trim() + "' ");
+        if (TbselectID.Text.Trim() != "")
+            queryString.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
+        if (txtselectproname.Text.Trim() != "")
+            queryString.Append("and projectName like '%" + txtselectproname.Text.Trim() + "%' ");
+        queryString.Append("order by prouseoutTime desc ");
+        //string str = string.Format("select *  from e_moneytrack where benefactorID='{1}'or projectID='{0}' or benfactorName='{2}' or projectName='{3}' ", TbselectID.Text, TbselectName.Text, txtselectName.Text,txtselectproname.Text);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString.ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
         dgData.DataBind();

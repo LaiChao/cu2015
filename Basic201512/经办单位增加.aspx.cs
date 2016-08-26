@@ -57,7 +57,11 @@ public partial class Basic201512_经办单位增加 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
     }
 
     protected void submit_Click(object sender, EventArgs e)

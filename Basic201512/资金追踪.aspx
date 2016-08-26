@@ -56,10 +56,10 @@
             </h2>
         </div>
                            <div class="form-group">  
-                                <asp:Label ID="Label1" runat="server" Text="捐助人ID："></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text="捐赠人ID："></asp:Label>
                                 
                                 <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                               <asp:Label ID="Label3" runat="server" Text="捐助人姓名："></asp:Label>
+                               <asp:Label ID="Label3" runat="server" Text="捐赠人姓名："></asp:Label>
                                 
                                 <asp:TextBox ID="txtselectName" runat="server" CssClass="form-control"></asp:TextBox>
                                  <asp:Label ID="Label2" runat="server" Text="项目ID："></asp:Label>
@@ -81,7 +81,7 @@
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 
-                <asp:TemplateColumn HeaderText="捐助人ID">
+                <asp:TemplateColumn HeaderText="捐赠人ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benefactorID") %>'>
@@ -95,7 +95,7 @@
                 </asp:TemplateColumn>
                 
                 
-                <asp:TemplateColumn HeaderText="捐助人名称">
+                <asp:TemplateColumn HeaderText="捐赠人名称">
                     <ItemStyle CssClass="index"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labteladd" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>

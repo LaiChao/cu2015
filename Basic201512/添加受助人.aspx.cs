@@ -31,6 +31,11 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)//页面首次加载
         {
             //databind();

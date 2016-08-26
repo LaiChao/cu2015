@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 //使用数据访问层添加的必备引用
 using DataEntity.EntityManager;
@@ -24,7 +25,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimefinsh,prodatatimeshen1) zhixingspend,datediff(prodatatimeguid,prodatatimefinsh) jiexiangspend from e_project where 1=1 ");
+    //string str111 = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimefinsh,prodatatimeshen1) zhixingspend,datediff(prodatatimeguid,prodatatimefinsh) jiexiangspend from e_project where 1=1 ");
 
     protected const string bandtime = "prodatatime";//项目申请时间
     protected const string bandtimeshen = "prodatatimeshen";//科室审批时间
@@ -34,40 +35,47 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-        //DataView dv1 = new DataView(ds1.Tables[0]);
-        //dgHeader.DataSource = dv1;
-        //dgHeader.DataBind();
-      //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)
         {
+            ViewState["init"] = string.Format("select *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimefinsh,prodatatimeshen1) zhixingspend,datediff(prodatatimeguid,prodatatimefinsh) jiexiangspend from e_project where 1=1 ");
+            ViewState["now"] = ViewState["init"].ToString();
+
+            //绑定下拉框
+            string strhand = string.Format("select benfactorFrom from e_handlingunit");
+            DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),strhand);
+            DataView dv = new DataView(ds.Tables[0]);
+            dpdhand.DataSource = ds;
+            dpdhand.DataTextField = "benfactorFrom";
+            dpdhand.DataBind();
+
+            dpdhand.SelectedValue = Session["benfactorFrom"].ToString();
+            if (Session["userRole"].ToString() == "1")//分会不能查看其它经办单位
+                dpdhand.Enabled = false;
+
+            //绑定datagrid
             //判断是否从受助人信息管理页面跳转过来
             if(Request.QueryString.Count>0)
             {//and projectID in (select projectID from e_pr where recipientID=4247);
-                str111 = str111 + "and projectID in (select projectID from e_pr where recipientID="+Request["id"].Trim()+") ";
+                ViewState["init"] = ViewState["init"].ToString() + "and projectID in (select projectID from e_pr where recipientID=" + Request["id"].Trim() + ") ";
+                ViewState["now"] = ViewState["init"].ToString();
             }
-           string strhand = string.Format("select benfactorFrom from e_handlingunit");
-           DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),strhand);
-           DataView dv = new DataView(ds.Tables[0]);
-           DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-           DataView ddv = new DataView(dds.Tables[0]);
-           dgData.DataSource = dds;
-           dgData.DataBind();
-           dpdhand.DataSource = ds;
-           dpdhand.DataTextField = "benfactorFrom";
-           dpdhand.DataBind();
+            databind();
         }
-        
-
     }
 
     public void databind()
     {
+        //绑定datagrid
         //   string proID = Session["proID"].ToString();
         // string strplancap = LbproID.Text;
         // Lbearn.Text=strplancap;
-        string strproID = string.Format("SELECT *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimeguid,prodatatimeshen1) zhixingspend,datediff(prodatatimefinsh,prodatatimeguid) jiexiangspend FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), strproID);
+        //string strproID = string.Format("SELECT *,datediff(prodatatimeshen,prodatatime) as keshispend,datediff(prodatatimeshen1,prodatatimeshen) huizhangspend,datediff(prodatatimeguid,prodatatimeshen1) zhixingspend,datediff(prodatatimefinsh,prodatatimeguid) jiexiangspend FROM  e_project where projectID='{0}' or projectName='{1}'", TbselectID.Text, TbselectName.Text);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
         dgData.DataBind();
@@ -129,13 +137,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
     {
-        //DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
-        //DataView ddv = new DataView(dds.Tables[0]);
-        //dgData.DataSource = dds;
-        //   dgData.DataBind();
-        // databind();
-
-
         string strupdata = string.Format("update e_project set projectID='{0}',projectName='{1}',benfactorFrom='{2}',telphoneName='{3}',telphoneADD='{4}',projectDir='{5}' where projectID='{0}'",
             ((TextBox)e.Item.FindControl("txtEditID")).Text.Trim(),
             ((TextBox)e.Item.FindControl("txtEditName")).Text.Trim(),
@@ -145,10 +146,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             ((TextBox)e.Item.FindControl("txtdes")).Text.Trim());
             msq.getmysqlcom(strupdata);
             dgData.EditItemIndex = -1;
-            databind();
-
-
-        
+            databind();       
     }
 
     private void dgData_ItemDataBound(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
@@ -184,11 +182,16 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
    
     protected void Btselect_Click(object sender, EventArgs e)
     {
-        string str = string.Format("select * from e_project where projectID='{0}'or projectName='{1}' or benfactorFrom='{2}'", TbselectID.Text, TbselectName.Text,dpdhand.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str);
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
+        StringBuilder queryString = new StringBuilder();
+        queryString.Append(ViewState["init"].ToString());
+        if (TbselectID.Text.Trim() != "")
+            queryString.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
+        if (TbselectName.Text.Trim() != "")
+            queryString.Append("and projectName like '%" + TbselectName.Text.Trim() + "%' ");
+        queryString.Append("and benfactorFrom='" + dpdhand.Text.Trim() + "' ");
+        //string str = string.Format("select * from e_project where projectID='{0}'or projectName='{1}' or benfactorFrom='{2}'", TbselectID.Text, TbselectName.Text,dpdhand.Text);
+        ViewState["now"] = queryString.ToString();
+        databind();
         
     }
 

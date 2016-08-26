@@ -31,6 +31,11 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if(!Page.IsPostBack)
         {
             putout.Visible = false;

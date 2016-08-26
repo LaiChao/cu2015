@@ -33,7 +33,11 @@ public partial class Basic201512_æË÷˙»ÀÃÌº” : System.Web.UI.Page
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            
+            if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+            {
+                Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+                return;
+            }
             if (!Page.IsPostBack)
             {
                 loadPage();

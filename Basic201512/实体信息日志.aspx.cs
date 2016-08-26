@@ -28,6 +28,11 @@ public partial class Basic201512_实体信息日志 : System.Web.UI.Page
     mysqlconn msq = new mysqlconn();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)//页面首次加载
         {
             ViewState["init"] = "select * from e_log where (Message like'%捐赠人%'or Message like'%受助人%' or Message like '%经办单位%' or Message like '%信息%'  or Message like '%用户%') and (Message not like '%资金%' and Message not like '%项目%') ";//order by ID DESC
@@ -73,7 +78,7 @@ public partial class Basic201512_实体信息日志 : System.Web.UI.Page
         }
         if(tbEnd.Text.ToString()!="")
         {
-            queryString.Append("and CreateDate<='" + tbEnd.Text.ToString() + "' ");
+            queryString.Append("and CreateDate<='" + tbEnd.Text.ToString() + " 23:59:59" + "' ");
         }
         queryString.Append("order by ID DESC");
         ViewState["now"] = queryString.ToString();

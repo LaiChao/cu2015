@@ -33,6 +33,11 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!Page.IsPostBack)//页面首次加载
         {
             ViewState["init"] = "select *, date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge,concat(if(isstu=1,' 助学',''),if(isdoc=1,' 助医',''),if(iscan=1,' 助残',''),if(isold=1,' 助老',''),if(iskun=1,' 助困',''),if(isyong=1,' 双拥',''),if(isdst=1,' 重特大灾难','')) as leibie from e_recipients ";

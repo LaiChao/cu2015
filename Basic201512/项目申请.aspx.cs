@@ -63,6 +63,11 @@ namespace CL.Utility.Web.BasicData
         
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+            {
+                Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+                return;
+            }
             if (!Page.IsPostBack)
             {
                 ViewState["init"] = "select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";

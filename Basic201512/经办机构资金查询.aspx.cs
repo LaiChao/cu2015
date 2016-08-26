@@ -31,6 +31,11 @@ namespace CL.Utility.Web.BasicData
         mysqlconn msq = new mysqlconn();       
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+            {
+                Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+                return;
+            }
              if (!Page.IsPostBack)
              {
                  ViewState["queryString"] = string.Format("select * from (select handlingunitID,benfactorFrom,sum(useMoney) as thisMonth from e_moneytrack where DATE_FORMAT(prouseoutTime,'%Y%m')=DATE_FORMAT(CURDATE(),'%Y%m') group by handlingunitID) aaa,(select handlingunitID,sum(capitalEarn) as remain from e_capital group by handlingunitID) bbb where aaa.handlingunitID=bbb.handlingunitID ");
