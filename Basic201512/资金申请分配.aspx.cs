@@ -25,7 +25,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_project where proschedule='会长审批通过' and (needMoney>0 or projectType='物品')");
+    string str111 = string.Format("select * from e_project where proschedule='申请中' and (needMoney>0 or projectType='物品')");
     string str112 = string.Format("select * from e_handlingunit");
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -169,7 +169,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     protected void Btselect_Click(object sender, EventArgs e)
     {
         StringBuilder queryString = new StringBuilder();
-        queryString.Append("select * from e_project where proschedule='会长审批通过' and (needMoney>0 or projectType='物品') ");
+        queryString.Append("select * from e_project where proschedule='申请中' and (needMoney>0 or projectType='物品') ");
         if(txtproid.Text.Trim()!="")
         {
             queryString.Append("and projectID='" + txtproid.Text.Trim() + "' ");

@@ -168,7 +168,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn  HeaderText="项目ID">
+                <asp:TemplateColumn  HeaderText="项目ID" Visible="False">
                     <ItemTemplate>
                         <asp:Label ID="labproid" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'>
                         </asp:Label>
