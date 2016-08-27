@@ -381,9 +381,11 @@ namespace CL.Utility.Web.BasicData
  
             string FillProjectName = Lbproname.Text.Trim();//项目名称
             string FillPlanMoney = Lbplan.Text.Trim();//计划使用资金
+            string FillPlanMoney1 = "";
             double RMB = Convert.ToDouble(FillPlanMoney);
             RMBCapitalization numClass = new RMBCapitalization();
             string FillRMB = numClass.RMBAmount(RMB);//大写资金
+            string FillRMB1 = "";
 
             string FillName = "";
             string FillSex = "";
@@ -488,10 +490,16 @@ namespace CL.Utility.Web.BasicData
                     FillFamIncome4 = mysqlreader.GetString("famIncome4");
                     #endregion
                 }
-                string selectRequest = string.Format("select request from e_pr where recipientID={0}", pid);//受助人ID (select recipientsID from e_recipients where recipientsPIdcard='{0}')
+                string selectRequest = string.Format("select request,money from e_pr where recipientID={0}", pid);//受助人ID (select recipientsID from e_recipients where recipientsPIdcard='{0}')
                 mysqlreader = msq.getmysqlread(selectRequest);
                 while (mysqlreader.Read())
+                {
                     FillRequest = mysqlreader.GetString("request");//救助申请
+                    double RMB1 = mysqlreader.GetDouble("money");//救助金额
+                    //RMBCapitalization numClass = new RMBCapitalization();
+                    FillPlanMoney1 = RMB1.ToString();
+                    FillRMB1 = numClass.RMBAmount(RMB1);//大写救助金额
+                }
 
 
                 int numPerson = 1;
@@ -542,7 +550,7 @@ namespace CL.Utility.Web.BasicData
             {
                 wiw.WriteIntoDocument("leibieMark", lblLeibie.Text.ToString());//项目类别
                 wiw.WriteIntoDocument("projectNameMark", FillProjectName);//项目名称
-                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney);//救助金额
+                wiw.WriteIntoDocument("planMoneyMark", FillPlanMoney1);//救助金额
                 wiw.WriteIntoDocument("pidMark", FillPidCard);//身份证号
                 wiw.WriteIntoDocument("nameMark", FillName);//姓名
                 wiw.WriteIntoDocument("sexMark", FillSex);//性别
@@ -553,7 +561,7 @@ namespace CL.Utility.Web.BasicData
                 wiw.WriteIntoDocument("recipientsADDnowMark", FillRecipientsADDnow);//现家庭地址
                 wiw.WriteIntoDocument("telphoneADDMark", FillTelphoneADD);//联系电话
                 wiw.WriteIntoDocument("arrIncomeMark", FillArrIncome);//月收入
-                wiw.WriteIntoDocument("RMBMark", FillRMB);//大写金额
+                wiw.WriteIntoDocument("RMBMark", FillRMB1);//大写金额
                 wiw.WriteIntoDocument("generalIncomeMark", sumIncome.ToString());//家庭月总收入
                 wiw.WriteIntoDocument("incomePerPersonMark", incomePerPerson.ToString());//家庭人均月收入
                 wiw.WriteIntoDocument("canjiIDMark", FillCanjiID);//残疾人证号
