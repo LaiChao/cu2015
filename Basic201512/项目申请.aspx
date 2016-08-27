@@ -283,8 +283,54 @@
                 </tfoot>
                 
             </table>
-
-            <table style="width: 800px" id="table1" Visible="False" class="table" runat="server">
+            <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="false" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData1_ItemCommand" Width="790px">
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
+                <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
+                <EditItemStyle CssClass="dg_item" />
+                <Columns>
+                    <asp:ButtonColumn CommandName="DeleteR" HeaderText="删除受助人" Text="删除"></asp:ButtonColumn>
+                    <asp:TemplateColumn HeaderText="受助人姓名">
+                        <ItemTemplate>
+                            <asp:Label ID="lblName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="受助人ID">
+                        <ItemTemplate>
+                            <asp:Label ID="lblID1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container,"DataItem.recipientsID") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="年龄">
+                        <ItemTemplate>
+                            <asp:Label ID="lblAge" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.newAge") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="身份证号">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="来源">
+                        <ItemTemplate>
+                            <asp:Label ID="lblFrom" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
+                            </asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="救助金额">
+                        <ItemTemplate>
+                            <asp:Label ID="lblMoneyR" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.money") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="救助申请">
+                        <ItemTemplate>
+                            <asp:Label ID="lblRequestR" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.request").ToString().Length>10?DataBinder.Eval(Container, "DataItem.request").ToString().Substring(0,10) + "...":DataBinder.Eval(Container, "DataItem.request").ToString() %>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.request")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                </Columns>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            </asp:DataGrid>
+            <table align="center" style="width: 800px" id="table1" Visible="False" class="table" runat="server">
                 <tr>
                     <td></td>
                     <td>
@@ -301,6 +347,21 @@
                         &nbsp;<asp:Button ID="btnBatchAdd" runat="server" OnClick="btnBatchAdd_Click" Text="批量添加受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  
                         </div>
                     </td>                   
+                </tr>
+                <tr>
+                    <td style="auto-style7" class="auto-style15"></td>
+                    <td>
+                        <asp:Label ID="lblMoney" runat="server" Text="救助金额(元)："></asp:Label>
+                        <asp:TextBox ID="tbMoney" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="auto-style7" class="auto-style15"></td>
+                    <td>
+                        <asp:Label ID="lblRequest" runat="server" Text="救助申请："></asp:Label>
+                        <asp:TextBox ID="tbRequest" runat="server"  Width="400px" Height="90px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                    </td>
+
                 </tr>
                 <tr>
                     <td style="auto-style7" class="auto-style15"></td>

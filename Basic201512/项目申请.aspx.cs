@@ -73,7 +73,8 @@ namespace CL.Utility.Web.BasicData
                 ViewState["init"] = "select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                 ViewState["now"] = ViewState["init"];
                 databind(ViewState["now"].ToString());
-
+                //databind2();
+                dgData1.Visible = false;
                 lblBranch.Text = Session["benfactorFrom"].ToString();
                 if(Request.QueryString.Count>0)//如果是从审批未通过、重新申请跳转过来的
                 {
@@ -90,12 +91,19 @@ namespace CL.Utility.Web.BasicData
             }          
         }
         private void databind(string s)
-        {
-            
+        {           
             DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), s);
             DataView ddv = new DataView(dds.Tables[0]);
             dgData.DataSource = dds;
             dgData.DataBind();
+        }
+        private void databind2()
+        {
+            string queryString = string.Format("select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients,e_pr where recipientsID=recipientID and projectID='{0}'", LbproID.Text);
+            DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), queryString);
+            DataView ddv = new DataView(dds.Tables[0]);
+            dgData1.DataSource = dds;
+            dgData1.DataBind();
         }
         private void reload()
         {
@@ -580,12 +588,33 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "请先获取项目ID";
                     return;
                 }
+                if (tbMoney.Text.Trim() == "")
+                {
+                    Response.Write("<script>alert('请填写受助人的救助金额');</script>");
+                    return;
+                }
+                if(tbRequest.Text.Trim()=="")
+                {
+                    Response.Write("<script>alert('请填写受助人的救助申请');</script>");
+                    return;
+                }
                 NLogTest nlog = new NLogTest();
                 string sss = "分配受助人：" + ((Label)e.Item.FindControl("lblID")).Text.Trim() + "到项目：" + Session["ProjectID"].ToString();//LbproID.Text
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
-                string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID) values ({0},{1})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim());
+                string strupdata = string.Format("insert ignore into e_pr (projectID,recipientID,request,money) values ({0},{1},'{2}',{3})", Session["ProjectID"].ToString(), ((Label)e.Item.FindControl("lblID")).Text.Trim(), tbRequest.Text.Trim(), tbMoney.Text.Trim());
                 msq.getmysqlcom(strupdata);
-                databind(ViewState["now"].ToString());
+                //databind(ViewState["now"].ToString());
+                databind2();
+                dgData1.Visible = true;
+            }
+        }
+        protected void dgData1_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            if (e.CommandName == "DeleteR")
+            {
+                string strdel = string.Format("delete from e_pr where projectID={0} and recipientID={1}", Session["ProjectID"].ToString().ToString(), ((Label)e.Item.FindControl("lblID1")).Text.Trim());
+                msq.getmysqlcom(strdel);
+                databind2();
             }
         }
         protected void dgData_ItemDataBound1(object sender, DataGridItemEventArgs e)
@@ -600,5 +629,6 @@ namespace CL.Utility.Web.BasicData
         {
             Response.Redirect("项目审批副本.aspx?id=" + Session["ProjectID"].ToString().Trim());
         }
+
     }
 }
