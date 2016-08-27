@@ -241,12 +241,17 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
-                ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
-                //会长不能修改捐赠人信息
-                if (Session["userRole"].ToString() == "3")
+                if (Session["userRole"].ToString() == "3")//会长
                 {
                     ((HyperLink)(e.Row.Cells[0].Controls[0])).Enabled = false;
+                    ((HyperLink)(e.Row.Cells[0].Controls[0])).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑捐赠人')");
+                    ((LinkButton)e.Row.Cells[1].Controls[0]).Enabled = false;
+                    ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除捐赠人')");
                 }
+                else
+                    ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
+                //会长不能修改捐赠人信息
+
             }
         }
         //for (int i = 0; i < count; i++)
