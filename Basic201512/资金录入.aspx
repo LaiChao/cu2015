@@ -92,6 +92,12 @@
 <%--                                <ItemStyle CssClass="id"></ItemStyle>--%>
                             </asp:TemplateColumn>
 
+                            <asp:TemplateColumn HeaderText="捐赠人类型">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblType" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.sbenfactorType") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateColumn>
+
                         <asp:TemplateColumn HeaderText="手机号">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtteladd" runat="server" CssClass="txtbox" MaxLength="6" Text='<%# DataBinder.Eval(Container, "DataItem.TEL") %>'></asp:TextBox>
@@ -101,52 +107,22 @@
                             </ItemTemplate>
 <%--                                <ItemStyle CssClass="index"></ItemStyle>--%>
                         </asp:TemplateColumn>                   
-                            <asp:TemplateColumn HeaderText="email">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtemail" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.email") %>'
-                            >
-                        </asp:TextBox>
-                                </EditItemTemplate>
+                            <asp:TemplateColumn HeaderText="是否冠名">
                                 <ItemTemplate>
-                                    <asp:Label ID="labemail" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.email") %>'>
-                        </asp:Label>
+                                    <asp:Label ID="lblNaming" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.snaming") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
-<%--                            <asp:TemplateColumn Visible="False" HeaderText="联系电话">
+                            <asp:TemplateColumn HeaderText="是否定向">
                                 <ItemTemplate>
-                                    <asp:Label ID="labdir" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.directionlBef") %>'>
-                        </asp:Label>
+                                    <asp:Label ID="lblDirect" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.sdirection") %>'></asp:Label>
                                 </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtdir" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.directionlBef") %>'
-                            Enabled="False">
-                        </asp:TextBox>
-                                </EditItemTemplate>
-                            </asp:TemplateColumn>--%>
-<%--                            <asp:TemplateColumn  Visible="true" HeaderText="冠名捐助" HeaderStyle-Font-Names="微软雅黑" HeaderStyle-Font-Size="Medium" >
-                                <HeaderStyle Font-Names="true"></HeaderStyle>
-                                <ItemStyle CssClass="des"></ItemStyle>
-                                <ItemTemplate>
-                                    <asp:Label ID="labguanming" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.guanming") %>'>
-                        </asp:Label>
-                                </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtEditguanming" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.guanming") %>'>
-                        </asp:TextBox>
-                                </EditItemTemplate>
                             </asp:TemplateColumn>
-                            <asp:TemplateColumn  Visible="true" HeaderText="五助">
-                                <HeaderStyle Font-Names="true"></HeaderStyle>
-                                <ItemStyle CssClass="des"></ItemStyle>
+                            <asp:TemplateColumn HeaderText="定向受助人类型">
                                 <ItemTemplate>
-                                    <asp:Label ID="labwuzhu" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.wuzhu") %>'>
-                        </asp:Label>
+                                    <asp:Label ID="lblRType" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsType") %>'></asp:Label>
                                 </ItemTemplate>
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtEditwuzhu" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.wuzhu") %>'>
-                        </asp:TextBox>
-                                </EditItemTemplate>
-                            </asp:TemplateColumn>--%>
+                            </asp:TemplateColumn>
+
                         </Columns>
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />

@@ -35,7 +35,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             StringBuilder queryString = new StringBuilder();
-            queryString.Append("select * from e_benfactor where 1=1 ");
+            queryString.Append("select *,concat(if(benfactorType=1,'公益组织',''),if(benfactorType=2,'单位',''),if(benfactorType=3,'个人 ',''),if(benfactorType=4,'募捐箱',''),if(benfactorType=5,'冠名捐助金','')) as sbenfactorType,concat(if(naming=1,'是',''),if(naming=0,'否','')) as snaming,concat(if(direction=1,'是',''),if(direction=0,'否','')) as sdirection from e_benfactor where 1=1 ");
             if (Session["benfactorFrom"].ToString() != "北京市朝阳区慈善协会捐助科")
             {
                 Button1.Visible = false;//待确认金额按钮不显示
