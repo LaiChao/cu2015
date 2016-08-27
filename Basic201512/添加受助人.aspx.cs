@@ -46,6 +46,9 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
     }
     public void mask()
     {
+        //不显示其他扩展信息
+        trold.Visible = trcan1.Visible = trcan2.Visible = trdoc1.Visible = trdoc2.Visible = trstu1.Visible = trstu2.Visible = trstu3.Visible = trkun1.Visible = trkun2.Visible = trkun3.Visible = tryong1.Visible = tryong2.Visible = trdst.Visible = false;
+
         //助医
         illness.Enabled = false;
         illtime.Enabled = false;
@@ -88,9 +91,10 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
     //    benfactorFrom.DataBind();
     //}
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
+    {//助学
         if (CheckBox1.Checked)
         {
+            trstu1.Visible = trstu2.Visible = trstu3.Visible = true;
             CheckBox4.Enabled = false;
             studySchool.Enabled = true;
             studyGrade.Enabled = true;
@@ -101,6 +105,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
         if(!CheckBox1.Checked)
         {
+            trstu1.Visible = trstu2.Visible = trstu3.Visible = false;
             CheckBox4.Enabled = true;
             studySchool.Text = "";
             studyGrade.Text = "";
@@ -119,15 +124,17 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
 
     }
     protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
-    {
+    {//助老
         if (CheckBox4.Checked)
         {
+            trold.Visible = true;
             CheckBox1.Enabled = false;
             shiNeng.Enabled = true;
             shuoming4.Enabled = true;
         }
         if (!CheckBox4.Checked)
         {
+            trold.Visible = false;
             CheckBox1.Enabled = true;
             shiNeng.Text = "否";
             shuoming4.Text = "";
@@ -136,9 +143,10 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
     }
     protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
-    {
+    {//助医
         if(CheckBox2.Checked)
         {
+            trdoc1.Visible = trdoc2.Visible = true;
             illness.Enabled = true;
             illtime.Enabled = true;
             illpay.Enabled = true;
@@ -146,6 +154,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
         if(!CheckBox2.Checked)
         {
+            trdoc1.Visible = trdoc2.Visible = false;
             illness.Text = "";
             illtime.Text = "";
             illpay.Text = "";
@@ -157,9 +166,10 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
     }
     protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
-    {
+    {//助残
         if(CheckBox3.Checked)
         {
+            trcan1.Visible = trcan2.Visible = true;
             canjijibie.Enabled = true;
             canjileibie.Enabled = true;
             shuoming3.Enabled = true;
@@ -167,6 +177,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
         if(!CheckBox3.Checked)
         {
+            trcan1.Visible = trcan2.Visible = false;
             canjijibie.Text = "";
             canjileibie.Text = "";
             shuoming3.Text = "";
@@ -178,9 +189,10 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
     }
     protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
-    {
+    {//助困
         if(CheckBox5.Checked)
         {
+            trkun1.Visible = trkun2.Visible = trkun3.Visible = true;
             timeDis.Enabled = true;
             shiDu.Enabled = true;
             //sonName.Enabled = true;
@@ -189,6 +201,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
         if(!CheckBox5.Checked)
         {
+            trkun1.Visible = trkun2.Visible = trkun3.Visible = false;
             timeDis.Text = "";
             shuoming5.Text = "";
             sonName.Text = "";
@@ -202,15 +215,17 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
     }
     protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
-    {
+    {//双拥
         if(CheckBox6.Checked)
         {
+            tryong1.Visible = tryong2.Visible = true;
             army.Enabled = true;
             title.Enabled = true;
             tbOfficerID.Enabled = true;
         }
         if(!CheckBox6.Checked)
         {
+            tryong1.Visible = tryong2.Visible = false;
             army.Text = "";
             title.Text = "";
             tbOfficerID.Text = "";
@@ -220,13 +235,15 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
     }
     protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
-    {
+    {//重特大灾害
         if(CheckBox7.Checked)
         {
+            trdst.Visible = true;
             disaster.Enabled = true;
         }
         if(!CheckBox7.Checked)
         {
+            trdst.Visible = false;
             disaster.Text = "";
             disaster.Enabled = false;
         }

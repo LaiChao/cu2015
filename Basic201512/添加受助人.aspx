@@ -405,8 +405,8 @@
               <h3 class="panel-title" align="left">其他信息</h3>
             </div>
             <div class="panel-body">
-             <table style="width: 90%; height: 155px; margin-right: 116px;">
-            <tr>
+             <table style="width: 90%; height: 155px; margin-right: 116px;" runat="server">
+            <tr id="trstu1">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     就读学校：</td>
@@ -421,7 +421,7 @@
                     <asp:TextBox ID="studyGrade" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr id="trstu2">
                  <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     监护人姓名：</td>
@@ -436,7 +436,7 @@
                     <asp:TextBox ID="guardianGuanxi" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr id="trstu3">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     监护人电话：</td>
@@ -451,7 +451,7 @@
                     <asp:TextBox ID="shuoming2" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+<%--            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -463,8 +463,8 @@
                     </td>
                 <td>
                 </td>
-            </tr>
-            <tr>
+            </tr>--%>
+            <tr id="trdoc1">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     大病种类：</td>
@@ -480,7 +480,7 @@
                     <asp:TextBox ID="illtime" runat="server" onClick="WdatePicker()" class="form-control" ></asp:TextBox><%--<input class="Wdate" type="text" onClick="WdatePicker()"><font color=red>&lt;- 点我弹出日期控件</font>--%> 
                 </td>
             </tr>
-            <tr>
+            <tr id="trdoc2">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     花费数额：</td>
@@ -496,7 +496,7 @@
                     <asp:TextBox ID="shuoming1" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-                        <tr>
+<%--            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -508,8 +508,8 @@
                     </td>
                 <td>
                 </td>
-            </tr>
-            <tr>
+            </tr>--%>
+            <tr id="trcan1">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     残疾级别：</td>
@@ -525,7 +525,7 @@
                     <asp:TextBox ID="canjileibie" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr id="trcan2">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     残疾人证号：</td>
@@ -540,7 +540,7 @@
                     <asp:TextBox ID="shuoming3" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+<%--            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -552,8 +552,8 @@
                     </td>
                 <td>
                 </td>
-            </tr>
-            <tr>
+            </tr>--%>
+            <tr id="trold">
                                                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     是否失能：</td>
@@ -572,7 +572,7 @@
                     <asp:TextBox ID="shuoming4" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-                        <tr>
+<%--            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -584,8 +584,8 @@
                     </td>
                 <td>
                 </td>
-            </tr>
-            <tr>
+            </tr>--%>
+            <tr id="trkun1">
                 <td class="auto-style3"></td>
                 <td class="auto-style2">
                     临时说明：</td>
@@ -602,7 +602,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
+            <tr id="trkun2">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     子女姓名：</td>
@@ -617,7 +617,7 @@
                     <asp:TextBox ID="deathReason" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr id="trkun3">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     助困说明：</td>
@@ -626,7 +626,7 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr id="tryong1">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     部队名称：</td>
@@ -644,7 +644,7 @@
                     
                 </td>
             </tr>
-                        <tr>
+            <tr id="tryong2">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     军官证号：</td>
@@ -658,7 +658,7 @@
                 <td>
                 </td>
             </tr>
-            <tr>
+            <tr id="trdst">
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     灾害名称：</td>
@@ -668,7 +668,7 @@
                     
                 </td>
             </tr>
-                                    <tr>
+<%--            <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     </td>
@@ -680,7 +680,7 @@
                     </td>
                 <td>
                 </td>
-            </tr>
+            </tr>--%>
 
             <tr>
                 <td class="auto-style1">&nbsp;</td>
