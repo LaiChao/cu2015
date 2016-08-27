@@ -182,7 +182,13 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
-                ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
+                if (Session["userRole"].ToString() == "3")//会长不能删除受助人
+                {
+                    ((LinkButton)e.Row.Cells[10].Controls[0]).Enabled = false;
+                    ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除受助人')");
+                }
+                else
+                    ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
             }
             e.Row.Cells[7].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
@@ -191,6 +197,11 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
             ID = GridView1.DataKeys[i].Value.ToString();
             ((HyperLink)GridView1.Rows[i].Cells[1].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('查看受助人信息.aspx?ID=" + ID + "','查看受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
             //((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('修改受助人信息.aspx?ID=" + ID + "','修改受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
+            if(Session["userRole"].ToString()=="3")//会长不能编辑
+            {
+                ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Enabled = false;
+                ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑受助人')");
+            }
         }
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -200,6 +211,11 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+        //if (Session["userRole"].ToString() == "3")//会长不能删除受助人
+        //{
+        //    Response.Write("<script>alert('会长不能删除受助人');</script>");
+        //    return;
+        //}
         NLogTest nlog = new NLogTest();
         string sss = "删除了受助人：" + ((HyperLink)GridView1.Rows[e.RowIndex].Cells[1].Controls[0]).Text.ToString();
         nlog.WriteLog(Session["UserName"].ToString(),sss);
