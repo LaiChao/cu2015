@@ -9,6 +9,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 //使用数据访问层添加的必备引用
 using DataEntity.EntityManager;
@@ -42,15 +43,17 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            string strread = string.Format("select projectID,projectName,needMoney from e_project where projectID='{0}' or projectName='{1}'", nameNow, nameNow);
+            string strread = string.Format("select projectID,projectName,needMoney,concat(if(isnaming=1,' 冠名','')) as sisnaming,concat(if(isdirect=1,'定向','')) as sisdirect from e_project where (projectID='{0}' or projectName='{1}')", nameNow, nameNow);
             MySqlDataReader mysqlread = msq.getmysqlread(strread);
             while (mysqlread.Read())
             {
                 ViewState["myKey"] = mysqlread.GetInt32(2).ToString();
                 DateTime dt = DateTime.Now;
-                lbcaptID.Text = mysqlread.GetInt32(2).ToString("f2");//needMoney
-                LbproID.Text = mysqlread.GetString(0);
-                lbbenfnadd.Text = mysqlread.GetString(1);
+                lbcaptID.Text = mysqlread.GetInt32("needMoney").ToString("f2");
+                LbproID.Text = mysqlread.GetString("projectID");
+                lbbenfnadd.Text = mysqlread.GetString("projectName");
+                lblNaming.Text = mysqlread.GetString("sisnaming");
+                lblDirect.Text = mysqlread.GetString("sisdirect");
             }
 
             if (Request["type"].Trim() == "物品")
@@ -65,8 +68,24 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 dgData.Visible = true;
                 dgData1.Visible = false;
                 string strplancap = lbcaptID.Text;
-                ViewState["strproID"] = string.Format("SELECT * FROM  e_capital where handlingunitID={1} order by abs(capitalEarn - '{0}') asc LIMIT 3", strplancap, nameNow.Substring(0,3).ToString());
-                ViewState["now"] = ViewState["strproID"].ToString();
+                //order by abs(capitalEarn - '{0}') asc LIMIT 3
+                StringBuilder queryString = new StringBuilder();
+                //SELECT capitalID,e_capital.benfactorName,e_capital.benfactorID,capitalEarn,capitalIntime,projectID FROM  e_capital,e_benfactor where e_capital.handlingunitID=e_benfactor.handlingunitID group by e_capital.handlingunitID
+                queryString.Append(string.Format("SELECT capitalID,e_capital.benfactorName,e_capital.benfactorID,capitalEarn,capitalIntime,projectID,naming,direction FROM e_capital,e_benfactor where e_capital.capitalID=e_benfactor.benfactorID and e_capital.handlingunitID={1} ", strplancap, nameNow.Substring(0, 3).ToString()));
+                if (lblNaming.Text.Trim()=="冠名")
+                {
+                    queryString.Append("and (naming=1 or benfactorType=5) ");
+                }
+                else
+                    queryString.Append("and naming=0 and benfactorType!=5 ");
+                if(lblDirect.Text.Trim()=="定向")
+                {
+                    queryString.Append("and direction=1 ");
+                }
+                else
+                    queryString.Append("and direction=0 ");
+                queryString.Append("group by capitalID ");
+                ViewState["now"] = queryString;
                 databind(ViewState["now"].ToString());
             }
         }

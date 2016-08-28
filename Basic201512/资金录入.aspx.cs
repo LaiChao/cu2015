@@ -101,7 +101,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         dgData.Visible = true;
 
         StringBuilder queryString = new StringBuilder();
-        queryString.Append("select * from e_benfactor where 1=1 ");
+        queryString.Append("select *,concat(if(benfactorType=1,'公益组织',''),if(benfactorType=2,'单位',''),if(benfactorType=3,'个人 ',''),if(benfactorType=4,'募捐箱',''),if(benfactorType=5,'冠名捐助金','')) as sbenfactorType,concat(if(naming=1,'是',''),if(naming=0,'否','')) as snaming,concat(if(direction=1,'是',''),if(direction=0,'否','')) as sdirection from e_benfactor where 1=1 ");
         if (benfactorType.SelectedValue != "0")
         {
             if (benfactorType.SelectedValue == "1")
@@ -126,7 +126,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             }
         }
         if (TbselectName.Text.Trim() != "")
-            queryString.Append("and benfactorName='" + TbselectName.Text.ToString() + "' ");
+            queryString.Append("and benfactorName like '%" + TbselectName.Text.ToString() + "%' ");
         if (TbselectID.Text.Trim() != "")
             queryString.Append("and TEL='" + TbselectID.Text.ToString() + "' ");
         //string str = string.Format("select * from {0} where benfactorName='{2}'or telphoneADD='{1}'", benfactorType.SelectedValue, TbselectID.Text, TbselectName.Text);

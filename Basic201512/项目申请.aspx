@@ -183,10 +183,24 @@
                     <td class="auto-style14">
                         项目类型：</td>
                     <td class="auto-style9">           
-                        <asp:DropDownList ID="ddlType" runat="server" class="btn btn-default dropdown-toggle" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" >
+                        <asp:DropDownList ID="ddlType" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" >
                                 <asp:ListItem>资金</asp:ListItem>
                                 <asp:ListItem>物品</asp:ListItem>
                         </asp:DropDownList>
+                    &nbsp;
+                        <asp:DropDownList ID="ddlNaming" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlNaming_SelectedIndexChanged">
+                            <asp:ListItem Value="0">非冠名</asp:ListItem>
+                            <asp:ListItem Value="1">冠名</asp:ListItem>
+                        </asp:DropDownList>
+                    &nbsp;
+                        <asp:DropDownList ID="ddlDirect" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="ddlDirect_SelectedIndexChanged">
+                            <asp:ListItem Value="0">非定向</asp:ListItem>
+                            <asp:ListItem Value="1">定向</asp:ListItem>
+                        </asp:DropDownList>
+<%--                    &nbsp;
+                        <asp:DropDownList ID="ddlRType" runat="server"  class="btn btn-default dropdown-toggle">
+
+                        </asp:DropDownList>--%>
                     </td>
                 </tr>
                 <tr>

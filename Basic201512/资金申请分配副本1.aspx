@@ -63,6 +63,8 @@
                 <asp:Label ID="LbproID" runat="server" Text="" class="label label-default"></asp:Label>
                 &nbsp;<asp:Label ID="Label7" runat="server" Text="项目类型:"></asp:Label>
                 <asp:Label ID="lblType" runat="server" class="label label-default"></asp:Label>
+                    &nbsp;<asp:Label ID="lblNaming" runat="server" class="label label-default"></asp:Label>
+                    &nbsp;<asp:Label ID="lblDirect" runat="server" class="label label-default"></asp:Label>
 &nbsp;<asp:Label ID="Label6" runat="server" Text="项目名称:"></asp:Label>
                 <asp:Label ID="lbbenfnadd" runat="server" class="label label-default"></asp:Label>
                 &nbsp;<asp:Label ID="Label4" runat="server" Text="计划资金:"></asp:Label>

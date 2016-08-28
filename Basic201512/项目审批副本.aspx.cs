@@ -88,7 +88,7 @@ namespace CL.Utility.Web.BasicData
             {
                 string strState = "";
                 string strType = "";
-                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType from e_project where projectID='{0}'", nameNow);
+                string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType,concat(if(isnaming=1,' 冠名','')) as sisnaming,concat(if(isdirect=1,'定向','')) as sisdirect from e_project where projectID='{0}'", nameNow);
                 MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
                 while (mysqlreader.Read())
                 {
@@ -103,6 +103,8 @@ namespace CL.Utility.Web.BasicData
                     lblLeibie.Text = mysqlreader.GetString("projectLei");
                     lblState.Text = strState = mysqlreader.GetString("proschedule");
                     strType = mysqlreader.GetString("projectType");
+                    lblNaming.Text = mysqlreader.GetString("sisnaming");
+                    lblDirect.Text = mysqlreader.GetString("sisdirect");
                 }
                 BindData();
                 //默认隐藏全部按钮

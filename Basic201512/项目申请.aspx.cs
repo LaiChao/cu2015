@@ -456,7 +456,7 @@ namespace CL.Utility.Web.BasicData
             {
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','{9}',{10},'{11}')", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString());
+                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType,isnaming,isdirect) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','{9}',{10},'{11}',{12},{13})", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(),ddlDirect.SelectedValue.ToString());
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
@@ -630,5 +630,15 @@ namespace CL.Utility.Web.BasicData
             Response.Redirect("项目审批副本.aspx?id=" + Session["ProjectID"].ToString().Trim());
         }
 
-    }
+        protected void ddlNaming_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlNaming.SelectedValue.ToString() == "1")
+                ddlDirect.SelectedValue = "0";             
+        }
+        protected void ddlDirect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDirect.SelectedValue.ToString() == "1")
+                ddlNaming.SelectedValue = "0";
+        }
+}
 }

@@ -179,6 +179,9 @@
                         项 目 类 别： </td>
                     <td class="auto-style9">
                         <asp:Label ID="lblLeibie" runat="server"></asp:Label>
+                    &nbsp;&nbsp;<asp:Label ID="lblNaming" runat="server" Text="非冠名"></asp:Label>
+                        &nbsp;&nbsp;
+                        <asp:Label ID="lblDirect" runat="server">非定向</asp:Label>
                     </td>
                 </tr>
                 <tr>
