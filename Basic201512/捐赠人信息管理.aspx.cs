@@ -159,7 +159,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         }
         if(tbName.Text.Trim() != "")
         {
-            queryString.Append("and e_benfactor.benfactorName='" + tbName.Text.Trim() + "' ");
+            queryString.Append("and e_benfactor.benfactorName like '%" + tbName.Text.Trim() + "%' ");
         }
         if(tbTEL.Text.Trim() != "")
         {
@@ -318,6 +318,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         GridView1.Columns[0].Visible = false;
         GridView1.Columns[1].Visible = false;
         GridView1.Columns[19].Visible = false;
+        GridView1.Columns[20].Visible = false;
         GridView1.HeaderStyle.BackColor = Color.White;
         GridView1.HeaderStyle.ForeColor = Color.Blue;
         GridView1.HeaderRow.Cells[0].Visible = false;

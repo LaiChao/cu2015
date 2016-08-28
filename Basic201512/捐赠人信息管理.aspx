@@ -201,6 +201,7 @@
 <ItemStyle Height="30px"></ItemStyle>
                 </asp:BoundField>
                 <asp:HyperLinkField DataNavigateUrlFields="benfactorID" DataNavigateUrlFormatString="捐赠物品.aspx?ID={0}" HeaderText="捐物" Text="捐赠" />
+                <asp:HyperLinkField DataNavigateUrlFields="benfactorID" DataNavigateUrlFormatString="捐赠人资金录入详情.aspx?ID={0}" HeaderText="资金录入详情" Text="资金录入详情" />
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead" />
