@@ -81,6 +81,7 @@ namespace CL.Utility.Web.BasicData
              if (!Page.IsPostBack)
              {
                  confirm.Visible = false;
+                 btnCancel.Visible = false;
                  reload();//初始化
 
              }
@@ -219,7 +220,14 @@ namespace CL.Utility.Web.BasicData
             //}
             //int result;
             if ((tempstate == 0) && (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科"))
+            {
                 confirm.Visible = true;
+                btnCancel.Visible = true;
+            }
+            if((tempstate==0)&&(Session["benfactorFrom"].ToString()==lblBranch.Text.Trim()))
+            {//申请单位可以撤回
+                btnCancel.Visible = true;
+            }
         }
 
         protected void btyes_Click(object sender, EventArgs e)//提交添加资金
@@ -324,8 +332,28 @@ namespace CL.Utility.Web.BasicData
                 txtPLAN.Enabled = true;
                 btyes.Enabled = true;
                 confirm.Visible = false;
+                btnCancel.Visible = false;
             }
             reload();
         }
-}
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            //撤回语句
+            string updateString = string.Format("update e_capital set capitalIn=0,state=1 where capitalID='{0}'", lbcaptID.Text);
+            int result = msq.getmysqlcom(updateString);
+            if(result>0)
+            {
+                lblErr.InnerText = "金额撤回成功";
+                NLogTest nlog = new NLogTest();
+                string sss = "撤回了" + lblBranch.Text + "的" + LbproID.Text + "申请捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+                txtPLAN.Enabled = true;
+                btyes.Enabled = true;
+                confirm.Visible = false;
+                btnCancel.Visible = false;
+
+            }
+            reload();
+        }
+    }
 }

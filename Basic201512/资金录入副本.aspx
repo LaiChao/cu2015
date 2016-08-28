@@ -139,7 +139,7 @@
         tr{ line-height:30px;height:30px;}
         .td_c1{ width:20px;}
             .auto-style6 {
-                width: 340px;
+                width: 270px;
                 text-align: right;
             }
             .auto-style9 {
@@ -153,11 +153,11 @@
                 text-align: left;
             }
             .auto-style12 {
-                width: 340px;
+                width: 270px;
                 height: 30px;
             }
             .auto-style13 {
-                width: 340px;
+                width: 270px;
                 text-align: right;
                 height: 30px;
             }
@@ -166,12 +166,15 @@
                 text-align: left;
                 height: 30px;
             }
+            .auto-style15 {
+                width: 270px;
+            }
             </style>
          
             <table style="width: 600px" align="center" class="table">
 
                 <tr>
-                    <td>
+                    <td class="auto-style15">
                         <label id="lblErr" runat="server"  style="color:Red" ></label>
                     </td>
                     <td>
@@ -241,8 +244,9 @@
                     
                 </tr>
                 <tr>
-                    <td class="auto-style12">
-                        </td>
+                    <td class="auto-style6">
+                        <asp:Button ID="btnCancel" runat="server" Text="撤回" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
+                    </td>
                     <td class="auto-style9">
                         <asp:Button ID="btyes" runat="server" Text="添加资金" OnClick="btyes_Click" CssClass=" btn btn-danger" />
                       
