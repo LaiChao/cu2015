@@ -50,13 +50,11 @@
     <div style="height: 47px">
     
         <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
-    
-        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" />
         <asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
+        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" />
         <asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />
-    
+        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
+        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />   
         <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" />
         <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" />
     

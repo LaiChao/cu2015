@@ -81,10 +81,11 @@
     
         <asp:Label ID="Label1" runat="server" Text="受助类别："></asp:Label>
     
-        <asp:CheckBox ID="CheckBox1" runat="server" Text="助学"  />
         <asp:CheckBox ID="CheckBox2" runat="server" Text="助医"  />
-        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残"  />
+    
+        <asp:CheckBox ID="CheckBox1" runat="server" Text="助学"  />
         <asp:CheckBox ID="CheckBox4" runat="server" Text="助老"  />
+        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残"  />
         <asp:CheckBox ID="CheckBox5" runat="server" Text="助困"  />
     
         <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" />

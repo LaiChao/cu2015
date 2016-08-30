@@ -84,8 +84,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 }
                 else
                     queryString.Append("and direction=0 ");
+                ViewState["init"] = queryString.ToString();
                 queryString.Append("group by capitalID ");
-                ViewState["now"] = queryString;
+                ViewState["now"] = queryString.ToString();
                 databind(ViewState["now"].ToString());
             }
         }
@@ -301,23 +302,37 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        string strTable="";
-        if (Request["type"].Trim() == "物品")
-        {
-            strTable = "e_item";
-        }
+        //string strTable="";
+        //if (Request["type"].Trim() == "物品")
+        //{
+        //    strTable = "e_item";
+        //}
+        //if (Request["type"].Trim() == "资金")
+        //{
+        //    strTable = "e_capital";
+        //}
+        //if (tbName.Text.Trim() == "")
+        //    ViewState["now"] = "select * from " + strTable;
+        //else
+        //    ViewState["now"] = "select * from " + strTable + " where benfactorName='" + tbName.Text.Trim() + "'";
+        //if (strTable == "e_capital")
+        //    databind(ViewState["now"].ToString());
+        //if(strTable == "e_item")
+        //    databind1(ViewState["now"].ToString());
+        if(Request["type"].Trim() == "物品")
+            databind1(ViewState["now"].ToString());
         if (Request["type"].Trim() == "资金")
         {
-            strTable = "e_capital";
+            if(tbName.Text.Trim() != "")
+            {
+                ViewState["query"] = ViewState["init"].ToString() + "and e_benfactor.benfactorName like '%" + tbName.Text.Trim() + "%' group by capitalID ";
+                databind(ViewState["query"].ToString());
+            }
+            else
+                databind(ViewState["now"].ToString());
         }
-        if (tbName.Text.Trim() == "")
-            ViewState["now"] = "select * from " + strTable;
-        else
-            ViewState["now"] = "select * from " + strTable + " where benfactorName='" + tbName.Text.Trim() + "'";
-        if (strTable == "e_capital")
-            databind(ViewState["now"].ToString());
-        if(strTable == "e_item")
-            databind1(ViewState["now"].ToString());
+
+
     }
   
 }

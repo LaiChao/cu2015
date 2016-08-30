@@ -27,7 +27,9 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
+    <style>
+        .abc {margin:0 auto;width:720px;border:1px solid;text-align:left;}
+    </style>
 </head>
 <body>
     <center>
@@ -41,11 +43,11 @@
     <div>
     
         请选择excel文件：<asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="300px" Height="45px" />
-        <br />
-        <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" />
-        <br />
+        <p>
+            <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" />
+        </p>
     </div>
-        <div style="width: 708px">
+        <div style="width: 708px" class="abc">
             <p>
                 注意事项：
         <br />1、批量添加受助人的模板，需要从QQ群文件中下载。

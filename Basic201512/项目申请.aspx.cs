@@ -76,6 +76,8 @@ namespace CL.Utility.Web.BasicData
                 //databind2();
                 dgData1.Visible = false;
                 lblBranch.Text = Session["benfactorFrom"].ToString();
+                table1.Visible = false;
+
                 if(Request.QueryString.Count>0)//如果是从审批未通过、重新申请跳转过来的
                 {
                     LbproID.Text = Request["id"].Trim(); //项目ID
@@ -83,11 +85,13 @@ namespace CL.Utility.Web.BasicData
                     btnBatch.Visible = true;
                     btnBatchAdd.Visible = true;
                     btnGetId.Visible = false;
+
+                    table1.Visible = true;
+                    dgData1.Visible = true;
                     Session["ProjectID"] = LbproID.Text.ToString();
 
                     reload();//载入项目信息
                 }
-                table1.Visible = false;
             }          
         }
         private void databind(string s)

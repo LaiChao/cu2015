@@ -82,13 +82,11 @@
     <div style="height: 47px">
     <div class="form-group">
         <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
-    
-        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
         <asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
+        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
         <asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-    
+        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
+        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>    
         <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox" />
         <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox"/>
     </div>
