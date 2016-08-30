@@ -1,5 +1,5 @@
-<%@ Page Language="c#" Inherits="CL.Utility.Web.BasicData.Register" CodeFile="项目审批副本.aspx.cs" EnableEventValidation="false" %>
-
+<%@ Page Language="c#" Inherits="CL.Utility.Web.BasicData.Register" CodeFile="项目审批副本.aspx.cs" %>
+<%-- EnableEventValidation="false" --%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html>
 <head>
@@ -272,14 +272,22 @@
             <table style="width: 800px" align="center" class="table">
                 <tr>
                     <td class="auto-style12">
-    <asp:DataGrid ID="dgData0" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+    <asp:DataGrid ID="dgData0" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData0_ItemCommand">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 
-                <asp:TemplateColumn HeaderText="捐助人ID">
+<%--                <asp:ButtonColumn CommandName="CancelMoney" Text="撤回"  HeaderText="撤回资金"></asp:ButtonColumn>
+                <asp:ButtonColumn CommandName="rollbackMoney" Text="撤回"  HeaderText="撤回资金"></asp:ButtonColumn>--%>
+                <asp:TemplateColumn HeaderText="撤回资金">
+                    <ItemStyle CssClass="id" />
+                    <ItemTemplate>
+                        <asp:Button ID="btnRollback" runat="server" CssClass="txtbox" Text="撤回" CommandName="rollbackMoney" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="捐赠人ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID0" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benefactorID") %>'>
@@ -291,7 +299,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="捐助人姓名">
+                <asp:TemplateColumn HeaderText="捐赠人姓名">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
@@ -475,7 +483,7 @@
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 
-                <asp:TemplateColumn HeaderText="捐助人ID">
+                <asp:TemplateColumn HeaderText="捐赠人ID">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorID") %>'>
@@ -487,7 +495,7 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="捐助人名称">
+                <asp:TemplateColumn HeaderText="捐赠人名称">
                     <ItemStyle CssClass="id"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labname1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>

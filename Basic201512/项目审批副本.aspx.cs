@@ -132,11 +132,16 @@ namespace CL.Utility.Web.BasicData
                 else if (strType == "物品")
                     dgData0.Visible = false;
                 dgData.Columns[0].Visible=false;
+                dgData0.Columns[0].Visible = false;
                 if(strState == "申请中")
                 {
                     if((Lbbenfrom.Text==Session["benfactorFrom"].ToString())||(Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")||(Session["UserName"].ToString()=="admin"))
                     {//项目实施单位 或者 捐助科 或者 管理员
                         dgData.Columns[0].Visible = true;
+                    }
+                    if((Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")||(Session["UserName"].ToString()=="admin"))
+                    {
+                        dgData0.Columns[0].Visible = true;
                     }
                 }
 
@@ -246,6 +251,7 @@ namespace CL.Utility.Web.BasicData
             DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), capid);
             DataView dv = new DataView(ds.Tables[0]);
             dgData0.DataSource = ds;
+            dgData0.DataKeyField = "id";
             dgData0.DataBind();
 
             string strItem = string.Format("select * from e_item where projectID='{0}'", LbproID.Text);
@@ -270,6 +276,27 @@ namespace CL.Utility.Web.BasicData
 
             }
 
+        }
+        protected void dgData0_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            if(e.CommandName=="rollbackMoney")
+            {
+                //日志
+                NLogTest nlog = new NLogTest();
+                string sss = "撤回了项目：" + LbproID.Text.Trim() + "中的捐赠人：" + ((Label)(e.Item.FindControl("labname"))).Text.ToString() + "的资金" + ((Label)(e.Item.FindControl("labguanming"))).Text.ToString() + "元";
+                nlog.WriteLog(Session["UserName"].ToString(), sss);
+
+                //回滚资金语句
+                string rollbackString = "update e_capital set capitalEarn=capitalEarn+" + Convert.ToDouble(((Label)(e.Item.FindControl("labguanming"))).Text.ToString()) + " where capitalID='" + ((Label)(e.Item.FindControl("labID0"))).Text.ToString() + "' ";
+                //补回项目需要资金
+                string addMoneyString = "update e_project set needMoney=needMoney+" + Convert.ToDouble(((Label)(e.Item.FindControl("labguanming"))).Text.ToString()) + " where projectID='" + LbproID.Text.Trim() + "' ";
+                //删除资金追踪语句
+                string deleteString = "delete from e_moneytrack where id=" + (dgData0.DataKeys[e.Item.ItemIndex]).ToString();
+                msq.getmysqlcom(rollbackString);
+                msq.getmysqlcom(addMoneyString);
+                msq.getmysqlcom(deleteString);
+                BindData();
+            }
         }
         protected void btchecky1_Click(object sender, EventArgs e)
         {
