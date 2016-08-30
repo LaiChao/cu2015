@@ -845,11 +845,11 @@ namespace CL.Utility.Web.BasicData
         }
         protected void btnReapply_Click(object sender, EventArgs e)
         {
-            Response.Redirect("项目申请.aspx?id=" + LbproID.Text.Trim());
+            Response.Redirect("项目申请.aspx?id=" + LbproID.Text.Trim(),false);
         }
         protected void btnReturn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("项目审批.aspx?id=" + LbproID.Text.Trim());
+            Response.Redirect("项目审批.aspx?id=" + LbproID.Text.Trim(),false);
         }
 }
     /// <summary>

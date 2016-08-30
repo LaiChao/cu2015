@@ -49,12 +49,12 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
             }
             ViewState["init"] = queryString.ToString();
             ViewState["now"] = ViewState["init"].ToString() + "and infoRead='未读' ";
-            databind(ViewState["now"].ToString());
+            databind();
         }
     }
-    public void databind(string s)
+    public void databind()
     {
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), s);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
         DataView dv = new DataView(ds.Tables [0]);
         GridView1.DataSource = dv;
         GridView1.DataKeyNames = new string[] { "infoID" };//主键
@@ -130,7 +130,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         //删除记录
         string str112 = "delete from e_info where infoID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
         msq.getmysqlcom(str112);
-        databind(ViewState["now"].ToString());
+        databind();
     }
     //protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     //{
@@ -153,7 +153,7 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         GridView1.PageIndex = e.NewPageIndex;
-        databind(ViewState["now"].ToString());
+        databind();
     }
     //// 删除文件类
     //public void DeleteFile(string FullFileName)
@@ -199,27 +199,33 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         if(ddlType.SelectedValue=="未读信息")
         {
             ViewState["now"] = ViewState["init"].ToString() + "and infoRead='未读' ";
-            databind(ViewState["now"].ToString());
+            databind();
         }
         if(ddlType.SelectedValue=="全部信息")
         {
             ViewState["now"] = ViewState["init"].ToString();
-            databind(ViewState["now"].ToString());
+            databind();
         }
         if(ddlType.SelectedValue=="收件箱")
         {
-            string strmailbox = ViewState["now"].ToString() + "and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='" + Session["UserName"].ToString() + "') ";
-            databind(strmailbox);
+            //string strmailbox = ViewState["now"].ToString() + "and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='" + Session["UserName"].ToString() + "') ";
+            //databind(strmailbox);
+            ViewState["now"] = ViewState["init"].ToString() + "and (infoTo='" + Session["benfactorFrom"].ToString() + "' or infoTo='" + Session["UserName"].ToString() + "') ";
+            databind();
         }
         if(ddlType.SelectedValue=="发件箱")
         {
-            string strmailSent = ViewState["now"].ToString() + "and infoFrom='" + Session["benfactorFrom"].ToString() + "' ";
-            databind(strmailSent);
+            //string strmailSent = ViewState["now"].ToString() + "and infoFrom='" + Session["benfactorFrom"].ToString() + "' ";
+            //databind(strmailSent);
+            ViewState["now"] = ViewState["init"].ToString() + "and infoFrom='" + Session["benfactorFrom"].ToString() + "' ";
+            databind();
         }
         if(ddlType.SelectedValue=="群发信息")
         {
-            string strgroupSent = ViewState["now"].ToString() + "and infoTo='所有机构'";
-            databind(strgroupSent);
+            //string strgroupSent = ViewState["now"].ToString() + "and infoTo='所有机构'";
+            //databind(strgroupSent);
+            ViewState["now"] = ViewState["init"].ToString() + "and infoTo='所有机构'";
+            databind();
         }
     }
 }

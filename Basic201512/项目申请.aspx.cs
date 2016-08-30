@@ -73,7 +73,7 @@ namespace CL.Utility.Web.BasicData
                 ViewState["init"] = "select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                 ViewState["now"] = ViewState["init"];
                 databind(ViewState["now"].ToString());
-                //databind2();
+                
                 dgData1.Visible = false;
                 lblBranch.Text = Session["benfactorFrom"].ToString();
                 table1.Visible = false;
@@ -91,6 +91,7 @@ namespace CL.Utility.Web.BasicData
                     Session["ProjectID"] = LbproID.Text.ToString();
 
                     reload();//载入项目信息
+                    databind2();
                 }
             }          
         }
@@ -520,6 +521,8 @@ namespace CL.Utility.Web.BasicData
                 if (res > 0)
                 {
                     labError.Text = "重新申请项目成功";
+                    btnReapply.Visible = false;
+                    btnFinish.Visible = true;
                 }
                 else
                 {

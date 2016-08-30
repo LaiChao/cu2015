@@ -44,7 +44,7 @@
             </h2>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="1013px">
             <Columns>
                 <asp:BoundField DataField="branchName" HeaderText="捐赠人所属机构" />
                 <asp:BoundField DataField="detailID" HeaderText="捐赠人ID" />

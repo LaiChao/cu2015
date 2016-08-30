@@ -121,6 +121,16 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
                     DropDownList1.Visible = true;
                 }
             }
+            else
+            {//非群发信息 
+                Label3.Visible = false;
+                DropDownList1.Visible = false;
+                if (Session["benfactorFrom"].ToString() == receive)//只有收件人可以标记
+                {
+                    Label3.Visible = true;
+                    DropDownList1.Visible = true;
+                }
+            }
             
         }
     }

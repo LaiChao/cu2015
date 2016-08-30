@@ -90,7 +90,8 @@ public partial class Permission_用户权限 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {              
-                ((LinkButton)e.Row.Cells[4].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('你确认要删除：\"" + e.Row.Cells[0].Text + "\"吗?')");
+                ((LinkButton)e.Row.Cells[4].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除：\"" + e.Row.Cells[0].Text + "\"吗?')");
+                ((LinkButton)e.Row.Cells[5].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要重置密码吗?')");
             }
         }
     }
