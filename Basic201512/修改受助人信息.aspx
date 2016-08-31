@@ -71,7 +71,7 @@
                 <td class="auto-style2">
                     受助人来源：</td>
                 <td>
-                    <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" Enabled="false">
                     </asp:DropDownList>
                 </td>
                 <td class="auto-style1">&nbsp;</td>

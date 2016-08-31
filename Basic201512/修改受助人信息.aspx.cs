@@ -381,7 +381,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
     protected void mod_Click(object sender, EventArgs e)
     {
  //int flag = 1;
-        if (!CheckBox1.Checked && !CheckBox2.Checked && !CheckBox3.Checked && !CheckBox4.Checked && !CheckBox5.Checked)
+        if (!CheckBox1.Checked && !CheckBox2.Checked && !CheckBox3.Checked && !CheckBox4.Checked && !CheckBox5.Checked && !CheckBox6.Checked && !CheckBox7.Checked)
         {
             //LabelError.Text = "请选择受助类型";
             HttpContext.Current.Response.Write("<script>alert('请选择受助类型');</script>");
@@ -650,7 +650,22 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             string str1181 = string.Format("update e_recipients set iskun=0 where recipientsID='{0}'", ViewState["IDNow"].ToString());
             msq.getmysqlcom(str1181);
         }
-
+        if (CheckBox6.Checked)
+        {
+            msq.getmysqlcom(string.Format("update e_recipients set isyong=1 where recipientsID='{0}'", ViewState["IDNow"].ToString()));
+        }
+        else
+        {
+            msq.getmysqlcom(string.Format("update e_recipients set isyong=0 where recipientsID='{0}'", ViewState["IDNow"].ToString()));
+        }
+        if(CheckBox7.Checked)
+        {
+            msq.getmysqlcom(string.Format("update e_recipients set isdst=1 where recipientsID='{0}'", ViewState["IDNow"].ToString()));
+        }
+        else
+        {
+            msq.getmysqlcom(string.Format("update e_recipients set isdst=0 where recipientsID='{0}'", ViewState["IDNow"].ToString()));
+        }
         if (res > 0)
         {
             NLogTest nlog = new NLogTest();

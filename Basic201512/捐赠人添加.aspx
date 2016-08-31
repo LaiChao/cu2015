@@ -415,8 +415,8 @@
             </table>
                  </div>
                 </div>
-        <div>
-            <p>
+        <div class="form-group">
+            <p class="text-center">
                 前往
                 <a href="资金录入.aspx" target="main" >捐赠金额录入</a>
             </p>

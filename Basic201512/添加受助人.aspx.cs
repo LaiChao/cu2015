@@ -267,7 +267,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //int flag = 1;
-        if (!CheckBox1.Checked && !CheckBox2.Checked && !CheckBox3.Checked && !CheckBox4.Checked && !CheckBox5.Checked)
+        if (!CheckBox1.Checked && !CheckBox2.Checked && !CheckBox3.Checked && !CheckBox4.Checked && !CheckBox5.Checked && !CheckBox6.Checked && !CheckBox7.Checked)
         {
             //LabelError.Text = "请选择受助类型";
             HttpContext.Current.Response.Write("<script>alert('请选择受助类型');</script>");

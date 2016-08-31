@@ -285,11 +285,22 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             //string selectBranchID = "select handlingunitID from e_handlingunit where benfactorFrom='" + ddlBranch.Text.ToString() + "'";
             //MySqlDataReader mysqlread1 = msq.getmysqlread(selectBranchID);
             //while (mysqlread1.Read())
+            if(benfactorName.Text.Trim()=="")
+            {
+                labError.Text = "请输入捐赠人名称";
+                return;
+            }
             if (TEL.Text.Trim() == "")
             {
                 labError.Text = "请输入手机号";
                 return;
             }
+            else if (TEL.Text.Trim().Length!=11)
+            {
+                labError.Text = "11位手机号位数不对";
+                return;
+            }
+
             strbranchID = ddlBranch.SelectedValue.ToString();
             if (strbranchID=="")
             {
@@ -332,7 +343,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                         msq.getmysqlcom(strUpdDirect);
                     }
                 }
-                if (benfactorType.SelectedValue == "3")//自然人
+                if (benfactorType.SelectedValue == "3")//个人
                 {
                     string strziran = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,sex,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, ddlSex.SelectedItem.Text.ToString(), strTEL, email.Text.ToString(), "0");
                     msq.getmysqlcom(strziran);

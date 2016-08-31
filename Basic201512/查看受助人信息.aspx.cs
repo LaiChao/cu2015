@@ -134,7 +134,8 @@ public partial class Basic201512_查看受助人信息 : System.Web.UI.Page
             {
                 TextBox tb = (TextBox)stl;
                 //tb.Text = "";
-                tb.Enabled = false;
+                tb.ReadOnly = true;
+                //tb.Enabled = false;
             }
             if(stl is System.Web.UI.WebControls.DropDownList)
             {
