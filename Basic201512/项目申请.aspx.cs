@@ -112,7 +112,7 @@ namespace CL.Utility.Web.BasicData
         }
         private void reload()
         {
-            string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType from e_project where projectID='{0}'", Session["ProjectID"].ToString());
+            string strpro = string.Format("select projectID,projectName,projectDir,benfactorFrom,palnMoney,recipientsNow,telphoneName,telphoneADD,projectLei,proschedule,projectType,isnaming,isdirect from e_project where projectID='{0}'", Session["ProjectID"].ToString());
             MySqlDataReader mysqlreader = msq.getmysqlread(strpro);
             while (mysqlreader.Read())
             {
@@ -141,6 +141,10 @@ namespace CL.Utility.Web.BasicData
                 txttel.Text = mysqlreader.GetString("telphoneName");
                 //电话
                 txtteladd.Text = mysqlreader.GetString("telphoneADD");
+                if (mysqlreader.GetInt32("isnaming") == 1)
+                    ddlNaming.SelectedValue = "1";
+                if (mysqlreader.GetInt32("isdirect") == 1)
+                    ddlDirect.SelectedValue = "1";
             }
 
         }
@@ -555,7 +559,7 @@ namespace CL.Utility.Web.BasicData
             {
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',telphoneName='{5}',telphoneADD='{6}',prodatatime='{7}',proschedule='申请中',projectLei='{8}',needMoney={3},projectType='{9}' where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), ddlType.SelectedValue.ToString());
+                string str11 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',telphoneName='{5}',telphoneADD='{6}',prodatatime='{7}',proschedule='申请中',projectLei='{8}',needMoney={3},projectType='{9}',isnaming={10},isdirect={11} where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(), ddlDirect.SelectedValue.ToString());
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
@@ -638,6 +642,23 @@ namespace CL.Utility.Web.BasicData
                 {
                     Response.Write("<script>alert('请填写受助人的救助金额');</script>");
                     return;
+                }
+                else
+                {
+                    try
+                    {
+                        Convert.ToDouble(tbMoney.Text.Trim());
+                    }
+                    catch
+                    {
+                        Response.Write("<script>alert('救助金额为正数');</script>");
+                        return;
+                    }
+                    if (Convert.ToDouble(tbMoney.Text.Trim()) < 0)
+                    {
+                        Response.Write("<script>alert('救助金额不能为负数');</script>");
+                        return;
+                    }
                 }
                 if(tbRequest.Text.Trim()=="")
                 {
