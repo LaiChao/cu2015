@@ -247,16 +247,39 @@ namespace CL.Utility.Web.BasicData
             //}
 
             //判断是否为空
-            if ((txtPLAN.Text == "")||(txtPLAN.Text=="0"))
+            //if ((txtPLAN.Text == "")||(txtPLAN.Text=="0"))
+            //{
+            //    lblErr.InnerText = "请输入金额";
+            //   // HttpContext.Current.Response.Write("<script>alert('请输入金额');</script>");
+            //    return;
+            //}
+            //else if(Convert.ToDouble(txtPLAN.Text)<=0)
+            //{
+            //    lblErr.InnerText = "请输入正数";
+            //    return;
+            //}
+
+            if (txtPLAN.Text.Trim() == "")
             {
                 lblErr.InnerText = "请输入金额";
-               // HttpContext.Current.Response.Write("<script>alert('请输入金额');</script>");
                 return;
             }
-            else if(Convert.ToDouble(txtPLAN.Text)<=0)
+            else
             {
-                lblErr.InnerText = "请输入正数";
-                return;
+                try
+                {
+                    Convert.ToDouble(txtPLAN.Text.Trim());
+                }
+                catch
+                {
+                    lblErr.InnerText = "请输入正数";
+                    return;
+                }
+                if (Convert.ToDouble(txtPLAN.Text.Trim()) <= 0)
+                {
+                    lblErr.InnerText = "请输入正数";
+                    return;
+                }
             }
 
             ////判断权限
@@ -293,8 +316,8 @@ namespace CL.Utility.Web.BasicData
             //}
             //else
             //{//非捐助科权限
-                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state,benfactorFrom) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0,'{7}')", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
-                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0,benfactorFrom='{7}' where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
+                string strins2 = string.Format("insert into e_capital (capitalID,benfactorID,capitalIn,capitalEarn,capitalIntime,handlingunitID,benfactorName,state,benfactorFrom) values('{0}','{1}','{2}',{3},'{4}','{5}','{6}',0,'{7}')", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text.Trim()), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
+                string strupd2 = string.Format("update e_capital set benfactorID='{1}',capitalIn='{2}',capitalEarn={3},capitalIntime='{4}',handlingunitID='{5}',benfactorName='{6}',state=0,benfactorFrom='{7}' where capitalID='{0}'", lbcaptID.Text, (string)ViewState["myKey"], double.Parse(txtPLAN.Text.Trim()), Convert.ToDouble(lbcaptIDown.Text), lbtime.Text, (string)ViewState["myID"], LbproID.Text, lblBranch.Text);
                 string insertString = string.Format("insert into e_capital_detail (detailID,benefactorName,branchName,operator,opType,income,remain,opTime,opBranchName) values('{0}','{1}','{2}','{3}','{4}',{5},{6},'{7}','{8}')", lbcaptID.Text, LbproID.Text, lblBranch.Text, Session["UserName"].ToString(), "申请录入", double.Parse(txtPLAN.Text), Convert.ToDouble(lbcaptIDown.Text), DateTime.Now.ToString(), Session["benfactorFrom"].ToString());
                 try
                 {

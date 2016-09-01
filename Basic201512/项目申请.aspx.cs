@@ -434,27 +434,44 @@ namespace CL.Utility.Web.BasicData
             }
             if (recipientsType.SelectedValue == "请选择")
             {
-                labError.Text = "请选择项目类别";
+                labError.Text = "请选择受助人类别";
                 return;
             }
             if (projectID.Text.Trim().Length <= 0)
             {
-                labError.Text = "项目名称不能为空";
+                labError.Text = "请输入项目名称";
                 return;
             }
             if (projectDir.Text.Trim().Length <= 0)
             {
-                labError.Text = "项目描述不能为空";
+                labError.Text = "请输入项目描述";
                 return;
             }
-            if (txtPLAN.Text.Trim().Length <= 0)
+            if (txtPLAN.Text.Trim() == "")
             {
-                labError.Text = "项目预算不能为空";
+                labError.Text = "请输入项目预算";
                 return;
+            }
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(txtPLAN.Text.Trim());
+                }
+                catch
+                {
+                    labError.Text = "项目预算为正数";
+                    return;
+                }
+                if (Convert.ToDouble(txtPLAN.Text.Trim()) < 0)
+                {
+                    labError.Text = "项目预算不能为负数";
+                    return;
+                }
             }
             if (txtDIR.Text.Trim().Length <= 0)
             {
-                labError.Text = "受助人描述不能为空";
+                labError.Text = "请输入受助人描述";
                 return;
             }
             else
@@ -487,29 +504,51 @@ namespace CL.Utility.Web.BasicData
         #region "重新提交申请"
         protected void btnReapply_Click(object sender, EventArgs e)
         {
+            //if (LbproID.Text.Trim() == "")
+            //{
+            //    labError.Text = "请获取项目ID";
+            //    return;
+            //}
             if (recipientsType.SelectedValue == "请选择")
             {
-                labError.Text = "请选择项目类别";
+                labError.Text = "请选择受助人类别";
                 return;
             }
             if (projectID.Text.Trim().Length <= 0)
             {
-                labError.Text = "项目名称不能为空";
+                labError.Text = "请输入项目名称";
                 return;
             }
             if (projectDir.Text.Trim().Length <= 0)
             {
-                labError.Text = "项目描述不能为空";
+                labError.Text = "请输入项目描述";
                 return;
             }
-            if (txtPLAN.Text.Trim().Length <= 0)
+            if (txtPLAN.Text.Trim() == "")
             {
-                labError.Text = "项目预算不能为空";
+                labError.Text = "请输入项目预算";
                 return;
+            }
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(txtPLAN.Text.Trim());
+                }
+                catch
+                {
+                    labError.Text = "项目预算为正数";
+                    return;
+                }
+                if (Convert.ToDouble(txtPLAN.Text.Trim()) < 0)
+                {
+                    labError.Text = "项目预算不能为负数";
+                    return;
+                }
             }
             if (txtDIR.Text.Trim().Length <= 0)
             {
-                labError.Text = "受助人描述不能为空";
+                labError.Text = "请输入受助人描述";
                 return;
             }
             else

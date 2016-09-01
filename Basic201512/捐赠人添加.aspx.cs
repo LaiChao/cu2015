@@ -290,6 +290,8 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 labError.Text = "请输入捐赠人名称";
                 return;
             }
+            //使用正则表达式验证11位手机号是由11位数字组成
+            Regex mobileReg = new Regex("^[0-9]{11,11}$");
             if (TEL.Text.Trim() == "")
             {
                 labError.Text = "请输入手机号";
@@ -298,6 +300,15 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             else if (TEL.Text.Trim().Length!=11)
             {
                 labError.Text = "11位手机号位数不对";
+                return;
+            }
+            else if (mobileReg.IsMatch(TEL.Text.Trim()))
+            {
+                ;//验证通过
+            }
+            else
+            {
+                labError.Text = "手机号由11位数字组成";
                 return;
             }
 

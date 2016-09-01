@@ -276,6 +276,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
         }
         else
         {
+
             //LabelError.Text = "";
             if (recipientsADD.Text.Length <= 0)
             {
@@ -291,12 +292,24 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
                 return;
                 //flag = 0;
             }
-            if (recipientsPIdcard.Text.Length <= 0)
+            //验证第二代身份证，共18位
+            Regex pidReg = new Regex("(^\\d{18}$)|(^\\d{17}(\\d|X)$)");
+            if (recipientsPIdcard.Text.Trim()=="")
             {
                 //LabelError.Text = "未填写身份证号";
                 HttpContext.Current.Response.Write("<script>alert('未填写身份证号');</script>");
                 return;
                 //flag = 0;
+            }
+            else
+            {
+                if(pidReg.IsMatch(recipientsPIdcard.Text.Trim()))
+                    ;//验证通过
+                else
+                {
+                    HttpContext.Current.Response.Write("<script>alert('身份证号格式不对，第二代身份证由18位组（最后一位的X为大写）');</script>");
+                    return;
+                }
             }
             if (recipientsADDnow.Text.Length <= 0)
             {

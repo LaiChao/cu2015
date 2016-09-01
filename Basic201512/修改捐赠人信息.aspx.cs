@@ -144,7 +144,7 @@ public partial class Basic201512_修改捐赠人信息 : System.Web.UI.Page
             tbNaming.Visible = false;
         }
 
-        benfactorName.Enabled = false;
+        benfactorName.ReadOnly = true;
         ddlBranch.Enabled = false;
         benfactorType.Enabled = false;
         //TEL.Enabled = false;

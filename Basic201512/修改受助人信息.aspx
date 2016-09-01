@@ -105,7 +105,7 @@
                 <td class="auto-style2">
                     身份证号：</td>
                 <td>
-                    <asp:TextBox ID="recipientsPIdcard" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="recipientsPIdcard" runat="server" class="form-control" MaxLength="18"></asp:TextBox>
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">

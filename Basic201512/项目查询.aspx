@@ -209,11 +209,11 @@
                     <ItemStyle CssClass="des"></ItemStyle>
                     
                     <ItemTemplate>
-                        <asp:Label ID="labdes" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'>
+                        <asp:Label ID="labdes" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
                         </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtdes" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>'>
+                        <asp:TextBox ID="txtdes" runat="server" MaxLength="40" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>

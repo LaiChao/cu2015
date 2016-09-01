@@ -181,10 +181,32 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         }
         else 
         {
+            if (((TextBox)e.Item.FindControl("txtemail")).Text.Trim() == "")
+            {
+                lberror.Text = "请输入使用金额";
+                return;
+            }
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(((TextBox)e.Item.FindControl("txtemail")).Text.Trim());
+                }
+                catch
+                {
+                    lberror.Text = "使用金额为正数";
+                    return;
+                }
+                if (Convert.ToDouble(((TextBox)e.Item.FindControl("txtemail")).Text.Trim()) <= 0)
+                {
+                    lberror.Text = "使用金额为正数";
+                    return;
+                }
+            }
            // int i = int.Parse(lbcaptID.Text);//计划资金
-            double i1 = double.Parse(lbcaptID.Text);
+            double i1 = double.Parse(lbcaptID.Text.Trim());
            // int re = int.Parse(((TextBox)e.Item.FindControl("txtemail")).Text);//使用资金
-            double re1 = double.Parse(((TextBox)e.Item.FindControl("txtemail")).Text);
+            double re1 = double.Parse(((TextBox)e.Item.FindControl("txtemail")).Text.Trim());//使用资金
          //   int hasM = int.Parse(ViewState["oldMoney"].ToString());//拥有资金
             double hasM1 = double.Parse(ViewState["oldMoney"].ToString());
             if(i1<re1)//使用资金不大于计划资金

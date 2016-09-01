@@ -74,6 +74,33 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        if (tbItem.Text.Trim() == "")
+        {
+            lblError.Text = "请输入物品";
+            return;
+        }
+        if(tbValue.Text.Trim()=="")
+        {
+            lblError.Text = "请输入公允值";
+            return;
+        }
+        else
+        {
+            try
+            {
+                Convert.ToDouble(tbValue.Text.Trim());
+            }
+            catch
+            {
+                lblError.Text = "公允值为正数";
+                return;
+            }
+            if(Convert.ToDouble(tbValue.Text.Trim())<=0)
+            {
+                lblError.Text = "公允值为正数";
+                return;
+            }
+        }
         string insertString = string.Format("insert into e_item (handlingunitID,benfactorFrom,benfactorID,benfactorName,item,fairValue,state,timeIn) values({0},'{1}',{2},'{3}','{4}',{5},'{6}','{7}')", ViewState["IDNow"].ToString().Substring(0, 3), ViewState["branchName"].ToString(), ViewState["IDNow"].ToString(), ViewState["name"].ToString(), tbItem.Text.Trim(), tbValue.Text.Trim(), "未使用", DateTime.Now.ToString());
         //try
         //{
