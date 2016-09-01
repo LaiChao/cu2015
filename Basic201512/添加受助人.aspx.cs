@@ -263,7 +263,21 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             deathReason.Enabled = false;
         }
     }
+    private void ClearText(ControlCollection Controls)
+    {
+        foreach (Control item in Controls)
+        {
+            if (item.Controls.Count > 0)
+            {
+                ClearText(item.Controls);
+            }
 
+            if (item is TextBox)
+            {
+                ((TextBox)item).Text = "";
+            }
+        }
+    }
     protected void Button1_Click(object sender, EventArgs e)
     {
         //int flag = 1;
@@ -554,14 +568,15 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             HttpContext.Current.Response.Write("<script>alert('受助人添加失败');</script>");
         }
         //数据入库之后的操作
-        foreach (System.Web.UI.Control stl in this.Form.Controls)
-        {
-            if (stl is System.Web.UI.WebControls.TextBox)
-            {
-                TextBox tb = (TextBox)stl;
-                tb.Text = "";
-            }
-        }
+        ClearText(Controls);
+        //foreach (System.Web.UI.Control stl in this.Controls)//this.Form.Controls
+        //{
+        //    if (stl is System.Web.UI.WebControls.TextBox)
+        //    {
+        //        TextBox tb = (TextBox)stl;
+        //        tb.Text = "";
+        //    }
+        //}
         CheckBox1.Checked = CheckBox2.Checked = CheckBox3.Checked = CheckBox4.Checked = CheckBox5.Checked = CheckBox6.Checked = CheckBox7.Checked = false;
         CheckBox1.Enabled = CheckBox4.Enabled = true;
         shiNeng.Text = shiDu.Text = "否";

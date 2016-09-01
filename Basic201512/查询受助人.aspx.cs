@@ -216,6 +216,19 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         //    Response.Write("<script>alert('会长不能删除受助人');</script>");
         //    return;
         //}
+        //不能删除在项目中(即使是未通过的项目)的受助人
+        int countNum = 0;
+        string str113 = "select count(*) as cnum from e_pr where recipientID=" + GridView1.DataKeys[e.RowIndex].Value.ToString();
+        MySqlDataReader mysqlread = msq.getmysqlread(str113);
+        while (mysqlread.Read())
+        {
+            countNum = mysqlread.GetInt32("cnum");
+        }
+        if(countNum>0)//该受助人在项目里
+        {
+            HttpContext.Current.Response.Write("<script>alert('不能删除在项目中的受助人');</script>");
+            return;
+        }
         NLogTest nlog = new NLogTest();
         string sss = "删除了受助人：" + ((HyperLink)GridView1.Rows[e.RowIndex].Cells[1].Controls[0]).Text.ToString();
         nlog.WriteLog(Session["UserName"].ToString(),sss);
