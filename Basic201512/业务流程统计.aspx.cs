@@ -210,4 +210,10 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
     }
+    protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+    {
+        //设置DataGrid当前页的索引值为用户选择的页的索引
+        dgData.CurrentPageIndex = e.NewPageIndex;
+        databind();
+    }
 }
