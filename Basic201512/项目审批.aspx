@@ -77,7 +77,7 @@
                                 </div>
          <br />
             <br />
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="gv_td" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
@@ -167,7 +167,7 @@
                     </EditItemTemplate>                   
                 </asp:TemplateColumn>
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages"/>
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
  

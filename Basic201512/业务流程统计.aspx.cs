@@ -191,6 +191,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         queryString.Append("and benfactorFrom='" + dpdhand.Text.Trim() + "' ");
         //string str = string.Format("select * from e_project where projectID='{0}'or projectName='{1}' or benfactorFrom='{2}'", TbselectID.Text, TbselectName.Text,dpdhand.Text);
         ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
         databind();
         
     }

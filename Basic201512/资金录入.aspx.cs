@@ -44,12 +44,18 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             {
                 queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
             }
-            //绑定数据
-            DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), queryString.ToString());
-            DataView dv = new DataView(ds.Tables[0]);
-            dgData.DataSource = dv;
-            dgData.DataBind();
+            ViewState["now"] = queryString.ToString();
+            databind();
         }
+    }
+
+    protected void databind()
+    {
+        //绑定数据
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
+        DataView dv = new DataView(ds.Tables[0]);
+        dgData.DataSource = dv;
+        dgData.DataBind();
     }
 
     #region Web 窗体设计器生成的代码
@@ -134,11 +140,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         {
             queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
         }
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), queryString.ToString());
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
-        
+        ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
+        databind();
     }
 
     #region "显示待确认金额"
@@ -183,4 +187,9 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     //        ((LinkButton)(e.Item.Cells[6].Controls[0])).Attributes.Add("onclick", "return confirm('确认该资金吗?');");
     //    }
     //}
+    protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+    {
+        dgData.CurrentPageIndex = e.NewPageIndex;
+        databind();
+    }
 }

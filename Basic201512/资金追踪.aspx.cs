@@ -25,7 +25,7 @@ using MySql.Data.MySqlClient;
 public partial class Basic201512_受助人 : System.Web.UI.Page
 {
     mysqlconn msq=new mysqlconn();
-    string str111 = string.Format("select * from e_moneytrack order by prouseoutTime desc");
+    //string str111 = string.Format("select * from e_moneytrack order by prouseoutTime desc");
    
     public static string tableTitle = "";
     protected void Page_Load(object sender, EventArgs e)
@@ -35,28 +35,16 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
             return;
         }
-        //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-        //DataView dv1 = new DataView(ds1.Tables[0]);
-        //dgHeader.DataSource = dv1;
-        //dgHeader.DataBind();
-      //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
         if (!Page.IsPostBack)
         {
+            ViewState["init"] = string.Format("select * from e_moneytrack where 1=1 ");
             if (Request.QueryString.Count > 0)
             {//从其他页面跳转过来
                 TbselectName.Text = Request["id"].Trim();
-                string str1111 = string.Format("select * from e_moneytrack where benefactorID={0} order by prouseoutTime desc", TbselectName.Text);
-                DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str1111);
-                DataView dv = new DataView(ds.Tables[0]);
-                dgData.DataSource = dv;
-                dgData.DataBind();
+                ViewState["init"] = string.Format("select * from e_moneytrack where benefactorID={0} ", TbselectName.Text);
             }
-            else
-            {
-                 databind();
-            }
-            
-
+            ViewState["now"] = ViewState["init"].ToString() + "order by prouseoutTime desc";
+            databind();
         }
        
 
@@ -64,7 +52,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
     public void databind()
     {
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
         DataView dv = new DataView(ds.Tables[0]);
         dgData.DataSource = dv;
         dgData.DataBind();
@@ -98,47 +86,6 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     }
     #endregion
     #region "页面操作"
-
-
-    //private void dgData_CancelCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-    //    dgData.EditItemIndex = -1;
-    //    databind();
-    //}
-
-    //private void dgData_DeleteCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-
-
-    //}
-
-    //private void dgData_EditCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-
-    //    dgData.EditItemIndex = e.Item.ItemIndex;
-    //    databind();
-    //}
-
-    //private void dgData_UpdateCommand(object source, System.Web.UI.WebControls.DataGridCommandEventArgs e)
-    //{
-    //    //DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), str111);
-    //    //DataView ddv = new DataView(dds.Tables[0]);
-    //    //dgData.DataSource = dds;
-    //    //   dgData.DataBind();
-    //    databind();
-    //    string strupdata = string.Format("update {0} set benfactorID='{1}'and benfactorName='{2}'and telphoneADD='{3}' and e_mail='{4}' and directionlBef='{5}' and guanming='{6}' and wuzhu='{7}'", dpdbenfactor.SelectedValue,
-    //        ((TextBox)e.Item.FindControl("txtEditID")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtEditName")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtADD")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtemail")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtdir")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtguanming")).Text.Trim(),
-    //        ((TextBox)e.Item.FindControl("txtwuzhu")).Text.Trim());
-    //    msq.getmysqlcom(strupdata);
-    //    dgData.EditItemIndex = -1;
-    //    databind();
-
-    //}
 
     private void dgData_ItemDataBound(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
     {
@@ -178,7 +125,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
         StringBuilder queryString = new StringBuilder();
         //"select * from e_moneytrack order by prouseoutTime desc"
-        queryString.Append("select * from e_moneytrack where 1=1 ");
+        queryString.Append(ViewState["init"].ToString());
         if (TbselectName.Text.Trim() != "")
             queryString.Append("and benefactorID='" + TbselectName.Text.Trim() + "' ");
         if (txtselectName.Text.Trim() != "")
@@ -188,15 +135,13 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (txtselectproname.Text.Trim() != "")
             queryString.Append("and projectName like '%" + txtselectproname.Text.Trim() + "%' ");
         queryString.Append("order by prouseoutTime desc ");
-        //string str = string.Format("select *  from e_moneytrack where benefactorID='{1}'or projectID='{0}' or benfactorName='{2}' or projectName='{3}' ", TbselectID.Text, TbselectName.Text, txtselectName.Text,txtselectproname.Text);
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString.ToString());
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
-
-        //NLogTest nlog = new NLogTest();
-        //string sss = "查询资金：" + TbselectID.Text;
-        //nlog.WriteLog(Session["UserName"].ToString(), sss);
+        //DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString.ToString());
+        //DataView dv = new DataView(ds.Tables[0]);
+        //dgData.DataSource = dv;
+        //dgData.DataBind();
+        ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
+        databind();
     }
 
     protected void btout_Click(object sender, EventArgs e)
@@ -213,5 +158,10 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             e.Item.Cells[0].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
             e.Item.Cells[2].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
+    }
+    protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+    {
+        dgData.CurrentPageIndex = e.NewPageIndex;
+        databind();
     }
 }

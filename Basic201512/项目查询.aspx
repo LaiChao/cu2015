@@ -114,7 +114,7 @@
         <br />
         <br />
            <div id="divPrint" runat="server">
-           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand" OnDeleteCommand="dgData_DeleteCommand">
+           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand" OnDeleteCommand="dgData_DeleteCommand" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
@@ -251,7 +251,7 @@
                 <asp:ButtonColumn CommandName="Delete" HeaderText="删除项目" Text="删除"></asp:ButtonColumn>
 
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
                         </div>

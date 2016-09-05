@@ -72,7 +72,7 @@
                                      </div>
 
           <div id="divPrint" runat="server">                
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" pagerstyle-nextpagetext="下一页" pagerstyle-prevpagetext="上一页">
+    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -290,7 +290,7 @@
             
              
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
           </div>  

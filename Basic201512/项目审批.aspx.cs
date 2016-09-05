@@ -27,44 +27,51 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     mysqlconn msq=new mysqlconn();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        if(!Page.IsPostBack)
         {
-            Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
-            return;
+            if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+            {
+                Response.Write("<script>window.open('../loginnew.aspx','_top')</script>");
+                return;
+            }
+            StringBuilder queryString = new StringBuilder();
+            queryString.Append("select * from e_project where (proschedule='申请中' or proschedule='科室审批通过') ");
+            if(Session["userRole"].ToString()=="1")
+                queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
+            ViewState["init"] = queryString.ToString();
+            queryString.Append("order by proschedule desc");
+            //string str111 = string.Format("select * from e_project where proschedule='申请中' or proschedule='执行' order by proschedule desc");//shenpi2<>'1' or shenpi2 is null and shenpi1<>'1' or shenpi1 is null
+            ViewState["now"] = queryString.ToString();
+            databind();
         }
-        //DataSet ds1 = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),str111);
-        //DataView dv1 = new DataView(ds1.Tables[0]);
-        //dgHeader.DataSource = dv1;
-        //dgHeader.DataBind();
-      //  ((BoundColumn)dgData.Columns[0]).HeaderText="编辑";
-        StringBuilder queryString = new StringBuilder();
-        queryString.Append("select * from e_project where (proschedule='申请中' or proschedule='科室审批通过') ");
-        if(Session["userRole"].ToString()=="1")
-            queryString.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
-        queryString.Append("order by proschedule desc");
-        //string str111 = string.Format("select * from e_project where proschedule='申请中' or proschedule='执行' order by proschedule desc");//shenpi2<>'1' or shenpi2 is null and shenpi1<>'1' or shenpi1 is null
-
-        DataSet dds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString.ToString());
-        DataView ddv = new DataView(dds.Tables[0]);
-        dgData.DataSource = dds;
-        dgData.DataBind();
-
     }
-   
+    protected void databind()
+    {
+        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), ViewState["now"].ToString());
+        DataView dv = new DataView(ds.Tables[0]);
+        dgData.DataSource = dv;
+        dgData.DataBind();
+    }
     protected void Btselect_Click(object sender, EventArgs e)
     {
         string str = string.Format("select * from e_project where (projectID='{0}'or projectName like '%{1}%') ",TbselectID.Text,TbselectName.Text);
         StringBuilder queryString2 = new StringBuilder();
-        queryString2.Append(str);
-        if (Session["userRole"].ToString() == "1")
-            queryString2.Append("and benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
-
-        DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(),queryString2.ToString());
-        DataView dv = new DataView(ds.Tables[0]);
-        dgData.DataSource = dv;
-        dgData.DataBind();
-        
+        queryString2.Append(ViewState["init"].ToString());
+        if(TbselectID.Text.Trim()!="")
+        {
+            queryString2.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
+        }
+        if(TbselectName.Text.Trim()!="")
+        {
+            queryString2.Append("and projectName like '%" + TbselectName.Text.Trim() + "%' ");
+        }
+        ViewState["now"] = queryString2.ToString();
+        dgData.CurrentPageIndex = 0;
+        databind();      
     }
-
-    
+    protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+    {
+        dgData.CurrentPageIndex = e.NewPageIndex;
+        databind();
+    }
 }

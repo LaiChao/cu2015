@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="theme.css" rel="stylesheet">
-    <title>Theme Template for Bootstrap</title>
+    <title>资金录入</title>
     <style type="text/css">
 
         tr{ line-height:30px;height:30px;}
@@ -74,7 +74,7 @@
                                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="显示全部待确认金额" CssClass=" btn btn-danger" />
                        </div>        
                                          
-                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
                         <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -124,7 +124,7 @@
                             </asp:TemplateColumn>
 
                         </Columns>
-                        <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                        <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages"/>
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
                     </asp:DataGrid>
                     <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" >

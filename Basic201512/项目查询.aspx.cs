@@ -208,6 +208,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         queryString.Append(ViewState["init"].ToString());
         queryString.Append(str);
         ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
         databind();
     }
     protected void btout_Click(object sender, EventArgs e)
@@ -226,6 +227,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         queryString.Append(ViewState["init"].ToString());
         queryString.Append(stringpromonth);
         ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
         databind();
     }
     protected void Btselect2_Click(object sender, EventArgs e)
@@ -241,6 +243,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (recipientsType.SelectedValue.ToString() != "全部")
             queryString.Append("and projectLei='" + recipientsType.SelectedValue.ToString() + "'");
         ViewState["now"] = queryString.ToString();
+        dgData.CurrentPageIndex = 0;
         databind();
 
     }
@@ -331,6 +334,12 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         nlog.WriteLog(Session["UserName"].ToString(), sss);
         string str112 = "delete from e_project where projectID='" + ((HyperLink)(e.Item.Cells[0].Controls[0])).Text.Trim() + "'";
         msq.getmysqlcom(str112);
+        dgData.CurrentPageIndex = 0;
+        databind();
+    }
+    protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+    {
+        dgData.CurrentPageIndex = e.NewPageIndex;
         databind();
     }
 }
