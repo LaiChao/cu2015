@@ -88,7 +88,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 {
                     e.Item.Attributes.Add
 
-                        ("onmouseover", "this.style.backgroundColor='Silver'");
+                        ("onmouseover", "this.style.backgroundColor='#E6F5FA'");
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");

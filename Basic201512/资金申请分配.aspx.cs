@@ -145,7 +145,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 {
                     e.Item.Attributes.Add
 
-                        ("onmouseover", "this.style.backgroundColor='Silver'");
+                        ("onmouseover", "this.style.backgroundColor='#E6F5FA'");
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");
@@ -180,7 +180,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         }
         if(TbselectName.Text.Trim()!="")
         {
-            queryString.Append("and projectName='" + TbselectName.Text.Trim() + "' ");
+            queryString.Append("and projectName like '%" + TbselectName.Text.Trim() + "%' ");
         }
         if(dpdhud.SelectedItem.Text!="全部")
         {

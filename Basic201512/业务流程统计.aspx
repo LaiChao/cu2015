@@ -47,6 +47,52 @@
         .index {
         width:90px;
         }
+
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }       
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border: #cc9966 1px solid;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';           
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .font_style:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .font_style1:hover {
+            color: #721313 !important;
+            transition: 0.2s;
+        }
+        .div_style {
+            width: 800px;
+            border-width: 1px;
+            border-style: dashed;
+        }
         </style>
 </head>
 <body>
@@ -57,22 +103,20 @@
                <strong>业务流程统计</strong> 
             </h2>
         </div>
-                                <div class="form-group">
-                                <asp:Label ID="Label3" runat="server" Text="执行单位："></asp:Label>
-                                <asp:DropDownList ID="dpdhand" runat="server" class="btn btn-default dropdown-toggle">
-                                </asp:DropDownList>
-                                
-                                <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
-                                
-                                <asp:TextBox ID="TbselectID" runat="server" Width="142px" CssClass="form-control"></asp:TextBox>
-                                 <asp:Label ID="Label2" runat="server" Text="项目名称："></asp:Label>
-                                <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="确认" CssClass=" btn btn-danger" />
-                               <asp:Button ID="btoutexl" runat="server" Text="导出" CssClass="btn btn-danger" OnClick="btoutexl_Click" />
-                                     </div>
-
-          <div id="divPrint" runat="server">                
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
+        <div class="form-group">
+            <p>
+                <asp:Label ID="Label3" runat="server" Text="执行单位:" CssClass="label_style"></asp:Label>
+                <asp:DropDownList ID="dpdhand" runat="server" class="btn btn-default dropdown-toggle"></asp:DropDownList>&nbsp;&nbsp;
+                <asp:Label ID="Label1" runat="server" Text="项目ID:" CssClass="label_style"></asp:Label>
+                <asp:TextBox ID="TbselectID" runat="server" Width="142px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                <asp:Label ID="Label2" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
+                <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" />&nbsp;
+                <asp:Button ID="btoutexl" runat="server" Text="导出" CssClass="btn btn-danger" OnClick="btoutexl_Click" />
+            </p>           
+        </div>
+        <div id="divPrint" runat="server">
+    <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -107,19 +151,18 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>
                 <asp:TemplateColumn HeaderText="项目ID">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'>
                         </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtEditID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'
-                            >
+                        <asp:TextBox ID="txtEditID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectID") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="项目名称">
-                    <ItemStyle CssClass="name"></ItemStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectName") %>'>
                         </asp:Label>
@@ -130,7 +173,7 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="执行单位">
-                    <ItemStyle CssClass="option"></ItemStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
                         </asp:Label>
@@ -141,7 +184,7 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="执行状态">
-                    <ItemStyle CssClass="index"></ItemStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labtimer" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.proschedule") %>'>
                         </asp:Label>
@@ -152,18 +195,18 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn Visible="false" HeaderText="联系人">
-                    <ItemStyle CssClass="index"></ItemStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labteladdname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneName") %>'>
                         </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtteladdname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneName") %>'
-                            >
+                        <asp:TextBox ID="txtteladdname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneName") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn Visible="False" HeaderText="联系电话">
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labteladd" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.telphoneADD") %>'>
                         </asp:Label>
@@ -174,12 +217,9 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>                
-                 <asp:TemplateColumn HeaderText="申请时间" HeaderStyle-Font-Names="true">
-
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
+                <asp:TemplateColumn HeaderText="申请时间" HeaderStyle-Font-Names="true">
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labtime" runat="server" CssClass="txtbox" Text='<%#Eval(bandtime,"{0:yyyy-MM-dd}") %>'>
                         </asp:Label>
@@ -190,11 +230,8 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="科室审批时间" HeaderStyle-Font-Names="true">
-
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labtimeshen" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimeshen,"{0:yyyy-MM-dd}") %>'>
                         </asp:Label>
@@ -206,18 +243,15 @@
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="审批用时（天）" HeaderStyle-Font-Names="true">
                      <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemStyle CssClass="mycenter"></ItemStyle>              
                     <ItemTemplate>
                         <asp:Label ID="labtimespend" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.keshispend") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="会长审批时间" HeaderStyle-Font-Names="true">
-
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labtimeshen1" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimeshen1,"{0:yyyy-MM-dd}") %>'>
                         </asp:Label>
@@ -229,48 +263,38 @@
                 </asp:TemplateColumn>
                   <asp:TemplateColumn HeaderText="审批用时（天）" HeaderStyle-Font-Names="true">
                      <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <ItemStyle CssClass="mycenter"></ItemStyle>              
                     <ItemTemplate>
                         <asp:Label ID="labtimespend1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.huizhangspend") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
                   <asp:TemplateColumn HeaderText="结项时间" HeaderStyle-Font-Names="true">
-                    <ItemStyle CssClass="des1"></ItemStyle>               
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
-                    <ItemTemplate>
-                        <asp:Label ID="labtimefinsh" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
-                        </asp:Label>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>
+                      <HeaderStyle Font-Names="true"></HeaderStyle>
+                      <ItemTemplate>
+                          <asp:Label ID="labtimefinsh" runat="server" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
+                          </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txttimefinsh" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval(bandtimefinsh,"{0:yyyy-MM-dd}") %>'>
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                   
-              
-            
-             
-                    <asp:TemplateColumn HeaderText="执行用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des1"></ItemStyle>               
+                <asp:TemplateColumn HeaderText="执行用时（天）" HeaderStyle-Font-Names="true">
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>               
                     <ItemTemplate>
                         <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.zhixingspend") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
                    <asp:TemplateColumn HeaderText="归档时间" HeaderStyle-Font-Names="true">
-
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
-                    <ItemStyle CssClass="des1"></ItemStyle>
-                    
-                    <ItemTemplate>
-                        <asp:Label ID="labtimeguid" runat="server" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
-                        </asp:Label>
+                       <HeaderStyle Font-Names="true"></HeaderStyle>
+                       <ItemStyle CssClass="mycenter"></ItemStyle>
+                       <ItemTemplate>
+                           <asp:Label ID="labtimeguid" runat="server" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
+                           </asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txttimeguid" runat="server" MaxLength="40" CssClass="txtbox" Text='<%#Eval("prodatatimeguid","{0:yyyy-MM-dd}") %>'>
@@ -278,23 +302,18 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="归档用时（天）" HeaderStyle-Font-Names="true">
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-                    <ItemStyle CssClass="des1"></ItemStyle>               
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
+                    <ItemStyle CssClass="mycenter"></ItemStyle>               
                     <ItemTemplate>
                         <asp:Label ID="labtimespend2" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.jiexiangspend") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                   
-              
-            
-             
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages" />
+            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" Mode="NumericPages" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
           </div>  
-
     </form>
     </center>
 </body>

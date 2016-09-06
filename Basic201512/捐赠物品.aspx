@@ -36,61 +36,83 @@
          text-align:center;
          width:300px;
          }
-         </style>
+        .auto-style2 {
+            width: 130px;
+            font-size: 16px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .auto-style9 {        
+            height: 50px;
+            margin-left: 40px;
+            vertical-align: middle;
+            text-align: left;
+        }
+         .auto-style10 {
+             width: 130px;
+             font-size: 16px;
+             text-align: right;
+             font-family: 'Microsoft YaHei';
+             height: 51px;
+         }
+         .auto-style11 {
+             height: 51px;
+             margin-left: 40px;
+             vertical-align: middle;
+             text-align: left;
+         }
+         .labError_style {
+            text-align: left;
+            font-family: 'Microsoft YaHei';
+            font-size: 15px;
+            color: #e8a1eb
+        }
+     </style>
 </head>
 <body>
     <center>
     <form id="form1" runat="server">
-    <div>
-        <h2><strong>捐赠物品</strong></h2>
-    </div>
+        <div>
+            <h2><strong>捐赠物品</strong></h2>
+        </div>
         <div id="div_dynamic">
-        <table class="table">
-            <tr>
-                <td class="class1">    
-        <asp:Label ID="Label3" runat="server" Text="捐赠人名称："></asp:Label>
+            <div class="form-group">
+                <table runat="server" width="550px">
+                <tr>
+                    <td class="auto-style10">捐赠人名称：&nbsp;</td>
+                    <td class="auto-style11">
+                        <asp:TextBox runat="server" ID="lblName" class="form-control" ReadOnly="true" Height="31px" Width="300px"></asp:TextBox>   
                     </td>
-                <td class="class2">
-        <asp:Label ID="lblName" runat="server" Text="获取失败"></asp:Label>    
-                </td>
                 </tr>
-            <tr>
-                <td class="class1">
-
-                    <asp:Label ID="Label4" runat="server" Text="所属机构："></asp:Label>
-
-                </td>
-                <td class="class2">
-
-                    <asp:Label ID="lblBranch" runat="server"></asp:Label>
-
-                </td>
-            </tr>
-            <tr>
-                <td class="class1">   
-        <asp:Label ID="Label1" runat="server" Text="物品："></asp:Label>
+                <tr>               
+                    <td class="auto-style2">所属机构：&nbsp;</td>
+                    <td class="auto-style9">
+                        <asp:TextBox runat="server" ID="lblBranch" class="form-control" Height="31px" ReadOnly="true" Width="300px"></asp:TextBox>
                     </td>
-                <td class="class2">
-        <asp:TextBox ID="tbItem" runat="server" CssClass="form-control"></asp:TextBox>    
-                </td>
                 </tr>
-            <tr>
-                <td class="class1">   
-        <asp:Label ID="Label2" runat="server" Text="公允值（元）："></asp:Label>
+                <tr>
+                    <td class="auto-style2">物&nbsp;&nbsp;品：&nbsp;</td>
+                    <td class="auto-style9">
+                        <asp:TextBox ID="tbItem" runat="server" CssClass="form-control" Height="31px" Width="300px"></asp:TextBox>    
                     </td>
-                <td class="class2">
-        <asp:TextBox ID="tbValue" runat="server" CssClass="form-control"></asp:TextBox>  
-                </td>
                 </tr>
-            <tr>
-                <td class="class1">  
-        <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+                <tr>
+                    <td class="auto-style2">公允值（元）：&nbsp;</td>               
+                    <td class="auto-style9">
+                        <asp:TextBox ID="tbValue" runat="server" CssClass="form-control" Height="31px" Width="300px"></asp:TextBox>  
                     </td>
-                <td class="class2">
-        <asp:Button ID="Button1" runat="server" Text="提交" OnClick="Button1_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                </td>
-            </tr>
+                </tr>
+                <tr>
+                    <td class="auto-style2"></td>
+                    <td class="auto-style9">
+                        <asp:Label ID="lblError" runat="server" ForeColor="Red" CssClass="labError_style"></asp:Label>                   
+                    </td>
+                </tr>
             </table>
+                <div>
+                    <asp:Button ID="Button1" runat="server" Text="提交" OnClick="Button1_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+                </div>
+            </div>           
         </div>
     </form>
     </center>

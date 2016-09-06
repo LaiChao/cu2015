@@ -107,6 +107,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
             }
         }
 
+
     }
     //刷新ListBox  
     protected void pageload()
@@ -141,22 +142,34 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
     {
         if (infoTitle.Text.Length <= 0)
         {
-            lblError.Text = "信息标题不能为空";
-			infoTitle.Focus();
-            //HttpContext.Current.Response.Write("<script>alert('信息标题不能为空');</script>");
+            //Response.Write("<script>alert('请输入标题!')</script>");
+            lblError.Text = "标题不能为空！";
+            infoTitle.BackColor = Color.FromArgb((int)0xFFE1FF);
+            infoTitle.Focus();
             return;
         }
         else
+        {
+            infoTitle.BackColor = Color.White;
+        }
+
         if (infoContent.Text.Length <= 0)
         {
-          //  HttpContext.Current.Response.Write("<script>alert('信息内容不能为空');</script>");
-            lblError.Text = "信息内容不能为空";
-			infoContent.Focus();
+            lblError.Text = "内容不能为空！";
+            infoContent.BackColor = Color.FromArgb((int)0xFFE1FF);
+            infoContent.Focus();
+            //Response.Write("<script>alert('请输入内容!')</script>");
             return;
         }
+        else
+        {
+            infoContent.BackColor = Color.White;
+        }
+
         if((DropDownList1.SelectedValue.ToString().Trim()=="选择机构")&&(DropDownCheckBoxList1.SelectedText.ToString().Trim()==""))
         {
-            lblError.Text = "请选择收件人";
+            lblError.Text = "请选择收件人！";
+            //Response.Write("<script>alert('请选择收件人!')</script>");
             return;
         }
         else
@@ -174,7 +187,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                     string s = "发布了信息：" + infoTitle.Text.ToString();
                     nlog.WriteLog(Session["UserName"].ToString(),s);
                     //HttpContext.Current.Response.Write("<script>alert('信息发布成功');</script>");
-                    lblError.Text = "信息发布成功";
+                    lblError.Text = "信息发布成功！";
                     //重置
                     infoTitle.Text = infoContent.Text = "";
                     ViewState["myFilename"] = "";
@@ -183,7 +196,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 else
                 {
                     //HttpContext.Current.Response.Write("<script>alert('信息发布失败');</script>");
-                    lblError.Text = "信息发布失败";
+                    lblError.Text = "信息发布失败！";
                 }
             }
             else//多收件人n>0
@@ -200,7 +213,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 NLogTest nlog2 = new NLogTest();
                 string s2 = "发布了信息：" + infoTitle.Text.ToString();
                 nlog2.WriteLog(Session["UserName"].ToString(), s2);
-                lblError.Text = "信息发布成功";
+                lblError.Text = "信息发布成功！";
                 //重置
                 infoTitle.Text = infoContent.Text = "";
                 ViewState["myFilename"] = "";
@@ -262,7 +275,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                 if (File.Exists(FullPath))
                 {
                   //  HttpContext.Current.Response.Write("<script>alert('文件已存在，请重新上传。');</script>");
-                    lblError.Text = "重名文件已存在，请重新命名后再上传。";
+                    lblError.Text = "存在重名文件，请重新命名后再上传！";
                     return;
                 }
                 else
@@ -274,7 +287,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
                     else
                         ViewState["myFilename"] = ViewState["myFilename"].ToString() + "|" + NewFileName + OldExtensionName;
                     //HttpContext.Current.Response.Write("<script>alert('文件已成功上传。');</script>");
-                    lblError.Text = "文件已成功上传。";
+                    lblError.Text = "文件已成功上传！";
                 }
             }
             catch { }
@@ -282,7 +295,7 @@ public partial class Basic201512_信息发布 : System.Web.UI.Page
         else
         {
             //HttpContext.Current.Response.Write("<script>alert('请选择上传的文件');</script>");
-            lblError.Text = "请选择上传的文件";
+            lblError.Text = "请选择上传的文件！";
         }
     }
 

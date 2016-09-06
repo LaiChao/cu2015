@@ -52,6 +52,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         dgData.DataSource = dv;
         dgData.DataBind();
     }
+   
     protected void Btselect_Click(object sender, EventArgs e)
     {
         string str = string.Format("select * from e_project where (projectID='{0}'or projectName like '%{1}%') ",TbselectID.Text,TbselectName.Text);

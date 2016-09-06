@@ -28,7 +28,6 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
     <style type="text/css">
-
         tr{ line-height:30px;height:30px;}
         tr { padding: 0; margin: 0; border: 0; }
         .option { width: 50px; }
@@ -39,7 +38,7 @@
         .name { width: 170px; }
         .name2{ width: 200px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-          .gv_td
+        .gv_td
         {
             width:100px;
             /*word-break:keep-all;*/
@@ -48,13 +47,59 @@
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
         }
-        </style>
-     <script language="javascript" type="text/javascript">
-         function click()
-         {
-            
-         }
-         </script>
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        } 
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border: #cc9966 1px solid;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';           
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .font_style:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .font_style1:hover {
+            color: #721313 !important;
+            transition: 0.2s;
+        }
+        .div_style {
+            width: 800px;
+            border-width: 1px;
+            border-style: dashed;
+        }
+        a {
+            text-decoration: none !important;
+        }
+        a:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+    </style>
 </head>
 <body>
     <center>
@@ -66,29 +111,23 @@
         </h2>
     </div>
         <div>
-
-                                <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
-                                
-                                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control"></asp:TextBox>
-                                 <asp:Label ID="Label2" runat="server" Text="项目名称："></asp:Label>
-                                <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="确认" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                                </div>
+            <div class="form-group">
+                <asp:Label ID="Label1" runat="server" Text="项目ID:" CssClass="label_style"></asp:Label>
+                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control"  Width="200px"></asp:TextBox>&nbsp;
+                <asp:Label ID="Label2" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
+                <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"  Width="300px"></asp:TextBox>&nbsp;
+                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+            </div>
          <br />
             <br />
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
-            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="gv_td" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
-            <EditItemStyle CssClass="gv_td" />
-            <Columns>
-                                
-                <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
-                </asp:HyperLinkColumn>
-                <asp:TemplateColumn HeaderText="项目名称">
-                    <ItemStyle CssClass="name"></ItemStyle>
-                    <ItemTemplate>
+    <asp:DataGrid ID="dgData" runat="server" Width="1000px" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
+                <Columns>
+                    <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
+                    </asp:HyperLinkColumn>
+                    <asp:TemplateColumn HeaderText="项目名称">
+                        <ItemTemplate>
                         <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.projectName") %>'>
                         </asp:Label>
                     </ItemTemplate>
@@ -98,7 +137,6 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="状态">
-                    <ItemStyle CssClass="name"></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labState" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.proschedule") %>'>
                         </asp:Label>
@@ -155,7 +193,6 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="项目描述" HeaderStyle-Font-Names="true">
-                    <HeaderStyle Font-Names="true" CssClass="name2"></HeaderStyle>
                     <ItemStyle CssClass="gv_td"></ItemStyle>  
                     <ItemTemplate>                  
                         <asp:Label ID="labBtw" runat="server" CssClass="gv_td"  Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>15?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,15) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'  >

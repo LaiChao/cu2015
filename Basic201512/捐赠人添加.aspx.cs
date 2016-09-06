@@ -285,48 +285,147 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             //string selectBranchID = "select handlingunitID from e_handlingunit where benfactorFrom='" + ddlBranch.Text.ToString() + "'";
             //MySqlDataReader mysqlread1 = msq.getmysqlread(selectBranchID);
             //while (mysqlread1.Read())
-            if(benfactorName.Text.Trim()=="")
+            switch (int.Parse(benfactorType.SelectedValue))
             {
-                labError.Text = "请输入捐赠人名称";
-                return;
+                case 1:
+                    if (benfactorName.Text.Trim() == "")
+                    {
+                        labError.Text = "公益组织名称不能为空！";
+                        benfactorName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        benfactorName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        benfactorName.BackColor = Color.White;                                          
+                    }
+                    if (Contacts.Text.Trim() == "")
+                    {
+                        labError.Text = "联系人姓名不能为空！";
+                        Contacts.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        Contacts.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        Contacts.BackColor = Color.White;
+                    }
+                    if (Contacts.Text.Trim() == "")
+                    {
+                        labError.Text = "联系人姓名不能为空！";
+                        Contacts.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        Contacts.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        Contacts.BackColor = Color.White;
+                    }
+                    break; 
+
+                case 2:
+                    if (benfactorName.Text.Trim() == "")
+                    {
+                        labError.Text = "单位名称不能为空！";
+                        benfactorName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        benfactorName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        benfactorName.BackColor = Color.White;
+                    }
+                    break;
+
+                case 3:
+                    if (benfactorName.Text.Trim() == "")
+                    {
+                        labError.Text = "姓名不能为空！";
+                        benfactorName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        benfactorName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        benfactorName.BackColor = Color.White;                       
+                    }
+                    break;
+
+                case 4:
+                    if (benfactorName.Text.Trim() == "")
+                    {
+                        labError.Text = "募捐箱名称不能为空！";
+                        benfactorName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        benfactorName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        benfactorName.BackColor = Color.White;
+                    }
+                    break;
+
+                case 5:
+                    if (benfactorName.Text.Trim() == "")
+                    {
+                        labError.Text = "冠名慈善捐助金名称不能为空！";
+                        benfactorName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        benfactorName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        benfactorName.BackColor = Color.White;
+                    }
+                    break;
             }
+
+			
             //使用正则表达式验证11位手机号是由11位数字组成
             Regex mobileReg = new Regex("^[0-9]{11,11}$");
             if (TEL.Text.Trim() == "")
             {
                 labError.Text = "请输入手机号";
+                TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+                TEL.Focus();
                 return;
             }
             else if (TEL.Text.Trim().Length!=11)
             {
                 labError.Text = "11位手机号位数不对";
+                TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+                TEL.Focus();
                 return;
             }
             else if (mobileReg.IsMatch(TEL.Text.Trim()))
-            {
-                ;//验证通过
+            {//验证通过
+                TEL.BackColor = Color.White;
             }
             else
             {
                 labError.Text = "手机号由11位数字组成";
+                TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+                TEL.Focus();
                 return;
             }
 
             strbranchID = ddlBranch.SelectedValue.ToString();
             if (strbranchID=="")
             {
-                labError.Text = "未找到该经办单位的ID";
+                labError.Text = "未找到该经办单位的ID！";
                 return;
             }
+
             strBenfactorType = benfactorType.SelectedValue;
             strTEL = TEL.Text.ToString();
             strBenfactorID = strbranchID + strBenfactorType + strTEL;
 
             try
             {
+                string strName =  Regex.Replace(benfactorName.Text.ToString(), @"\s", "");
                 if (benfactorType.SelectedValue == "1")//公益组织
                 {
-                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), "0");
+                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, strName, strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), "0");
                     msq.getmysqlcom(strgongyi);
                     if (rdbNaming.Checked)
                     {
@@ -341,7 +440,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 }
                 if (benfactorType.SelectedValue == "2")//单位
                 {
-                    string strfaren = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), "0");
+                    string strfaren = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, strName, strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), "0");
                     msq.getmysqlcom(strfaren);
                     if (rdbNaming.Checked)
                     {
@@ -356,7 +455,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 }
                 if (benfactorType.SelectedValue == "3")//个人
                 {
-                    string strziran = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,sex,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, ddlSex.SelectedItem.Text.ToString(), strTEL, email.Text.ToString(), "0");
+                    string strziran = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,sex,TEL,email,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8})", strBenfactorID, strName, strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, ddlSex.SelectedItem.Text.ToString(), strTEL, email.Text.ToString(), "0");
                     msq.getmysqlcom(strziran);
                     if (rdbNaming.Checked)
                     {
@@ -371,7 +470,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 }
                 if (benfactorType.SelectedValue == "4")//募捐箱
                 {
-                    string strmujuan = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,moneyboxNo,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}','{8}',{9})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), moneyboxNo.Text.ToString(), "0");
+                    string strmujuan = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,moneyboxNo,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}','{8}',{9})", strBenfactorID, strName, strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), moneyboxNo.Text.ToString(), "0");
                     msq.getmysqlcom(strmujuan);
                     if (rdbNaming.Checked)
                     {
@@ -386,7 +485,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                 }
                 if (benfactorType.SelectedValue == "5")//冠名捐助金
                 {
-                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,namingAge,deadline,bftRange,bftRemark,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}','{11}',{12})", strBenfactorID, benfactorName.Text.ToString(), strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), ddlAge.Text.ToString(), ViewState["deadline"].ToString(), txtRange.Text.ToString(), txtRemark.Text.ToString(), "0");
+                    string strgongyi = string.Format("insert into e_benfactor (benfactorID,benfactorName,handlingunitID,benfactorFrom,benfactorType,Contacts,TEL,email,namingAge,deadline,bftRange,bftRemark,remainMoney) values('{0}','{1}',{2},'{3}',{4},'{5}','{6}','{7}',{8},'{9}','{10}','{11}',{12})", strBenfactorID, strName, strbranchID, ddlBranch.SelectedItem.Text.ToString(), strBenfactorType, Contacts.Text.ToString(), strTEL, email.Text.ToString(), ddlAge.Text.ToString(), ViewState["deadline"].ToString(), txtRange.Text.ToString(), txtRemark.Text.ToString(), "0");
                     msq.getmysqlcom(strgongyi);
                     if (ddlCycle.SelectedValue!="0")
                     {
@@ -395,10 +494,10 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
                     }
                 }
                     NLogTest nlog = new NLogTest();
-                    string sss = "添加了捐赠人：" + benfactorName.Text.ToString();
+                    string sss = "添加了捐赠人：" + strName;
                     nlog.WriteLog(Session["UserName"].ToString(), sss);
                     tbReset();
-                    labError.Text = "添加成功";
+                    labError.Text = "添加成功！";
                 //loadPage();
                 //foreach (System.Web.UI.Control stl in this.Form.Controls)
                 //{
@@ -411,7 +510,7 @@ public partial class Basic201512_捐助人添加 : System.Web.UI.Page
             }
             catch
             {
-                labError.Text = "添加失败，手机号重复了";
+                labError.Text = "添加失败，手机号重复！";
             }            
         }
 

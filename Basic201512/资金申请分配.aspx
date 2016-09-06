@@ -33,15 +33,67 @@
         tr { padding: 0; margin: 0; border: 0; }
         .option { width: 50px; }
         #div_dynamic {  border: #cc9966 0px solid;  }
-        #divTitle, #div_dynamic { width: 1249px; 
-margin:0 auto; }
+        #divTitle, #div_dynamic { width: 1000px; margin:0 auto; }
         .option { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         td { text-align: center; }
         .id { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-        </style>
+
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }       
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border: #cc9966 1px solid;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';           
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .font_style:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .font_style1:hover {
+            color: #721313 !important;
+            transition: 0.2s;
+        }
+        .div_style {
+            width: 800px;
+            border-width: 1px;
+            border-style: dashed;
+        }
+        a {
+            text-decoration: none !important;
+        }
+        a:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+    </style>
      <script language="javascript" type="text/javascript">
          function click()
          {
@@ -59,27 +111,33 @@ margin:0 auto; }
             <strong>善款分配申请</strong> 
          </h2>   
     </div>
-        <div>               
-                    <div class="form-group">
-                    <asp:Label ID="Label4" runat="server" Text="项目ID:"></asp:Label>
-                    <asp:TextBox ID="txtproid" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>
-                    <asp:Label ID="Label5" runat="server" Text="联系人:"></asp:Label>
-                    <asp:TextBox ID="txttelname" runat="server" Width="68px" CssClass="form-control"></asp:TextBox>
-                    <asp:Label ID="Label1" runat="server" Text="项目名称:"></asp:Label>
-                    <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                    <asp:Label ID="Label2" runat="server" Text="项目执行单位:"></asp:Label>
+        <div>
+            <div class="form-group">
+                <p>
+                    <asp:Label ID="Label4" runat="server" Text="项目ID:" CssClass="label_style"></asp:Label>
+                    <asp:TextBox ID="txtproid" runat="server" Width="200px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                    <asp:Label ID="Label5" runat="server" Text="联系人:" CssClass="label_style"></asp:Label>
+                    <asp:TextBox ID="txttelname" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                    <asp:Label ID="Label1" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
+                    <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>&nbsp; &nbsp;                                     
+                </p>      
+                <p>
+                    <asp:Label ID="Label2" runat="server" Text="项目执行单位:" CssClass="label_style"></asp:Label>
                     <asp:DropDownList ID="dpdhud" runat="server" class="btn btn-default dropdown-toggle">
                         <asp:ListItem>全部</asp:ListItem>
-                    </asp:DropDownList>
+                    </asp:DropDownList>&nbsp;
                     <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                      </div> 
-            <div>
-                   <asp:Label ID="lbpoint" runat="server" Text="操作说明：按项目信息详细搜索项目，显示结果并点击捐赠物资跳转申请物资页面"></asp:Label>
-            </div>
-                    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1131px" BackColor="White" BorderColor="#ce2c27" BorderStyle="None" BorderWidth="1px">
+                </p>        
+            </div> 
+            <p>
+                   <asp:Label ID="lbpoint" runat="server" Text="操作说明：按项目信息详细搜索项目，显示结果并点击捐赠物资跳转申请物资页面" CssClass="label_style"></asp:Label>
+            </p>
+        </div>
+        </div>
+        <div>
+            <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#ce2c27" BorderStyle="None" BorderWidth="1px">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-                        <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
                         <EditItemStyle CssClass="dg_item" />
                         <Columns>
                             <asp:TemplateColumn HeaderText="捐赠物资或资金">
@@ -195,8 +253,7 @@ margin:0 auto; }
                         <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                         <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
                     </asp:DataGrid>
-                       </div>
-            </div>
+        </div>
         </center>
          </form>
 

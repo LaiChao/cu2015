@@ -40,8 +40,17 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
             ViewState["init"] = string.Format("select * from e_moneytrack where 1=1 ");
             if (Request.QueryString.Count > 0)
             {//从其他页面跳转过来
-                TbselectName.Text = Request["id"].Trim();
-                ViewState["init"] = string.Format("select * from e_moneytrack where benefactorID={0} ", TbselectName.Text);
+                if (Request["id"]!=null)
+                {
+                    TbselectName.Text = Request["id"].Trim();
+                    TbselectName.ReadOnly = true;
+                    ViewState["init"] = string.Format("select * from e_moneytrack where benefactorID={0} ", TbselectName.Text);
+                }
+                if(Request["from"]!=null)
+                {
+                    ViewState["init"] = string.Format("select * from e_moneytrack where benfactorFrom='{0}' ", Request["from"].Trim());
+                    string temp = ViewState["init"].ToString();
+                }
             }
             ViewState["now"] = ViewState["init"].ToString() + "order by prouseoutTime desc";
             databind();
@@ -100,7 +109,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 {
                     e.Item.Attributes.Add
 
-                        ("onmouseover", "this.style.backgroundColor='Silver'");
+                        ("onmouseover", "this.style.backgroundColor='#E6F5FA'");
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");
@@ -129,7 +138,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         if (TbselectName.Text.Trim() != "")
             queryString.Append("and benefactorID='" + TbselectName.Text.Trim() + "' ");
         if (txtselectName.Text.Trim() != "")
-            queryString.Append("and benfactorName='" + txtselectName.Text.Trim() + "' ");
+            queryString.Append("and benfactorName like '%" + txtselectName.Text.Trim() + "%' ");
         if (TbselectID.Text.Trim() != "")
             queryString.Append("and projectID='" + TbselectID.Text.Trim() + "' ");
         if (txtselectproname.Text.Trim() != "")

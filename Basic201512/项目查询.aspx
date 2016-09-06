@@ -38,8 +38,60 @@
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .name { width: 170px; }
         .name { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-        </style>
-       <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }       
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border: #cc9966 1px solid;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';           
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .font_style:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .font_style1:hover {
+            color: #721313 !important;
+            transition: 0.2s;
+        }
+        .div_style {
+            width: 800px;
+            border-width: 1px;
+            border-style: dashed;
+        }
+        a {
+            text-decoration: none !important;
+        }
+        a:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+    </style>
+    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
     <center>
@@ -51,12 +103,13 @@
             </h2>
         </div>
         <div class="form-group">
-            <asp:Label ID="Label6" runat="server" Text="执行单位："></asp:Label>
-            <asp:DropDownList ID="ddlBranch" runat="server">
+        <p>
+            <asp:Label ID="Label6" runat="server" Text="执行单位:" CssClass="label_style"></asp:Label>
+            <asp:DropDownList ID="ddlBranch" runat="server" CssClass="btn btn-default dropdown-toggle"> 
                 <asp:ListItem>全部</asp:ListItem>
-            </asp:DropDownList>
-            &nbsp;<asp:Label ID="Label5" runat="server" Text="执行状态："></asp:Label>
-            <asp:DropDownList ID="ddlState" runat="server">
+            </asp:DropDownList>&nbsp;
+            <asp:Label ID="Label5" runat="server" Text="执行状态:" CssClass="label_style"></asp:Label>
+            <asp:DropDownList ID="ddlState" runat="server" CssClass="btn btn-default dropdown-toggle">
                 <asp:ListItem>全部</asp:ListItem>
                 <asp:ListItem>申请中</asp:ListItem>
                 <asp:ListItem>未通过</asp:ListItem>
@@ -64,61 +117,60 @@
                 <asp:ListItem>会长审批通过</asp:ListItem>
                 <asp:ListItem>结项</asp:ListItem>
                 <asp:ListItem>归档</asp:ListItem>
-            </asp:DropDownList>
-            &nbsp;<asp:Label ID="Label7" runat="server" Text="项目类型："></asp:Label>
-            <asp:DropDownList ID="ddlType" runat="server" >
-                                <asp:ListItem>全部</asp:ListItem>
-                                <asp:ListItem>资金</asp:ListItem>
-                                <asp:ListItem>物品</asp:ListItem>
-            </asp:DropDownList>
-            &nbsp;<asp:Label ID="Label8" runat="server" Text="受助人类别："></asp:Label>
-            <asp:DropDownList ID="recipientsType" runat="server" >
-                                <asp:ListItem>全部</asp:ListItem>
-                                <asp:ListItem>助学</asp:ListItem>
-                                <asp:ListItem>助医</asp:ListItem>
-                                <asp:ListItem>助残</asp:ListItem>
-                                <asp:ListItem>助老</asp:ListItem>
-                                <asp:ListItem>助困</asp:ListItem>
-                                <asp:ListItem>双拥</asp:ListItem>
-                                <asp:ListItem>重特大灾难</asp:ListItem>
-            </asp:DropDownList>
-        &nbsp;<asp:Button ID="Btselect2" runat="server" OnClick="Btselect2_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
-        </div>
-        <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
-                                
-                                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="150px"></asp:TextBox>
-                                 <asp:Label ID="Label2" runat="server" Text="项目名称："></asp:Label>
-                                <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control"></asp:TextBox>
-                                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
-                                <asp:Label ID="Label3" runat="server" Text="起"></asp:Label>
-                    <asp:TextBox ID="illtimebe" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>
-                                <asp:Label ID="Label4" runat="server" Text="止"></asp:Label>
-                    <asp:TextBox ID="illtimeend" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>
-                                <asp:Button ID="Btselectout" runat="server"  Text="搜索" OnClick="Btselectout_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                     <asp:Button ID="btputout" runat="server"  Text="筛选导出"  CssClass=" btn btn-danger" Width="80px" Height="34px" OnClick="btputout_Click" />
-          
-       
-          
+            </asp:DropDownList>&nbsp;
+            <asp:Label ID="Label7" runat="server" Text="项目类型:" CssClass="label_style"></asp:Label>
+            <asp:DropDownList ID="ddlType" runat="server"  CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>全部</asp:ListItem>
+                <asp:ListItem>资金</asp:ListItem>
+                <asp:ListItem>物品</asp:ListItem>
+            </asp:DropDownList>&nbsp;
+            <asp:Label ID="Label8" runat="server" Text="受助人类别:" CssClass="label_style"></asp:Label>
+            <asp:DropDownList ID="recipientsType" runat="server"  CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>全部</asp:ListItem>
+                <asp:ListItem>助学</asp:ListItem>
+                <asp:ListItem>助医</asp:ListItem>
+                <asp:ListItem>助残</asp:ListItem>
+                <asp:ListItem>助老</asp:ListItem>
+                <asp:ListItem>助困</asp:ListItem>
+                <asp:ListItem>双拥</asp:ListItem>
+                <asp:ListItem>重特大灾难</asp:ListItem>
+            </asp:DropDownList>&nbsp;
+            <asp:Button ID="Btselect2" runat="server" OnClick="Btselect2_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+        </p>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="项目ID:" CssClass="label_style"></asp:Label>
+            <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="200px"></asp:TextBox>&nbsp;
+            <asp:Label ID="Label2" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
+            <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>&nbsp;
+            <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+        </p>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text="时间（起）:" CssClass="label_style"></asp:Label>
+            <asp:TextBox ID="illtimebe" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>&nbsp;
+            <asp:Label ID="Label4" runat="server" Text="时间（止）:" CssClass="label_style"></asp:Label>
+            <asp:TextBox ID="illtimeend" runat="server" onClick="WdatePicker()" CssClass="form-control" Width="120px"></asp:TextBox>&nbsp;
+            <asp:Button ID="Btselectout" runat="server"  Text="搜索" OnClick="Btselectout_Click" CssClass=" btn btn-danger" Width="80px" Height="34px" />&nbsp;
+            <asp:Button ID="btputout" runat="server"  Text="筛选导出"  CssClass=" btn btn-danger" Width="80px" Height="34px" OnClick="btputout_Click" />
+        </p>
        </div>
-       <div id="putout" runat="server">
-           请选择需要导出的列：<asp:CheckBox ID="CheckBox0" runat="server" AutoPostBack="True" OnCheckedChanged="CheckBox0_CheckedChanged" Text="项目ID" />
-&nbsp; <asp:CheckBox ID="CheckBox1" runat="server" Text="项目名称" AutoPostBack="True" OnCheckedChanged="CheckBox1_CheckedChanged" />
-&nbsp;<asp:CheckBox ID="CheckBox2" runat="server" Text="执行单位" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" />
-&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="执行状态" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
-&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" Text="联系人" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" />
-&nbsp;<asp:CheckBox ID="CheckBox5" runat="server" Text="联系电话" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />
-&nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" OnCheckedChanged="CheckBox6_CheckedChanged" Text="项目描述" />
-&nbsp;<asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-       </div>  
-        <br />
+        <div id="putout" runat="server" class="div_style">
+           <asp:Label ID="Label9" runat="server" Text="请选出需要导出的列：" CssClass="label_style"></asp:Label>
+           <asp:CheckBox ID="CheckBox0" runat="server" CssClass="checkBox_style" AutoPostBack="True" OnCheckedChanged="CheckBox0_CheckedChanged" Text="项目ID" />
+           &nbsp; <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkBox_style" Text="项目名称" AutoPostBack="True" OnCheckedChanged="CheckBox1_CheckedChanged" />
+           &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" CssClass="checkBox_style" Text="执行单位" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" />
+           &nbsp;<asp:CheckBox ID="CheckBox3" runat="server" CssClass="checkBox_style" Text="执行状态" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
+           &nbsp;<asp:CheckBox ID="CheckBox4" runat="server" CssClass="checkBox_style" Text="联系人" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" />
+           &nbsp;<asp:CheckBox ID="CheckBox5" runat="server" CssClass="checkBox_style" Text="联系电话" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />
+           &nbsp;<asp:CheckBox ID="CheckBox6" runat="server" CssClass="checkBox_style" AutoPostBack="True" OnCheckedChanged="CheckBox6_CheckedChanged" Text="项目描述" />
+           <p>
+               <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+           </p>
+        </div>
         <br />
            <div id="divPrint" runat="server">
-           <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="1000px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand" OnDeleteCommand="dgData_DeleteCommand" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
+           <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="1054px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" OnItemCommand="dgData_ItemCommand" OnDeleteCommand="dgData_DeleteCommand" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099" Font-Size="Larger"></ItemStyle>
-            <EditItemStyle CssClass="dg_item" />
             <Columns>
                 <asp:HyperLinkColumn DataTextField="projectID" DataNavigateUrlField="projectID"  HeaderText="项目ID"    DataNavigateUrlFormatString="项目审批副本.aspx?projectID={0}" >
                 </asp:HyperLinkColumn>
@@ -203,11 +255,8 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="项目描述" HeaderStyle-Font-Names="true">
-
-                     <HeaderStyle Font-Names="true"></HeaderStyle>
-
+                    <HeaderStyle Font-Names="true"></HeaderStyle>
                     <ItemStyle CssClass="des"></ItemStyle>
-                    
                     <ItemTemplate>
                         <asp:Label ID="labdes" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container.DataItem,"projectDir").ToString().Length>10?DataBinder.Eval(Container.DataItem,"projectDir").ToString().Substring(0,10) + "...":DataBinder.Eval(Container.DataItem,"projectDir").ToString()%>' ToolTip='<%# DataBinder.Eval(Container, "DataItem.projectDir") %>'>
                         </asp:Label>
@@ -248,7 +297,9 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
 
-                <asp:ButtonColumn CommandName="Delete" HeaderText="删除项目" Text="删除"></asp:ButtonColumn>
+                <asp:ButtonColumn CommandName="Delete" HeaderText="删除项目" Text="删除">
+                    <ItemStyle ForeColor="#d60808"/>
+                </asp:ButtonColumn>
 
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages" />

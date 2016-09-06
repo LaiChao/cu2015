@@ -117,6 +117,89 @@
         .description { width: 200px; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .area { width: 100px; }
+
+        .auto-style8 {
+            width: 160px;
+            font-size: 16px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .lb11_style {
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .auto-style9 {          
+            height: 50px;
+            margin-left: 40px;
+            vertical-align: middle;
+            text-align: left;
+            font-family: 'Microsoft YaHei';
+        }
+        .btn-right{
+            text-align:right;
+        }
+        .dropDownList_style {
+            width: 340px !important;
+        }
+        .yahei_style {
+            font-family: 'Microsoft YaHei';
+        }
+        .link_style {
+            font-family: 'Microsoft YaHei';           
+        }
+        .link_style:link {
+            text-decoration: none;
+        }
+        .link_style:hover {
+            color: #d60808;
+            transition: 0.2s;
+        }
+        #dgData1 a, #dgData a, #dgData0 a {
+            text-decoration: none !important;
+        }
+        #dgData1 a:hover, #dgData a:hover, #dgData0 a:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .labError_style {
+            text-align: left;
+            font-family: 'Microsoft YaHei';
+            font-size: 15px;
+            color: #e8a1eb;
+            height: 50px;
+        }
+        #dgData1 td, #dgData td, #dgData0 td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border: #cc9966 1px solid;
+        }
+        #dgData1 th, #dgData td, #dgData0 td {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        } 
+        .link_style {
+            font-family: 'Microsoft YaHei'; 
+            font-size: 15px;          
+        }
+        .link_style:link {
+            text-decoration: none;
+        }
+        .link_style:hover {
+            color: #d60808;
+            transition: 0.2s;
+        }
     </style>
 </head>
     
@@ -124,59 +207,35 @@
      <div id="divPrint" runat="server">
          <center>
     <form id="Form1" method="post" runat="server" onsubmit="ck2()">
-        <div id="div_dynamic" >
-        <style>
-        tr{ line-height:30px;height:30px;}
-        .td_c1{ width:20px;}
-            .auto-style6 {
-                width: 200px;
-                text-align:right;
-            }
-            .auto-style8 {
-                width: 100px;
-                height: 30px;
-            }
-            .auto-style9 {
-                width: 293px;
-                height: 30px;
-                margin-left: 40px;
-                text-align:left;
-            }
-            .auto-style11 {
-                width: 293px;
-                text-align:left;
-            }
-            .auto-style12 {
-                width: 800px;
-            }
-            </style>
+        <div>
             <div>
                 <h2>
-                  <strong>项目审批</strong>  
+                    <strong>项目审批</strong>  
                 </h2>
             </div>
-        
-            <table style="width: 800px" align="center" class="table">
-                <thead>
+            <table width="580px" runat="server">
+                <tr>
+                    <td class="auto-style8">
+                        <asp:Button ID="familylist" style=" border:0px none" runat="server" Height="30px" OnClick="familylist_Click" Text="-" Width="30px" BackColor="#c2c2c2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td class="auto-style9 btn-right">
+                        <asp:Label ID="labError" runat="server" align="center" ForeColor="Red" Text=""></asp:Label>                    
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
+                        <asp:Button ID="btnReturn" runat="server" Text="返回项目审批页面" CssClass=" btn btn-danger" OnClick="btnReturn_Click" Width="159px" />
+                    </td>
+                </tr>
+            </table>        
+            <table style="width: 580px" align="center" id="applyTable" runat="server" class="table">
+                <thead>                  
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <asp:Label ID="labError" runat="server" align="center" ForeColor="Red" Text=""></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style6">
-                            项 目 ID：
-                        </td>
-                        <td class="auto-style11">
+                        <td class="auto-style8">项 目 ID：</td>
+                        <td class="auto-style9">
                             <asp:Label ID="LbproID" runat="server" Text=""></asp:Label>
                         </td>                     
                     </tr>
                 </thead>
                 <tr>
-                    <td class="auto-style6">
-                        项 目 类 别： </td>
+                    <td class="auto-style8">项 目 类 别： </td>
                     <td class="auto-style9">
                         <asp:Label ID="lblLeibie" runat="server"></asp:Label>
                     &nbsp;&nbsp;<asp:Label ID="lblNaming" runat="server" Text="非冠名"></asp:Label>
@@ -185,97 +244,80 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">
-                        项 目 名 称： </td>
+                    <td class="auto-style8">项 目 名 称： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbproname" runat="server"></asp:Label>
                     </td>            
                 </tr>
                 <tr>
-                    <td class="auto-style6">
-                        项 目 状 态：
-                    </td>
+                    <td class="auto-style8">项 目 状 态： </td>
                     <td class="auto-style9">
                         <asp:Label ID="lblState" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style6">
-                        项 目 描 述：
-                    </td>
-                    <td class="auto-style11">
+                    <td class="auto-style8">项 目 描 述： </td>
+                    <td class="auto-style9">
                         <asp:Label ID="projectDir" runat="server"></asp:Label>
-                    </td>
-                    
+                    </td>                    
                 </tr>
                 <tr>
-                    <td class="auto-style6">
-                        计划使用善款： </td>
+                    <td class="auto-style8">计划使用善款(元)： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbplan" runat="server"></asp:Label>
                     </td>
                     
                 </tr>
                 <tr>
-                    <td class="auto-style6">
-                        受助人类型描述：
-                    </td>
+                    <td class="auto-style8">受助人类型描述： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbrestnow" runat="server"></asp:Label>
-                    </td>
-                    
-                </tr>
-             
-                
+                    </td>                    
+                </tr>                          
                 <tr>
-                    <td class="auto-style6">
-                        联 系 人：</td>
+                    <td class="auto-style8">联系人姓名： </td>
                     <td class="auto-style9">
-                        <asp:Label ID="Lbtel" runat="server" Text="联系人姓名："></asp:Label>
                         <asp:Label ID="Lbtelname" runat="server"></asp:Label>
-                        <br />
-                        <asp:Label ID="Lbteladd" runat="server" Text="联系人电话："></asp:Label>
-                        <asp:Label ID="Lbtelladd" runat="server"></asp:Label>
-
-                        </td>
+                    </td>
                 </tr>
-
+                <tr>
+                    <td class="auto-style8">联系人电话： </td>
+                    <td class="auto-style9">
+                        <asp:Label ID="Lbtelladd" runat="server"></asp:Label>
+                    </td>
+                </tr>
                 <tfoot>
                     <tr>
-                        <td class="auto-style6">项目实施单位:</td>
+                        <td class="auto-style8">项目实施单位： </td>
                         <td class="auto-style9">
                             <asp:Label ID="Lbbenfrom" runat="server"></asp:Label>
                         </td>                        
-                        </tr>
-                    <tr>
-                       <td class="auto-style8"> 
-                        </td>
-                        <td class="auto-style9">
-                    <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
-                    <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
-                    <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
-                    <asp:Button ID="btnReapply" runat="server" Text="重新申请" CssClass=" btn btn-danger " OnClick="btnReapply_Click" />
-                            <br />
-                            选择模板：
-                            <asp:DropDownList ID="DropDownList1" runat="server">
-                                <asp:ListItem>附1北京市朝阳区慈善协会救助项目申请表</asp:ListItem>
-                                <asp:ListItem>附2冠名慈善捐助金使用项目书</asp:ListItem>
-                                <asp:ListItem>附3北京市朝阳区慈善协会救助项目书</asp:ListItem>
-                            </asp:DropDownList>
-                    <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" />
-                        </td>                                         
                     </tr>
-                </tfoot>
-                
+                    <tr>
+                        <td class="auto-style8">选择模板：</td>
+                        <td class="auto-style9">
+                            <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:ListItem>附1北京市朝阳区慈善协会救助项目申请表</asp:ListItem>
+                            <asp:ListItem>附2冠名慈善捐助金使用项目书</asp:ListItem>
+                            <asp:ListItem>附3北京市朝阳区慈善协会救助项目书</asp:ListItem>
+                            </asp:DropDownList>&nbsp;
+                            <asp:Button ID="btout" runat="server" OnClick="btout_Click" Text="导出" CssClass=" btn btn-danger" />
+                        </td>
+                    </tr>               
+                </tfoot>              
             </table>
-              
-            <table style="width: 800px" align="center" class="table">
-                <tr>
-                    <td class="auto-style12">
-    <asp:DataGrid ID="dgData0" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData0_ItemCommand">
+            <div>
+                <p>
+                    <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
+                            <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
+                            <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
+                            <asp:Button ID="btnReapply" runat="server" Text="重新申请" CssClass=" btn btn-danger " OnClick="btnReapply_Click" />
+                </p>
+            </div>
+            <div class="table">
+                <asp:DataGrid ID="dgData0" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="700px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData0_ItemCommand" OnItemDataBound="dgData0_ItemDataBound">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 
@@ -288,7 +330,7 @@
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="捐赠人ID">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                    <ItemStyle></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID0" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benefactorID") %>'>
                         </asp:Label>
@@ -299,8 +341,8 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="捐赠人姓名">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                <asp:TemplateColumn HeaderText="捐助人姓名">
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labname" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
                         </asp:Label>
@@ -336,7 +378,7 @@
                                 oolTip="启用标示，点中为启用"></asp:CheckBox></font>
                     </EditItemTemplate>
                 </asp:TemplateColumn>--%>                         
-                <asp:TemplateColumn HeaderText="已用资金" HeaderStyle-Font-Names="true">
+                <asp:TemplateColumn HeaderText="已用资金(元)" HeaderStyle-Font-Names="true">
 
                    <HeaderStyle Font-Names="true"></HeaderStyle>
 
@@ -355,7 +397,7 @@
 
                    <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="labwuzhu" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.prouseoutTime") %>'>
@@ -366,25 +408,18 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-               
-                
- 
             </Columns>
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-        </asp:DataGrid>                       
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style12">               
-    <asp:DataGrid ID="dgData" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="677px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" DataKeyField="recipientsID" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound" >
+        </asp:DataGrid>
+                <br />
+                <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="700px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" DataKeyField="recipientsID" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 <asp:TemplateColumn HeaderText="删除">
-                    <ItemStyle CssClass="option"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
 <%--                        <asp:ImageButton ID="btnEdit1" runat="server" ToolTip="结项" CommandName="Edit1" ImageUrl="../CommUI/Images/icon-pencil.gif">
                         </asp:ImageButton>--%>
@@ -394,7 +429,7 @@
                 </asp:TemplateColumn>
             
                 <asp:TemplateColumn HeaderText="受助人姓名">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'>
                         </asp:Label>
@@ -406,7 +441,7 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="身份证号">
-                    <ItemStyle CssClass="name"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'>
                         </asp:Label>
@@ -417,7 +452,7 @@
                     </EditItemTemplate>
                 </asp:TemplateColumn>
                 <asp:TemplateColumn HeaderText="来源">
-                    <ItemStyle CssClass="index"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'>
                         </asp:Label>
@@ -470,21 +505,15 @@
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
-                      
-                    </td>
-                </tr>      
-                <tr>
-                    <td class="auto-style12">
-                       
-    <asp:DataGrid ID="dgData1" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="676px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
+                <br />
+                <asp:DataGrid ID="dgData1" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="700px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
-            <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
                 
-                <asp:TemplateColumn HeaderText="捐赠人ID">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                <asp:TemplateColumn HeaderText="捐助人ID">
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labID1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorID") %>'>
                         </asp:Label>
@@ -495,8 +524,8 @@
                         </asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateColumn>
-                <asp:TemplateColumn HeaderText="捐赠人名称">
-                    <ItemStyle CssClass="id"></ItemStyle>
+                <asp:TemplateColumn HeaderText="捐助人名称">
+                    <ItemStyle ></ItemStyle>
                     <ItemTemplate>
                         <asp:Label ID="labname1" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorName") %>'>
                         </asp:Label>
@@ -536,7 +565,7 @@
 
                    <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="lblItem" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.item") %>'>
@@ -551,7 +580,7 @@
 
                    <HeaderStyle Font-Names="true"></HeaderStyle>
 
-                    <ItemStyle CssClass="des"></ItemStyle>
+                    <ItemStyle ></ItemStyle>
                     
                     <ItemTemplate>
                         <asp:Label ID="lblTime" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.timeOut") %>'>
@@ -567,17 +596,8 @@
             <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
-                          
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style12">
-                        <asp:Button ID="btnReturn" runat="server" Text="返回项目审批页面" CssClass=" btn btn-danger" OnClick="btnReturn_Click" />
-                    </td>
-                </tr>
-            </table>
-        
-    </div>
+            </div>
+        </div>
     </form>
          </center>
          </div>

@@ -164,7 +164,9 @@ namespace CL.Utility.Web.BasicData
         /// </summary>
         private void InitializeComponent()
         {
-
+            this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound1);
+            this.dgData0.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound1);
+            this.dgData1.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound1);
         }
         #endregion
 
@@ -277,6 +279,33 @@ namespace CL.Utility.Web.BasicData
             }
 
         }
+
+        private void dgData_ItemDataBound1(object sender, System.Web.UI.WebControls.DataGridItemEventArgs e)
+        {
+            switch (e.Item.ItemType)
+            {
+                case ListItemType.AlternatingItem:
+                case ListItemType.Item:
+                    {
+                        e.Item.Attributes.Add
+                            ("onmouseover", "this.style.backgroundColor='E6F5FA'");
+                        e.Item.Attributes.Add
+
+                            ("onmouseout", "this.style.backgroundColor='white'");
+
+                        // ImageButton btn = (ImageButton)e.Item.FindControl("btnDelete");
+                        // btn.Attributes.Add("onclick", "return confirm('删除数据可能导致严重的后果，你是否确定删除?');");
+                        break;
+                    }
+
+
+                case ListItemType.EditItem:
+                    {
+                        break;
+                    }
+            }
+        }
+
         protected void dgData0_ItemCommand(object source, DataGridCommandEventArgs e)
         {
             if(e.CommandName=="rollbackMoney")
@@ -843,14 +872,39 @@ namespace CL.Utility.Web.BasicData
             }
 
         }
+        protected void dgData0_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+            {
+                ((Button)(e.Item.Cells[0].FindControl("btnRollback"))).Attributes.Add("onclick", "return confirm('确定撤回资金吗?');");
+            }
+        }
         protected void btnReapply_Click(object sender, EventArgs e)
         {
             Response.Redirect("项目申请.aspx?id=" + LbproID.Text.Trim(),false);
         }
+        protected void familylist_Click(object sender, EventArgs e)
+        {
+            if (familylist.Text == "-")
+            {
+                familylist.Text = "+";
+                this.applyTable.Visible = false;
+                return;
+            }
+            if (familylist.Text == "+")
+            {
+                familylist.Text = "-";
+                this.applyTable.Visible = true;
+                return;
+            }
+
+        }
+		
         protected void btnReturn_Click(object sender, EventArgs e)
         {
             Response.Redirect("项目审批.aspx?id=" + LbproID.Text.Trim(),false);
         }
+
 }
     /// <summary>
     /// 人民币大小写金额转换

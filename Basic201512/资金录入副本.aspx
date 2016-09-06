@@ -119,6 +119,32 @@
         .description { width: 200px; }
         .txtbox { width: 95%; padding: 0; margin: 0; }
         .area { width: 100px; }
+
+        tr{ line-height:30px;height:30px;}
+        .td_c1{ width:20px;}
+
+         .auto-style13 {
+             width: 170px;
+             font-size: 16px;
+             text-align: right;
+             font-family: 'Microsoft YaHei';
+         }
+         .auto-style14 {
+             height: 50px;
+             margin-left: 40px;
+             vertical-align: middle;
+             text-align: left;
+         }
+         .textBox_style {
+            width: 300px !important;
+         }
+         .labError_style {
+            text-align: left;
+            font-family: 'Microsoft YaHei';
+            font-size: 15px;
+            color: #e8a1eb;
+            height: 50px;
+        }
     </style>
 </head>
     
@@ -132,142 +158,68 @@
       <strong>资金录入</strong> 
    </h2>     
     </div>
-    <div class="body">
-        
-        <div id="div_dynamic" >
-        <style>
-        tr{ line-height:30px;height:30px;}
-        .td_c1{ width:20px;}
-            .auto-style6 {
-                width: 270px;
-                text-align: right;
-            }
-            .auto-style9 {
-                width: 293px;
-                height: 30px;
-                margin-left: 40px;
-                text-align: left;
-            }
-            .auto-style11 {
-                width: 293px;
-                text-align: left;
-            }
-            .auto-style12 {
-                width: 270px;
-                height: 30px;
-            }
-            .auto-style13 {
-                width: 270px;
-                text-align: right;
-                height: 30px;
-            }
-            .auto-style14 {
-                width: 293px;
-                text-align: left;
-                height: 30px;
-            }
-            .auto-style15 {
-                width: 270px;
-            }
-            </style>
-         
-            <table style="width: 600px" align="center" class="table">
-
+    <div class="body">       
+        <div id="div_dynamic" >         
+            <table style="width: 550px" align="center">
                 <tr>
-                    <td class="auto-style15">
-                        <label id="lblErr" runat="server"  style="color:Red" ></label>
-                    </td>
-                    <td>
-                        <asp:Label ID="labError" runat="server" ForeColor="Red" align="center" Text="" style="text-align: center"></asp:Label>
-                    </td>
-                </tr>
-                    <tr>
-
-                        <td class="auto-style13">
-                            捐赠人名称：&nbsp;
-                        </td>
-                        <td class="auto-style14">
-
-                            <asp:Label ID="LbproID" runat="server" Text=""></asp:Label>
-
-                        </td>
-                        
-                    </tr>
-                <tr>
-                    <td class="auto-style13">
-
-                        所属机构：&nbsp;
-
-                    </td>
+                    <td class="auto-style13">捐赠人名称：&nbsp;</td>
                     <td class="auto-style14">
-
-                        <asp:Label ID="lblBranch" runat="server"></asp:Label>
-
+                        <asp:TextBox runat="server" ID="LbproID" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
+                    </td>                       
+                </tr>
+                <tr>
+                    <td class="auto-style13">所&nbsp;属&nbsp;机&nbsp;构：&nbsp;</td>
+                    <td class="auto-style14">
+                        <asp:TextBox runat="server" ID="lblBranch" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
                     </td>
+                </tr>
+                <tr>
+                    <td class="auto-style13">联&nbsp;系&nbsp;方&nbsp;式：&nbsp; </td>
+                    <td class="auto-style14">
+                        <asp:TextBox runat="server" ID="lbbenfnadd" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td class="auto-style13">资&nbsp;金&nbsp;ID：&nbsp; </td>
+                    <td class="auto-style14">
+                        <asp:TextBox runat="server" ID="lbcaptID" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td class="auto-style13">已&nbsp;有&nbsp;资&nbsp;金：&nbsp; </td>
+                    <td class="auto-style14">
+                        <asp:TextBox runat="server" ID="lbcaptIDown" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style13">录&nbsp;入&nbsp;资&nbsp;金：&nbsp; </td>
+                    <td class="auto-style14">
+                        <asp:TextBox MaxLength="20" runat="server" ID="txtPLAN" CssClass="form-control textBox_style"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style13">资金录入时间：&nbsp; </td>
+                    <td class="auto-style14">
+                        <asp:TextBox runat="server" ID="lbtime" CssClass="form-control textBox_style" ReadOnly="true"></asp:TextBox>
+                    </td>
+                    
                 </tr>
                 <tr>
                     <td class="auto-style13">
-                        联系方式：&nbsp; </td>
-                    <td class="auto-style9">
-                        <asp:Label ID="lbbenfnadd" runat="server"></asp:Label>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td class="auto-style6">
-                        资金ID：&nbsp; </td>
-                    <td class="auto-style11">
-                        <asp:Label ID="lbcaptID" runat="server"></asp:Label>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td class="auto-style6">已有资金：&nbsp; </td>
-                    <td class="auto-style11">
-                        <asp:Label ID="lbcaptIDown" runat="server" Text="0"></asp:Label>
+                        </td>
+                    <td class="labError_style">
+                        <asp:Label ID="lblErr" runat="server" ForeColor="Red" align="center" Text="" style="text-align: center"></asp:Label>                   
                     </td>
                 </tr>
-                <tr>
-                    <td class="auto-style6">
-                        录入资金：&nbsp; </td>
-                    <td class="auto-style9">
-                        <asp:TextBox MaxLength="20" runat="server" ID="txtPLAN"  Width="162px" CssClass="form-control"></asp:TextBox>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td class="auto-style6">
-                        资金录入时间：&nbsp; </td>
-                    <td class="auto-style9">
-                        <asp:Label ID="lbtime" runat="server" Text="lbtime"></asp:Label>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td class="auto-style6">
-                        <asp:Button ID="btnCancel" runat="server" Text="撤回" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
-                    </td>
-                    <td class="auto-style9">
-                        <asp:Button ID="btyes" runat="server" Text="添加资金" OnClick="btyes_Click" CssClass=" btn btn-danger" />
-                      
-
-                    &nbsp;<asp:Button ID="confirm" runat="server" Text="确认添加" OnClick="confirm_Click" CssClass=" btn btn-danger" />
-                      
-
-                    </td>
-                    
-                </tr>
-              
-               
-
-                <tfoot>
-                   
-                  
-                </tfoot>
-                
             </table>
-        
-                </div>
+            <div>
+                <asp:Button ID="btnCancel" runat="server" Text="撤回" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
+                <asp:Button ID="btyes" runat="server" Text="添加资金" OnClick="btyes_Click" CssClass=" btn btn-danger" Width="120px"/>&nbsp;&nbsp;
+                <asp:Button ID="confirm" runat="server" Text="确认添加" OnClick="confirm_Click" CssClass=" btn btn-danger" Width="120px"/>
+            </div>
+        </div>
     </div>
     </form>
     </center>

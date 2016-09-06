@@ -28,10 +28,38 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
-    <style>
-        #GridView1 th {
-        text-align:center;
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <style type="text/css">
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        .HeaderStyle th{
+          text-align:center;
+         }
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
         }
     </style>
 </head>
@@ -45,23 +73,31 @@
         </h2>
     </div>
     <div style="height: 34px" class="form-group">
-        <asp:Label ID="Label2" runat="server" Text="起："></asp:Label>
-        <asp:TextBox ID="tbStart" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
-        <asp:Label ID="Label3" runat="server" Text="止："></asp:Label>
-        <asp:TextBox ID="tbEnd" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
-        <asp:Label ID="Label1" runat="server" Text="用户："></asp:Label>
-        <asp:TextBox ID="tbUser" runat="server" Width="103px" CssClass="form-control"></asp:TextBox>
+        <asp:Label ID="Label2" runat="server" Text="时间(起):" CssClass="label_style"></asp:Label>
+        <asp:TextBox ID="tbStart" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server" Text="时间(止):" CssClass="label_style"></asp:Label>
+        <asp:TextBox ID="tbEnd" runat="server" onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+        <asp:Label ID="Label1" runat="server" Text="用户:" CssClass="label_style"></asp:Label>
+        <asp:TextBox ID="tbUser" runat="server" Width="120px" CssClass="form-control"></asp:TextBox>&nbsp;
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="查询" class="btn btn-danger" Width="80px" Height="34px" />
     </div>
         <br />
         <br />
-    <div>
-    
-        <asp:GridView ID="GridView1" align="center" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" Width="1000px">
+    <div>  
+        <asp:GridView ID="GridView1" align="center" CssClass="gridView_style" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" Width="900px">
             <Columns>
-                <asp:BoundField DataField="CreateDate" HeaderText="时间" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="user" HeaderText="用户" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
-                <asp:BoundField DataField="Message" HeaderText="操作" HeaderStyle-Height="30px" ItemStyle-Height="30px" />
+                <asp:BoundField DataField="CreateDate" HeaderText="时间" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ItemStyle HorizontalAlign="Center" CssClass="mycenter"/>
+                </asp:BoundField>
+                <asp:BoundField DataField="user" HeaderText="用户" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ItemStyle HorizontalAlign="Center" CssClass="mycenter"/>
+                </asp:BoundField>
+                <asp:BoundField DataField="Message" HeaderText="操作" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ItemStyle HorizontalAlign="Center" CssClass="mycenter"/>
+                </asp:BoundField>
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" HorizontalAlign="Center" />
@@ -72,7 +108,7 @@
                 <asp:LinkButton ID="lblNext" runat="Server" Text="下一页" Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Next" ></asp:LinkButton>
                 <asp:LinkButton ID="lblLast" runat="Server" Text="尾页"   Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Last" ></asp:LinkButton>
             </PagerTemplate>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" />
             <RowStyle BackColor="White" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
             <SortedAscendingCellStyle BackColor="#FEFCEB" />

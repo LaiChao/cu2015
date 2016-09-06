@@ -82,7 +82,7 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
         {
             publicProject.Visible = false;
             btnBatch.Visible = false;
-            btnBatchAdd.Visible = false;
+            //btnBatchAdd.Visible = false;
             btnchoic.Visible = false;
 
             string iniSql = string.Format("select infoTitle,infoContent,infoFile,infoTo,infoFrom,projectID,infoRead from e_info where infoID='{0}'", ViewState["IDNow"].ToString());
@@ -108,7 +108,7 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             {
                 publicProject.Visible = true;
                 btnBatch.Visible = true;
-                btnBatchAdd.Visible = true;
+                //btnBatchAdd.Visible = true;
                 btnchoic.Visible = true;
             }
             if(receive=="所有机构")
@@ -237,11 +237,11 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
             NLogTest nlog = new NLogTest();
             string s = "发布了信息：“" + infoTitle.Text.ToString()+"”的回执";
             nlog.WriteLog(Session["UserName"].ToString(), s);
-            lblErr.Text = "发送成功";
+            lblErr.Text = "发送成功！";
         }
         else
         {
-            lblErr.Text = "发送失败";
+            lblErr.Text = "发送失败！";
         }
     }
     protected void btnBatch_Click(object sender, EventArgs e)
@@ -252,8 +252,8 @@ public partial class Basic201512_信息查看 : System.Web.UI.Page
     {
         Response.Redirect("查询受助人.aspx?id=" + tbID.Text.Trim());
     }
-    protected void btnBatchAdd_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("批量添加受助人.aspx?id=" + tbID.Text.Trim());
-    }
+    //protected void btnBatchAdd_Click(object sender, EventArgs e)
+    //{
+    //    Response.Redirect("批量添加受助人.aspx?id=" + tbID.Text.Trim());
+    //}
 }

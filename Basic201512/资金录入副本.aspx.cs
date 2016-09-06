@@ -205,7 +205,7 @@ namespace CL.Utility.Web.BasicData
             {
                 txtPLAN.Enabled = false;
                 btyes.Enabled = false;
-                lblErr.InnerText = "请联系捐助科确认资金";
+                lblErr.Text = "请联系捐助科确认资金";
                 //HttpContext.Current.Response.Write("<script>alert('请联系科室确认资金');</script>");
             }
             if(txtPLAN.Enabled==true)
@@ -261,7 +261,10 @@ namespace CL.Utility.Web.BasicData
 
             if (txtPLAN.Text.Trim() == "")
             {
-                lblErr.InnerText = "请输入金额";
+                lblErr.Text = "请输入金额！";
+                txtPLAN.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPLAN.Focus();
+               // HttpContext.Current.Response.Write("<script>alert('请输入金额');</script>");
                 return;
             }
             else
@@ -272,14 +275,19 @@ namespace CL.Utility.Web.BasicData
                 }
                 catch
                 {
-                    lblErr.InnerText = "请输入正数";
+                	lblErr.Text = "请输入正数";
+                	txtPLAN.BackColor = Color.FromArgb((int)0xFFE1FF);
+                	txtPLAN.Focus();
                     return;
                 }
                 if (Convert.ToDouble(txtPLAN.Text.Trim()) <= 0)
                 {
-                    lblErr.InnerText = "请输入正数";
+                    lblErr.Text = "请输入正数";
+                	txtPLAN.BackColor = Color.FromArgb((int)0xFFE1FF);
+                	txtPLAN.Focus();
                     return;
                 }
+				txtPLAN.BackColor = Color.White;
             }
 
             ////判断权限
@@ -327,10 +335,11 @@ namespace CL.Utility.Web.BasicData
                 {
                     result = msq.getmysqlcom(strupd2);
                 }
+
                 if (result > 0)
                 {
                     msq.getmysqlcom(insertString);
-                    lblErr.InnerText = "提交成功，请等待捐助科审批确认";
+                    lblErr.Text = "提交成功，请等待捐助科审批确认";
                     NLogTest nlog = new NLogTest();
                     string sss = "为"+lblBranch.Text + "的" + LbproID.Text + "录入了捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
                     nlog.WriteLog(Session["UserName"].ToString(), sss);
@@ -351,7 +360,7 @@ namespace CL.Utility.Web.BasicData
             {
                 msq.getmysqlcom(insertString);
                 // HttpContext.Current.Response.Write("<script>alert('金额确认成功');</script>");
-                lblErr.InnerText = "金额确认成功";
+                lblErr.Text = "金额确认成功";
                 NLogTest nlog = new NLogTest();
                 string sss = "捐助科确认：为" + lblBranch.Text + "的" + LbproID.Text + "录入了捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
                 nlog.WriteLog(Session["UserName"].ToString(), sss);
@@ -371,7 +380,7 @@ namespace CL.Utility.Web.BasicData
             if(result>0)
             {
                 msq.getmysqlcom(insertString);
-                lblErr.InnerText = "金额撤回成功";
+                lblErr.Text = "金额撤回成功";
                 NLogTest nlog = new NLogTest();
                 string sss = "撤回了" + lblBranch.Text + "的" + LbproID.Text + "申请捐赠金额" + txtPLAN.Text + "元。资金ID：" + lbcaptID.Text;
                 nlog.WriteLog(Session["UserName"].ToString(), sss);

@@ -74,14 +74,26 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+
         if (tbItem.Text.Trim() == "")
         {
-            lblError.Text = "请输入物品";
+            lblError.ForeColor = System.Drawing.Color.Red;
+            lblError.Text = "请填入捐赠物品!";
+            tbItem.BackColor = Color.FromArgb((int)0xFFE1FF);
+            tbItem.Focus();
             return;
         }
-        if(tbValue.Text.Trim()=="")
+        else
         {
-            lblError.Text = "请输入公允值";
+            tbItem.BackColor = Color.White;
+        }
+
+        if (tbValue.Text.Trim() == "")
+        {
+            lblError.ForeColor = System.Drawing.Color.Red;
+            lblError.Text = "请输入公允值（元）!";
+            tbValue.BackColor = Color.FromArgb((int)0xFFE1FF);
+            tbValue.Focus();
             return;
         }
         else
@@ -92,14 +104,21 @@ public partial class Basic201512_捐赠物品 : System.Web.UI.Page
             }
             catch
             {
+            	lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Text = "公允值为正数";
+            	tbValue.BackColor = Color.FromArgb((int)0xFFE1FF);
+            	tbValue.Focus();
                 return;
             }
             if(Convert.ToDouble(tbValue.Text.Trim())<=0)
             {
+            	lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Text = "公允值为正数";
+            	tbValue.BackColor = Color.FromArgb((int)0xFFE1FF);
+            	tbValue.Focus();
                 return;
             }
+            tbValue.BackColor = Color.White;
         }
         string insertString = string.Format("insert into e_item (handlingunitID,benfactorFrom,benfactorID,benfactorName,item,fairValue,state,timeIn) values({0},'{1}',{2},'{3}','{4}',{5},'{6}','{7}')", ViewState["IDNow"].ToString().Substring(0, 3), ViewState["branchName"].ToString(), ViewState["IDNow"].ToString(), ViewState["name"].ToString(), tbItem.Text.Trim(), tbValue.Text.Trim(), "未使用", DateTime.Now.ToString());
         //try

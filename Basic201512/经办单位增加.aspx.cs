@@ -69,8 +69,15 @@ public partial class Basic201512_经办单位增加 : System.Web.UI.Page
         if (benfactorFrom.Text.Length <= 0)
         {
             LabelError.Text = "经办单位名称不能为空";
+            benfactorFrom.BackColor = Color.FromArgb((int)0xFFE1FF);
+            benfactorFrom.Focus();
             return;
         }
+        else
+        {
+            benfactorFrom.BackColor = Color.White;
+        }
+
         if (benfactorFrom.Text.Length > 0)
         {//判断是否重复
             string sqldate = string.Format("select * from e_handlingunit where benfactorFrom='{0}'", benfactorFrom.Text.ToString());
@@ -83,24 +90,52 @@ public partial class Basic201512_经办单位增加 : System.Web.UI.Page
             {
                 //LabelError.ForeColor = System.Drawing.Color.Red;
                 LabelError.Text = "该经办单位名称已存在！";
+                benfactorFrom.BackColor = Color.FromArgb((int)0xFFE1FF);
+                benfactorFrom.Focus();
                 return;
             }
         }
+        else
+        {
+            benfactorFrom.BackColor = Color.White;
+        }
+
         if (address.Text.Length <= 0)
         {
-            LabelError.Text = "经办单位地址不能为空";
+            LabelError.Text = "经办单位地址不能为空!";
+            address.BackColor = Color.FromArgb((int)0xFFE1FF);
+            address.Focus();
             return;
         }
+        else
+        {
+            address.BackColor = Color.White;
+        }
+
         if (contactPerson.Text.Length <= 0)
         {
-            LabelError.Text = "联系人不能为空";
+            LabelError.Text = "联系人不能为空!";
+            contactPerson.BackColor = Color.FromArgb((int)0xFFE1FF);
+            contactPerson.Focus();
             return;
         }
+        else
+        {
+            contactPerson.BackColor = Color.White;
+        }
+
         if (TEL.Text.Length <= 0)
         {
-            LabelError.Text = "联系方式不能为空";
+            LabelError.Text = "联系方式不能为空!";
+            TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+            TEL.Focus();
             return;
         }
+        else
+        {
+            TEL.BackColor = Color.White;
+        }
+
         if (TEL.Text.Length > 0 && contactPerson.Text.Length > 0 && address.Text.Length > 0 && benfactorFrom.Text.Length > 0)
         {
             string str11 = string.Format("insert into e_handlingunit (benfactorFrom,address,contactPerson,TEL) VALUES ('{0}','{1}','{2}','{3}')", benfactorFrom.Text, address.Text, contactPerson.Text, TEL.Text);
@@ -110,12 +145,12 @@ public partial class Basic201512_经办单位增加 : System.Web.UI.Page
                 NLogTest nlog = new NLogTest();
                 string sss = "管理员增加了经办单位：" + benfactorFrom.Text.ToString();
                 nlog.WriteLog(Session["UserName"].ToString(),sss);
-                LabelError.Text = "经办单位增加成功";
+                LabelError.Text = "经办单位增加成功!";
                 TEL.Text = contactPerson.Text = address.Text = benfactorFrom.Text = "";
             }
             else
             {
-                LabelError.Text = "经办单位增加失败";
+                LabelError.Text = "经办单位增加失败!";
             }
         }
     }

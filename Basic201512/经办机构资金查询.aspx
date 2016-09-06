@@ -29,129 +29,76 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
     <style type="text/css">
         tr { padding: 0; margin: 0; border: 0; }
         td { text-align: center; }
-        .data_Option { width: 50px; }
-        .data_Id { width: 180px; }
-        .data_Name { width: 300px; }
-        .data_ShortName { width: 300px; }
-        .data_Energy { width: 80px; }
-        .data_SubItem { width: 140px; }
-        .data_Purpose { width: 80px; }
-        .data_Business { width: 80px; }
-        .data_Index { width: 50px; }
-        .data_Open { width: 40px; }
-        .data_Beizhu { width: 230px; }
-    </style>
-    <script language="javascript" type="text/javascript">
-        var currentFocus;
-        var currentScrollTop;
-        //window.onload = function () {
-        //    document.all.item('div_dynamic').scrollTop = currentScrollTop;
-        //    var ctl;
-        //}
-        function ck() {
-            var txt = document.getElementById("txtID").value;
-            var txtpwd = document.getElementById("txtPWD");
-            var lblerr = document.getElementById("lblErr");
-           // alert(lblerr.innerText);
-            //alert(isNumberOr_Letter(txt));
 
-            if (isNumberOr_Letter(txt)) {
-                lblerr.innerText = "用户名正常";
-                //txtpwd.value = "用户名正常";
-                document.getElementById("Form1").submit();
-                alert(11);
-            }
-            else {
-                lblerr.innerText = "用户名不正常";
-                //txtpwd.value = "用户名不正常";
-            }
-        }
-        function ck2() {
-            txtpwd.value = "用户名正常";
-         }
-        function isNumberOr_Letter(s) {//判断是否是数字或字母 
-
-            var regu = "^[0-9a-zA-Z\_]{5,15}$";
-            var re = new RegExp(regu);
-            if (re.test(s)) {
-                return true;
-            } else {
-                return false;
-            }
-            
-        }
-        function openform(theURL,winName,features) {
-           // newwin = window.showModalDialog(theURL, winName, features);
-            newwin = window.showModalDialog(theURL,winName,features);
-        }
-        function tdisplay()
-        {
-            document.getElementById("Panel2").style.visibility = true;
-        }
-       
-    </script>
-    
-    <style type="text/css">
-        #nav { width: 1200px; height: 60px; line-height: 30px; }
-        
-       /* .body { width: 1660px; }*/
-        .short_name, .energy, .meter_type, .xishu, .upper_limit { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-
-        .energy { width: 80px; }
-        .meter_type { width: 80px; }
-        .xishu { width: 60px; }
-        .upper_limit { width: 80px; }
-        
-        #divTitle { height: 60px; line-height: 60px; font-size: 26px; border: #cc9966 1px solid; text-align: center; font-weight: bold; }
-        #div_dynamic {  border: #cc9966 1px solid;  }
-        #divTitle, #div_dynamic { width: 800px; margin:0 auto; }
-        .option, .id, .name, .order, .state, .description, .area { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
-        .option { width: 50px; }
-        .data_Id { width: 130px; }
-        .name { width: 170px; }
-        .data_Index { width: 170px; }
-        .state { width: 60px; }
-        .description { width: 200px; }
-        .txtbox { width: 95%; padding: 0; margin: 0; }
-        .area { width: 100px; }
         #GridView1 th {
         text-align:center;
         }
-    </style>
+
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        .label_style {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+            border-color: #CC9966;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+            border-color: #CC9966;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 16px;            
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+    </style>    
 </head>
     
-<body id="thebody">
+<body>
     <form id="Form1" runat="server">
     <center>
         <div>
             <h2>
-              <strong>经办机构财政状况</strong></h2>
+              <strong>经办机构财政状况</strong>
+            </h2>
         </div>
-    <div>
-        <asp:GridView ID="GridView1" runat="server" align="center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="600px" >
+    <div class="form-group">
+        <asp:GridView ID="GridView1" CssClass="gridView_style" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="800px" OnRowDataBound="GridView1_RowDataBound" >
             <Columns>
-                <asp:BoundField DataField="benfactorFrom" HeaderText="经办机构名称" HeaderStyle-Height="30px" ItemStyle-Height="30px" >
-<HeaderStyle Height="30px"></HeaderStyle>
-
-<ItemStyle Height="30px"></ItemStyle>
+                <asp:BoundField DataField="benfactorFrom" HeaderText="经办机构名称" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField HeaderText="本月使用资金"  HeaderStyle-Height="30px" ItemStyle-Height="30px" Visible="False" >
-<HeaderStyle Height="30px"></HeaderStyle>
-
-<ItemStyle Height="30px"></ItemStyle>
+                <%--<asp:BoundField DataField="thisMonth" HeaderText="本月使用资金"  HeaderStyle-Height="30px" ItemStyle-Height="30px" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>--%>
+                <asp:BoundField HeaderText="剩余资金" DataField="remain" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                 </asp:BoundField>
-                <asp:BoundField HeaderText="剩余资金" DataField="remain"  HeaderStyle-Height="30px" ItemStyle-Height="30px"  >
-<HeaderStyle Height="30px"></HeaderStyle>
-
-<ItemStyle Height="30px"></ItemStyle>
-                </asp:BoundField>
+                <asp:HyperLinkField DataNavigateUrlFields="benfactorFrom" DataNavigateUrlFormatString="资金追踪.aspx?from={0}" HeaderText="查看资金使用情况" Text="查看" />
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" CssClass="text-center" Height="30px" />
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead"/>
+            <PagerStyle BackColor="#FFFFCC" HorizontalAlign="Center" CssClass="page_style"/>
             <RowStyle BackColor="White" ForeColor="#330099" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
             <SortedAscendingCellStyle BackColor="#FEFCEB" />
@@ -159,7 +106,6 @@
             <SortedDescendingCellStyle BackColor="#F6F0C0" />
             <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
-
     </div>
     </center>
     </form>

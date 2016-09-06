@@ -171,13 +171,26 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "请输入用户名";
+                txtID.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtID.Focus();
                 return;
             }
+            else
+            {
+                txtID.BackColor = Color.White;
+            }
+
             string errMsg = "";
             if (!luyunfei.lyf_validate.isAZaz09_(strID, 5, 8, out errMsg))
             {
-                labError.Text = "输入的用户名称有误！" + errMsg;
+                labError.Text = "用户名由5~8位的数字、英文字母或下划线组成！";
+                txtID.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtID.Focus();
                 return;
+            }
+            else
+            {
+                txtID.BackColor = Color.White;
             }
             bool isMatch = lyf_validate.isIDorPwd(strID);
             if (!isMatch)
@@ -191,7 +204,13 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "请输入姓名";
+                txtName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtName.Focus();
                 return;
+            }
+            else
+            {
+                txtName.BackColor = Color.White;
             }
 
             string strUserRole = ddlRole.SelectedValue.ToString();
@@ -207,33 +226,73 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "请输入联系方式";
+                TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+                TEL.Focus();
                 return;
             }
+            else
+            {
+                TEL.BackColor = Color.White;
+            }
+
             string strPwd = txtPWD.Text.Trim();
             if (strPwd == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "请输入密码";
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.White;
+                txtPWD.Focus();
                 return;
             }
+            else
+            {
+                txtPWD.BackColor = Color.White;
+            }
+
             if (!luyunfei.lyf_validate.isAZaz09_(strPwd, 5, 20, out errMsg))
             {
-                labError.Text = "输入的新密码有误！" + errMsg;
+                labError.Text = "密码由5~20位的数字、英文字母或下划线组成！";
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.Focus();
                 return;
             }
+            else
+            {
+                txtPWD.BackColor = Color.White;
+            }
+
             string strPwd2 = txtPWD2.Text.Trim();
             if (strPwd2 == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "请再次输入密码";
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.Focus();
                 return;
             }
+            else
+            {
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+            }
+
             if (strPwd != strPwd2)
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "两次输入的密码不一致！";
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.Focus();
                 return;            
             }
+            else
+            {
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+            }
+
             string strFrom = benfactorFrom.Text.Trim();
             HybridDictionary hd = new HybridDictionary();
             hd.Add(sPMS_CTG_ID, strID);

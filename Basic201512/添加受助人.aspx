@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../../favicon.ico"/>
 
     <title>添加受助人</title>
 
@@ -33,13 +33,11 @@
             width: 13px;
         }
         .auto-style2 {
-            width:141px;
+            width:120px;
             text-align:right;
             font-family:'Microsoft YaHei';
             height:45px;
-        }
-        #Button2 {
-            text-align: left;
+            font-size: 13px;
         }
         .auto-style3 {
             width: 13px;
@@ -48,9 +46,20 @@
         .auto-style5 {
             height: 48px;
         }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';
+        }
+        .label_style {
+            font-size: 14px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .dropDownList_style {
+            width:220px;
+        }
     </style>
-    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
-    <script language="javascript">
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript">
         <!--
         //function openwin(url,name,iWidth,iHeight)
         //{
@@ -71,24 +80,22 @@
 </head>
 <body>
     <center>
-    <form id="form1" runat="server" class="form-inline"> 
-        <div style="height: 41px">
-    
-        <h2>
-           <strong>添加受助人</strong> 
-
-        </h2>
+    <form id="form1" runat="server" > 
+        <div style="height: 41px">    
+            <h2>
+             <strong>添加受助人</strong> 
+            </h2>
         </div>
     <div style="height: 47px">
     <div class="form-group">
-        <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
-        <asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>
-        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" Font-Names="Microsoft YaHei" Font-Bold="false" CssClass="checkbox"/>    
-        <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox" />
-        <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" Font-Names="Microsoft YaHei" CssClass="checkbox"/>
+        <asp:Label ID="Label1" runat="server" Text="选择受助类别：" CssClass="label_style"></asp:Label>    
+        <asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" CssClass="checkBox_style"/>   
+        &nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" CssClass="checkBox_style"/>
     </div>
     </div>
     <div style="height: 1312px; width: 806px;">
@@ -96,14 +103,14 @@
             <div class="panel-heading">
               <h3 class="panel-title" align="left">基本信息</h3>
             </div>
-            <div class="panel-body" ScrollBars="Auto">
+            <div class="panel-body">
              <table style="width: 90%; height: 155px; margin-right: 116px;">
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style2">
                         受助人来源：</td>
                     <td>
-                        <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle">
+                        <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                         </asp:DropDownList>
                     </td>
                     <td class="auto-style1">&nbsp;</td>
@@ -119,13 +126,13 @@
                     <td class="auto-style2">
                         受助人姓名：</td>
                     <td>
-                        <asp:TextBox ID="recipientsName" runat="server" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="recipientsName" runat="server" class="form-control "></asp:TextBox>
                     </td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style2">
                         性别：</td>
                     <td>
-                        <asp:DropDownList ID="sex" runat="server" class="btn btn-default dropdown-toggle">
+                        <asp:DropDownList ID="sex" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                             <asp:ListItem>男</asp:ListItem>
                             <asp:ListItem>女</asp:ListItem>
                         </asp:DropDownList>
@@ -181,7 +188,7 @@
                     <td class="auto-style2">
                         婚姻状况：</td>
                     <td>
-                        <asp:DropDownList ID="marryNow" runat="server" class="btn btn-default dropdown-toggle">
+                        <asp:DropDownList ID="marryNow" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                             <asp:ListItem>未婚</asp:ListItem>
                             <asp:ListItem>已婚</asp:ListItem>
                             <asp:ListItem>离异</asp:ListItem>
@@ -191,7 +198,7 @@
                     <td class="auto-style2">
                         致困原因：</td>
                     <td>
-                        <asp:DropDownList ID="reason" runat="server" class="btn btn-default dropdown-toggle">
+                        <asp:DropDownList ID="reason" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                             <asp:ListItem Value="无">无</asp:ListItem>
                             <asp:ListItem>低保</asp:ListItem>
                             <asp:ListItem>低收入</asp:ListItem>
@@ -201,9 +208,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Button ID="familylist" style=" border:0px none" runat="server" Height="18px" OnClick="familylist_Click" Text="+" Width="17px" />
+                        <asp:Button ID="familylist" style=" border:0px none" runat="server" Height="18px" OnClick="familylist_Click" Text="+" Width="18px" BackColor="#c2c2c2" />
                     </td>
-                    <td class="auto-style2">
+                    <td class="auto-style2" style="font-family: 'Microsoft YaHei'; font-size: 15px; font-weight: bold">
                         家庭成员列表</td>
                     <td>
                     
@@ -594,7 +601,7 @@
                 <td class="auto-style2">
                     是否失独：</td>
                 <td class="auto-style5">
-                    <asp:DropDownList ID="shiDu" runat="server" AutoPostBack="True" OnSelectedIndexChanged="shiDu_SelectedIndexChanged" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="shiDu" runat="server" AutoPostBack="True" OnSelectedIndexChanged="shiDu_SelectedIndexChanged" class="btn btn-default dropdown-toggle dropDownList_style">
                         <asp:ListItem>否</asp:ListItem>
                         <asp:ListItem>是</asp:ListItem>
                     </asp:DropDownList>
@@ -684,20 +691,15 @@
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     &nbsp;</td>
-                <td>
-                    
-                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="提交" class="btn btn-danger"/>
-                    
+                <td style="text-align:right;">                    
+                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="提交" class="btn btn-danger" Width="100px"/>                   
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="批量添加受助人：" style="text-align: right"></asp:Label>
                 </td>
-                <td>                
-                    <%--<input id="Button2" type="button" value="前往" onclick="openwin('批量添加受助人.aspx', '批量添加受助人', 400, 200);" />--%>
-                    
-                    <asp:Button ID="Button2" runat="server" Text="前往" CssClass="btn btn-danger" OnClick="Button2_Click1" />
-                    
+                <td style="text-align:right;">                
+                    <asp:Label ID="Label2" runat="server" Text="批量添加受助人：" CssClass="label_style"></asp:Label>                    
+                    <asp:Button ID="Button2" runat="server" Text="前往" CssClass="btn btn-danger" OnClick="Button2_Click1" Width="100px"/>                    
                 </td>
             </tr>
         </table>

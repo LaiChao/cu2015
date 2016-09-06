@@ -32,10 +32,25 @@
             width: 13px;
         }
         .auto-style2 {
-            width: 168px;
+            width:120px;
+            text-align:right;
+            font-family:'Microsoft YaHei';
+            height:45px;
+            font-size: 13px;
+        }
+        .label_style {
+            font-size: 14px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .checkBox_style {
+            font-family: 'Microsoft YaHei';
+        }
+        .dropDownList_style {
+            width:220px;
         }
         </style>
-    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
     <center>
@@ -47,31 +62,29 @@
 
         </h2>
         </div>
-    <div style="height: 47px">
-    
-        <asp:Label ID="Label1" runat="server" Text="选择受助类别："></asp:Label>
-        <asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True" />
-        <asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" />   
-        <asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" />
-        <asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" />
-    
+    <div style="height: 47px">   
+        <asp:Label ID="Label1" runat="server" Text="选择受助类别：" CssClass="label_style"></asp:Label>
+		<asp:CheckBox ID="CheckBox2" runat="server" Text="助医" AutoPostBack="True" OnCheckedChanged="CheckBox2_CheckedChanged" CssClass="checkBox_style" />       
+        &nbsp;<asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="助学" AutoPostBack="True"  CssClass="checkBox_style"/>
+        &nbsp;<asp:CheckBox ID="CheckBox4" runat="server" Text="助老" AutoPostBack="True" OnCheckedChanged="CheckBox4_CheckedChanged" CssClass="checkBox_style" />
+        &nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="助残" AutoPostBack="True" OnCheckedChanged="CheckBox3_CheckedChanged" CssClass="checkBox_style" />
+        &nbsp;<asp:CheckBox ID="CheckBox5" runat="server" Text="助困" AutoPostBack="True" OnCheckedChanged="CheckBox5_CheckedChanged" CssClass="checkBox_style" />    
+        &nbsp;<asp:CheckBox ID="CheckBox6" runat="server" AutoPostBack="True" Text="双拥" OnCheckedChanged="CheckBox6_CheckedChanged" CssClass="checkBox_style" />
+        &nbsp;<asp:CheckBox ID="CheckBox7" runat="server" AutoPostBack="True" Text="重特大灾害" OnCheckedChanged="CheckBox7_CheckedChanged" CssClass="checkBox_style" />    
     </div>
     <div style="height: 1312px; width: 806px;">
          <div class="panel panel-danger">
             <div class="panel-heading" align="left">
               <h3 class="panel-title">基本信息</h3>
             </div>
-            <div class="panel-body">
-        <table style="width: 81%; height: 155px; margin-right: 116px;">
+        <div class="panel-body">
+        <table style="width: 90%; height: 155px; margin-right: 116px;">
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     受助人来源：</td>
                 <td>
-                    <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" Enabled="false">
+                    <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle dropDownList_style" Enabled="false">
                     </asp:DropDownList>
                 </td>
                 <td class="auto-style1">&nbsp;</td>
@@ -93,7 +106,7 @@
                 <td class="auto-style2">
                     性别：</td>
                 <td>
-                    <asp:DropDownList ID="sex" runat="server" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="sex" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                         <asp:ListItem>男</asp:ListItem>
                         <asp:ListItem>女</asp:ListItem>
                     </asp:DropDownList>
@@ -149,7 +162,7 @@
                 <td class="auto-style2">
                     婚姻状况：</td>
                 <td>
-                    <asp:DropDownList ID="marryNow" runat="server" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="marryNow" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                         <asp:ListItem>未婚</asp:ListItem>
                         <asp:ListItem>已婚</asp:ListItem>
                         <asp:ListItem>离异</asp:ListItem>
@@ -159,7 +172,7 @@
                 <td class="auto-style2">
                     致困原因：</td>
                 <td>
-                    <asp:DropDownList ID="reason" runat="server" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="reason" runat="server" class="btn btn-default dropdown-toggle dropDownList_style">
                         <asp:ListItem Value="无">无</asp:ListItem>
                         <asp:ListItem>低保</asp:ListItem>
                         <asp:ListItem>低收入</asp:ListItem>
@@ -169,9 +182,9 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:Button ID="familylist" style=" border:0px none" runat="server" Height="18px" OnClick="familylist_Click" Text="-" Width="17px" />
+                    <asp:Button ID="familylist" style=" border:0px none;" runat="server" Height="18px" OnClick="familylist_Click" Text="-" Width="17px" BackColor="#99CCFF" />
                 </td>
-                <td class="auto-style2">
+                <td class="auto-style2" style="font-family: 'Microsoft YaHei'; font-size: 15px; font-weight: bold">
                     家庭成员列表</td>
                 <td>
                     
@@ -182,17 +195,9 @@
                 <td>
                     
                 </td>
-            </tr>
-
-            </table>
-                </div>
-             </div>
-        <div class="panel panel-danger">
-            <div class="panel-heading" align="left">
-              <h3 class="panel-title">其他信息</h3>
-            </div>
-            <div class="panel-body">
-        <table style="width: 81%; height: 155px; margin-right: 116px;" id="tablefamily" runat="server">
+            </tr>         
+        </table>
+                <table style="width: 90%; height: 155px; margin-right: 116px;" id="tablefamily" runat="server">
                         <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
@@ -232,7 +237,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入1:</td>
+                    成员收入1：</td>
                 <td>
                     <asp:TextBox ID="famIncome1" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -277,7 +282,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入2:</td>
+                    成员收入2：</td>
                 <td>
                     <asp:TextBox ID="famIncome2" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -319,7 +324,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入3:</td>
+                    成员收入3：</td>
                 <td>
                     <asp:TextBox ID="famIncome3" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -361,13 +366,20 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入4:</td>
+                    成员收入4：</td>
                 <td>
                     <asp:TextBox ID="famIncome4" runat="server" class="form-control"></asp:TextBox>
                 </td>
             </tr>
         </table>
-        <table style="width: 81%; height: 155px; margin-right: 116px;">
+                </div>
+             </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading" align="left">
+              <h3 class="panel-title">其他信息</h3>
+            </div>
+        <div class="panel-body">       
+        <table style="width: 90%; height: 155px; margin-right: 116px;">
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
@@ -481,7 +493,7 @@
                 <td class="auto-style2">
                     是否失能：</td>
                 <td>
-                    <asp:DropDownList ID="shiNeng" runat="server" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="shiNeng" runat="server" class="btn btn-default dropdown-toggle dropDownList_style" >
                         <asp:ListItem>否</asp:ListItem>
                         <asp:ListItem>半失能</asp:ListItem>
                         <asp:ListItem>全失能</asp:ListItem>
@@ -508,7 +520,7 @@
                 <td class="auto-style2">
                     是否失独：</td>
                 <td>
-                    <asp:DropDownList ID="shiDu" runat="server" AutoPostBack="True" OnSelectedIndexChanged="shiDu_SelectedIndexChanged" class="btn btn-default dropdown-toggle">
+                    <asp:DropDownList ID="shiDu" runat="server" AutoPostBack="True" OnSelectedIndexChanged="shiDu_SelectedIndexChanged" class="btn btn-default dropdown-toggle dropDownList_style">
                         <asp:ListItem>否</asp:ListItem>
                         <asp:ListItem>是</asp:ListItem>
                     </asp:DropDownList>
@@ -580,16 +592,14 @@
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     &nbsp;</td>
-                <td>
-                    
-                    <asp:Button ID="mod" runat="server" OnClick="mod_Click" Text="修改"  CssClass="btn-danger" Width="100px"/>
-                    
+                <td style="text-align:right;"> 
+                    <asp:Button ID="mod" runat="server" OnClick="mod_Click" Text="修改" class="btn btn-danger" Width="100px"/>                    
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
                     &nbsp;</td>
-                <td>                
-                    <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" Text="返回" />
+                <td style="text-align:right;">                
+                    <asp:Button ID="btnReturn" runat="server" class="btn btn-danger" OnClick="btnReturn_Click" Text="返回" Width="100px" />
                 </td>
             </tr>
         </table>

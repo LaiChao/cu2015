@@ -170,4 +170,8 @@ public partial class Basic201512_查看受助人信息 : System.Web.UI.Page
             return;
         }
     }
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("查询受助人.aspx");
+    }
 }

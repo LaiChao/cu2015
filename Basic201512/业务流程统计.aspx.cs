@@ -160,7 +160,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 {
                     e.Item.Attributes.Add
 
-                        ("onmouseover", "this.style.backgroundColor='Silver'");
+                        ("onmouseover", "this.style.backgroundColor='#E6F5FA'");
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");
@@ -208,7 +208,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     {
         if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
         {
-            e.Item.Cells[1].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
+            e.Item.Cells[0].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
     }
     protected void dgData_PageIndexChanged(object source, DataGridPageChangedEventArgs e)

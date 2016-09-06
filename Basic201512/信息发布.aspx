@@ -5,13 +5,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-      <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../../favicon.ico" />
 
     <title>信息发布</title>
 
@@ -22,10 +22,7 @@
    <%-- <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">--%>
   <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="theme.css" rel="stylesheet">
-    <style type="text/css">
-        
-    </style>
+    <link href="theme.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -45,14 +42,17 @@
             height: 54px;
         }
         .divtitle {
-        text-align:left;
+            text-align:left;
         }
         .clas1 {
-        font-size:large;
+            /*width: 100px;*/
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';        
+
         }
         .clas2 {
-        display:inline;
-       
+            display:inline;      
         }
         .clas3 {
         display:block;
@@ -62,6 +62,19 @@
         {
             height:30px; 
             line-height:30px
+        }
+        .checkbox_style {
+            font-family: 'Microsoft YaHei';
+        }
+        .labError_style {
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+            font-size: 15px;
+            color: #e8a1eb
+        }
+        .listItem_style {
+            font-size: 16px;
+            font-family: 'Microsoft YaHei';
         }
     </style>
 
@@ -78,7 +91,7 @@
     <div id="divfrom" style="text-align:left">         
         <div id="row1" class="form-group">
             <asp:Label ID="Label3" runat="server" Text="收件人：" CssClass="clas1" Width="72px"></asp:Label>           
-            <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle listItem_style" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             <asp:ListItem>所有机构</asp:ListItem>
             <asp:ListItem>选择机构</asp:ListItem>
             </asp:DropDownList>      
@@ -86,17 +99,13 @@
         <div id="row2">
             <Dev:DropDownCheckBoxList ID="DropDownCheckBoxList1" runat="server" ShowSelectAllOption="true" DisplayMode="Value" Width="200px" Height="30px">
             </Dev:DropDownCheckBoxList>
-            <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkbox" AutoPostBack="True" Text="公共项目" Font-Size="12pt" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox>
+            <asp:CheckBox ID="CheckBox1" runat="server" CssClass="checkbox checkbox_style" AutoPostBack="True" Text="公共项目" Font-Size="12pt" OnCheckedChanged="CheckBox1_CheckedChanged"></asp:CheckBox>
 
-        </div>
-        <div id="row3" class="form-group lbError">
-            &nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Size="11pt" Font-Names="微软雅黑" Font-Bold="True" Height="30px"></asp:Label>                       
         </div>
         <br/><br/><br/>
         <div id="publicProject" runat="server" class="form-group">      
             <asp:Label ID="Label5" runat="server" Text="项目ID："  CssClass="clas1" Width="72px"></asp:Label>
-            <asp:TextBox ID="tbID" runat="server" class="form-control" ></asp:TextBox>  
+            <asp:TextBox ID="tbID" runat="server" class="form-control" Width="900px"></asp:TextBox>  
             <br /><br />                              
         </div>
         
@@ -125,7 +134,11 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </div> 
-        <br />                  
+        <br />   
+        <div id="row3" class="form-group lbError" >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblError" class="labError_style" runat="server" ForeColor="Red" Font-Size="11pt" Height="30px"></asp:Label>                       
+        </div>               
         <div style="text-align:center"> 
             <asp:Button ID="post" runat="server" OnClick="Button1_Click" Text="发布" class="btn btn-danger" Height="34px" Width="80px" />  
         </div>    

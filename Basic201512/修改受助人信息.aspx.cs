@@ -391,14 +391,14 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         else
         {
             //LabelError.Text = "";
-            if (recipientsADD.Text.Length <= 0)
+            if (recipientsADD.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写受助人户籍";
                 HttpContext.Current.Response.Write("<script>alert('未填写受助人户籍');</script>");
                 return;
                 //flag = 0;
             }
-            if (recipientsName.Text.Length <= 0)
+            if (recipientsName.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写受助人姓名";
                 HttpContext.Current.Response.Write("<script>alert('未填写受助人姓名');</script>");
@@ -431,26 +431,26 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             //    return;
             //    //flag = 0;
             //}
-            if (recipientsADDnow.Text.Length <= 0)
+            if (recipientsADDnow.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写现住址";
                 HttpContext.Current.Response.Write("<script>alert('未填写现住址');</script>");
                 return;
                 //flag = 0;
             }
-            if (telphoneADD.Text.Length <= 0)
+            if (telphoneADD.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写联系电话";
                 HttpContext.Current.Response.Write("<script>alert('未填写联系电话');</script>");
                 return;
                 //flag = 0;
             }
-            if (workplace.Text.Length <= 0)
+            if (workplace.Text.Trim() == "")
             {
                 HttpContext.Current.Response.Write("<script>alert('未填写工作单位');</script>");
                 return;
             }
-            if (arrIncome.Text.Length <= 0)
+            if (arrIncome.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写平均月收入";
                 HttpContext.Current.Response.Write("<script>alert('未填写平均月收入');</script>");
@@ -459,21 +459,21 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             }
             if (CheckBox2.Checked)
             {
-                if (illness.Text.Length <= 0)
+                if (illness.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写大病种类";
                     HttpContext.Current.Response.Write("<script>alert('未填写大病种类');</script>");
                     return;
                     //flag = 0;
                 }
-                if (illtime.Text.Length <= 0)
+                if (illtime.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写就诊时间";
                     HttpContext.Current.Response.Write("<script>alert('未填写就诊时间');</script>");
                     return;
                     //flag = 0;
                 }
-                if (illpay.Text.Length <= 0)
+                if (illpay.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写花费数额";
                     HttpContext.Current.Response.Write("<script>alert('未填写花费数额');</script>");
@@ -483,35 +483,35 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             }
             if (CheckBox1.Checked)
             {
-                if (studySchool.Text.Length <= 0)
+                if (studySchool.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写就读学校";
                     HttpContext.Current.Response.Write("<script>alert('未填写就读学校');</script>");
                     return;
                     //flag = 0;
                 }
-                if (studyGrade.Text.Length <= 0)
+                if (studyGrade.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写就读年级";
                     HttpContext.Current.Response.Write("<script>alert('未填写就读年级');</script>");
                     return;
                     //flag = 0;
                 }
-                if (guardianName.Text.Length <= 0)
+                if (guardianName.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写与被监护人姓名";
                     HttpContext.Current.Response.Write("<script>alert('未填写与被监护人姓名');</script>");
                     return;
                     //flag = 0;
                 }
-                if (guardianGuanxi.Text.Length <= 0)
+                if (guardianGuanxi.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写与被监护人关系";
                     HttpContext.Current.Response.Write("<script>alert('未填写与被监护人关系');</script>");
                     return;
                     //flag = 0;
                 }
-                if (guardianTelADD.Text.Length <= 0)
+                if (guardianTelADD.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写监护人电话";
                     HttpContext.Current.Response.Write("<script>alert('未填写监护人电话');</script>");
@@ -521,14 +521,14 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             }
             if (CheckBox3.Checked)
             {
-                if (canjijibie.Text.Length <= 0)
+                if (canjijibie.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写残疾级别";
                     HttpContext.Current.Response.Write("<script>alert('未填写残疾级别');</script>");
                     return;
                     //flag = 0;
                 }
-                if (canjileibie.Text.Length <= 0)
+                if (canjileibie.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写残疾类别";
                     HttpContext.Current.Response.Write("<script>alert('未填写残疾类别');</script>");
@@ -540,14 +540,14 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             {
                 if (shiDu.Text == "是")
                 {
-                    if (sonName.Text.Length <= 0)
+                    if (sonName.Text.Trim() == "")
                     {
                         //LabelError.Text = "未填写子女姓名";
                         HttpContext.Current.Response.Write("<script>alert('未填写子女姓名');</script>");
                         return;
                         //flag = 0;
                     }
-                    if (deathReason.Text.Length <= 0)
+                    if (deathReason.Text.Trim() == "")
                     {
                         //LabelError.Text = "未填写死亡原因";
                         HttpContext.Current.Response.Write("<script>alert('未填写死亡原因');</script>");
@@ -558,12 +558,12 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             }
             if (CheckBox6.Checked)
             {
-                if (army.Text.Length <= 0)
+                if (army.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写部队名称');</script>");
                     return;
                 }
-                if (title.Text.Length <= 0)
+                if (title.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写职位');</script>");
                     return;
@@ -571,7 +571,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             }
             if (CheckBox7.Checked)
             {
-                if (disaster.Text.Length <= 0)
+                if (disaster.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写灾害名称');</script>");
                     return;

@@ -81,10 +81,12 @@ namespace CL.Utility.Web.BasicData
                 if(Request.QueryString.Count>0)//如果是从审批未通过、重新申请跳转过来的
                 {
                     LbproID.Text = Request["id"].Trim(); //项目ID
+                    LbproID.Visible = true;
                     btnReapply.Visible = true;//重新提交按钮
                     btnBatch.Visible = true;
-                    btnBatchAdd.Visible = true;
+                    //btnBatchAdd.Visible = true;
                     btnGetId.Visible = false;
+                    buttonVisible.Visible = false;
 
                     table1.Visible = true;
                     dgData1.Visible = true;
@@ -170,8 +172,10 @@ namespace CL.Utility.Web.BasicData
         //    this.dgData.EditCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_EditCommand);
         //    this.dgData.UpdateCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_UpdateCommand);
         //    this.dgData.CancelCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_CancelCommand);
-        //    this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
-        //    //this.dgData.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_DeleteCommand);
+            this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
+            this.dgData1.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
+
+            //    //this.dgData.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_DeleteCommand);
         //    //this.dgData.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.dgData_ItemDataBound);
         //    //this.dgHeader.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgHeader_ItemCommand);
 
@@ -291,8 +295,7 @@ namespace CL.Utility.Web.BasicData
                 case ListItemType.Item:
                     {
                         e.Item.Attributes.Add
-
-                            ("onmouseover", "this.style.backgroundColor='Silver'");
+                            ("onmouseover", "this.style.backgroundColor='E6F5FA'");
                         e.Item.Attributes.Add
 
                             ("onmouseout", "this.style.backgroundColor='white'");
@@ -327,9 +330,10 @@ namespace CL.Utility.Web.BasicData
                 ViewState["BranchName"] = reader.GetString(1);
                 LbproID.Text = reader.GetString(0) + DateTime.Now.ToString("yyyyMMddHHmm");
                 labError.Text = "已生成项目ID";
+                LbproID.Visible = true;
                 btntijiao.Visible = true;
                 btnBatch.Visible = true;
-                btnBatchAdd.Visible = true;
+                //btnBatchAdd.Visible = true;
                 btnGetId.Visible = false;
             }
             else
@@ -500,6 +504,15 @@ namespace CL.Utility.Web.BasicData
             NLogTest nlog = new NLogTest();
             string sss = "添加项目：" + projectID.Text;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
+            projectID.ReadOnly = true;
+            projectDir.ReadOnly = true;
+            txtPLAN.ReadOnly = true;
+            txtDIR.ReadOnly = true;
+            txttel.ReadOnly = true;
+            txtteladd.ReadOnly = true;
+            buttonVisible.Visible = false;
+            applyTable.Visible = false;
+            familylist.Text = "+";
 
 
         }
@@ -609,11 +622,11 @@ namespace CL.Utility.Web.BasicData
             Response.Write("<script>window.open('批量选择受助人.aspx?id=" + Session["ProjectID"].ToString().Trim() + "','_blank')</script>");
         }
 
-        protected void btnBatchAdd_Click(object sender, EventArgs e)
-        {
-            //Response.Redirect("批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
-            Response.Write("<script>window.open('批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim() + "','_blank')</script>");
-        }
+        //protected void btnBatchAdd_Click(object sender, EventArgs e)
+        //{
+        //    //Response.Redirect("批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim());
+        //    Response.Write("<script>window.open('批量添加受助人.aspx?id=" + Session["ProjectID"].ToString().Trim() + "','_blank')</script>");
+        //}
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -692,6 +705,13 @@ namespace CL.Utility.Web.BasicData
             }
 
         }
+        protected void dgData1_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem)) || (e.Item.ItemType == ListItemType.EditItem))
+            {
+                ((LinkButton)e.Item.Cells[0].Controls[0]).Attributes.Add("onclick", "return confirm('确定要删除这个受助人吗?');");
+            }
+        }
         protected void btnFinish_Click(object sender, EventArgs e)
         {
             Response.Redirect("项目审批副本.aspx?id=" + Session["ProjectID"].ToString().Trim());
@@ -706,6 +726,22 @@ namespace CL.Utility.Web.BasicData
         {
             if (ddlDirect.SelectedValue.ToString() == "1")
                 ddlNaming.SelectedValue = "0";
+        }
+
+        protected void familylist_Click(object sender, EventArgs e)
+        {
+            if (familylist.Text == "-")
+            {
+                familylist.Text = "+";
+                this.applyTable.Visible = false;
+                return;
+            }
+            if (familylist.Text == "+")
+            {
+                familylist.Text = "-";
+                this.applyTable.Visible = true;
+                return;
+            }
         }
 }
 }

@@ -28,45 +28,56 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
      <style type="text/css">
-         .divlibe {
-         width:500px;
+         .clas1 {
+            font-size: 15px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';        
+        }
+        .auto-style1 {
+            width: 300px;
+            text-align: left;
+        }
+        .auto-style2 {
+            width: 150px;
+            font-size: 16px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+        .div_style {
+            width:500px;
          text-align:left;
-         }
-         </style>
+        }
+        tr {
+            display:block;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <center>
-    <form id="form1" runat="server" class="form-inline">
+    <form id="form1" runat="server" >
     <div>
         <h2><strong>批量选择受助人</strong></h2>
-    </div>
-        <div id="divlive" class="divlibe">
+    </div><br />
+        <div id="divlive" class="div_style">
             <table>
                 <tr>
-                    <td>
-                         <asp:Label ID="Label1" runat="server" Text="项目ID："></asp:Label>
-                    </td>
-                    <td>
+                    <td class="auto-style2">项目ID：&nbsp;</td>
+                    <td class="auto-style1">
                          <asp:TextBox ID="lblID" runat="server" Width="300px" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-
-                         <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                       请选择excel文件：
-                    </td>
-                    <td>
+                    <td class="auto-style2">请选择Excel文件：</td>
+                    <td class="auto-style1">
                        <asp:FileUpload ID="FileUpload1" runat="server" class="form-control" Width="300px" Height="45px" />
                     </td>
                 </tr>
             </table>
-        <br />
-    <div>
-        <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" />
-    </div>
-
+        <br />   
         </div>
+        <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提交" class="btn btn-danger" Width="100px" />&nbsp;&nbsp;
     </form>
     </center>
 </body>

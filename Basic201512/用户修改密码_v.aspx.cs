@@ -231,16 +231,27 @@ namespace CL.Utility.Web.BasicData
             if (strID == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请输入用户名";
+                labError.Text = "请输入用户名！";
+                txtID.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtID.Focus();
                 return;
             }
-            
+            else
+            {
+                txtID.BackColor = Color.White;
+            }
             string strName = txtName.Text.Trim();
             if (strName == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请输入姓名";
+                labError.Text = "请输入姓名！";
+                txtName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtName.Focus();
                 return;
+            }
+            else
+            {
+                txtName.BackColor = Color.White;
             }
             //string strFrom = benfactorFrom.Text.Trim();
             string errMsg = "";
@@ -250,43 +261,92 @@ namespace CL.Utility.Web.BasicData
                 return;
             }
            
-            string strPwdOld = txtPWDOld.Text.Trim();
             string strTEL = TEL.Text.Trim();
             if (strTEL=="")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请输入联系方式";
+                labError.Text = "请输入联系方式！";
+                TEL.BackColor = Color.FromArgb((int)0xFFE1FF);
+                TEL.Focus();
                 return;
             }
+            else
+            {
+                TEL.BackColor = Color.White;
+            }
+
+            string strPwdOld = txtPWDOld.Text.Trim();
             if (strPwdOld == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请输入旧密码";
+                labError.Text = "请输入旧密码！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+                txtPWDOld.Focus();
                 return;
             }
-            if (!luyunfei.lyf_validate.isAZaz09_(strPwdOld, 5, 20, out errMsg))
+            else
             {
-                labError.Text = "输入的旧密码有误！" + errMsg;
-                return;
+                txtPWDOld.BackColor = Color.White;
             }
+            //if (!luyunfei.lyf_validate.isAZaz09_(strPwdOld, 5, 20, out errMsg))
+            //{
+            //    labError.Text = "输入的旧密码有误！" + errMsg;
+            //    txtPWDOld.Focus();
+            //    return;
+            //}
             string strPwd = txtPWD.Text.Trim();
             if (strPwd == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请输入新密码";
+                labError.Text = "请输入新密码！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWDOld.Focus();
                 return;
             }
+            else
+            {
+                txtPWDOld.BackColor = Color.White;
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+            }
+
+            //string errMsg = "";
             if (!luyunfei.lyf_validate.isAZaz09_(strPwd, 5, 20, out errMsg))
             {
-                labError.Text = "输入的新密码有误！" + errMsg;
+                labError.Text = "新密码由5~20位的数字、英文字母或下划线组成！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWDOld.Focus();
                 return;
-            }            
+            }
+            else
+            {
+                txtPWDOld.BackColor = Color.White; 
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+            }
+
             string strPwd2 = txtPWD2.Text.Trim();
             if (strPwd2 == "")
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "请再次输入新密码";
+                labError.Text = "需要确认新密码！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWDOld.Focus();
                 return;
+            }
+            else
+            {
+                txtPWDOld.BackColor = Color.White;
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
             }
             if (!luyunfei.lyf_validate.isAZaz09_(strPwd2, 5, 20, out errMsg))
             {
@@ -297,7 +357,17 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "两次输入的新密码不一致！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWDOld.Focus();
                 return;
+            }
+            else
+            {
+                txtPWDOld.BackColor = Color.White;
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
             }
             //HybridDictionary hd = new HybridDictionary();
             //hd.Add(sPMS_CTG_ID, strID);
@@ -313,7 +383,7 @@ namespace CL.Utility.Web.BasicData
             if (dv.Count == 0)
             {
                 labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "用户不存在";
+                labError.Text = "用户不存在！";
                 return;
             }
             string s = dv[0]["password"].ToString();
@@ -322,7 +392,15 @@ namespace CL.Utility.Web.BasicData
             {
                 labError.ForeColor = System.Drawing.Color.Red;
                 labError.Text = "输入的旧密码不正确！";
+                txtPWDOld.BackColor = Color.FromArgb((int)0xFFE1FF);
+                txtPWD.BackColor = Color.White;
+                txtPWD2.BackColor = Color.White;
+                txtPWDOld.Focus();
                 return;
+            }
+            else
+            {
+                txtPWDOld.BackColor = Color.White;
             }
                         
             

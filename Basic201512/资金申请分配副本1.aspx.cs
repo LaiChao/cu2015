@@ -43,7 +43,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            string strread = string.Format("select projectID,projectName,needMoney,concat(if(isnaming=1,' 冠名','')) as sisnaming,concat(if(isdirect=1,'定向','')) as sisdirect from e_project where (projectID='{0}' or projectName='{1}')", nameNow, nameNow);
+            string strread = string.Format("select projectID,projectName,needMoney,concat(if(isnaming=1,' 冠名','')) as sisnaming,concat(if(isdirect=1,'定向','')) as sisdirect,benfactorFrom from e_project where (projectID='{0}' or projectName='{1}')", nameNow, nameNow);
             MySqlDataReader mysqlread = msq.getmysqlread(strread);
             while (mysqlread.Read())
             {
@@ -54,6 +54,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 lbbenfnadd.Text = mysqlread.GetString("projectName");
                 lblNaming.Text = mysqlread.GetString("sisnaming");
                 lblDirect.Text = mysqlread.GetString("sisdirect");
+                lblFrom.Text = mysqlread.GetString("benfactorFrom");//经办单位
             }
 
             if (Request["type"].Trim() == "物品")
@@ -123,9 +124,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
     /// 此方法的内容。
     /// </summary>
     private void InitializeComponent()
-    {
-
-        
+    {       
         this.dgData.EditCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_EditCommand);
         this.dgData.UpdateCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_UpdateCommand);
         this.dgData.CancelCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.dgData_CancelCommand);
@@ -258,7 +257,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                  time,
                  ((TextBox)e.Item.FindControl("txtdename")).Text.Trim(),//捐助人名称
                  lbbenfnadd.Text,//项目名称
-                 Session["benfactorFrom"].ToString(),//经办单位名称
+                 lblFrom.Text,//Session["benfactorFrom"].ToString(),//经办单位名称///////////////////////////错了
                  ViewState["nameNow"].ToString().Substring(0, 3).ToString()//经办单位ID
                  );
                  msq.getmysqlcom(strinsert);               
@@ -303,7 +302,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
                 {
                     e.Item.Attributes.Add
 
-                        ("onmouseover", "this.style.backgroundColor='Silver'");
+                        ("onmouseover", "this.style.backgroundColor='#E6F5FA'");
                     e.Item.Attributes.Add
 
                         ("onmouseout", "this.style.backgroundColor='white'");

@@ -56,5 +56,18 @@ namespace CL.Utility.Web.BasicData
             GridView1.DataKeyNames = new string[] { "benfactorFrom" };//主键
             GridView1.DataBind();        
         }
-}
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            int count = GridView1.Rows.Count;
+            //如果是绑定数据行 
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //鼠标经过时，行背景色变 
+                e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#E6F5FA'");
+                //鼠标移出时，行背景色变 
+                e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
+            }
+        }
+    }
 }

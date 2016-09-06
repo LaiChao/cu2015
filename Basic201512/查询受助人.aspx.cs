@@ -194,9 +194,8 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         }
         for (int i = 0; i < count; i++)
         {
-            ID = GridView1.DataKeys[i].Value.ToString();
-            ((HyperLink)GridView1.Rows[i].Cells[1].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('查看受助人信息.aspx?ID=" + ID + "','查看受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
-            //((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('修改受助人信息.aspx?ID=" + ID + "','修改受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
+            //ID = GridView1.DataKeys[i].Value.ToString();
+            //((HyperLink)GridView1.Rows[i].Cells[1].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('查看受助人信息.aspx?ID=" + ID + "','查看受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
             if(Session["userRole"].ToString()=="3")//会长不能编辑
             {
                 ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Enabled = false;
@@ -266,7 +265,8 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
         //        tcHeader.Add(new TableHeaderCell());
         //        tcHeader[9].Attributes.Add("colspan", "2");
         //        tcHeader[9].Text = "操作";
-
+        //        tcHeader.Add(new TableHeaderCell());
+        //        tcHeader[10].Text = "受助人来源";
         //        break;
         //}
     }

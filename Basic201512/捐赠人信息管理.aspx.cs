@@ -61,7 +61,6 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             mask();
 
             //DetailsView1.Visible = false;
-
         }
     }
     protected void mask()
@@ -167,7 +166,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         }
         if (tbRemain.Text.Trim() != "")
         {
-            queryString.Append("and ifnull(capitalEarn,0)>=" + tbRemain.Text.Trim());
+            queryString.Append("and ifnull(capitalEarn,0)>=" + tbRemain.Text.Trim()+" ");
         }
         if(ddlDirect.SelectedValue.ToString()!="未指定")
         {
@@ -200,7 +199,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     //}
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {//判断当前登录用户是否和该捐赠人属于同一机构
-        if(Session["benfactorFrom"].ToString()!=GridView1.Rows[e.RowIndex].Cells[4].Text.Trim())
+        if(Session["benfactorFrom"].ToString()!=GridView1.Rows[e.RowIndex].Cells[2].Text.Trim())
         {
             HttpContext.Current.Response.Write("<script>alert('不能删除其他机构的捐赠人');</script>");
             return;
@@ -216,7 +215,7 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
         {//没有资金
             string str112 = "delete from e_benfactor where benfactorID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
             NLogTest nlog = new NLogTest();
-            string sss = "删除了捐赠人：" + ((HyperLink)(GridView1.Rows[e.RowIndex].Cells[3].Controls[0])).Text;
+            string sss = "删除了捐赠人：" + ((HyperLink)(GridView1.Rows[e.RowIndex].Cells[1].Controls[0])).Text;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
             msq.getmysqlcom(str112);
             databind(ViewState["now"].ToString());
@@ -243,13 +242,13 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             {
                 if (Session["userRole"].ToString() == "3")//会长
                 {
-                    ((HyperLink)(e.Row.Cells[0].Controls[0])).Enabled = false;
-                    ((HyperLink)(e.Row.Cells[0].Controls[0])).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑捐赠人')");
-                    ((LinkButton)e.Row.Cells[1].Controls[0]).Enabled = false;
-                    ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除捐赠人')");
+                    ((HyperLink)(e.Row.Cells[18].Controls[0])).Enabled = false;
+                    ((HyperLink)(e.Row.Cells[18].Controls[0])).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑捐赠人')");
+                    ((LinkButton)e.Row.Cells[19].Controls[0]).Enabled = false;
+                    ((LinkButton)e.Row.Cells[19].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除捐赠人')");
                 }
                 else
-                    ((LinkButton)e.Row.Cells[1].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
+                    ((LinkButton)e.Row.Cells[19].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
                 //会长不能修改捐赠人信息
 
             }
@@ -266,9 +265,12 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             case DataControlRowType.Header:
                 TableCellCollection tcHeader = e.Row.Cells;
                 tcHeader.RemoveAt(0);
-                tcHeader.RemoveAt(1);
+                tcHeader.RemoveAt(18);
+                tcHeader[17].Attributes.Add("colspan", "2");
+                tcHeader[17].Text = "操作";
+				/*                tcHeader.RemoveAt(1);
                 tcHeader[0].Attributes.Add("colspan", "2");
-                tcHeader[0].Text = "操作";
+                tcHeader[0].Text = "操作";*/
                 break;
         }
     }
@@ -315,13 +317,15 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     //}
     protected void btnExp_Click(object sender, EventArgs e)
     {
-        GridView1.Columns[0].Visible = false;
-        GridView1.Columns[1].Visible = false;
+        //GridView1.Columns[0].Visible = false;
+        //GridView1.Columns[1].Visible = false;
+        GridView1.Columns[17].Visible = false;
+        GridView1.Columns[18].Visible = false;
         GridView1.Columns[19].Visible = false;
         GridView1.Columns[20].Visible = false;
-        GridView1.HeaderStyle.BackColor = Color.White;
-        GridView1.HeaderStyle.ForeColor = Color.Blue;
-        GridView1.HeaderRow.Cells[0].Visible = false;
+        //GridView1.HeaderStyle.BackColor = Color.White;
+        //GridView1.HeaderStyle.ForeColor = Color.Blue;
+        //GridView1.HeaderRow.Cells[0].Visible = false;
         GridView1.BottomPagerRow.Visible = false;
 
         tableTitle = "捐赠人信息" + DateTime.Now.ToShortDateString().ToString();
@@ -333,116 +337,116 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
     } 
     #region 选择列导出
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
+    {//名称
         if (CheckBox1.Checked)
+            GridView1.Columns[1].Visible = true;
+        else
+            GridView1.Columns[1].Visible = false;
+    }
+    protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+    {//来源
+        if (CheckBox2.Checked)
+            GridView1.Columns[2].Visible = true;
+        else
+            GridView1.Columns[2].Visible = false;
+    }
+    protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
+    {//类型
+        if (CheckBox3.Checked)
             GridView1.Columns[3].Visible = true;
         else
             GridView1.Columns[3].Visible = false;
     }
-    protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox2.Checked)
+    protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
+    {//手机号
+        if (CheckBox4.Checked)
             GridView1.Columns[4].Visible = true;
         else
             GridView1.Columns[4].Visible = false;
     }
-    protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox3.Checked)
+    protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
+    {//使用范围
+        if (CheckBox5.Checked)
             GridView1.Columns[5].Visible = true;
         else
             GridView1.Columns[5].Visible = false;
     }
-    protected void CheckBox4_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox4.Checked)
+    protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
+    {//备注
+        if (CheckBox6.Checked)
             GridView1.Columns[6].Visible = true;
         else
             GridView1.Columns[6].Visible = false;
     }
-    protected void CheckBox5_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox5.Checked)
+    protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
+    {//联系人
+        if (CheckBox7.Checked)
             GridView1.Columns[7].Visible = true;
         else
             GridView1.Columns[7].Visible = false;
     }
-    protected void CheckBox6_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox6.Checked)
+    protected void CheckBox8_CheckedChanged(object sender, EventArgs e)
+    {//电子邮箱
+        if (CheckBox8.Checked)
             GridView1.Columns[8].Visible = true;
         else
             GridView1.Columns[8].Visible = false;
     }
-    protected void CheckBox7_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox7.Checked)
+    protected void CheckBox9_CheckedChanged(object sender, EventArgs e)
+    {//性别
+        if (CheckBox9.Checked)
             GridView1.Columns[9].Visible = true;
         else
             GridView1.Columns[9].Visible = false;
     }
-    protected void CheckBox8_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox8.Checked)
+    protected void CheckBox10_CheckedChanged(object sender, EventArgs e)
+    {//募捐箱编号
+        if (CheckBox10.Checked)
             GridView1.Columns[10].Visible = true;
         else
             GridView1.Columns[10].Visible = false;
     }
-    protected void CheckBox9_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox9.Checked)
+    protected void CheckBox11_CheckedChanged(object sender, EventArgs e)
+    {//冠名年限
+        if (CheckBox11.Checked)
             GridView1.Columns[11].Visible = true;
         else
             GridView1.Columns[11].Visible = false;
     }
-    protected void CheckBox10_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox10.Checked)
+    protected void CheckBox12_CheckedChanged(object sender, EventArgs e)
+    {//到期日期
+        if (CheckBox12.Checked)
             GridView1.Columns[12].Visible = true;
         else
             GridView1.Columns[12].Visible = false;
     }
-    protected void CheckBox11_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox11.Checked)
+    protected void CheckBox13_CheckedChanged(object sender, EventArgs e)
+    {//冠名捐助金
+        if (CheckBox13.Checked)
             GridView1.Columns[13].Visible = true;
         else
             GridView1.Columns[13].Visible = false;
     }
-    protected void CheckBox12_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox12.Checked)
+    protected void CheckBox14_CheckedChanged(object sender, EventArgs e)
+    {//受助人类型
+        if (CheckBox14.Checked)
             GridView1.Columns[14].Visible = true;
         else
             GridView1.Columns[14].Visible = false;
     }
-    protected void CheckBox13_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox13.Checked)
+    protected void CheckBox15_CheckedChanged(object sender, EventArgs e)
+    {//受助人描述
+        if (CheckBox15.Checked)
             GridView1.Columns[15].Visible = true;
         else
             GridView1.Columns[15].Visible = false;
     }
-    protected void CheckBox14_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox14.Checked)
+    protected void CheckBox16_CheckedChanged(object sender, EventArgs e)
+    {//余额
+        if (CheckBox16.Checked)
             GridView1.Columns[16].Visible = true;
         else
             GridView1.Columns[16].Visible = false;
-    }
-    protected void CheckBox15_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox15.Checked)
-            GridView1.Columns[17].Visible = true;
-        else
-            GridView1.Columns[17].Visible = false;
-    }
-    protected void CheckBox16_CheckedChanged(object sender, EventArgs e)
-    {
-        if (CheckBox16.Checked)
-            GridView1.Columns[18].Visible = true;
-        else
-            GridView1.Columns[18].Visible = false;
     }
     #endregion
     protected void btputout_Click(object sender, EventArgs e)

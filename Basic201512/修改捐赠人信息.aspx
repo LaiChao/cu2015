@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>捐赠人添加</title>
+    <title>修改捐赠人信息</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
@@ -96,99 +96,178 @@
     </script>
     
     <style type="text/css">
-        #nav { width: 1200px; height: 60px; line-height: 30px; }
-        
-       /* .body { width: 1660px; }*/
-        .short_name, .energy, .meter_type, .xishu, .upper_limit { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 1px solid; }
+        #nav {
+            width: 1200px;
+            height: 60px;
+            line-height: 30px;
+        }
 
-        .energy { width: 80px; }
-        .meter_type { width: 80px; }
-        .xishu { width: 60px; }
-        .upper_limit { width: 80px; }
-        
-        #divTitle { height: 60px; line-height: 60px; font-size: 26px; border: #cc9966 0px solid; text-align: center; font-weight: bold; }
-        #div_dynamic {  border: #cc9966 1px solid;  }
-        #divTitle, #div_dynamic { width: 800px; margin:0 auto; }
-        .option, .id, .name, .order, .state, .description, .area { height: 24px; font-size: small; text-align: center; line-height: 24px; border: #cc9966 0px solid; }
-        .option { width: 50px; }
-        .data_Id { width: 130px; }
-        .name { width: 170px; }
-        .data_Index { width: 170px; }
-        .state { width: 60px; }
-        .description { width: 200px; }
-        .txtbox { width: 95%; padding: 0; margin: 0; }
-        .area { width: 100px; }
+        /* .body { width: 1660px; }*/
+        .short_name, .energy, .meter_type, .xishu, .upper_limit {
+            height: 24px;
+            font-size: small;
+            text-align: center;
+            line-height: 24px;
+            border: #cc9966 1px solid;
+        }
+
+        .energy {
+            width: 80px;
+        }
+
+        .meter_type {
+            width: 80px;
+        }
+
+        .xishu {
+            width: 60px;
+        }
+
+        .upper_limit {
+            width: 80px;
+        }
+
+        #divTitle {
+            height: 60px;
+            line-height: 60px;
+            font-size: 26px;
+            border: #cc9966 0px solid;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #div_dynamic {
+            border: #cc9966 1px solid;
+        }
+
+        #divTitle, #div_dynamic {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .option, .id, .name, .order, .state, .description, .area {
+            height: 24px;
+            font-size: small;
+            text-align: center;
+            line-height: 24px;
+            border: #cc9966 0px solid;
+        }
+
+        .option {
+            width: 50px;
+        }
+
+        .data_Id {
+            width: 130px;
+        }
+
+        .name {
+            width: 170px;
+        }
+
+        .data_Index {
+            width: 170px;
+        }
+
+        .state {
+            width: 60px;
+        }
+
+        .description {
+            width: 200px;
+        }
+
+        .txtbox {
+            width: 95%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .area {
+            width: 100px;
+        }
+
+        tr {
+            line-height: 30px;
+            height: 30px;
+        }
+
+        .td_c1 {
+            width: 20px;
+        }
+
+        .auto-style8 {
+            width: 170px;
+            font-size: 16px;
+            text-align: right;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .auto-style9 {
+            height: 50px;
+            margin-left: 40px;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .auto-style13 {
+            width: 22px;
+            height: 50px;
+        }
+
+        .auto-style14 {
+            width: 184px;
+            height: 50px;
+            text-align: right;
+        }
+
+        .auto-style15 {
+            width: 183px;
+            height: 50px;
+            text-align: right;
+        }
+
+        .yahei_style {
+            font-family: 'Microsoft YaHei';
+        }
+        .labError_style {
+            text-align: left;
+            font-family: 'Microsoft YaHei';
+            font-size: 15px;
+            color: #e8a1eb;
+            height: 50px;
+        }
     </style>
 </head>
     
 <body id="thebody">
     <center>
     <form id="Form1" runat="server">
-    <div id="nav">
-        <input type="hidden" value="0" name="ScrollPos" />
-       <br />
-        <label id="lblErr" runat="server"  style="color:Red" ></label>
-    </div>
     <div style="height: 41px">
         <h2>
            <strong>修改捐赠人信息</strong> 
 
         </h2>
     </div>
-    <div class="body">
-        
-      
-        <style>
-        tr{ line-height:30px;height:30px;}
-        .td_c1{ width:20px;}
-            .auto-style8 {
-                width: 221px;
-                height: 50px;
-                text-align: right;
-            }
-            .auto-style9 {
-                width: 137px;
-                height: 50px;
-                margin-left: 40px;
-            }
-            .auto-style13 {
-                width: 22px;
-                height: 50px;
-            }
-            .auto-style14 {
-                width: 184px;
-                height: 50px;
-                text-align: right;
-            }
-            .auto-style15 {
-                width: 183px;
-                height: 50px;
-                text-align: right;
-            }
-        </style>
-           
-            <table style="width: 556px" runat="server">
+    <div class="body">                     
+            <table style="width: 550px" runat="server">
                 <tr>
-                        <td class="auto-style8">捐赠人ID：</td>
+                        <td class="auto-style8">捐&nbsp;赠&nbsp;人&nbsp;ID：&nbsp;</td>
                         <td class="auto-style9">
-                            <asp:Label ID="lblID" runat="server" Text="未获取到ID"></asp:Label>
-                        </td> 
-                    <td></td>                       
+                            <asp:TextBox runat="server" ID="lblID" CssClass="form-control" Width="300px" ReadOnly="true"></asp:TextBox>                       
+                        </td>                       
                 </tr>             
 
                 <tr>
-                        <td class="auto-style8">经办单位：</td>
+                        <td class="auto-style8">经&nbsp;办&nbsp;单&nbsp;位：&nbsp;</td>
                         <td class="auto-style9">
-                            <asp:DropDownList ID="ddlBranch" runat="server" class="btn btn-default dropdown-toggle" Width="170px">
+                            <asp:DropDownList ID="ddlBranch" runat="server" class="btn btn-default dropdown-toggle" Width="300px">
                             </asp:DropDownList>
-                        </td>    
-                    <td></td>                    
+                        </td>                    
                 </tr>             
                 <tr>
 
-                        <td class="auto-style8">
-                            捐助人类型：
-                        </td>
+                        <td class="auto-style8">捐助人类型：&nbsp;</td>
                         <td class="auto-style9">
 
 <%--                            <asp:CheckBox ID="Chboxgongyi" runat="server" AutoPostBack="true" OnCheckedChanged="Chboxgongyi_CheckedChanged" Text="公益组织" />
@@ -196,7 +275,7 @@
                             <asp:CheckBox ID="Chboxziran" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxziran_CheckedChanged" Text="个人" />
                             <asp:CheckBox ID="Chboxmojuan" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxmojuan_CheckedChanged" Text="募捐箱" />
                             <asp:CheckBox ID="Chboxguanming" runat="server" AutoPostBack="True" OnCheckedChanged="Chboxguanming_CheckedChanged" Text="冠名慈善捐助金" />--%>
-                            <asp:DropDownList ID="benfactorType" runat="server"  class="btn btn-default dropdown-toggle" Width="170px">
+                            <asp:DropDownList ID="benfactorType" runat="server"  class="btn btn-default dropdown-toggle" Width="300px">
                                 <asp:ListItem Value="1">公益组织</asp:ListItem>
                                 <asp:ListItem Value="2">单位</asp:ListItem>
                                 <asp:ListItem Value="3">个人</asp:ListItem>
@@ -204,43 +283,39 @@
                                 <asp:ListItem Value="5">冠名慈善捐助金</asp:ListItem>
                             </asp:DropDownList>
                         </td>
-                        <td></td>
                     </tr>          
                 <tr>
                     <td class="auto-style8">
-                        <asp:Label ID="Lb11" runat="server" Text="名称："></asp:Label>                      
+                        <asp:Label ID="Lb11" runat="server" Text="名&nbsp;&nbsp;称：&nbsp;"></asp:Label>                      
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox runat="server" ID="benfactorName" CssClass="form-control" Width="170px"></asp:TextBox>                       
+                        <asp:TextBox runat="server" ID="benfactorName" CssClass="form-control" Width="300px" ReadOnly="true"></asp:TextBox>                       
                     </td>
-                    <td></td>
                 </tr>
                 <tr id="trSex" runat="server">
                         <td class="auto-style8">
-                            <asp:Label ID="Label1" runat="server" Text="性别："></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="性&nbsp;&nbsp;别：&nbsp;"></asp:Label>
                         </td>
                         <td class="auto-style9">
                             <asp:DropDownList ID="ddlSex" runat="server" class="btn btn-default dropdown-toggle">
                             <asp:ListItem>男</asp:ListItem>
                             <asp:ListItem>女</asp:ListItem>
                         </asp:DropDownList>
-                        </td>    
-                    <td></td>                    
+                        </td>                   
                 </tr>
                 <tr id="trMoneyboxNo" runat="server">                      
                         <td class="auto-style8">
-                            <asp:Label runat="server" Text="募捐箱编号："></asp:Label>
+                            <asp:Label runat="server" Text="募捐箱编号：&nbsp;"></asp:Label>
                         </td>
                         <td class="auto-style9">                            
-                            <asp:TextBox ID="moneyboxNo" runat="server" Width="170px" CssClass="form-control" ></asp:TextBox>
+                            <asp:TextBox ID="moneyboxNo" runat="server" Width="300px" CssClass="form-control" ></asp:TextBox>
                         </td>
-                    <td></td>
                 </tr>
                 <tr id="trAge" runat="server">
                         <td class="auto-style8">
-                        <asp:Label ID="lb12" runat="server" Text="年限："></asp:Label>
+                        <asp:Label ID="lb12" runat="server" Text="年&nbsp;&nbsp;限：&nbsp;"></asp:Label>
                             </td>
-                        <td class="auto-style9">                           
+                        <td class="auto-style9">&nbsp;&nbsp;&nbsp;                           
                         <%--<asp:DropDownList ID="ddlAge" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAge_SelectedIndexChanged">
                             <asp:ListItem>1</asp:ListItem>
                             <asp:ListItem>2</asp:ListItem>
@@ -248,52 +323,46 @@
                             <asp:ListItem>4</asp:ListItem>
                             <asp:ListItem>5</asp:ListItem>
                         </asp:DropDownList>--%>
-                            <asp:Label ID="lblAge" runat="server"></asp:Label>
-                            <asp:Button ID="btnMinus" runat="server" OnClick="btnMinus_Click" Text="-" Width="23px" />
+                            <asp:Label ID="lblAge" runat="server" Font-Bold="true"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnMinus" runat="server" OnClick="btnMinus_Click" Text="-" Width="23px" />&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="+" Width="23px" />                      
-                        </td>     
-                    <td></td>                   
+                        </td>                 
                 </tr>
                 <tr id="trDeadline" runat="server">
                         <td class="auto-style8">
-                        <asp:Label runat="server" Text="到期日期："></asp:Label>
+                        <asp:Label runat="server" Text="到&nbsp;期&nbsp;日&nbsp;期：&nbsp;"></asp:Label>
                            </td>
-                        <td class="auto-style9">
+                        <td class="auto-style9">&nbsp;&nbsp;
                         <asp:Label ID="deadline" runat="server" Text="日期"></asp:Label>
-                            </td>    
-                    <td></td>
+                            </td>
                 </tr>
                 <tr id="trContact" runat="server">
                     <td class="auto-style8">
-                        <asp:Label ID="lb23" runat="server" Text="联系人姓名："></asp:Label>
+                        <asp:Label ID="lb23" runat="server" Text="联系人姓名：&nbsp;"></asp:Label>
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox ID="Contacts" runat="server" CssClass="form-control" Width="170px"></asp:TextBox>
+                        <asp:TextBox ID="Contacts" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>
 
                     </td>
-                    <td></td>
                 </tr>
 
                 <tr>
                         <td class="auto-style8">
-                        <asp:Label ID="lb24" runat="server" Text="手机号："></asp:Label>
+                        <asp:Label ID="lb24" runat="server" Text="手&nbsp;机&nbsp;号：&nbsp;"></asp:Label>
                             </td>
                         <td class="auto-style9">                      
-                            <asp:TextBox ID="TEL" runat="server" CssClass="form-control" Width="170px" MaxLength="11"></asp:TextBox>                          
-                        </td>     
-                    <td></td>                   
+                            <asp:TextBox ID="TEL" runat="server" CssClass="form-control" Width="300px" MaxLength="11"></asp:TextBox>                          
+                        </td>                   
                 </tr>
 
                 <tr>
                     <td class="auto-style8">
-                       <asp:Label ID="Lb33" runat="server" Text="电子邮箱："></asp:Label>
+                       <asp:Label ID="Lb33" runat="server" Text="电&nbsp;子&nbsp;邮&nbsp;箱：&nbsp;"></asp:Label>
                         
                     </td>
                     <td class="auto-style9">
-                        <asp:TextBox MaxLength="20" runat="server" ID="email"  CssClass="form-control" Width="170px"></asp:TextBox>
-                    </td>
-                    <td></td>
-                    
+                        <asp:TextBox MaxLength="20" runat="server" ID="email"  CssClass="form-control" Width="300px"></asp:TextBox>
+                    </td>                  
                 </tr>
 
                 
@@ -302,24 +371,20 @@
             <table id="tbDirect"  style="width: 556px" runat="server" class="form-inline">
                 <tr>
                     <td class="auto-style8">
-                        <asp:Label ID="Lb44" runat="server" Text="是否定向捐赠："></asp:Label>
+                        <asp:Label ID="Lb44" runat="server" Text="是否定向捐赠：&nbsp;"></asp:Label>
                       
                     </td>
-                    <td class="auto-style9">
-                        <div class="form-group">
-                        <asp:RadioButton ID="rdbDirect" runat="server" AutoPostBack="True" GroupName="rdoDirect" OnCheckedChanged="rdoDirect_CheckedChanged" Text="是" CssClass="checkbox" />
-                        <asp:RadioButton ID="rdbUndirect" runat="server" AutoPostBack="True" GroupName="rdoDirect" Text="否" OnCheckedChanged="rdoDirect_CheckedChanged" CssClass="checkbox" />
-                         </div>
-                             </td>
-                    <td></td>
-                    
+                    <td class="auto-style9 yahei_style">
+                        <asp:RadioButton ID="rdbDirect" runat="server" AutoPostBack="True" GroupName="rdoDirect" OnCheckedChanged="rdoDirect_CheckedChanged" Text="是" CssClass="checkbox" Width="60px" Height="30px"/>
+                        <asp:RadioButton ID="rdbUndirect" runat="server" AutoPostBack="True" GroupName="rdoDirect" Text="否" OnCheckedChanged="rdoDirect_CheckedChanged" CssClass="checkbox" Width="60px" Height="30px"/>
+                    </td>                    
                 </tr>
                 <tr id="trRcpType" runat="server">
                     <td class="auto-style8">
-                        <asp:Label ID="Lb66" runat="server" Text="受助人类型："></asp:Label>
+                        <asp:Label ID="Lb66" runat="server" Text="受助人类型：&nbsp;"></asp:Label>
                     </td>
                     <td class="auto-style9">
-                            <asp:DropDownList ID="recipientsType" runat="server" class="btn btn-default dropdown-toggle" Width="170px">
+                            <asp:DropDownList ID="recipientsType" runat="server" class="btn btn-default dropdown-toggle" Width="300px">
                                 <asp:ListItem>助学</asp:ListItem>
                                 <asp:ListItem>助医</asp:ListItem>
                                 <asp:ListItem>助残</asp:ListItem>
@@ -329,7 +394,6 @@
                                 <asp:ListItem>重特大灾难</asp:ListItem>
                             </asp:DropDownList>                    
                     </td>
-                    <td></td>
                 </tr>
             </table>
 
@@ -339,26 +403,22 @@
                 <tr id="trNaming" runat="server">
                   
                     <td class="auto-style8">
-                        <asp:Label ID="Lb55" runat="server" Text="是否冠名捐助："></asp:Label>             
+                        <asp:Label ID="Lb55" runat="server" Text="是否冠名捐助：&nbsp;"></asp:Label>             
                     </td>
-                    <td class="auto-style9"    >
-                        <div class="form-group">
-                        <asp:RadioButton ID="rdbNaming" runat="server" Text="是" AutoPostBack="True" GroupName="rdoNaming" OnCheckedChanged="rdoNaming_CheckedChanged" CssClass="checkbox" />
-                        <asp:RadioButton ID="rdbUnNaming" runat="server" Text="否" AutoPostBack="True" GroupName="rdoNaming" OnCheckedChanged="rdoNaming_CheckedChanged" CssClass="checkbox" />                                        
-                            </div>
-                    </td>  
-                      <td></td>               
+                    <td class="auto-style9 yahei_style">
+                        <asp:RadioButton ID="rdbNaming" runat="server" Text="是" AutoPostBack="True" GroupName="rdoNaming" OnCheckedChanged="rdoNaming_CheckedChanged" CssClass="checkbox" Width="60px" Height="30px"/>
+                        <asp:RadioButton ID="rdbUnNaming" runat="server" Text="否" AutoPostBack="True" GroupName="rdoNaming" OnCheckedChanged="rdoNaming_CheckedChanged" CssClass="checkbox" Width="60px" Height="30px"/>                                        
+                    </td>                 
                     </tr>
                 <tr id="trFundName" runat="server">
                     <td class="auto-style8">
-                        <asp:Label ID="lb61" runat="server" Text="冠名慈善捐助金名称："></asp:Label>
+                        <asp:Label ID="lb61" runat="server" Text="冠名慈善捐助金名称：&nbsp;"></asp:Label>
                     </td>
                     <td class="auto-style9">                        
-                        <asp:DropDownList ID="ddlNaming" runat="server" class="btn btn-default dropdown-toggle" Width="170px">
+                        <asp:DropDownList ID="ddlNaming" runat="server" class="btn btn-default dropdown-toggle" Width="300px">
                         </asp:DropDownList>                        
                         <br />
                         </td>
-                    <td></td>
                 </tr>
 
                 
@@ -367,17 +427,17 @@
             <table  style="width: 556px" runat="server">
                     <tr>
                        <td class="auto-style8"> 
-                              <asp:Label ID="labError" runat="server" ForeColor="Red" Text=""></asp:Label>
                         </td>
-                        <td class="auto-style9">                                              
-                            <asp:Button ID="Btinput" runat="server" OnClick="Btinput_Click" Text="提交修改" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                        </td>          
-                        <td>
-                            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" Text="返回" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                        </td>                               
+                        <td class="labError_style">   
+                              <asp:Label ID="labError" runat="server" ForeColor="Red" Text=""></asp:Label>                                                                       
+                        </td>                        
                     </tr>
 
             </table>
+        <div>
+            <asp:Button ID="Btinput" runat="server" OnClick="Btinput_Click" Text="提交修改" CssClass=" btn btn-danger" Width="80px" Height="34px" />&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" Text="返回" CssClass=" btn btn-danger" Width="80px" Height="34px" />
+        </div>
       </div>  
   
     </form>
