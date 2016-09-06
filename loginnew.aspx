@@ -183,7 +183,8 @@
                -*-linear-gradient(top,rgb(255, 51, 0),rgb(250, 35,0.5)) left top no-repeat;
 }
 
-.login-form .account-control input {
+.login-form .account-control input {        top: 0px;
+        left: 0px;
     }
 .login-form label.check {
     position:absolute;
@@ -214,6 +215,10 @@
   font-weight: normal;
   font-style: normal;
 }
+    .lblMsg_style {
+        font-family: 'Microsoft YaHei';
+        font-size: 14px;
+    }
 </style>
  <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
 <script src="/follow.js" type="text/javascript"></script>
@@ -235,9 +240,12 @@
                    <label for="Remember me" data-on="c" class="check"></label>
                    <label for="Remember me" class="info">Remember me</label>--%>
                          
-                   <asp:Label ID="lblMsg" runat="server" Text="" ></asp:Label>
+                   <asp:Label ID="lblMsg" runat="server" Text="" CssClass="lblMsg_style"></asp:Label>
                    <asp:Button ID="btnLogin" runat="server" Text="登录" CssClass="button" OnClick="btnLogin_Click" />
                <%--    <button type="zhuce">注册</button>--%>
+               </div>
+               <div>
+                   <a href="http://www.firefox.com.cn/" target="_blank">请使用火狐浏览器登录此系统</a>
                </div>
           <%--     <p class="not-registered">Not a registered user yet?<a>Sign up now!</a></p>--%>
            </form>

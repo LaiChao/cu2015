@@ -38,6 +38,13 @@ public partial class test : System.Web.UI.Page
     protected string Menus = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["userRole"] == null || Session["userRole"].ToString().Equals(""))
+        {
+            Response.Redirect("loginnew.aspx");
+            //Response.Write("<script>window.open('loginnew.aspx','_blank');window.close();windown.opener=null;</script>");
+            return;
+        }
+
         if (!this.IsPostBack)
         {
             //string strid= Request.QueryString["id"];

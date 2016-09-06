@@ -37,6 +37,11 @@ public partial class Default_new : System.Web.UI.Page
     protected string Menus = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null || Session["UserName"].ToString().Equals(""))
+        {
+            Response.Write("<script>window.open('loginnew.aspx','_top')</script>");
+            return;
+        }
         if (!this.IsPostBack)
         {
             //string strid= Request.QueryString["id"];
@@ -559,7 +564,7 @@ public partial class Default_new : System.Web.UI.Page
            }
            if (Session["userRole"].ToString() == "3")
            {
-               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod3' and (USE_IDT='1' or USE_IDT='2' or USE_IDT='3') order by DISPLAY_ORDER");
+               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod3' and (USE_IDT='1' or USE_IDT='2' or USE_IDT='3') and PMS_NAME!='项目申请' order by DISPLAY_ORDER");
                DataSet dv = MySqlHelper.ExecuteDataset(mysql.getmysqlcon(), sqlserver);
                DataTable ds = dv.Tables[0];
                signoutURL = " <a href=\"Login.aspx?action=signout&userid=" + inputId + "&n=" + inputName + "\" >注销</a> \n";
@@ -736,7 +741,7 @@ public partial class Default_new : System.Web.UI.Page
            }
            if (Session["userRole"].ToString() == "3")
            {
-               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod4' and ( USE_IDT='1' or USE_IDT='2' or USE_IDT='3') order by DISPLAY_ORDER");
+               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod4' and ( USE_IDT='1' or USE_IDT='2' or USE_IDT='3') and PMS_NAME!='添加捐赠人' order by DISPLAY_ORDER");
                DataSet dv = MySqlHelper.ExecuteDataset(mysql.getmysqlcon(), sqlserver);
                DataTable ds = dv.Tables[0];
                signoutURL = " <a href=\"Login.aspx?action=signout&userid=" + inputId + "&n=" + inputName + "\" >注销</a> \n";
@@ -912,7 +917,7 @@ public partial class Default_new : System.Web.UI.Page
            }
            if (Session["userRole"].ToString() == "3")
            {
-               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod5' and ( USE_IDT='1' or USE_IDT='2' or USE_IDT='3') order by DISPLAY_ORDER");
+               string sqlserver = string.Format("select * from e_permission where PMS_CTG_ID='mod5' and ( USE_IDT='1' or USE_IDT='2' or USE_IDT='3') and PMS_NAME!='添加受助人' order by DISPLAY_ORDER");
                DataSet dv = MySqlHelper.ExecuteDataset(mysql.getmysqlcon(), sqlserver);
                DataTable ds = dv.Tables[0];
                signoutURL = " <a href=\"Login.aspx?action=signout&userid=" + inputId + "&n=" + inputName + "\" >注销</a> \n";

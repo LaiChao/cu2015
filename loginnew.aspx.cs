@@ -57,10 +57,30 @@ public partial class test3 : System.Web.UI.Page
        // string inputPwd = Request.QueryString["password"].ToString();
 
         //判断用户名、密码不能为空
-        if (string.IsNullOrEmpty(inputID) || string.IsNullOrEmpty(inputPwd))
+        if (string.IsNullOrEmpty(inputID))
         {
-            lblMsg.Text = "请输入用户名和密码";
+            lblMsg.Text = "请输入用户名";
+            txtID.BackColor = Color.FromArgb((int)0xFFE1FF);
+            txtPWD.BackColor = Color.FromArgb((int)0xdfdfdf);
+            txtID.Focus();
             return;
+        }
+        else
+        {
+            txtID.BackColor = Color.FromArgb((int)0xdfdfdf);
+        }
+
+        if (string.IsNullOrEmpty(inputPwd))
+        {
+            lblMsg.Text = "请输入密码";
+            txtPWD.BackColor = Color.FromArgb((int)0xFFE1FF);
+            txtID.BackColor = Color.FromArgb((int)0xdfdfdf);
+            txtPWD.Focus();
+            return;
+        }
+        else
+        {
+            txtPWD.BackColor = Color.FromArgb((int)0xdfdfdf);
         }
 
         bool bAuth = false, bPermission = true;
@@ -137,7 +157,6 @@ public partial class test3 : System.Web.UI.Page
         }
         else
         {
-
            lblMsg.Text = "用户名或者密码错误";
             //   WriteLog("用户登录", inputID, System.Diagnostics.EventLogEntryType.FailureAudit);
             return;
@@ -193,7 +212,7 @@ public partial class test3 : System.Web.UI.Page
             // url = "Default_new.aspx";//菜单在顶端
             //url = "Default.aspx";//菜单在左侧
             url = "test.aspx";
-            page.Response.Redirect(url, true);
+            page.Response.Redirect(url, false);
         }
     }
 }
