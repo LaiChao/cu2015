@@ -59,7 +59,7 @@
         }
 
         .txtbox {
-            width: 95%;
+            width: 100%;
             padding: 0;
             margin: 0;
         }
@@ -173,7 +173,7 @@
                 <asp:Label ID="Label1" runat="server" Text="名称:" CssClass="label_style"></asp:Label>
                 <asp:TextBox ID="TbselectName" runat="server" Width="116px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
                 <asp:Label ID="Label2" runat="server" Text="手机号:" CssClass="label_style"></asp:Label> 
-                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="200"></asp:TextBox>&nbsp;&nbsp;
                 <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
             </p>
             <p>
@@ -185,7 +185,7 @@
             </p>     
         </div>
         
-                    <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
+            <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
@@ -203,13 +203,14 @@
                     <%--<ItemStyle CssClass="id"></ItemStyle>--%>
                 </asp:TemplateColumn>
                             <asp:TemplateColumn HeaderText="捐赠人类型">
+                                <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                                 <ItemTemplate>
                                     <asp:Label ID="lblType" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.sbenfactorType") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
 
                         <asp:TemplateColumn HeaderText="手机号">
-                    <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
+                            <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtteladd" runat="server" CssClass="txtbox" MaxLength="6" Text='<%# DataBinder.Eval(Container, "DataItem.TEL") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -219,23 +220,26 @@
 <%--                                <ItemStyle CssClass="index"></ItemStyle>--%>
                         </asp:TemplateColumn>                   
                             <asp:TemplateColumn HeaderText="是否冠名">
+                                <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                                 <ItemTemplate>
                                     <asp:Label ID="lblNaming" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.snaming") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
                             <asp:TemplateColumn HeaderText="是否定向">
+                                <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                                 <ItemTemplate>
                                     <asp:Label ID="lblDirect" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.sdirection") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
                             <asp:TemplateColumn HeaderText="定向受助人类型">
+                                <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                                 <ItemTemplate>
                                     <asp:Label ID="lblRType" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsType") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateColumn>
 
                         </Columns>
-                        <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages"/>
+                        <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" Mode="NumericPages"/>
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
         <br />
@@ -285,7 +289,7 @@
                 </asp:TemplateColumn>
                 <%--<asp:ButtonColumn CommandName="confirm" HeaderText="操作" Text="确认"></asp:ButtonColumn>--%>
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
     </form>

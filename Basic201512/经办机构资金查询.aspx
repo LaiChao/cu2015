@@ -94,7 +94,11 @@
                     <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
                     <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                 </asp:BoundField>
-                <asp:HyperLinkField DataNavigateUrlFields="benfactorFrom" DataNavigateUrlFormatString="资金追踪.aspx?from={0}" HeaderText="查看资金使用情况" Text="查看" />
+                <asp:HyperLinkField DataNavigateUrlFields="benfactorFrom" DataNavigateUrlFormatString="资金追踪.aspx?from={0}" HeaderText="查看资金使用情况" Text="查看">
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+					<ControlStyle Font-Underline="false" CssClass="font_style"/>
+                    <ItemStyle HorizontalAlign="Center" Wrap="false"/>
+                </asp:HyperLinkField>
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead"/>

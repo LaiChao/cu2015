@@ -50,7 +50,7 @@
         }
         .page_style {
             color: #bd1c1c;
-            font-size: 16px;            
+            font-size: 14px;            
         }
         .checkBox_style {
             font-family: 'Microsoft YaHei';           
@@ -236,16 +236,20 @@
                     <ControlStyle ForeColor="#d60808" Font-Underline="false" CssClass="font_style1"/>
                     <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
                 </asp:CommandField>
-				<asp:HyperLinkField DataNavigateUrlFields="benfactorID" DataNavigateUrlFormatString="捐赠人资金录入详情.aspx?ID={0}" HeaderText="资金录入详情" Text="资金录入详情" />        
+				<asp:HyperLinkField DataNavigateUrlFields="benfactorID" DataNavigateUrlFormatString="捐赠人资金录入详情.aspx?ID={0}" HeaderText="资金录入详情" Text="资金录入详情" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC"/>
+                    <ControlStyle Font-Underline="false" CssClass="font_style"/>  
+                    <ItemStyle HorizontalAlign="Center"/>
+                </asp:HyperLinkField>
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead" />
             <PagerTemplate>
-                <asp:Label ID="lblPage" runat="server" Text='<%# "第"+(((GridView)Container.NamingContainer).PageIndex+1)+"页/共"+(((GridView)Container.NamingContainer).PageCount)+"页" %> '></asp:Label>
-                <asp:LinkButton ID="lblFirst" runat="Server" Text="首页"  Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' CommandName="Page" CommandArgument="First" ></asp:LinkButton>
-                <asp:LinkButton ID="lblPrev" runat="server" Text="上一页" Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' CommandName="Page" CommandArgument="Prev"  ></asp:LinkButton>
-                <asp:LinkButton ID="lblNext" runat="Server" Text="下一页" Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Next" ></asp:LinkButton>
-                <asp:LinkButton ID="lblLast" runat="Server" Text="尾页"   Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Last" ></asp:LinkButton>
+                <asp:Label ID="lblPage" runat="server" Text='<%# "第"+(((GridView)Container.NamingContainer).PageIndex+1)+"页/共"+(((GridView)Container.NamingContainer).PageCount)+"页" %> '></asp:Label>&nbsp;&nbsp;
+                <asp:LinkButton ID="lblFirst" runat="Server" Font-Underline="false" Text="首页"  Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' CommandName="Page" CommandArgument="First" ></asp:LinkButton>&nbsp;
+                <asp:LinkButton ID="lblPrev" runat="server" Font-Underline="false" Text="上一页" Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' CommandName="Page" CommandArgument="Prev"  ></asp:LinkButton>&nbsp;
+                <asp:LinkButton ID="lblNext" runat="Server" Font-Underline="false" Text="下一页" Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Next" ></asp:LinkButton>&nbsp;
+                <asp:LinkButton ID="lblLast" runat="Server" Font-Underline="false" Text="尾页"   Enabled='<%# ((GridView)Container.NamingContainer).PageIndex != (((GridView)Container.NamingContainer).PageCount - 1) %>' CommandName="Page" CommandArgument="Last" ></asp:LinkButton>
             </PagerTemplate>                        
             <PagerStyle BackColor="#FFFFCC" HorizontalAlign="Center" CssClass="page_style"/>
             <RowStyle BackColor="White" ForeColor="#330099" />

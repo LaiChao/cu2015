@@ -302,7 +302,7 @@
                 </asp:ButtonColumn>
 
             </Columns>
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Mode="NumericPages" />
+            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" Mode="NumericPages" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
                         </div>

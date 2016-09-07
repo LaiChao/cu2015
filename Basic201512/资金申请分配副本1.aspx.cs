@@ -43,7 +43,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            string strread = string.Format("select projectID,projectName,needMoney,concat(if(isnaming=1,' 冠名','')) as sisnaming,concat(if(isdirect=1,'定向','')) as sisdirect,benfactorFrom from e_project where (projectID='{0}' or projectName='{1}')", nameNow, nameNow);
+            string strread = string.Format("select projectID,projectName,needMoney,concat(if(isnaming=1,' 冠名','非冠名')) as sisnaming,concat(if(isdirect=1,'定向','非定向')) as sisdirect,benfactorFrom from e_project where (projectID='{0}' or projectName='{1}')", nameNow, nameNow);
             MySqlDataReader mysqlread = msq.getmysqlread(strread);
             while (mysqlread.Read())
             {

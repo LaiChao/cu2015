@@ -28,9 +28,37 @@
     <!-- Custom styles for this template -->
     <link href="theme.css" rel="stylesheet">
 
-    <style>
-        #GridView1 th {
-        text-align:center;
+    <style type="text/css">
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
+        td {
+            height: 35px;
+            vertical-align: middle;
+            padding: 0px 10px 0px 10px;
+            white-space: nowrap;
+        }
+        th {
+            padding: 0px 10px 0px 10px;
+            text-align:center;
+            white-space: nowrap;
+        }
+        .page_style {
+            color: #bd1c1c;
+            font-size: 14px;            
+        }
+        .gridView_style {
+            font-family: 'Microsoft YaHei';
+            font-size: 14px;
+        }
+        .font_style:hover {
+            color: #0a1e58 !important;
+            transition: 0.2s;
+        }
+        .font_style1:hover {
+            color: #721313 !important;
+            transition: 0.2s;
         }
     </style>
 </head>
@@ -44,17 +72,44 @@
             </h2>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="1013px">
+        <asp:GridView ID="GridView1" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="900px">
             <Columns>
-                <asp:BoundField DataField="branchName" HeaderText="捐赠人所属机构" />
-                <asp:BoundField DataField="detailID" HeaderText="捐赠人ID" />
-                <asp:BoundField DataField="benefactorName" HeaderText="捐赠人名称" />
-                <asp:BoundField DataField="operator" HeaderText="操作人" />
-                <asp:BoundField DataField="opBranchName" HeaderText="操作人所在机构" />
-                <asp:BoundField DataField="opType" HeaderText="操作类型" />
-                <asp:BoundField DataField="income" HeaderText="操作金额" />
-                <asp:BoundField DataField="opTime" HeaderText="操作时间" />
-                <asp:BoundField DataField="remain" HeaderText="原有金额" />
+                <asp:BoundField DataField="branchName" HeaderText="捐赠人所属机构" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="detailID" HeaderText="捐赠人ID" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="benefactorName" HeaderText="捐赠人名称" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="operator" HeaderText="操作人" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="opBranchName" HeaderText="操作人所在机构" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="opType" HeaderText="操作类型" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="income" HeaderText="操作金额" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="opTime" HeaderText="操作时间" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="remain" HeaderText="原有金额" >
+                    <HeaderStyle Height="30px"></HeaderStyle>
+                    <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
+                </asp:BoundField>
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead" />

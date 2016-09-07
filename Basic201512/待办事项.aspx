@@ -50,13 +50,14 @@
         <br />
     <div>
 
-        <table runat="server">
+        <table runat="server" >
             <tr id="tr1">
                 <td>
                 <p>
-                <a href="信息接收.aspx" target="main" >查看未读信息</a>                                
-                <asp:Label ID="Label1" runat="server" Text="（0）" CssClass="label_style"></asp:Label>
-                </p></td>
+                    <a href="信息接收.aspx" target="main" >查看未读信息</a>                                
+                    <asp:Label ID="Label1" runat="server" Text="（0）" CssClass="label_style"></asp:Label>
+                </p>
+                </td>
             </tr>
             <tr id="tr2">
                 <td>

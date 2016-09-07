@@ -196,13 +196,13 @@ namespace CL.Utility.Web.BasicData
             {
                 txtID.BackColor = Color.White;
             }
-            bool isMatch = lyf_validate.isIDorPwd(strID);
-            if (!isMatch)
-            {
-                labError.ForeColor = System.Drawing.Color.Red;
-                labError.Text = "输入的用户名格式不正确！用户ID只能包含字母、数字、下划线，且不能以数字开头，5~16位。";
-                return;
-            }
+            //bool isMatch = lyf_validate.isIDorPwd(strID);
+            //if (!isMatch)
+            //{
+            //    labError.ForeColor = System.Drawing.Color.Red;
+            //    labError.Text = "输入的用户名格式不正确！用户ID只能包含字母、数字、下划线，且不能以数字开头，5~16位。";
+            //    return;
+            //}
             string strName = txtName.Text.Trim();
             if (strName == "")
             {

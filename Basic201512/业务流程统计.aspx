@@ -116,9 +116,10 @@
             </p>           
         </div>
         <div id="divPrint" runat="server">
-    <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="1300px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
+    <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemDataBound="dgData_ItemDataBound1" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged" >
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
+            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" Mode="NumericPages" />
             <ItemStyle CssClass="dg_item" BackColor="White" ForeColor="#330099"></ItemStyle>
             <EditItemStyle CssClass="dg_item" />
             <Columns>
@@ -309,8 +310,7 @@
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateColumn>
-            </Columns>
-            <PagerStyle BackColor="#FFFFCC" CssClass="page_style" HorizontalAlign="Center" Mode="NumericPages" />
+            </Columns>          
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
         </asp:DataGrid>
           </div>  
