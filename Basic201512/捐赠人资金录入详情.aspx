@@ -72,7 +72,7 @@
             </h2>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="900px">
+        <asp:GridView ID="GridView1" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="900px" OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="branchName" HeaderText="捐赠人所属机构" >
                     <HeaderStyle Height="30px"></HeaderStyle>
@@ -110,6 +110,14 @@
                     <HeaderStyle Height="30px"></HeaderStyle>
                     <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>
                 </asp:BoundField>
+                <asp:CommandField HeaderText="撤回" DeleteText="撤回" ShowDeleteButton="True" >
+                    <HeaderStyle HorizontalAlign="Center" BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="mycenter"/>
+                    <ControlStyle Font-Underline="false" CssClass="font_style1" ForeColor="#d60808"/>
+                    <ItemStyle HorizontalAlign="Center" Wrap="false"/> 
+
+                </asp:CommandField>
+
+
             </Columns>
             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
             <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" Height="30px" CssClass="gridhead" />

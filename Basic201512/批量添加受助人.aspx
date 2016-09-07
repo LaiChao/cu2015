@@ -87,7 +87,7 @@
         <br />            
         <asp:Button ID="btnImport" runat="server" OnClick="btnImport_Click" Text="提&nbsp;交" class="btn btn-danger" Width="100px"/>
         <br /><br />
-		<div style="width: 731px" class="abc">
+		<div style="width: 923px; font-family: 'Microsoft YaHei'; font-size: 16px; color: red;" class="abc">
                 注意事项：
          <br />1、批量添加受助人的模板，需要从QQ群文件中下载。
         <br />2、模板中的第一列“受助人来源”，要与系统平台中的“用户与机构管理”模块中的“经办单位”名称一致。

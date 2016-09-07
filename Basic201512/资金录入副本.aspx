@@ -216,6 +216,7 @@
             </table>
             <div>
                 <asp:Button ID="btnCancel" runat="server" Text="撤回" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
+                &nbsp;&nbsp;
                 <asp:Button ID="btyes" runat="server" Text="添加资金" OnClick="btyes_Click" CssClass=" btn btn-danger" Width="120px"/>&nbsp;&nbsp;
                 <asp:Button ID="confirm" runat="server" Text="确认添加" OnClick="confirm_Click" CssClass=" btn btn-danger" Width="120px"/>
             </div>
