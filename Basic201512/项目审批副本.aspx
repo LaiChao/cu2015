@@ -256,7 +256,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style8">项 目 描 述： </td>
+                    <td class="auto-style8">项 目 方 案： </td>
                     <td class="auto-style9">
                         <asp:Label ID="projectDir" runat="server"></asp:Label>
                     </td>                    
@@ -269,7 +269,7 @@
                     
                 </tr>
                 <tr>
-                    <td class="auto-style8">受助人类型描述： </td>
+                    <td class="auto-style8">受助人情况： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbrestnow" runat="server"></asp:Label>
                     </td>                    

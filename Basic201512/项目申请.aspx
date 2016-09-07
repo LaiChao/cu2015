@@ -195,6 +195,10 @@
             color: #d60808;
             transition: 0.2s;
         }
+        .mycenter {
+            text-align: center;
+            color: black;           
+        }
     </style>
 </head>
     
@@ -274,14 +278,14 @@
                     
                 </tr>
                 <tr>
-                    <td class="auto-style8">项&nbsp;目&nbsp;描&nbsp;述：&nbsp;</td>
+                    <td class="auto-style8">项&nbsp;目&nbsp;方&nbsp;案：&nbsp;</td>
                     <td class="auto-style9">
                         <asp:TextBox ID="projectDir" runat="server" Height="100px" TextMode="MultiLine" Width="360px" CssClass="form-control"></asp:TextBox>
                     </td>
                     
                 </tr>
                 <tr>
-                    <td class="auto-style8">使用善款金额：&nbsp;</td>
+                    <td class="auto-style8">计划使用善款(元)：&nbsp;</td>
                     <td class="auto-style9">
                         <asp:TextBox MaxLength="20" runat="server" ID="txtPLAN"  Width="360px" CssClass="form-control"></asp:TextBox>
                     </td>                  
@@ -293,13 +297,13 @@
                     </td>                    
                 </tr>                
                 <tr>
-                    <td class="auto-style8">联系人姓名：&nbsp;</td>
+                    <td class="auto-style8">项目负责人：&nbsp;</td>
                     <td class="auto-style9">
                             <asp:TextBox ID="txttel" runat="server" CssClass="form-control" Width="360px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style8">联系人电话：&nbsp;</td>
+                    <td class="auto-style8">负责人电话：&nbsp;</td>
                     <td class="auto-style9">
                         <asp:TextBox ID="txtteladd" runat="server" CssClass="form-control" Width="360px"></asp:TextBox>
                     </td>
@@ -314,18 +318,18 @@
                     <td class="auto-style8"></td>
                     <td class="auto-style9">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btntijiao" runat="server" OnClick="btntijiao_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>&nbsp;
-                        <asp:Button ID="btnReapply" runat="server" Text="重新提交申请" Visible="False"  CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnReapply_Click"/>
+                        <asp:Button ID="btntijiao" runat="server" OnClick="btntijiao_Click" Text="提交申请" Visible="False"  CssClass=" btn btn-danger" Width="80px" Height="34px"/>
                     </td> 
                 </tr>
             </table>
             <div>
                 <p>
+                    &nbsp;<asp:Button ID="btnReapply" runat="server" Text="重新提交申请" Visible="False"  CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnReapply_Click"/>
+                    &nbsp;
                     <asp:Button ID="btnFinish" runat="server" Text="完成项目申请" Visible="false" CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnFinish_Click" />
                 </p>
             </div>
             <hr style="width: 1000px;"/>
-            <p>
             <asp:DataGrid ID="dgData1" runat="server" CssClass="gridView_style" AutoGenerateColumns="false" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData1_ItemCommand" Width="900px" OnItemDataBound="dgData1_ItemDataBound">
                 <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                 <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />
@@ -374,13 +378,13 @@
                 <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
                 <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
             </asp:DataGrid>
-            </p>
+            <br />
             <div id="table1" runat="server">
                 <div class="form-group">
                     <p>
                         <asp:Label ID="Label3" runat="server" Text="姓名:" CssClass="label_style"></asp:Label>
                         <asp:TextBox ID="tbName" runat="server" Width="150px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
-                        <asp:Label ID="Label2" runat="server" Text="年龄:" CssClass="label_style"></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text="年龄(周岁):" CssClass="label_style"></asp:Label>
                         <asp:TextBox ID="tbAge" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
                         <asp:Label ID="Label1" runat="server" Text="身份证号:" CssClass="label_style"></asp:Label>
                         <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>&nbsp;
@@ -428,7 +432,6 @@
                             <ItemTemplate>
                                 <asp:Label ID="labID" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsName") %>'></asp:Label>
                             </ItemTemplate>
-                            <ItemStyle CssClass="id"></ItemStyle>
                         </asp:TemplateColumn>
                         <asp:TemplateColumn HeaderText="受助人ID">
                             <ItemTemplate>
@@ -452,7 +455,6 @@
                             <ItemTemplate>
                                 <asp:Label ID="labName" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.recipientsPIdcard") %>'></asp:Label>
                             </ItemTemplate>
-                            <ItemStyle CssClass="name"></ItemStyle>
                         </asp:TemplateColumn>
                         <asp:TemplateColumn HeaderText="来源">
                             <%--<EditItemTemplate>
@@ -462,7 +464,6 @@
                             <ItemTemplate>
                                 <asp:Label ID="labOrder" runat="server" CssClass="txtbox" Text='<%# DataBinder.Eval(Container, "DataItem.benfactorFrom") %>'></asp:Label>
                             </ItemTemplate>
-                            <ItemStyle CssClass="index"></ItemStyle>
                         </asp:TemplateColumn>
                     </Columns>
                     <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />

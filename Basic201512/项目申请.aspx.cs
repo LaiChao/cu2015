@@ -70,6 +70,17 @@ namespace CL.Utility.Web.BasicData
             }
             if (!Page.IsPostBack)
             {
+                //读取当前登录用户的经办单位信息
+                string selectString = "select contactPerson,TEL from e_handlingunit where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
+                MySqlDataReader mysqlread = msq.getmysqlread(selectString);
+                while (mysqlread.Read())
+                {
+                    txttel.Text = mysqlread.GetString("contactPerson");
+                    txtteladd.Text = mysqlread.GetString("TEL");
+                }
+                txttel.ReadOnly = true;
+                txtteladd.ReadOnly = true;
+
                 ViewState["init"] = "select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                 ViewState["now"] = ViewState["init"];
                 databind(ViewState["now"].ToString());
@@ -600,9 +611,28 @@ namespace CL.Utility.Web.BasicData
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select newtable.* from (select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients) newtable where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ");
             if(tbName.Text != "")
-                queryString.Append("and recipientsName='" + tbName.Text.ToString() + "' ");
-            if (tbAge.Text != "")
-                queryString.Append("and newAge=" + tbAge.Text.ToString() + " ");
+                queryString.Append("and recipientsName like '%" + tbName.Text.Trim() + "%' ");
+            //判断年龄是否是自然数
+            if (tbAge.Text.Trim() != "")
+            {
+                try
+                {
+                    Convert.ToInt32(tbAge.Text.Trim());
+                }
+                catch
+                {
+                    labError.Text = "年龄为自然数";
+                    return;
+                }
+                if (Convert.ToDouble(tbAge.Text.Trim()) < 0)
+                {
+                    labError.Text = "年龄不能为负数";
+                    return;
+                }
+                queryString.Append("and newAge=" + tbAge.Text.Trim() + " ");
+            }
+            //if (tbAge.Text != "")
+            //    queryString.Append("and newAge=" + tbAge.Text.Trim() + " ");
             if (Tbselect.Text != "")
                 queryString.Append("and recipientsPIdcard='" + Tbselect.Text.ToString() + "'");
             //string str11 = string.Format("select * from e_recipients where recipientsPIdcard='{0}'", Tbselect.Text.Trim());

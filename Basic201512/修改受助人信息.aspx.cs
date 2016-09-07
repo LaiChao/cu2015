@@ -395,15 +395,28 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             {
                 //LabelError.Text = "未填写受助人户籍";
                 HttpContext.Current.Response.Write("<script>alert('未填写受助人户籍');</script>");
+                recipientsADD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                recipientsADD.Focus();
                 return;
                 //flag = 0;
             }
+            else 
+            {
+                recipientsADD.BackColor = Color.White;
+            }
+
             if (recipientsName.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写受助人姓名";
                 HttpContext.Current.Response.Write("<script>alert('未填写受助人姓名');</script>");
+                recipientsName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                recipientsName.Focus();
                 return;
                 //flag = 0;
+            }
+            else
+            {
+                recipientsName.BackColor = Color.White;
             }
             //验证第二代身份证，共18位
             Regex pidReg = new Regex("(^\\d{18}$)|(^\\d{17}(\\d|X)$)");
@@ -411,17 +424,21 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             {
                 //LabelError.Text = "未填写身份证号";
                 HttpContext.Current.Response.Write("<script>alert('未填写身份证号');</script>");
+                recipientsPIdcard.BackColor = Color.FromArgb((int)0xFFE1FF);
+                recipientsPIdcard.Focus();
                 return;
                 //flag = 0;
             }
             else
             {
                 if(pidReg.IsMatch(recipientsPIdcard.Text.Trim()))
-                    ;//验证通过
+                    recipientsPIdcard.BackColor = Color.White;//验证通过
                 else
                 {
-                    HttpContext.Current.Response.Write("<script>alert('身份证号格式不对，第二代身份证由18位组（最后一位的X为大写）');</script>");
-                    return;
+                    HttpContext.Current.Response.Write("<script>alert('身份证号格式不对，第二代身份证由18位组成（最后一位的X为大写）');</script>");
+                	recipientsPIdcard.BackColor = Color.FromArgb((int)0xFFE1FF);
+                	recipientsPIdcard.Focus();
+					return;
                 }
             }
             //if (recipientsPIdcard.Text.Length <= 0)
@@ -435,50 +452,98 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
             {
                 //LabelError.Text = "未填写现住址";
                 HttpContext.Current.Response.Write("<script>alert('未填写现住址');</script>");
+                recipientsADDnow.BackColor = Color.FromArgb((int)0xFFE1FF);
+                recipientsADDnow.Focus();
                 return;
                 //flag = 0;
             }
+            else
+            {
+                recipientsADDnow.BackColor = Color.White;
+            }
+
             if (telphoneADD.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写联系电话";
                 HttpContext.Current.Response.Write("<script>alert('未填写联系电话');</script>");
+                telphoneADD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                telphoneADD.Focus();
                 return;
                 //flag = 0;
             }
+            else
+            {
+                telphoneADD.BackColor = Color.White;
+            }
+
             if (workplace.Text.Trim() == "")
             {
                 HttpContext.Current.Response.Write("<script>alert('未填写工作单位');</script>");
+                workplace.BackColor = Color.FromArgb((int)0xFFE1FF);
+                workplace.Focus();
                 return;
             }
+            else
+            {
+                workplace.BackColor = Color.White;
+            }
+
             if (arrIncome.Text.Trim() == "")
             {
                 //LabelError.Text = "未填写平均月收入";
                 HttpContext.Current.Response.Write("<script>alert('未填写平均月收入');</script>");
+                arrIncome.BackColor = Color.FromArgb((int)0xFFE1FF);
+                arrIncome.Focus();
                 return;
                 //flag = 0;
             }
+            else
+            {
+                arrIncome.BackColor = Color.White;
+            }
+
             if (CheckBox2.Checked)
             {
                 if (illness.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写大病种类";
                     HttpContext.Current.Response.Write("<script>alert('未填写大病种类');</script>");
+                    illness.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    illness.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    illness.BackColor = Color.White;
+                }
+
                 if (illtime.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写就诊时间";
                     HttpContext.Current.Response.Write("<script>alert('未填写就诊时间');</script>");
+                    illtime.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    illtime.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    illtime.BackColor = Color.White;
+                }
+
                 if (illpay.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写花费数额";
                     HttpContext.Current.Response.Write("<script>alert('未填写花费数额');</script>");
+                    illpay.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    illpay.Focus();
                     return;
                     //flag = 0;
+                }
+                else
+                {
+                    illpay.BackColor = Color.White;
                 }
             }
             if (CheckBox1.Checked)
@@ -487,53 +552,101 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
                 {
                     //LabelError.Text = "未填写就读学校";
                     HttpContext.Current.Response.Write("<script>alert('未填写就读学校');</script>");
+                    studySchool.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    studySchool.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    studySchool.BackColor = Color.White;
+                }
+
                 if (studyGrade.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写就读年级";
                     HttpContext.Current.Response.Write("<script>alert('未填写就读年级');</script>");
+                    studyGrade.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    studyGrade.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    studyGrade.BackColor = Color.White;
+                }
+
                 if (guardianName.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写与被监护人姓名";
                     HttpContext.Current.Response.Write("<script>alert('未填写与被监护人姓名');</script>");
+                    guardianName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    guardianName.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    guardianName.BackColor = Color.White;
+                }
+
                 if (guardianGuanxi.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写与被监护人关系";
                     HttpContext.Current.Response.Write("<script>alert('未填写与被监护人关系');</script>");
+                    guardianGuanxi.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    guardianGuanxi.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    guardianGuanxi.BackColor = Color.White;
+                }
+
                 if (guardianTelADD.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写监护人电话";
                     HttpContext.Current.Response.Write("<script>alert('未填写监护人电话');</script>");
+                    guardianTelADD.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    guardianTelADD.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    guardianTelADD.BackColor = Color.White;
+                }
             }
+
             if (CheckBox3.Checked)
             {
                 if (canjijibie.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写残疾级别";
                     HttpContext.Current.Response.Write("<script>alert('未填写残疾级别');</script>");
+                    canjijibie.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    canjijibie.Focus();
                     return;
                     //flag = 0;
                 }
+                else
+                {
+                    canjijibie.BackColor = Color.White;
+                }
+
                 if (canjileibie.Text.Trim() == "")
                 {
                     //LabelError.Text = "未填写残疾类别";
                     HttpContext.Current.Response.Write("<script>alert('未填写残疾类别');</script>");
+                    canjileibie.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    canjileibie.Focus();
                     return;
                     //flag = 0;
+                }
+                else
+                {
+                    canjileibie.BackColor = Color.White;
                 }
             }
             if (CheckBox5.Checked)
@@ -544,15 +657,28 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
                     {
                         //LabelError.Text = "未填写子女姓名";
                         HttpContext.Current.Response.Write("<script>alert('未填写子女姓名');</script>");
+                        sonName.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        sonName.Focus();
                         return;
                         //flag = 0;
                     }
+                    else
+                    {
+                        sonName.BackColor = Color.White;
+                    }
+
                     if (deathReason.Text.Trim() == "")
                     {
                         //LabelError.Text = "未填写死亡原因";
                         HttpContext.Current.Response.Write("<script>alert('未填写死亡原因');</script>");
+                        deathReason.BackColor = Color.FromArgb((int)0xFFE1FF);
+                        deathReason.Focus();
                         return;
                         //flag = 0;
+                    }
+                    else
+                    {
+                        deathReason.BackColor = Color.White;
                     }
                 }
             }
@@ -561,20 +687,40 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
                 if (army.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写部队名称');</script>");
+                    army.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    army.Focus();
                     return;
                 }
+                else
+                {
+                    army.BackColor = Color.White;
+                }
+
                 if (title.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写职位');</script>");
+                    title.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    title.Focus();
                     return;
                 }
+                else
+                {
+                    title.BackColor = Color.White;
+                }
             }
-            if (CheckBox7.Checked)
+
+            if(CheckBox7.Checked)
             {
                 if (disaster.Text.Trim() == "")
                 {
                     HttpContext.Current.Response.Write("<script>alert('未填写灾害名称');</script>");
+                    disaster.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    disaster.Focus();
                     return;
+                }
+                else
+                {
+                    disaster.BackColor = Color.White;
                 }
             }
             #region
@@ -613,8 +759,19 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         //{ 
         #region
         //数据入库
-        string str113 = string.Format("update e_recipients set benfactorFrom='{0}',recipientsADD='{1}',recipientsName='{2}',sex='{3}',recipientsPIdcard='{4}',recipientsADDnow='{5}',incomlowID='{6}',telphoneADD='{7}',workplace='{8}',famName1='{9}',famRelation1='{10}',famWorkplace1='{11}',famTel1='{12}',famWork1='{13}',famIncome1='{14}',famName2='{15}',famRelation2='{16}',famWorkplace2='{17}',famTel2='{18}',famWork2='{19}',famIncome2='{20}',famName3='{21}',famRelation3='{22}',famWorkplace3='{23}',famTel3='{24}',famWork3='{25}',famIncome3='{26}',famName4='{27}',famRelation4='{28}',famWorkplace4='{29}',famTel4='{30}',famWork4='{31}',famIncome4='{32}',arrIncome='{33}',marryNow='{34}',canjijibie='{35}',canjileibie='{36}',shuoming3='{37}',illness='{38}',illtime='{39}',illpay='{40}',shuoming1='{41}',timeDis='{42}',shiDu='{43}',sonName='{44}',deathReason='{45}',shuoming5='{46}',shiNeng='{47}',shuoming4='{48}',studySchool='{49}',studyGrade='{50}',guardianName='{51}',guardianGuanxi='{52}',guardianTelADD='{53}',shuoming2='{54}',reason='{55}',canID='{57}',officerID='{58}' where recipientsID='{56}'", benfactorFrom.SelectedValue.Trim(), recipientsADD.Text, recipientsName.Text, sex.Text, recipientsPIdcard.Text, recipientsADDnow.Text, incomlowID.Text, telphoneADD.Text, workplace.Text, famName1.Text, famRelation1.Text, famWorkplace1.Text, famTel1.Text, famWork1.Text, famIncome1.Text, famName2.Text, famRelation2.Text, famWorkplace2.Text, famTel2.Text, famWork2.Text, famIncome2.Text, famName3.Text, famRelation3.Text, famWorkplace3.Text, famTel3.Text, famWork3.Text, famIncome3.Text, famName4.Text, famRelation4.Text, famWorkplace4.Text, famTel4.Text, famWork4.Text, famIncome4.Text, arrIncome.Text, marryNow.Text, canjijibie.Text, canjileibie.Text, shuoming3.Text, illness.Text, illtime.Text, illpay.Text, shuoming1.Text, timeDis.Text, shiDu.Text, sonName.Text, deathReason.Text, shuoming5.Text, shiNeng.Text, shuoming4.Text, studySchool.Text, studyGrade.Text, guardianName.Text, guardianGuanxi.Text, guardianTelADD.Text, shuoming2.Text, reason.Text, ViewState["IDNow"].ToString(), canjiID.Text, tbOfficerID.Text);
-        int res = msq.getmysqlcom(str113);
+        string strName = Regex.Replace(recipientsName.Text.ToString(), @"\s", "");
+        string str113 = string.Format("update e_recipients set benfactorFrom='{0}',recipientsADD='{1}',recipientsName='{2}',sex='{3}',recipientsPIdcard='{4}',recipientsADDnow='{5}',incomlowID='{6}',telphoneADD='{7}',workplace='{8}',famName1='{9}',famRelation1='{10}',famWorkplace1='{11}',famTel1='{12}',famWork1='{13}',famIncome1='{14}',famName2='{15}',famRelation2='{16}',famWorkplace2='{17}',famTel2='{18}',famWork2='{19}',famIncome2='{20}',famName3='{21}',famRelation3='{22}',famWorkplace3='{23}',famTel3='{24}',famWork3='{25}',famIncome3='{26}',famName4='{27}',famRelation4='{28}',famWorkplace4='{29}',famTel4='{30}',famWork4='{31}',famIncome4='{32}',arrIncome='{33}',marryNow='{34}',canjijibie='{35}',canjileibie='{36}',shuoming3='{37}',illness='{38}',illtime='{39}',illpay='{40}',shuoming1='{41}',timeDis='{42}',shiDu='{43}',sonName='{44}',deathReason='{45}',shuoming5='{46}',shiNeng='{47}',shuoming4='{48}',studySchool='{49}',studyGrade='{50}',guardianName='{51}',guardianGuanxi='{52}',guardianTelADD='{53}',shuoming2='{54}',reason='{55}',canID='{57}',officerID='{58}',army='{59}',title='{60}',disaster='{61}' where recipientsID='{56}'", benfactorFrom.SelectedValue.Trim(), recipientsADD.Text.Trim(), strName, sex.Text.Trim(), recipientsPIdcard.Text.Trim(), recipientsADDnow.Text.Trim(), incomlowID.Text.Trim(), telphoneADD.Text.Trim(), workplace.Text.Trim(), famName1.Text.Trim(), famRelation1.Text.Trim(), famWorkplace1.Text.Trim(), famTel1.Text.Trim(), famWork1.Text.Trim(), famIncome1.Text.Trim(), famName2.Text.Trim(), famRelation2.Text.Trim(), famWorkplace2.Text.Trim(), famTel2.Text.Trim(), famWork2.Text.Trim(), famIncome2.Text.Trim(), famName3.Text.Trim(), famRelation3.Text.Trim(), famWorkplace3.Text.Trim(), famTel3.Text.Trim(), famWork3.Text.Trim(), famIncome3.Text.Trim(), famName4.Text.Trim(), famRelation4.Text.Trim(), famWorkplace4.Text.Trim(), famTel4.Text.Trim(), famWork4.Text.Trim(), famIncome4.Text.Trim(), arrIncome.Text.Trim(), marryNow.Text.Trim(), canjijibie.Text.Trim(), canjileibie.Text.Trim(), shuoming3.Text.Trim(), illness.Text.Trim(), illtime.Text.Trim(), illpay.Text.Trim(), shuoming1.Text.Trim(), timeDis.Text.Trim(), shiDu.Text.Trim(), sonName.Text.Trim(), deathReason.Text.Trim(), shuoming5.Text.Trim(), shiNeng.Text.Trim(), shuoming4.Text.Trim(), studySchool.Text.Trim(), studyGrade.Text.Trim(), guardianName.Text.Trim(), guardianGuanxi.Text.Trim(), guardianTelADD.Text.Trim(), shuoming2.Text.Trim(), reason.Text.Trim(), ViewState["IDNow"].ToString(), canjiID.Text.Trim(), tbOfficerID.Text.Trim(),army.Text.Trim(),title.Text.Trim(),disaster.Text.Trim());
+        int res = -1;
+        try
+        {
+            res = msq.getmysqlcom(str113);
+        }
+        catch(MySqlException ex)
+        {
+            HttpContext.Current.Response.Write("<script>alert('身份证号重复了');</script>");
+            //throw ex;
+            return;
+        }        
         if (CheckBox1.Checked)
         {
             string str114 = string.Format("update e_recipients set isstu=1 where recipientsID='{0}'", ViewState["IDNow"].ToString());
@@ -688,7 +845,7 @@ public partial class Basic201512_修改受助人信息 : System.Web.UI.Page
         if (res > 0)
         {
             NLogTest nlog = new NLogTest();
-            string sss = "修改了受助人：" + recipientsName.Text.ToString()+"的信息";
+            string sss = "修改了受助人：" + strName + "的信息";
             nlog.WriteLog(Session["UserName"].ToString(),sss);
             HttpContext.Current.Response.Write("<script>alert('受助人信息修改成功');</script>");
         }

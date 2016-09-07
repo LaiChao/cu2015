@@ -92,6 +92,7 @@ public partial class Basic201512_查看受助人信息 : System.Web.UI.Page
             canjijibie.Text = mysqlread.GetString(38);
             canjileibie.Text = mysqlread.GetString(39);
             shuoming3.Text = mysqlread.GetString(40);
+            canjiID.Text = mysqlread.GetString("canID");
             //isdoc.Text = mysqlread.GetString(41);
             CheckBox2.Checked = mysqlread.GetBoolean(41);
             illness.Text = mysqlread.GetString(42);
@@ -120,6 +121,7 @@ public partial class Basic201512_查看受助人信息 : System.Web.UI.Page
             CheckBox6.Checked = mysqlread.GetBoolean(62);
             army.Text = mysqlread.GetString(63);
             title.Text = mysqlread.GetString(64);
+            tbOfficerID.Text = mysqlread.GetString("officerID");
             CheckBox7.Checked = mysqlread.GetBoolean(65);
             disaster.Text = mysqlread.GetString(66);
             canjiID.Text = mysqlread.GetString("canID");

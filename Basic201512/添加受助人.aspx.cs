@@ -349,14 +349,14 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             {
                 //LabelError.Text = "未填写现住址";
                 HttpContext.Current.Response.Write("<script>alert('未填写现住址');</script>");
-                recipientsPIdcard.BackColor = Color.FromArgb((int)0xFFE1FF);
-                recipientsPIdcard.Focus();
+                recipientsADDnow.BackColor = Color.FromArgb((int)0xFFE1FF);
+                recipientsADDnow.Focus();
                 return;
                 //flag = 0;
             }
             else
             {
-                recipientsPIdcard.BackColor = Color.White;
+                recipientsADDnow.BackColor = Color.White;
             }
 
             if (telphoneADD.Text.Trim() == "")
@@ -384,20 +384,137 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
             {
                 workplace.BackColor = Color.White;
             }
-
+            //验证收入
             if (arrIncome.Text.Trim() == "")
             {
-                //LabelError.Text = "未填写平均月收入";
                 HttpContext.Current.Response.Write("<script>alert('未填写平均月收入');</script>");
                 arrIncome.BackColor = Color.FromArgb((int)0xFFE1FF);
                 arrIncome.Focus();
                 return;
-                //flag = 0;
             }
             else
             {
+                try
+                {
+                    Convert.ToDouble(arrIncome.Text.Trim());
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Write("<script>alert('平均月收入为正数');</script>");
+                    arrIncome.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    arrIncome.Focus();
+                    return;
+                }
+                if (Convert.ToDouble(arrIncome.Text.Trim()) < 0)
+                {
+                    HttpContext.Current.Response.Write("<script>alert('平均月收入不能是负数');</script>");
+                    arrIncome.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    arrIncome.Focus();
+                    return;
+                }
                 arrIncome.BackColor = Color.White;
             }
+            if(famIncome1.Text.Trim()!="")
+            {
+                try
+                {
+                    Convert.ToDouble(famIncome1.Text.Trim());
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入为正数');</script>");
+                    famIncome1.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome1.Focus();
+                    return;
+                }
+                if (Convert.ToDouble(famIncome1.Text.Trim()) < 0)
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入不能是负数');</script>");
+                    famIncome1.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome1.Focus();
+                    return;
+                }
+                famIncome1.BackColor = Color.White;
+            }
+            if (famIncome2.Text.Trim() != "")
+            {
+                try
+                {
+                    Convert.ToDouble(famIncome2.Text.Trim());
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入为正数');</script>");
+                    famIncome2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome2.Focus();
+                    return;
+                }
+                if (Convert.ToDouble(famIncome2.Text.Trim()) < 0)
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入不能是负数');</script>");
+                    famIncome2.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome2.Focus();
+                    return;
+                }
+                famIncome2.BackColor = Color.White;
+            }
+            if (famIncome3.Text.Trim() != "")
+            {
+                try
+                {
+                    Convert.ToDouble(famIncome3.Text.Trim());
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入为正数');</script>");
+                    famIncome3.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome3.Focus();
+                    return;
+                }
+                if (Convert.ToDouble(famIncome3.Text.Trim()) < 0)
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入不能是负数');</script>");
+                    famIncome3.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome3.Focus();
+                    return;
+                }
+                famIncome3.BackColor = Color.White;
+            }
+            if (famIncome4.Text.Trim() != "")
+            {
+                try
+                {
+                    Convert.ToDouble(famIncome4.Text.Trim());
+                }
+                catch
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入为正数');</script>");
+                    famIncome4.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome4.Focus();
+                    return;
+                }
+                if (Convert.ToDouble(famIncome4.Text.Trim()) < 0)
+                {
+                    HttpContext.Current.Response.Write("<script>alert('月收入不能是负数');</script>");
+                    famIncome4.BackColor = Color.FromArgb((int)0xFFE1FF);
+                    famIncome4.Focus();
+                    return;
+                }
+                famIncome4.BackColor = Color.White;
+            }
+            //if (arrIncome.Text.Trim() == "")
+            //{
+            //    //LabelError.Text = "未填写平均月收入";
+            //    HttpContext.Current.Response.Write("<script>alert('未填写平均月收入');</script>");
+            //    arrIncome.BackColor = Color.FromArgb((int)0xFFE1FF);
+            //    arrIncome.Focus();
+            //    return;
+            //    //flag = 0;
+            //}
+            //else
+            //{
+            //    arrIncome.BackColor = Color.White;
+            //}
 
             if (CheckBox2.Checked)
             {
@@ -579,7 +696,7 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
                     }
                 }
             }
-            if(CheckBox6.Checked)
+            if (CheckBox6.Checked)
             {
                 if (army.Text.Trim() == "")
                 {
@@ -748,13 +865,13 @@ public partial class Basic201512_添加受助人 : System.Web.UI.Page
 
     protected void familylist_Click(object sender, EventArgs e)
     {
-        if(familylist.Text=="-")
+        if (familylist.Text == "-")
         {
             familylist.Text = "+";
             this.tablefamily.Visible = false;
             return;
         }
-        if(familylist.Text=="+")
+        if (familylist.Text == "+")
         {
             familylist.Text = "-";
             this.tablefamily.Visible = true;

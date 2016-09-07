@@ -151,7 +151,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    平均月收入：</td>
+                    平均月收入(元)：</td>
                 <td>
                     <asp:TextBox ID="arrIncome" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -166,6 +166,8 @@
                         <asp:ListItem>未婚</asp:ListItem>
                         <asp:ListItem>已婚</asp:ListItem>
                         <asp:ListItem>离异</asp:ListItem>
+                        <asp:ListItem>再婚</asp:ListItem>
+                        <asp:ListItem>丧偶</asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td class="auto-style1">&nbsp;</td>
@@ -237,7 +239,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入1：</td>
+                    成员收入(元)1：</td>
                 <td>
                     <asp:TextBox ID="famIncome1" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -282,7 +284,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入2：</td>
+                    成员收入(元)2：</td>
                 <td>
                     <asp:TextBox ID="famIncome2" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -324,7 +326,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入3：</td>
+                    成员收入(元)3：</td>
                 <td>
                     <asp:TextBox ID="famIncome3" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -366,7 +368,7 @@
                 </td>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    成员收入4：</td>
+                    成员收入(元)4：</td>
                 <td>
                     <asp:TextBox ID="famIncome4" runat="server" class="form-control"></asp:TextBox>
                 </td>
@@ -476,7 +478,7 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style2">
-                    助残人证号：</td>
+                    残疾人证号：</td>
                 <td>
                     <asp:TextBox ID="canjiID" runat="server" class="form-control"></asp:TextBox>
                 </td>
