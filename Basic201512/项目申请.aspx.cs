@@ -84,7 +84,9 @@ namespace CL.Utility.Web.BasicData
                 ViewState["init"] = "select *,date_format(from_days(to_days(now())-to_days(SUBSTRING(recipientsPIdcard,7,8))),'%Y')+0 as newAge from e_recipients where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                 ViewState["now"] = ViewState["init"];
                 databind(ViewState["now"].ToString());
-                
+
+                trNaming.Visible = false;
+
                 dgData1.Visible = false;
                 lblBranch.Text = Session["benfactorFrom"].ToString();
                 table1.Visible = false;
@@ -144,7 +146,7 @@ namespace CL.Utility.Web.BasicData
                 recipientsType.Text = mysqlreader.GetString("projectLei");
                 //项目名称
                 projectID.Text = mysqlreader.GetString("projectName");
-                //项目描述
+                //项目方案
                 projectDir.Text = mysqlreader.GetString("projectDir");
                 //计划使用资金
                 txtPLAN.Text = mysqlreader.GetString("palnMoney");
@@ -456,14 +458,14 @@ namespace CL.Utility.Web.BasicData
                 labError.Text = "请选择受助人类别";
                 return;
             }
-            if (projectID.Text.Trim().Length <= 0)
+            if (projectID.Text.Trim()=="")
             {
                 labError.Text = "请输入项目名称";
                 return;
             }
-            if (projectDir.Text.Trim().Length <= 0)
+            if (projectDir.Text.Trim()=="")
             {
-                labError.Text = "请输入项目描述";
+                labError.Text = "请输入项目方案";
                 return;
             }
             if (txtPLAN.Text.Trim() == "")
@@ -488,13 +490,15 @@ namespace CL.Utility.Web.BasicData
                     return;
                 }
             }
-            if (txtDIR.Text.Trim().Length <= 0)
+            if (txtDIR.Text.Trim()=="")
             {
-                labError.Text = "请输入受助人描述";
-                return;
+                if (ddlNaming.SelectedValue.ToString() == "1")
+                {//冠名项目
+                    labError.Text = "请输入受助人情况";
+                    return;
+                }
             }
-            else
-            {
+
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
                 string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType,isnaming,isdirect) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','{9}',{10},'{11}',{12},{13})", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(),ddlDirect.SelectedValue.ToString());
@@ -505,12 +509,13 @@ namespace CL.Utility.Web.BasicData
                     btntijiao.Visible = false;
                     btnFinish.Visible = true;
                     table1.Visible = true;
+                    ddlDirect.Enabled = ddlNaming.Enabled = ddlType.Enabled = recipientsType.Enabled = false;
                 }
                 else
                 {
                     labError.Text = "添加项目失败";
                 }
-            }
+
 
             NLogTest nlog = new NLogTest();
             string sss = "添加项目：" + projectID.Text;
@@ -542,14 +547,14 @@ namespace CL.Utility.Web.BasicData
                 labError.Text = "请选择受助人类别";
                 return;
             }
-            if (projectID.Text.Trim().Length <= 0)
+            if (projectID.Text.Trim()=="")
             {
                 labError.Text = "请输入项目名称";
                 return;
             }
-            if (projectDir.Text.Trim().Length <= 0)
+            if (projectDir.Text.Trim()=="")
             {
-                labError.Text = "请输入项目描述";
+                labError.Text = "请输入项目方案";
                 return;
             }
             if (txtPLAN.Text.Trim() == "")
@@ -574,13 +579,15 @@ namespace CL.Utility.Web.BasicData
                     return;
                 }
             }
-            if (txtDIR.Text.Trim().Length <= 0)
+            if (txtDIR.Text.Trim()=="")
             {
-                labError.Text = "请输入受助人描述";
-                return;
+                if (ddlNaming.SelectedValue.ToString() == "1")
+                {//冠名项目
+                    labError.Text = "请输入受助人情况";
+                    return;
+                }
             }
-            else
-            {
+
                 DateTime dt = DateTime.Now;
                 string prodatatime = dt.ToShortDateString().ToString();
                 string str11 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',telphoneName='{5}',telphoneADD='{6}',prodatatime='{7}',proschedule='申请中',projectLei='{8}',needMoney={3},projectType='{9}',isnaming={10},isdirect={11} where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(), ddlDirect.SelectedValue.ToString());
@@ -590,12 +597,13 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "重新申请项目成功";
                     btnReapply.Visible = false;
                     btnFinish.Visible = true;
+                    ddlDirect.Enabled = ddlNaming.Enabled = ddlType.Enabled = recipientsType.Enabled = false;
                 }
                 else
                 {
                     labError.Text = "重新申请项目失败";
                 }
-            }
+
 
             NLogTest nlog = new NLogTest();
             string sss = "重新申请项目：" + projectID.Text;
@@ -624,7 +632,7 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "年龄为自然数";
                     return;
                 }
-                if (Convert.ToDouble(tbAge.Text.Trim()) < 0)
+                if (Convert.ToInt32(tbAge.Text.Trim()) < 0)
                 {
                     labError.Text = "年龄不能为负数";
                     return;
@@ -675,7 +683,7 @@ namespace CL.Utility.Web.BasicData
         protected void dgData_ItemCommand(object source, DataGridCommandEventArgs e)
         {
             if(e.CommandName=="SelectR")
-            {
+            {//选择受助人到项目中
                 if (Session["ProjectID"] == null)
                 {
                     labError.Text = "请先获取项目ID";
@@ -750,12 +758,20 @@ namespace CL.Utility.Web.BasicData
         protected void ddlNaming_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlNaming.SelectedValue.ToString() == "1")
-                ddlDirect.SelectedValue = "0";             
+            {
+                ddlDirect.SelectedValue = "0";
+                trNaming.Visible = true;
+            }
+            else
+                trNaming.Visible = false;
         }
         protected void ddlDirect_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlDirect.SelectedValue.ToString() == "1")
+            {
                 ddlNaming.SelectedValue = "0";
+                trNaming.Visible = false;
+            }
         }
 
         protected void familylist_Click(object sender, EventArgs e)

@@ -290,7 +290,7 @@
                         <asp:TextBox MaxLength="20" runat="server" ID="txtPLAN"  Width="360px" CssClass="form-control"></asp:TextBox>
                     </td>                  
                 </tr>
-                <tr>
+                <tr id="trNaming" runat="server">
                     <td class="auto-style8">受助人情况：&nbsp;</td>
                     <td class="auto-style9">
                         <asp:TextBox runat="server" ID="txtDIR" MaxLength="20" Width="360px" Height="100px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>

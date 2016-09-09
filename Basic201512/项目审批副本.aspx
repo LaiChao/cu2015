@@ -238,9 +238,9 @@
                     <td class="auto-style8">项 目 类 别： </td>
                     <td class="auto-style9">
                         <asp:Label ID="lblLeibie" runat="server"></asp:Label>
-                    &nbsp;&nbsp;<asp:Label ID="lblNaming" runat="server" Text="非冠名"></asp:Label>
+                    &nbsp;&nbsp;<asp:Label ID="lblNaming" runat="server"></asp:Label>
                         &nbsp;&nbsp;
-                        <asp:Label ID="lblDirect" runat="server">非定向</asp:Label>
+                        <asp:Label ID="lblDirect" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -268,7 +268,7 @@
                     </td>
                     
                 </tr>
-                <tr>
+                <tr id="trNaming" runat="server">
                     <td class="auto-style8">受助人情况： </td>
                     <td class="auto-style9">
                         <asp:Label ID="Lbrestnow" runat="server"></asp:Label>
