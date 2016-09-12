@@ -81,7 +81,7 @@
     </div>
     <form id="form1" runat="server" class="form-inline">
         <div class="form-group">              
-            <p>
+            <p style="text-align:center;margin:0 auto">
                 <asp:Label ID="Label3" runat="server" Text="来源:" CssClass="label_style"></asp:Label>
                 <asp:DropDownList ID="benfactorFrom" runat="server" class="btn btn-default dropdown-toggle" >
                 <asp:ListItem>所有机构</asp:ListItem>
@@ -117,7 +117,8 @@
                 </asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="btnQuery_Click"  class="btn btn-danger"/>
             </p>
-            <p>
+            <br />
+            <p style="text-align:center;margin:0 auto">
                 <asp:Label ID="Label7" runat="server" Text="项目ID:"  CssClass="label_style"></asp:Label>
                 <asp:TextBox ID="txtID" runat="server" CssClass="form-control"></asp:TextBox>&nbsp;
                 <asp:Label ID="Label8" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
@@ -179,12 +180,12 @@
                             <HeaderStyle Height="30px" HorizontalAlign="Center"></HeaderStyle>
                             <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                         </asp:BoundField>
-                        <asp:HyperLinkField Text="编辑" HeaderStyle-Height="30px" ItemStyle-Height="30px" DataNavigateUrlFormatString="修改受助人信息.aspx?ID={0}" DataNavigateUrlFields="recipientsID">
+                        <asp:HyperLinkField Text="编辑" HeaderStyle-Height="30px" ItemStyle-Height="30px" DataNavigateUrlFormatString="修改受助人信息.aspx?ID={0}" DataNavigateUrlFields="recipientsID" HeaderText="编辑">
                             <ControlStyle Font-Underline="false" CssClass="font_style"/>
                             <HeaderStyle Height="30px" HorizontalAlign="Center"></HeaderStyle>
                             <ItemStyle Height="30px" CssClass="mycenter"></ItemStyle>
                         </asp:HyperLinkField>
-                        <asp:CommandField ShowDeleteButton="True" DeleteText="删除" HeaderStyle-Height="30px" ItemStyle-Height="30px">
+                        <asp:CommandField ShowDeleteButton="True" DeleteText="删除" HeaderStyle-Height="30px" ItemStyle-Height="30px" HeaderText="删除">
                             <HeaderStyle Height="30px" HorizontalAlign="Center"></HeaderStyle>
                             <ControlStyle ForeColor="#d60808" Font-Underline="false" CssClass="font_style1"/>
                             <ItemStyle Height="30px"  CssClass="mycenter"></ItemStyle>

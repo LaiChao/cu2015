@@ -307,12 +307,13 @@
                 </tfoot>              
             </table>
             <div>
-                <p>
+                <p style="text-align: center;margin:0 auto">
                     <asp:Button ID="btchecky1" runat="server" Text="会长审批通过" OnClick="btchecky1_Click" CssClass=" btn btn-danger" />
-                            <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
-                            <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
-                            <asp:Button ID="btnReapply" runat="server" Text="重新申请" CssClass=" btn btn-danger " OnClick="btnReapply_Click" />
+                    <asp:Button ID="btchecky2" runat="server" Text="科室审批通过" OnClick="btchecky2_Click" CssClass=" btn btn-danger " />
+                    <asp:Button ID="btcheckn" runat="server" Text="审批未通过" Width="116px"  CssClass=" btn btn-danger" OnClick="btcheckn_Click" />
+                    <asp:Button ID="btnReapply" runat="server" Text="重新申请" CssClass=" btn btn-danger " OnClick="btnReapply_Click" />
                 </p>
+                <br />
             </div>
             <div class="table">
                 <asp:DataGrid ID="dgData0" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="700px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData0_ItemCommand" OnItemDataBound="dgData0_ItemDataBound">

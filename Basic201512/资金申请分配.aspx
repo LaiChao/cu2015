@@ -113,25 +113,28 @@
     </div>
         <div>
             <div class="form-group">
-                <p>
+                <p style="text-align: center;margin:0 auto">
                     <asp:Label ID="Label4" runat="server" Text="项目ID:" CssClass="label_style"></asp:Label>
-                    <asp:TextBox ID="txtproid" runat="server" Width="200px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
-                    <asp:Label ID="Label5" runat="server" Text="联系人:" CssClass="label_style"></asp:Label>
+                    <asp:TextBox ID="txtproid" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
+                    <asp:Label ID="Label5" runat="server" Text="负责人:" CssClass="label_style"></asp:Label>
                     <asp:TextBox ID="txttelname" runat="server" Width="100px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
                     <asp:Label ID="Label1" runat="server" Text="项目名称:" CssClass="label_style"></asp:Label>
-                    <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>&nbsp; &nbsp;                                     
-                </p>      
-                <p>
+                    <asp:TextBox ID="TbselectName" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>&nbsp; &nbsp;                                     
+<%--                </p>
+                <br />      
+                <p style="text-align: center;margin:0 auto">--%>
                     <asp:Label ID="Label2" runat="server" Text="项目执行单位:" CssClass="label_style"></asp:Label>
                     <asp:DropDownList ID="dpdhud" runat="server" class="btn btn-default dropdown-toggle">
                         <asp:ListItem>全部</asp:ListItem>
                     </asp:DropDownList>&nbsp;
                     <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px" />
-                </p>        
+                </p>
+                <br />        
             </div> 
-            <p>
+            <p style="text-align: center;margin:0 auto">
                    <asp:Label ID="lbpoint" runat="server" Text="操作说明：按项目信息详细搜索项目，显示结果并点击捐赠物资跳转申请物资页面" CssClass="label_style"></asp:Label>
             </p>
+            <br />
         </div>
         </div>
         <div>

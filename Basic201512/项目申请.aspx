@@ -323,7 +323,7 @@
                 </tr>
             </table>
             <div>
-                <p>
+                <p style="text-align: center;margin:0 auto;">
                     &nbsp;<asp:Button ID="btnReapply" runat="server" Text="重新提交申请" Visible="False"  CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnReapply_Click"/>
                     &nbsp;
                     <asp:Button ID="btnFinish" runat="server" Text="完成项目申请" Visible="false" CssClass=" btn btn-danger" Width="120px" Height="34px" OnClick="btnFinish_Click" />
@@ -381,7 +381,7 @@
             <br />
             <div id="table1" runat="server">
                 <div class="form-group">
-                    <p>
+                    <p style="text-align: center;margin:0 auto">
                         <asp:Label ID="Label3" runat="server" Text="姓名:" CssClass="label_style"></asp:Label>
                         <asp:TextBox ID="tbName" runat="server" Width="150px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
                         <asp:Label ID="Label2" runat="server" Text="年龄(周岁):" CssClass="label_style"></asp:Label>
@@ -390,23 +390,26 @@
                         <asp:TextBox ID="Tbselect" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>&nbsp;
                         <asp:Button ID="Btselect0" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Height="34px" Width="85px" />
                     </p>
-                    <p>
+                    <br />
+                    <p style="text-align: center;margin:0 auto">
                         <asp:Label ID="Label4" runat="server" Text="搜索不到受助人？前往:" CssClass="label_style"></asp:Label>
                         <a href="添加受助人.aspx" target="_blank" class="link_style" id="addHelp">添加受助人</a>&nbsp;&nbsp;
                         <asp:Button ID="btnBatch" runat="server" OnClick="btnBatch_Click" Text="批量选择受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" /><%--&nbsp;--%>
 <%--                        <asp:Button ID="btnBatchAdd" runat="server" OnClick="btnBatchAdd_Click" Text="批量添加受助人" CssClass=" btn btn-danger" Height="34px" Width="128px" Visible="False" />  --%>
-                    </p>
-                    
-                    
+                    </p>                  
                 </div>
-                <p>
+                <br />
+                <br />
+                <p style="text-align: center;margin:0 auto">
                     <asp:Label ID="lblMoney" runat="server" Text="救助金额(元)：" CssClass="label_style"></asp:Label>
                     <asp:TextBox ID="tbMoney" runat="server" CssClass="form-control" Width="375px"></asp:TextBox>
                 </p>
-                <p>
+                <br />
+                <p style="text-align: center;margin:0 auto">
                     <asp:Label ID="lblRequest" runat="server" Text="救助申请：" CssClass="label_style"></asp:Label>
                     <asp:TextBox ID="tbRequest" runat="server"  Width="400px" Height="90px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>                  
                 </p>
+                <br />
                 <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" OnItemCommand="dgData_ItemCommand" OnItemDataBound="dgData_ItemDataBound1" >
                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                     <HeaderStyle BackColor="#ce2c27" Font-Bold="True" ForeColor="#FFFFCC" />

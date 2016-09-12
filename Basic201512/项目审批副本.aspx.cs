@@ -136,17 +136,18 @@ namespace CL.Utility.Web.BasicData
                     dgData1.Visible = false;
                 else if (strType == "物品")
                     dgData0.Visible = false;
-                dgData.Columns[0].Visible=false;
-                dgData0.Columns[0].Visible = false;
-                if(strState == "申请中")
+                dgData.Columns[0].Visible=false;//删除受助人
+                dgData0.Columns[0].Visible = false;//撤回资金
+                if((strState == "申请中")||(strState=="未通过"))
                 {
-                    if((Lbbenfrom.Text==Session["benfactorFrom"].ToString())||(Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")||(Session["UserName"].ToString()=="admin"))
-                    {//项目实施单位 或者 捐助科 或者 管理员
-                        dgData.Columns[0].Visible = true;
-                    }
+                    //if ((Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科") || (Session["UserName"].ToString() == "admin"))//(Lbbenfrom.Text==Session["benfactorFrom"].ToString())||
+                    //{//捐助科 或者 管理员//项目实施单位 或者 
+                    //    dgData.Columns[0].Visible = true;//删除受助人
+                    //}
                     if((Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科")||(Session["UserName"].ToString()=="admin"))
-                    {
-                        dgData0.Columns[0].Visible = true;
+                    {//捐助科 或者 管理员
+                        dgData.Columns[0].Visible = true;//删除受助人
+                        dgData0.Columns[0].Visible = true;//撤回资金
                     }
                 }
 

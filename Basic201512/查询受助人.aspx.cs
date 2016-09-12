@@ -51,7 +51,10 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
             ViewState["init"] = ViewState["init"].ToString() + "order by recipientsID DESC ";
             ViewState["now"] = ViewState["init"];
             databind(ViewState["init"].ToString());
-            
+            if (Session["userRole"].ToString() == "3")//会长不能编辑/删除受助人
+            {
+                GridView1.Columns[9].Visible = GridView1.Columns[10].Visible = false;
+            }
         }
     }
     public override void VerifyRenderingInServerForm(Control control)
@@ -123,12 +126,35 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
 
         if (benfactorFrom.Text != "所有机构")
             queryString.Append("and benfactorFrom='" + benfactorFrom.Text.ToString() + "' ");
-        if (TextBoxName.Text != "")
-            queryString.Append("and recipientsName='" + TextBoxName.Text.ToString() + "' ");
+        if (TextBoxName.Text.Trim() != "")
+            queryString.Append("and recipientsName like '%" + TextBoxName.Text.Trim() + "%' ");
         if (sex.Text != "未指定")
             queryString.Append("and sex='" + sex.Text.ToString() + "' ");
-        if (age.Text != "")
-            queryString.Append("and newAge=" + age.Text.ToString() + " ");
+        //if (age.Text.Trim() != "")
+        //    queryString.Append("and newAge=" + age.Text.Trim() + " ");
+
+        //判断年龄是否是自然数
+        if (age.Text.Trim() != "")
+        {
+            try
+            {
+                Convert.ToInt32(age.Text.Trim());
+            }
+            catch
+            {
+                Response.Write("<script>alert('年龄为自然数');</script>");
+                return;
+            }
+            if (Convert.ToInt32(age.Text.Trim()) < 0)
+            {
+                Response.Write("<script>alert('年龄不能为负数');</script>");
+                return;
+            }
+            queryString.Append("and newAge=" + age.Text.Trim() + " ");
+        }
+
+
+
         if (reason.Text != "未指定")
             queryString.Append("and reason='" + reason.Text.ToString() + "' ");
         if (DropDownList1.Text !="未指定")
@@ -182,26 +208,26 @@ public partial class Basic201512_查询受助人 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
-                if (Session["userRole"].ToString() == "3")//会长不能删除受助人
-                {
-                    ((LinkButton)e.Row.Cells[10].Controls[0]).Enabled = false;
-                    ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除受助人')");
-                }
-                else
+                //if (Session["userRole"].ToString() == "3")//会长不能删除受助人
+                //{
+                //    ((LinkButton)e.Row.Cells[10].Controls[0]).Enabled = false;
+                //    ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除受助人')");
+                //}
+                //else
                     ((LinkButton)e.Row.Cells[10].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
             }
             e.Row.Cells[7].Attributes.Add("style", "vnd.ms-excel.numberformat:@");
         }
-        for (int i = 0; i < count; i++)
-        {
-            //ID = GridView1.DataKeys[i].Value.ToString();
-            //((HyperLink)GridView1.Rows[i].Cells[1].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('查看受助人信息.aspx?ID=" + ID + "','查看受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
-            if(Session["userRole"].ToString()=="3")//会长不能编辑
-            {
-                ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Enabled = false;
-                ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑受助人')");
-            }
-        }
+        //for (int i = 0; i < count; i++)
+        //{
+        //    //ID = GridView1.DataKeys[i].Value.ToString();
+        //    //((HyperLink)GridView1.Rows[i].Cells[1].Controls[0]).Attributes.Add("onclick", "window.showModalDialog('查看受助人信息.aspx?ID=" + ID + "','查看受助人信息','toolbar=yes,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600')");
+        //    if(Session["userRole"].ToString()=="3")//会长不能编辑
+        //    {
+        //        ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Enabled = false;
+        //        ((HyperLink)GridView1.Rows[i].Cells[9].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑受助人')");
+        //    }
+        //}
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {

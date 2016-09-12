@@ -160,7 +160,7 @@
             </h2>
         </div>
         <div class="form-group">
-            <p>
+            <p style="text-align: center;margin:0 auto">
                 <asp:Label ID="Label3" runat="server" Text="捐赠人类型:" CssClass="label_style"></asp:Label>
                 <asp:DropDownList ID="benfactorType" runat="server" class="btn btn-default dropdown-toggle">
                 <asp:ListItem Value="0">所有类型</asp:ListItem>
@@ -173,16 +173,15 @@
                 <asp:Label ID="Label1" runat="server" Text="名称:" CssClass="label_style"></asp:Label>
                 <asp:TextBox ID="TbselectName" runat="server" Width="116px" CssClass="form-control"></asp:TextBox>&nbsp;&nbsp;
                 <asp:Label ID="Label2" runat="server" Text="手机号:" CssClass="label_style"></asp:Label> 
-                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="200"></asp:TextBox>&nbsp;&nbsp;
-                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>
+                <asp:TextBox ID="TbselectID" runat="server" CssClass="form-control" Width="116px"></asp:TextBox>&nbsp;&nbsp;
+                <asp:Button ID="Btselect" runat="server" OnClick="Btselect_Click" Text="搜索" CssClass=" btn btn-danger" Width="80px" Height="34px"/>&nbsp;&nbsp;
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="显示全部待确认金额" CssClass=" btn btn-danger" />
             </p>
-            <p>
+            <p style="text-align: center;margin:0 auto">
                 <asp:Label ID="Label4" runat="server" Text="搜索不到捐赠人？前往:" CssClass="label_style"></asp:Label>
                 <a href="捐赠人添加.aspx" target="main" class="link_style">添加捐赠人</a>
-            </p>      
-            <p>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="显示全部待确认金额" CssClass=" btn btn-danger" />
-            </p>     
+            </p>
+            <br />      
         </div>
         
             <asp:DataGrid ID="dgData" runat="server" CssClass="gridView_style" AutoGenerateColumns="False" CellPadding="4" Width="900px" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" AllowPaging="True" OnPageIndexChanged="dgData_PageIndexChanged">

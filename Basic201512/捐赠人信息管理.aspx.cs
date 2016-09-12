@@ -61,6 +61,12 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             mask();
 
             //DetailsView1.Visible = false;
+
+            if (Session["userRole"].ToString() == "3")//会长不能编辑和删除捐赠人
+            {
+                GridView1.Columns[18].Visible = GridView1.Columns[19].Visible = false;
+            }
+
         }
     }
     protected void mask()
@@ -240,14 +246,14 @@ public partial class Basic201512_捐赠人信息管理 : System.Web.UI.Page
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#FFFFFF'");
             if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
             {
-                if (Session["userRole"].ToString() == "3")//会长
-                {
-                    ((HyperLink)(e.Row.Cells[18].Controls[0])).Enabled = false;
-                    ((HyperLink)(e.Row.Cells[18].Controls[0])).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑捐赠人')");
-                    ((LinkButton)e.Row.Cells[19].Controls[0]).Enabled = false;
-                    ((LinkButton)e.Row.Cells[19].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除捐赠人')");
-                }
-                else
+                //if (Session["userRole"].ToString() == "3")//会长
+                //{
+                //    ((HyperLink)(e.Row.Cells[18].Controls[0])).Enabled = false;
+                //    ((HyperLink)(e.Row.Cells[18].Controls[0])).Attributes.Add("onclick", "javascript:return confirm('会长不能编辑捐赠人')");
+                //    ((LinkButton)e.Row.Cells[19].Controls[0]).Enabled = false;
+                //    ((LinkButton)e.Row.Cells[19].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('会长不能删除捐赠人')");
+                //}
+                //else
                     ((LinkButton)e.Row.Cells[19].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认要删除吗?')");
                 //会长不能修改捐赠人信息
 
