@@ -36,6 +36,19 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
         }
         if (!Page.IsPostBack)//页面首次加载
         {
+            //绑定下拉框
+            DataSet ds = MySqlHelper.ExecuteDataset(msq.getmysqlcon(), "select benfactorFrom from e_handlingunit");
+            DataView dv = new DataView(ds.Tables[0]);
+            ddlBranchFrom.AppendDataBoundItems = true;
+            ddlBranchFrom.DataSource = dv;
+            ddlBranchFrom.DataTextField = "benfactorFrom";
+            ddlBranchFrom.DataBind();
+
+            ddlBranchTo.AppendDataBoundItems = true;
+            ddlBranchTo.DataSource = dv;
+            ddlBranchTo.DataTextField = "benfactorFrom";
+            ddlBranchTo.DataBind();
+
             StringBuilder queryString = new StringBuilder();
             queryString.Append("select * from e_info where 1=1 ");
             if(Session["UserName"].ToString()=="admin")
@@ -227,5 +240,22 @@ public partial class Basic201512_信息接收 : System.Web.UI.Page
             ViewState["now"] = ViewState["init"].ToString() + "and infoTo='所有机构'";
             databind();
         }
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        StringBuilder tempString = new StringBuilder();
+        tempString.Append(ViewState["init"].ToString());
+        if(tbTitle.Text.Trim()!="")
+            tempString.Append("and infoTitle like '%" + tbTitle.Text.Trim() + "%' ");
+        if (tbFrom.Text.Trim() != "")
+            tempString.Append("and infoDATE>'" + tbFrom.Text.Trim() + "' ");
+        if (tbTo.Text.Trim() != "")
+            tempString.Append("and infoDATE<'" + tbTo.Text.Trim() + " 23:59:59' ");
+        if (ddlBranchFrom.SelectedItem.ToString() != "请选择")
+            tempString.Append("and infoFrom='" + ddlBranchFrom.SelectedItem.ToString() + "' ");
+        if (ddlBranchTo.SelectedItem.ToString() != "请选择")
+            tempString.Append("and infoTo='" + ddlBranchTo.SelectedItem.ToString() + "' ");
+        ViewState["now"] = tempString.ToString();
+        databind();
     }
 }

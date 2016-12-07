@@ -94,6 +94,31 @@
                 <asp:ListItem>群发信息</asp:ListItem>
                 <asp:ListItem>全部信息</asp:ListItem>
             </asp:DropDownList>
+        </p>
+        <p>
+
+            <asp:Label ID="Label4" runat="server" Text="标题：" CssClass="label_style" Width="72px"></asp:Label>
+            <asp:TextBox ID="tbTitle" runat="server"  Width="140px" CssClass="form-control"></asp:TextBox>
+            &nbsp;
+            <asp:Label ID="Label5" runat="server" Text="时间：" CssClass="label_style" Width="72px"></asp:Label>
+            <asp:TextBox ID="tbFrom" runat="server"  Width="140px"  onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text="至" CssClass="label_style" Width="72px"></asp:Label>
+            <asp:TextBox ID="tbTo" runat="server"  Width="140px"  onClick="WdatePicker()" CssClass="form-control"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="Label2" runat="server" Text="发件人：" CssClass="label_style" Width="72px"></asp:Label>
+            <asp:DropDownList ID="ddlBranchFrom" runat="server" CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>请选择</asp:ListItem>
+            </asp:DropDownList>
+            &nbsp;
+            <asp:Label ID="Label6" runat="server" Text="收件人：" CssClass="label_style" Width="72px"></asp:Label>
+            <asp:DropDownList ID="ddlBranchTo" runat="server" CssClass="btn btn-default dropdown-toggle">
+                <asp:ListItem>请选择</asp:ListItem>
+                <asp:ListItem>所有机构</asp:ListItem>
+            </asp:DropDownList>
+            &nbsp;
+            <asp:Button ID="btnSearch" runat="server" Text="查询" CssClass="btn btn-danger" Width="80px" Height="34px" OnClick="btnSearch_Click" />&nbsp;&nbsp;
+
         </p>            
     </div>
         <br />
