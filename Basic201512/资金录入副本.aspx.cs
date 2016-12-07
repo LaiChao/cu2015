@@ -220,14 +220,14 @@ namespace CL.Utility.Web.BasicData
             //}
             //int result;
             if ((tempstate == 0) && (Session["benfactorFrom"].ToString() == "北京市朝阳区慈善协会捐助科"))
-            {
+            {//捐助科可以确认或者撤回
                 confirm.Visible = true;
-                btnCancel.Visible = true;
+                //btnCancel.Visible = true;
             }
-            if((tempstate==0)&&(Session["benfactorFrom"].ToString()==lblBranch.Text.Trim()))
-            {//申请单位可以撤回
-                btnCancel.Visible = true;
-            }
+            //if((tempstate==0)&&(Session["benfactorFrom"].ToString()==lblBranch.Text.Trim()))
+            //{//申请单位可以撤回
+            //    //btnCancel.Visible = true;
+            //}
         }
 
         protected void btyes_Click(object sender, EventArgs e)//提交添加资金
