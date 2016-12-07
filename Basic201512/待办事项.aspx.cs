@@ -65,7 +65,7 @@ public partial class Basic201512_待办事项 : System.Web.UI.Page
                 mysqlread2.Dispose();
             }
 
-            if (intRole == 1)
+            if (intRole == 1 || intRole==3)//分会与会长不显示
             {
                 tr4.Visible = false;
             }
