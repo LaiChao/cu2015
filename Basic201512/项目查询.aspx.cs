@@ -216,7 +216,7 @@ public partial class Basic201512_受助人 : System.Web.UI.Page
         dgData.Columns[7].Visible = false;
         dgData.Columns[8].Visible = false;
         DateTime dt = DateTime.Now;
-        tableTitle =illtimebe.Text + "至"+illtimeend.Text+"项目信息";
+        tableTitle = "项目信息";//illtimebe.Text + "至"+illtimeend.Text+
         string dttime=dt.ToShortDateString().ToString();        
         lyf_OutputToExcel.expExcle(this,divPrint,tableTitle);
     }
