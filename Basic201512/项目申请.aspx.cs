@@ -70,6 +70,20 @@ namespace CL.Utility.Web.BasicData
             }
             if (!Page.IsPostBack)
             {
+                //读取当前登录用户所在机构的可用资金
+                string selectSum = "select ifnull(sum(capitalEarn),0) as remain from e_capital where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
+                MySqlDataReader mysqlread2 = msq.getmysqlread(selectSum);
+                if (mysqlread2.HasRows)
+                {
+                    while (mysqlread2.Read())
+                    {
+                        ViewState["sum"] = mysqlread2.GetInt32("remain").ToString();
+                    }
+                }
+                else
+                    ViewState["sum"] = "0";
+                mysqlread2.Close();
+                mysqlread2.Dispose();
                 //读取当前登录用户的经办单位信息
                 string selectString = "select contactPerson,TEL from e_handlingunit where benfactorFrom='" + Session["benfactorFrom"].ToString() + "' ";
                 MySqlDataReader mysqlread = msq.getmysqlread(selectString);
@@ -78,6 +92,8 @@ namespace CL.Utility.Web.BasicData
                     txttel.Text = mysqlread.GetString("contactPerson");
                     txtteladd.Text = mysqlread.GetString("TEL");
                 }
+                mysqlread.Close();
+                mysqlread.Dispose();
                 txttel.ReadOnly = true;
                 txtteladd.ReadOnly = true;
 
@@ -101,8 +117,8 @@ namespace CL.Utility.Web.BasicData
                     btnGetId.Visible = false;
                     buttonVisible.Visible = false;
 
-                    table1.Visible = true;
-                    dgData1.Visible = true;
+                    //table1.Visible = true;
+                    //dgData1.Visible = true;
                     Session["ProjectID"] = LbproID.Text.ToString();
 
                     reload();//载入项目信息
@@ -489,6 +505,11 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "项目预算不能为负数";
                     return;
                 }
+                if(Convert.ToDouble(txtPLAN.Text.Trim())>Convert.ToDouble(ViewState["sum"].ToString()))
+                {
+                    labError.Text = "金额不足";
+                    return;
+                }
             }
             if (txtDIR.Text.Trim()=="")
             {
@@ -499,22 +520,38 @@ namespace CL.Utility.Web.BasicData
                 }
             }
 
-                DateTime dt = DateTime.Now;
-                string prodatatime = dt.ToShortDateString().ToString();
-                string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType,isnaming,isdirect) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','{9}',{10},'{11}',{12},{13})", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(),ddlDirect.SelectedValue.ToString());
-                int res = msq.getmysqlcom(str11);
-                if (res > 0)
-                {
-                    labError.Text = "添加项目成功，请选择受助人";
-                    btntijiao.Visible = false;
-                    btnFinish.Visible = true;
-                    table1.Visible = true;
-                    ddlDirect.Enabled = ddlNaming.Enabled = ddlType.Enabled = recipientsType.Enabled = false;
-                }
-                else
-                {
-                    labError.Text = "添加项目失败";
-                }
+            DateTime dt = DateTime.Now;
+            string prodatatime = dt.ToShortDateString().ToString();
+            string str11 = string.Format("insert into e_project (projectID,projectName,projectDir,palnMoney,recipientsNow,benfactorFrom,telphoneName,telphoneADD,prodatatime,proschedule,projectLei,needMoney,projectType,isnaming,isdirect) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','申请中','{9}',{10},'{11}',{12},{13})", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(),ddlDirect.SelectedValue.ToString());
+            //string str22 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',benfactorFrom='{5}',telphoneName='{6]',telphoneADD='{7}',proschedule='申请中',projectLei='{8}',needMoney={9},projectType='{10}',isnaming={11},isdirect={12} where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, Session["benfactorFrom"].ToString(), txttel.Text, txtteladd.Text, recipientsType.SelectedValue.ToString(), txtPLAN.Text, ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(), ddlDirect.SelectedValue.ToString());
+            string str22 = string.Format("update e_project set projectName='{1}',projectDir='{2}',palnMoney='{3}',recipientsNow='{4}',telphoneName='{5}',telphoneADD='{6}',prodatatime='{7}',proschedule='申请中',projectLei='{8}',needMoney={3},projectType='{9}',isnaming={10},isdirect={11} where projectID='{0}'", LbproID.Text, projectID.Text, projectDir.Text, txtPLAN.Text, txtDIR.Text, txttel.Text, txtteladd.Text, prodatatime, recipientsType.SelectedValue.ToString(), ddlType.SelectedValue.ToString(), ddlNaming.SelectedValue.ToString(), ddlDirect.SelectedValue.ToString());
+
+            try
+            {
+                msq.getmysqlcom(str11);
+
+            }
+            catch
+            {
+                msq.getmysqlcom(str22);
+                //labError.Text = "项目ID重复，添加项目失败";
+            }
+            finally
+            {
+                labError.Text = "添加项目成功，请选择受助人";
+                btntijiao.Visible = false;
+                btnFinish.Visible = true;
+                table1.Visible = true;
+                ddlDirect.Enabled = ddlNaming.Enabled = ddlType.Enabled = recipientsType.Enabled = false;
+            }
+            //int res = 
+            //if (res > 0)
+            //{
+            //}
+            //else
+            //{
+            //    labError.Text = "添加项目失败";
+            //}
 
 
             NLogTest nlog = new NLogTest();
@@ -578,6 +615,11 @@ namespace CL.Utility.Web.BasicData
                     labError.Text = "项目预算不能为负数";
                     return;
                 }
+                if (Convert.ToDouble(txtPLAN.Text.Trim()) > Convert.ToDouble(ViewState["sum"].ToString()))
+                {
+                    labError.Text = "金额不足";
+                    return;
+                }
             }
             if (txtDIR.Text.Trim()=="")
             {
@@ -594,9 +636,11 @@ namespace CL.Utility.Web.BasicData
                 int res = msq.getmysqlcom(str11);
                 if (res > 0)
                 {
-                    labError.Text = "重新申请项目成功";
+                    labError.Text = "重新申请项目成功，请选择受助人";
                     btnReapply.Visible = false;
                     btnFinish.Visible = true;
+                    table1.Visible = true;
+                    dgData1.Visible = true;
                     ddlDirect.Enabled = ddlNaming.Enabled = ddlType.Enabled = recipientsType.Enabled = false;
                 }
                 else
@@ -608,7 +652,15 @@ namespace CL.Utility.Web.BasicData
             NLogTest nlog = new NLogTest();
             string sss = "重新申请项目：" + projectID.Text;
             nlog.WriteLog(Session["UserName"].ToString(), sss);
-
+            projectID.ReadOnly = true;
+            projectDir.ReadOnly = true;
+            txtPLAN.ReadOnly = true;
+            txtDIR.ReadOnly = true;
+            txttel.ReadOnly = true;
+            txtteladd.ReadOnly = true;
+            buttonVisible.Visible = false;
+            applyTable.Visible = false;
+            familylist.Text = "+";
 
         }
         #endregion
